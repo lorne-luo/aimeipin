@@ -1,0 +1,32 @@
+/**
+     * 订单支付页面
+     *
+     * @param request
+     * @param orderId
+     * @return
+     */
+    @RequestMapping(value = "/orderPage/{orderId}", method = RequestMethod.GET)
+    public ModelAndView orderPage(HttpServletRequest request,
+                                  @PathVariable Integer orderId) {
+        MdModel model = new MdModel(request);
+
+        MdOrder order = orderRepository.findOne(orderId);
+        MdProject project = projectRepository.findOne(order.getProjectId());
+        //调用统一下单 订单号 微信openid ip地址 支付金额
+        Map wxPaySignature = null;
+        try {
+            //微信支付签名
+//            wxPaySignature = unifiedOrder(order.getOrderCode(), order.getPayAmount(), model.get("wx_openid"), "ip");
+//            model.put("wxPaySignature", wxPaySignature);
+
+            //网页签名
+//            Map signature = weiXinSignature(request, wxTicketRepository);
+//            model.put("signature", signature);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        model.put("order", order);
+        model.put("project", project);
+        return new ModelAndView("weixin/order", model);
+    }

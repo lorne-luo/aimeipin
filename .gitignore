@@ -1,4 +1,4 @@
 .idea/
 target/
-MeiDi.iml
+*.iml
 .DS_Store

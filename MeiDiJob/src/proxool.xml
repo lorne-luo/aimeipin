@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the proxool configuration can be embedded within your own application's.
+ Anything outside the "proxool" tag is ignored. -->
+<something-else-entirely>
+    <proxool>
+        <alias>md</alias>
+        <driver-url>
+            jdbc:mysql://101.201.106.18:3306/aimeipin?useUnicode=true&amp;characterEncoding=utf8
+            <!--jdbc:mysql://101.200.164.104:3306/meidi?useUnicode=true&amp;characterEncoding=utf8-->
+        </driver-url>
+        <driver-class>com.mysql.jdbc.Driver</driver-class>
+        <statistics>1m,15m,1d</statistics>
+        <driver-properties>
+            <property name="user" value="aimeipin"/>
+            <property name="password" value="123456"/>
+            <property name="autoReconnect" value="true"/>
+        </driver-properties>
+        <house-keeping-sleep-time>90000</house-keeping-sleep-time>
+        <simultaneous-build-throttle>200</simultaneous-build-throttle>
+        <prototype-count>5</prototype-count>
+        <test-before-use>true</test-before-use>
+        <maximum-connection-count>50</maximum-connection-count>
+        <minimum-connection-count>10</minimum-connection-count>
+        <verbose>true</verbose>
+        <house-keeping-test-sql>
+            select CURRENT_DATE from dual
+        </house-keeping-test-sql>
+    </proxool>
+</something-else-entirely>
