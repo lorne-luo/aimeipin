@@ -1,0 +1,529 @@
+    1  shutdown -h now
+    2  ps -ef|grep java
+    3  rpm -qa|grep jdk
+    4  mv /home/jdk-8u71-linux-x64.rpm /usr/java/
+    5  rpm -ivh /usr/java/jdk-8u71-linux-x64.rpm 
+    6  vi ~/.bash
+    7  java -version
+    8  cd /usr/local/
+    9  tar mysql-5.6.29-linux-glibc2.5-x86_64.tar.gz 
+   10  tar -zxvf mysql-5.6.29-linux-glibc2.5-x86_64.tar.gz 
+   11  cd mysql
+   12  groupadd mysql
+   13  useradd -r -g mysql mysql
+   14  chown -R mysql:mysql ./
+   15  ./scripts/mysql_install_db --user=mysql
+   16  chown -R root:root ./
+   17  chown -R mysql:mysql data
+   18  service mysql start
+   19  cp support-files/mysql.server /etc/init.d/mysql
+   20  service mysql start
+   21  ps -ef|grep mysql
+   22  ./bin/mysqladmin -u root password '123456'
+   23  ps -ef|grep mysql
+   24  mysql -uroot -p
+   25  ln -s /usr/local/mysql/bin/mysql /usr/local/bin/mysql
+   26  mysql -uroot -p
+   27  find / -name mysql.sock
+   28  vi /usr/local/mysql/my.cnf 
+   29  ln -s /var/lib/mysql/mysql.sock /tmp/mysql.sock
+   30  mysql -uroot -p
+   31  cd /usr/local/tomcat8/
+   32  cd /bin/
+   33  ll
+   34  cd ..
+   35  cd /usr/local/tomcat8/
+   36  ./bin/start.sh
+   37  ./bin/startup.sh
+   38  cd bin/
+   39  wq
+   40  pwd
+   41  chomd u+x *.sh
+   42  chmod u+x *.sh
+   43  cd ..
+   44  ./bin/startup.sh 
+   45  ps -ef|grep java
+   46  ./bin/shutdown.sh 
+   47  ps -ef|grep java
+   48  mysql -uroot -p
+   49  cd /usr/local/tomcat8/
+   50  vi conf/server.xml 
+   51  vim conf/server.xml 
+   52  ./bin/startup.sh 
+   53  tail -500 ./logs/catalina.out 
+   54  vim conf/server.xml 
+   55  ./bin/shutdown.sh 
+   56  ./bin/startup.sh 
+   57  vim conf/server.xml 
+   58  tail -500 ./logs/catalina.out 
+   59  ./bin/shutdown.sh 
+   60  ./bin/startup.sh 
+   61  ./bin/shutdown.sh 
+   62  ps -ef|grep java
+   63  ./bin/shutdown.sh 
+   64  ps -ef|grep java
+   65  kill 5222
+   66  ps -ef|grep java
+   67  ./bin/startup.sh 
+   68  tail -500 ./logs/catalina.out 
+   69  ./bin/shutdown.sh 
+   70  cd webapps/
+   71  rm -rf meidi
+   72  cd ..
+   73  ./bin/startup.sh 
+   74  ./bin/shutdown.sh 
+   75  ./bin/startup.sh 
+   76  cd /usr/local/tomcat8/
+   77  ps -ef|grep java
+   78  ./bin/shutdown.sh 
+   79  cd webapps/
+   80  rm -rf meidi
+   81  cd ..
+   82  ./bin/startup.sh 
+   83  tail -500 ./logs/catalina.out 
+   84  ./bin/shutdown.sh 
+   85  ./bin/startup.sh 
+   86  tail -500 ./logs/catalina.out 
+   87  vim /etc/my.cnf 
+   88  find / -name my.cnf
+   89  vim /etc/my.cnf 
+   90  vim /usr/local/mysql/my.cnf 
+   91  mysql -uroot -p
+   92  vim /usr/local/mysql/my.cnf 
+   93  service mysql restart
+   94  mysql -uroot -p
+   95  tail -500 ./logs/catalina.out 
+   96  vim conf/server.xml 
+   97  ./bin/shutdown.sh 
+   98  ./bin/startup.sh 
+   99  ./bin/shutdown.sh 
+  100  cd webapps/
+  101  rm -rf meidi
+  102  cd ..
+  103  ./bin/startup.sh 
+  104  tail -500 ./logs/catalina.out 
+  105  ./bin/shutdown.sh 
+  106  ./bin/startup.sh 
+  107  tail -500 ./logs/catalina.out 
+  108  cd /usr/local/tomcat8/
+  109  ./bin/shutdown.sh 
+  110  cd webapps/
+  111  rm -rf meidi
+  112  cd ..
+  113  ./bin/startup.sh 
+  114  tail -500 ./logs/catalina.out 
+  115  ./bin/shutdown.sh 
+  116  ./bin/startup.sh 
+  117  tail -500 ./logs/catalina.out 
+  118  cd /usr/local/Job/
+  119  nohup java -jar MeiDiJob.jar &
+  120  ps -ef|grep java
+  121  cd ..
+  122  cd tomcat8/
+  123  ./bin/shutdown.sh 
+  124  cd webapps/
+  125  rm -rf meidi
+  126  cd ..
+  127  ./bin/startup.sh 
+  128  tail -500 ./logs/catalina.out 
+  129  ./bin/shutdown.sh 
+  130  ./bin/startup.sh 
+  131  tail -500 ./logs/catalina.out 
+  132  ./bin/shutdown.sh 
+  133  cd webapps/
+  134  rm -rf meidi
+  135  cd ..
+  136  ./bin/startup.sh 
+  137  tail -500 ./logs/catalina.out 
+  138  ./bin/shutdown.sh 
+  139  ./bin/startup.sh 
+  140  cd /usr/local/tomcat8/
+  141  tail -500 ./logs/catalina.out 
+  142  ./bin/shutdown.sh 
+  143  ./bin/startup.sh 
+  144  cd /usr/local/tomcat8/
+  145  ./bin/shutdown.sh 
+  146  cd webapps/
+  147  rm -rf meidi
+  148  cd ..
+  149  ./bin/startup.sh 
+  150  tail -500 ./logs/catalina.out 
+  151  ./bin/shutdown.sh 
+  152  ./bin/startup.sh 
+  153  ./bin/shutdown.sh 
+  154  cd webapps/
+  155  rm -rf meidi
+  156  cd ..
+  157  ./bin/startup.sh 
+  158  ./bin/shutdown.sh 
+  159  ./bin/startup.sh 
+  160  cd /usr/local/tomcat8/
+  161  ./bin/shutdown.sh 
+  162  cd webapps/
+  163   rm -rf meidi
+  164  cd ..
+  165  ./bin/startup.sh 
+  166  ./bin/shutdown.sh 
+  167  ./bin/startup.sh 
+  168  ps -ef |grep java
+  169  cd /usr/local/tomcat8/
+  170  ./bin/shutdown.sh 
+  171  cd webapps/meidi
+  172  rm -rf WEB-INF/
+  173  rm -rf META-INF/
+  174  cd ..
+  175  ./bin/startup.sh 
+  176  tail -500 ./logs/catalina.out 
+  177  ./bin/shutdown.sh 
+  178  ./bin/startup.sh 
+  179  ./bin/shutdown.sh 
+  180  cd webapps/
+  181  rm -rf meidi
+  182  cd ..
+  183  ./bin/startup.sh 
+  184  tail -500 ./logs/catalina.out 
+  185  ./bin/shutdown.sh 
+  186  ./bin/startup.sh 
+  187  cd /usr/local/tomcat8/
+  188  ./bin/shutdown.sh 
+  189  cd webapps/
+  190  rm -rf meidi
+  191  cd ..
+  192  ./bin/startup.sh 
+  193  ./bin/shutdown.sh 
+  194  ./bin/startup.sh 
+  195  cd /usr/local/tomcat8/
+  196  ./bin/shutdown.sh 
+  197  cd webapps/
+  198  rm -rf meidi
+  199  cd ..
+  200  ./bin/startup.sh 
+  201  tail -500 ./logs/catalina.out 
+  202  ./bin/shutdown.sh 
+  203  ./bin/startup.sh 
+  204  ./bin/shutdown.sh 
+  205  cd webapps/
+  206  rm -rf meidi
+  207  cd ..
+  208  ./bin/startup.sh 
+  209  ./bin/shutdown.sh 
+  210  ./bin/startup.sh 
+  211  cd /usr/local/tomcat8/
+  212  ./bin/shutdown.sh 
+  213  cd webapps/
+  214  rm -rf meidi
+  215  cd ..
+  216  ./bin/startup.sh 
+  217  ./bin/shutdown.sh 
+  218  ./bin/startup.sh 
+  219  cd /usr/local/tomcat8/
+  220  ./bin/shutdown.sh 
+  221  ./bin/startup.sh 
+  222  ./bin/shutdown.sh 
+  223  cd webapps/
+  224  rm -rf meidi
+  225  cd ..
+  226  ps -ef|grep java
+  227  kill 22698
+  228  ps -ef|grep java
+  229  ./bin/startup.sh 
+  230  ./bin/shutdown.sh 
+  231  ./bin/startup.sh 
+  232  exit;
+  233  cd /usr/local/Job/
+  234  ps -ef|grep java
+  235  kill 13915
+  236  nohup java -jar MeiDiJob.jar &
+  237  ps -ef|grep java
+  238  cd ..
+  239  cd tomcat8/
+  240  ./bin/shutdown.sh 
+  241  cd webapps/
+  242  rm -rf meidi
+  243  cd ..
+  244  ./bin/startup.sh 
+  245  ./bin/shutdown.sh 
+  246  ./bin/startup.sh 
+  247  tail -500 ./logs/catalina.out 
+  248  ./bin/shutdown.sh 
+  249  cd webapps/
+  250  rm -rf meidi
+  251  cd ..
+  252  ./bin/startup.sh 
+  253  ./bin/shutdown.sh 
+  254  ./bin/startup.sh 
+  255  tail -500 ./logs/catalina.out 
+  256  ./bin/shutdown.sh 
+  257  ./bin/startup.sh 
+  258  ./bin/shutdown.sh 
+  259  ./bin/startup.sh 
+  260  tail -500 ./logs/catalina.out 
+  261  ./bin/shutdown.sh 
+  262  ./bin/startup.sh 
+  263  ps -ef|grep java
+  264  cd /usr/local/tomcat8/
+  265  ./bin/shutdown.sh 
+  266  cd webapps/
+  267  rm -rf meidi
+  268  cd ..
+  269  ./bin/startup.sh 
+  270  tail -500 ./logs/catalina.out 
+  271  ./bin/shutdown.sh 
+  272  ./bin/startup.sh 
+  273  tail -500 ./logs/catalina.out 
+  274  cd /
+  275  find / -name my.cnf
+  276  vim /usr/local/mysql/my.cnf 
+  277  vim /etc/my.cnf 
+  278  service mysql restart
+  279  mysql -uroot -p
+  280  cd /usr/local/tomcat8/
+  281  ./bin/shutdown.sh 
+  282  ./bin/startup.sh 
+  283  cd /usr/local/tomcat8/
+  284  tail -500 ./logs/catalina.out 
+  285  cd /usr/local/tomcat8/
+  286  tail -500 ./logs/catalina.out 
+  287  cd /usr/local/tomcat8/
+  288  ./bin/shutdown.sh 
+  289  ./bin/startup.sh 
+  290  tail -500 ./logs/catalina.out 
+  291  cd /usr/local/tomcat8/
+  292  ./bin/shutdown.sh 
+  293  cd webapps/
+  294  rm -rf meidi.war 
+  295  ls
+  296  cd ..
+  297  ./bin/startup.sh 
+  298  ./bin/shutdown.sh 
+  299  ./bin/startup.sh 
+  300  cd /usr/local/tomcat8/
+  301  ./bin/shutdown.sh 
+  302  ./bin/startup.sh 
+  303  ./bin/shutdown.sh 
+  304  ./bin/startup.sh 
+  305  cd /usr/local/tomcat8/
+  306  tail -500 ./logs/catalina.out 
+  307  mysql -uroot -p
+  308  vim /etc/my.cnf 
+  309  service mysql restart
+  310  mysql -uroot -p
+  311  cd /usr/local/tomcat8/
+  312  tail -500 ./logs/catalina.out 
+  313  cd /usr/local/tomcat8/
+  314  tail -500 ./logs/catalina.out 
+  315  mysql -uroot -p
+  316  service mysql restart;
+  317  mysql -uroot -p;
+  318  mysql -uroot -p
+  319  mysql -uaimeipin -p
+  320  mysql -uroot -p
+  321  cd /usr/local/tomcat8/
+  322  ./bin/shutdown.sh 
+  323  cd webapps/
+  324  rm -rf meidi
+  325  cd ..
+  326  cd /usr/local/tomcat8/
+  327  ./bin/startup.sh 
+  328  ./bin/shutdown.sh 
+  329  ./bin/startup.sh 
+  330  ./bin/shutdown.sh 
+  331  mysql -uroot -p
+  332  ./bin/startup.sh 
+  333  ./bin/shutdown.sh 
+  334  ./bin/startup.sh 
+  335  cd /usr/local/tomcat8/
+  336  tail -500 ./logs/catalina.out 
+  337  exit;
+  338  cd /usr/local/tomcat8/
+  339  ./bin/shutdown.sh 
+  340  cd webapps/
+  341  cd ..
+  342  ./bin/startup.sh 
+  343  ./bin/shutdown.sh 
+  344  ./bin/startup.sh 
+  345  tail -500 ./logs/catalina.out 
+  346  ./bin/shutdown.sh 
+  347  cd webapps/
+  348  rm -rf meidi
+  349  cd ..
+  350  ./bin/startup.sh 
+  351  ./bin/shutdown.sh 
+  352  ./bin/startup.sh 
+  353  cd /usr/local/tomcat8/
+  354  ./bin/shutdown.sh 
+  355  cd webapps/
+  356  ls
+  357  cd ..
+  358  ./bin/startup.sh 
+  359  ./bin/shutdown.sh 
+  360  ./bin/startup.sh 
+  361  cd /usr/local/tomcat8/
+  362  tail -500 ./logs/catalina.out 
+  363  cd /usr/local/tomcat8/
+  364  ./bin/shutdown.sh 
+  365  cd webapps/
+  366  rm -rf meidi
+  367  cd ..
+  368  ./bin/startup.sh 
+  369  ./bin/shutdown.sh 
+  370  ./bin/startup.sh 
+  371  cd ..
+  372  cd Job/
+  373  ps -ef|grep java
+  374  kill 23205
+  375  nohup java -jar MeiDiJob.jar &
+  376  ps -ef|grep java
+  377  cd ..
+  378  cd tomcat8/
+  379  tail -500 ./logs/catalina.out 
+  380  ./bin/shutdown.sh 
+  381  cd webapps/
+  382  rm -rf meidi
+  383  cd ..
+  384  ./bin/startup.sh 
+  385  ./bin/shutdown.sh 
+  386  ./bin/startup.sh 
+  387  cd /usr/local/tomcat8/
+  388  ./bin/shutdown.sh 
+  389  ./bin/startup.sh 
+  390  cd /usr/local/tomcat8/
+  391  tail -500 ./logs/catalina.out 
+  392  cd /usr/local/Job/
+  393  tail -500 ./nohup.out 
+  394  cd ..
+  395  cd tomcat8/
+  396  ./bin/shutdown.sh 
+  397  ./bin/startup.sh 
+  398  cd ..
+  399  cd Job/
+  400  ps -ef|grep java
+  401  kill 11715
+  402  nohup java -jar MeiDiJob.jar &
+  403  ps -ef|grep java
+  404  cd /usr/local/tomcat8/
+  405  tail -500 ./logs/catalina.out 
+  406  cd /usr/local/tomcat8/
+  407  tail -500 ./logs/catalina.out 
+  408  cd /usr/local/tomcat8/
+  409  ps -ef|grep java
+  410  kill 13298
+  411  ps -ef|grep java
+  412  ./bin/shutdown.sh 
+  413  ./bin/startup.sh 
+  414  ./bin/shutdown.sh 
+  415  ./bin/startup.sh 
+  416  cd ..
+  417  cd Job/
+  418  nohup java -jar MeiDiJob.jar &
+  419  ps -ef|grep java
+  420  cd ..
+  421  cd tomcat8/
+  422  tail -500 ./logs/catalina.out 
+  423  cd /usr/local/tomcat8/
+  424  ./bin/shutdown.sh 
+  425  ./bin/startup.sh 
+  426  cd /usr/local/tomcat8/
+  427  ps -ef |grep java
+  428  kill 18966
+  429  ./bin/shutdown.sh 
+  430  cd webapps/
+  431  rm -rf meidi
+  432  cd ..
+  433  ./bin/startup.sh 
+  434  ./bin/shutdown.sh 
+  435  ./bin/startup.sh 
+  436  cd ..
+  437  cd Job/
+  438  nohup java -jar MeiDiJob.jar &
+  439  ps -ef|grep java
+  440  cd /usr/local/Job/
+  441  tail -500 ./nohup.out 
+  442  ps -ef|grep java
+  443  kill 20683
+  444  ps -ef|grep java
+  445  nohup java -jar MeiDiJob.jar &
+  446  ps -ef|grep java
+  447  cd /usr/local/tomcat8/
+  448  tail -500 ./logs/catalina.out 
+  449  ./bin/shutdown.sh 
+  450  ./bin/startup.sh 
+  451  cd /usr/local/tomcat8/
+  452  ./bin/shutdown.sh 
+  453  cd webapps/
+  454  rm -rf meidi
+  455  cd ..
+  456  ./bin/startup.sh 
+  457  ./bin/shutdown.sh 
+  458  ./bin/startup.sh 
+  459  cd /usr/local/tomcat8/
+  460  ./bin/shutdown.sh 
+  461  cd webapps/
+  462  rm -rf meidi
+  463  cd ..
+  464  ./bin/startup.sh 
+  465  ./bin/shutdown.sh 
+  466  cd webapps/
+  467  rm -rf meidi
+  468  cd ..
+  469  ./bin/startup.sh 
+  470  ./bin/shutdown.sh 
+  471  ./bin/startup.sh 
+  472  cd /usr/local/tomcat8/
+  473  tail -500 ./logs/catalina.out 
+  474  cd /usr/local/tomcat8/
+  475  ./bin/shutdown.sh 
+  476  ./bin/startup.sh 
+  477  cd /usr/local/tomcat8/
+  478  tail -500 ./logs/catalina.out 
+  479  ps -ef|grep java
+  480  kill 25842
+  481  cd /usr/local/tomcat8/
+  482  ./bin/shutdown.sh 
+  483  cd webapps/
+  484  rm -rf meidi
+  485  cd ..
+  486  ./bin/startup.sh 
+  487  ./bin/shutdown.sh 
+  488  ./bin/startup.sh 
+  489  cd ../Job/
+  490  nohup java -jar MeiDiJob.jar &
+  491  ps -ef|grep java
+  492  cd ..
+  493  cd tomcat8/
+  494  ./bin/shutdown.sh 
+  495  cd webapps/
+  496  rm -rf meidi
+  497  cd ..
+  498  ./bin/statr
+  499  ./bin/startup.sh 
+  500  ./bin/shutdown.sh 
+  501  ./bin/startup.sh 
+  502  cd /usr/local/tomcat8/
+  503  ./bin/shutdown.sh 
+  504  ./bin/startup.sh 
+  505  cd /usr/local/tomcat8/
+  506  tail -500 ./logs/catalina.out 
+  507  mysqldump aimeipin>dump.sql
+  508  find / -name 'mysqldump'
+  509  /usr/local/mysql/bin/mysqldump aimeipin>dump.sql
+  510  mysql -uroot -paimeipin2016
+  511  ps aux
+  512  ps aux|grep my
+  513  mysql -uroot -paimeipin2016
+  514  vi /etc/my.cnf 
+  515  mysql -uroot -paimeipin2016
+  516  vi /etc/my.cnf 
+  517  mysql -h localhost -uroot -paimeipin2016
+  518  /usr/local/mysql/bin/mysqldump aimeipin>dump.sql
+  519  ll
+  520  vi dump.sql 
+  521  pwd
+  522  lastb -20
+  523  lastb 
+  524  exit
+  525  ps aux 
+  526  ps aux |grep java
+  527  ll
+  528  rm dump.sql 
+  529  history>history.txt
