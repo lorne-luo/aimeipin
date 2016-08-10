@@ -160,7 +160,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <finalName>MD</finalName>
+        <finalName>meidi</finalName>
     </build>
 
 
