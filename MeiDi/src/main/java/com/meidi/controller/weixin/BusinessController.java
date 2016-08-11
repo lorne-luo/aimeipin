@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -155,14 +156,22 @@ public class BusinessController extends WxBaseController {
 
 
             if (flag == 4) {//参团支付 单独处理
-
-
                 GroupLaunch groupLaunch = groupLaunchRepository.findOne(id);
                 model.put("groupLaunch", groupLaunch);
 
                 commodity = commodityRepository.findOne(groupLaunch.getCommodityId());
-                model.put("commodity", commodity);
-                return new ModelAndView("weixin/joinGroupPayment", model);
+
+                Order existUnpaidOrder = orderRepository.findByWxOpenidAndCommodityIdAndState(
+                        MdCommon.null2String(model.get("wx_openid")), commodity.getId(), 1);
+
+                if (existUnpaidOrder == null) {
+                    // 没有待支付的本商品订单,可以新下单
+                    model.put("commodity", commodity);
+                    return new ModelAndView("weixin/joinGroupPayment", model);
+                }else {
+                    // 本商品已存在未支付订单, 转向我的订单页
+                    return new ModelAndView(new RedirectView(PATH + "/business/myOrderPage"));
+                }
             }else{
                 commodity = commodityRepository.findOne(id);
                 model.put("commodity", commodity);
