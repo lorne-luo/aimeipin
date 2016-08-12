@@ -75,17 +75,23 @@ function createTable(result) {
             str += '<tr>';
         }
 
+        var nickname = '';
+        if (order.user && order.user.nickname) {
+            nickname = order.user.nickname
+        }
+
         str += '<td>' + order.order.orderCode + '</td>' +
             '<td>' + getProjectFlag(order.order) + '</td>' +
             '<td>' + order.order.commodityName + '</span></td>' +
             '<td>' + order.order.discountPrice/100 + '元</td>' +
             '<td>' + order.order.payAmount/100 + '元</td>' +
-            '<td>' + order.order.username + '<br>' + order.order.mobile;
+            '<td>' + nickname;
         if (order.order.weixin != null && order.order.weixin != '') {
-            str += '<br>' + order.order.weixin;
+            str += '<br>@' + order.order.weixin;
         }
+        str += '</td>'+
+               '<td>' + order.order.username + '<br>' + order.order.mobile+ '</td>';
 
-        str += '</td>';
         if (order.order.bookingTime != null) {
             str += '<td id="bookingTime_' + order.order.id + '">' + getTimeMMDDhhmm(order.order.bookingTime) + '</td>';
         } else {
