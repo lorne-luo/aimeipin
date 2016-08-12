@@ -64,7 +64,11 @@ public class WxAuthController implements MdConstants {
 //            String nickname = new String(MdCommon.null2String(ret.get("nickname")).getBytes("ISO-8859-1"), "utf-8");
 //            String nickname = MdCommon.nicknameEscape(MdCommon.null2String(ret.get("nickname")));
             String nickname = new String(MdCommon.null2String(ret.get("nickname")).getBytes("ISO-8859-1"), "utf8");
-
+            String sex = MdCommon.null2String(ret.get("sex"));;
+            String province = new String(MdCommon.null2String(ret.get("province")).getBytes("ISO-8859-1"), "utf8");
+            String city = new String(MdCommon.null2String(ret.get("city")).getBytes("ISO-8859-1"), "utf8");
+            String country = new String(MdCommon.null2String(ret.get("country")).getBytes("ISO-8859-1"), "utf8");
+            String unionid = MdCommon.null2String(ret.getOrDefault("unionid",null));
 
             System.out.println("nickname======" + nickname);
             String photo = MdCommon.null2String(ret.get("headimgurl"));
@@ -72,12 +76,10 @@ public class WxAuthController implements MdConstants {
             if(MdCommon.isEmpty(user)){
                 user = new User();
                 user.setWxOpenid(openid);
-                user.setHeadimgurl(photo);
-                user.setNickname(nickname);
-            }else{
-                user.setHeadimgurl(photo);
-                user.setNickname(nickname);
             }
+            user.setHeadimgurl(photo);
+            user.setNickname(nickname);
+            user.setGender(Integer.parseInt(sex));
             userRepository.save(user);
 
             UserSession userSession = new UserSession();
