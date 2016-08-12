@@ -87,12 +87,12 @@ function createTable(result) {
 
         str += '</td>';
         if (order.order.bookingTime != null) {
-            str += '<td id="bookingTime_' + order.order.id + '">' + getTime2(order.order.bookingTime) + '</td>';
+            str += '<td id="bookingTime_' + order.order.id + '">' + getTimeMMDDhhmm(order.order.bookingTime) + '</td>';
         } else {
             str += '<td>暂无</td>';
         }
 
-        str += '<td>' + getTime2(order.order.createTime) + '</td>' +
+        str += '<td>' + getTimeMMDDhhmm(order.order.createTime) + '</td>' +
             '<td>' + getOrderState(order.order.state);
         if (order.launch != null) {
             str += '<br>' + getLaunchState(order.launch.state);
