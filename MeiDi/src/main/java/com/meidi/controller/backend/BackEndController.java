@@ -453,6 +453,8 @@ public class BackEndController implements MdConstants {
             } else {
                 map.put("launch", null);
             }
+            User user = userRepository.findByWxOpenid(order.getWxOpenid());
+            map.put("user", user);
             orders.add(map);
         }
 

@@ -98,7 +98,7 @@ function createTable(result) {
         } else if (user.gender == 2) {
             str += "女";
         } else {
-            str += "暂无";
+            str += "未知";
         }
         str += '</td>' +
             '<td>' + user.mobile + '</td>' +
