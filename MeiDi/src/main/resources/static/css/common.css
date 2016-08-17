@@ -1991,16 +1991,12 @@ a.baseBtn.nof {
 }
 
 .myjf .jfbox {
-    width: 500px;
-    margin: 20px auto 0;
+    width: 100%;
+    margin: 20px 0 0;
 }
 
-.myjf .jfbox .jdtit div {
-    width: 33.3%;
-    height: 50px;
-    line-height: 50px;
-    float: left;
-    text-align: center;
+.myjf .jfbox .tableList td {
+    padding:7px 0;
 }
 
 /*取消订单*/

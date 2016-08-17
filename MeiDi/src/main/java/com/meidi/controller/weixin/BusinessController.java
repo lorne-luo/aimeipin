@@ -721,7 +721,7 @@ public class BusinessController extends WxBaseController {
         }
         User user = userRepository.findByWxOpenid(model.get("wx_openid"));
         model.put("user", user);
-
+        model.put("pageActive", "my");
         return new ModelAndView("weixin/myIntegral",model);
     }
 

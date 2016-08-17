@@ -24,6 +24,26 @@ function getDate(obj) {
     return time;
 }
 
+function getDateYYMMDD(obj) {
+    if (obj == null || obj == "") {
+        return "";
+    }
+    var time = JSON.parse(obj);
+    time = new Date(time);
+    var year = time.getFullYear();
+    var month = time.getMonth() + 1;
+    var day = time.getDate();
+    year = year % 100;
+    if (month < 10) {
+        month = "0" + month;
+    }
+    if (day < 10) {
+        day = "0" + day;
+    }
+    var time_str = year + "-" +month + "-" + day;
+    return time_str;
+}
+
 function getDateNew(obj) {
     if (obj == null || obj == "") {
         return "";
