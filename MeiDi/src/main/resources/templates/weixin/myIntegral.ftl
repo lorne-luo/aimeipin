@@ -15,15 +15,13 @@
 <body style="background:#ffffff">
 <div class="wrapper pr pb50 tal">
     <div class="header pwhite bg  bor_b ">
-        <a class="fs14 pa iconfont icon-back base" href="${PATH}/my"></a>
-
         <p class="fs18">我的积分</p>
     </div>
     <div class="myjf p20">
         <div class="fs20">
             <p class="p878787 line30 mt10">该积分，等同您在聚会美预约项目并消费的实际金额，可用于享受多种积分福利。详情请移步“积分商城”</p>
         </div>
-        <div class="fs28 mt10">
+        <div class="fs28 mt10" style="margin-bottom: 60px">
             <p>总积分：<span class="pf40000">#{user.integral}分</span></p>
 
             <table class="jfbox fs20">
@@ -43,6 +41,8 @@
     </div>
 
 </div>
+
+<#include "footer.ftl"/>
 
 </body>
 <script src="${PATH}/js/weixin/myIntegral.js"></script>
