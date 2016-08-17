@@ -34,21 +34,16 @@ function getList(page) {
     })
 }
 
-
 function createTable(result) {
     $.each(result, function (index, integral) {
-        var str = '<div class="jdtit">' +
-            '<div>' + getDate(integral.userIntegral.createTime) + '</div>' +
-            '<div>' + integral.commodityName + '</div>' +
-            '<div class="pf40000">';
-        if (integral.userIntegral.integral > 0) {
-            str += "+" + integral.userIntegral.integral;
-        } else {
-            str += integral.userIntegral.integral;
-        }
-        str += '</div>' +
-            ' </div>';
-        $('.tableList').append(str);
+        var integral_change = integral.userIntegral.integral > 0 ? "+" + integral.userIntegral.integral : integral.userIntegral.integral;
+        var table_content = '<tr class="line24">' +
+            '<td class="tac">' + getDateYYMMDD(integral.userIntegral.createTime) + '</td>' +
+            '<td>' + integral.commodityName + '</td>' +
+            '<td class="pf40000 tac">' + integral_change + '</td>' +
+            '</tr>';
+
+        $('.tableList').append(table_content);
     })
 
 }

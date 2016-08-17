@@ -21,23 +21,23 @@
     </div>
     <div class="myjf p20">
         <div class="fs20">
-            <p class="pd5 line30 mt10">该积分，等同您在聚会美预约项目并消费的实际金额，可用于享受多种积分福利。详情请移步“积分商城”</p>
+            <p class="p878787 line30 mt10">该积分，等同您在聚会美预约项目并消费的实际金额，可用于享受多种积分福利。详情请移步“积分商城”</p>
         </div>
         <div class="fs28 mt10">
             <p>总积分：<span class="pf40000">#{user.integral}分</span></p>
 
-            <div class="jfbox fs24">
-                <div class="jdtit">
-                    <div>日期</div>
-                    <div>事件</div>
-                    <div>积分增减</div>
-                </div>
-                <div class="tableList">
+            <table class="jfbox fs20">
+                <thead>
+                    <th class="tac" style="width:85px">日期</th>
+                    <th class="tac">事件</th>
+                    <th class="tac" style="width:85px">积分增减</th>
+                </thead>
+                <tbody class="tableList">
 
-                </div>
-                <div class="tac">
-                    <a href="javascript:getList(0);" class="getmore">点击加载更多...</a>
-                </div>
+                </tbody>
+            </table>
+            <div class="tac">
+                <a href="javascript:getList(0);" class="getmore">点击加载更多...</a>
             </div>
         </div>
     </div>
