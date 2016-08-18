@@ -109,15 +109,12 @@
 .fs22{font-size: 22px;}
 .fs24{font-size: 24px;}
 
-.tac{text-align: center;}
-
-
 .bor{border:1px solid #ccc;}
 .borm{border:1px solid #f40000;}
 
 .fl{float:left;}
 .fr{float:right;}
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{line-height: 34px;}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{line-height: 24px;}
 
 .cprimary{color:#428bca;} 
 .csuccess{color:#5cb85c;}
@@ -179,7 +176,9 @@
 .pt40{padding-top: 40px;}
 .bgf6{background: #f6f6f6;}
 .bgWhite{background:white;}
-.tac{text-align: center;}
+.tac {text-align: center;}
+.tar {text-align: right;}
+.tal {text-align: left;}
 .pb30{padding-bottom: 30px;}
 .mt60{margin-top:60px;}
 .myform-control{box-shadow: inset 0 1px 1px rgba(0,0,0,.075);transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;color: #555;  border: 1px solid #ccc;padding: 7px 10px;border-radius: 4px;}
