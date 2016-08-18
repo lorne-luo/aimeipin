@@ -60,20 +60,7 @@ function getList(page) {
 function createTable(result) {
     $('#addList').html('');
     $.each(result, function (index, order) {
-        var str = '';
-        if (index == 0) {
-            str += '<tr class="active">';
-        } else if (index == 2) {
-            str += '<tr class="success">';
-        } else if (index == 4) {
-            str += '<tr class="info">';
-        } else if (index == 6) {
-            str += '<tr class="warning">';
-        } else if (index == 8) {
-            str += '<tr class="danger">';
-        } else {
-            str += '<tr>';
-        }
+        var str = index % 2 ? '<tr class="active">' : '<tr>';
 
         var nickname = '';
         if (order.user && order.user.nickname) {
@@ -81,8 +68,12 @@ function createTable(result) {
         }
 
         str += '<td>' + order.order.orderCode + '</td>' +
-            '<td>' + getProjectFlag(order.order) + '</td>' +
-            '<td>' + order.order.commodityName + '</span></td>' +
+            '<td>' + getProjectFlag(order.order);
+        if (order.launch != null) {
+            str += '<br>' + getLaunchState(order.launch.state);
+        }
+        str += '</td>' +
+            '<td class="tal">' + order.order.commodityName + '</td>' +
             '<td>' + order.order.discountPrice/100 + '元</td>' +
             '<td>' + order.order.payAmount/100 + '元</td>' +
             '<td>' + nickname;
@@ -94,9 +85,7 @@ function createTable(result) {
 
         str += '<td>' + getTimeMMDDhhmm(order.order.createTime) + '</td>' +
             '<td>' + getOrderState(order.order.state);
-        if (order.launch != null) {
-            str += '<br>' + getLaunchState(order.launch.state);
-        }
+
         str += '</td>' +
             '<td id="remarks_' + order.order.id + '">';
         if (order.order.remarks != null && order.order.remarks != '' && order.order.remarks.length > 0) {
