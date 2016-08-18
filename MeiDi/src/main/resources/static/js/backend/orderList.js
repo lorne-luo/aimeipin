@@ -92,12 +92,6 @@ function createTable(result) {
         str += '</td>'+
                '<td>' + order.order.username + '<br>' + order.order.mobile+ '</td>';
 
-        if (order.order.bookingTime != null) {
-            str += '<td id="bookingTime_' + order.order.id + '">' + getTimeMMDDhhmm(order.order.bookingTime) + '</td>';
-        } else {
-            str += '<td>暂无</td>';
-        }
-
         str += '<td>' + getTimeMMDDhhmm(order.order.createTime) + '</td>' +
             '<td>' + getOrderState(order.order.state);
         if (order.launch != null) {

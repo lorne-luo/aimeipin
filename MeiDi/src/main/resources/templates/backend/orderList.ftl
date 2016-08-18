@@ -50,7 +50,6 @@
                             <th>订金</th>
                             <th>微信</th>
                             <th>联系人</th>
-                            <th>预约</th>
                             <th>时间</th>
                             <th>
                                 <select class="" id="state">
