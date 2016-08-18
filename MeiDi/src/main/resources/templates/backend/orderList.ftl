@@ -32,7 +32,7 @@
             </div>
             <div class=" bor">
                 <div class="table-responsive">
-                    <table class="table table-hover tac">
+                    <table class="table tac">
                         <thead>
                         <tr>
                             <th>编号</th>
@@ -45,7 +45,7 @@
                                     <option value="4">咨询</option>
                                 </select>
                             </th>
-                            <th>名称</th>
+                            <th style="width:300px">名称</th>
                             <th>价格</th>
                             <th>订金</th>
                             <th>微信</th>
