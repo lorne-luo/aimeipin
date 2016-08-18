@@ -126,7 +126,7 @@ function createTable(result) {
 }
 
 var dialog = new Dialog({
-    dialogtext: "<div class='pr bgf6'><p class='p10 tal bgWhite fs20 p555'>添加备注</p><span class='close'></span><div class='pt40 tac'><input type='text' class='myform-control w340 p10 fs20 remarks'><div class='tac pb30  mt60'><a href='javascript:submitRemarks();' class='dsavelp btn btn-success'>提交</a></div></div>",
+    dialogtext: "<div class='pr bgf6'><p class='p10 tal bgWhite fs20 p555'>添加备注</p><span class='close'></span><div class='pt40 tac'><input type='text' class='myform-control w340 p10 fs20 remarks'><div class='tac pb30  mt60'><a href='javascript:submitRemarks();' class='btn btn-success'>提交</a></div></div>",
     hasDialog: true,
     dialogClass: "erroralert",
     markColor: "rgba(0,0,0,0.5)"
@@ -162,7 +162,7 @@ function submitRemarks() {
 }
 
 var dialog2 = new Dialog({
-    dialogtext: "<div class='pr bgf6'><p class='p10 tal bgWhite fs20 p555'>预约时间</p><span class='close'></span><div class='pt40 tac'><input type='text' class='myform-control w340 p10 fs20 bookingTime'><div class='tac pb30  mt60'><a href='javascript:submitBookingTime();' class='dsavelp btn btn-success'>提交</a></div></div>",
+    dialogtext: "<div class='pr bgf6'><p class='p10 tal bgWhite fs20 p555'>预约时间</p><span class='close'></span><div class='pt40 tac'><input type='text' class='myform-control w340 p10 fs20 bookingTime'><div class='tac pb30  mt60'><a href='javascript:submitBookingTime();' class='btn btn-success'>提交</a></div></div>",
     hasDialog: true,
     dialogClass: "erroralert",
     markColor: "rgba(0,0,0,0.5)"
@@ -233,7 +233,7 @@ function closeOrder(orderId, state) {
 
 
 var dialog3 = new Dialog({
-    dialogtext: "<div class='pr bgf6'><p class='p10 tal bgWhite fs20 p555'>加积分</p><span class='close'></span><div class='pt40 tac'><input type='text' class='myform-control w340 p10 fs20 integral'><div class='tac pb30  mt60'><a href='javascript:addIntegral();' class='dsavelp btn btn-success'>提交</a></div></div>",
+    dialogtext: "<div class='pr bgf6'><p class='p10 tal bgWhite fs20 p555'>加积分</p><span class='close'></span><div class='pt40 tac'><input type='text' class='myform-control w340 p10 fs20 integral'><div class='tac pb30  mt60'><a href='javascript:addIntegral();' class='btn btn-success'>提交</a></div></div>",
     hasDialog: true,
     dialogClass: "erroralert",
     markColor: "rgba(0,0,0,0.5)"
