@@ -10,3 +10,12 @@
 额外工作
 1.清理了数据库中一些不一致的无用数据(应该是开发时候留下的测试数据)
 delete from interest_commodity_son where parent_id=0;
+
+
+API文档
+http://mp.weixin.qq.com/wiki/10/e5f772f4521da17fa0d7304f68b97d7e.html
+https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455784140&token=&lang=zh_CN
+
+
+TEST URL
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf3d017eaf0b53463&redirect_uri=http://www.aimeipin.cc/index/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
