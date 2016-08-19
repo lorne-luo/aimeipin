@@ -87,7 +87,7 @@ function createTable(result) {
             '<td>' + getOrderState(order.order.state);
 
         str += '</td>' +
-            '<td id="remarks_' + order.order.id + '">';
+            '<td style="max-width:130px;word-wrap: break-word;" id="remarks_' + order.order.id + '">';
         if (order.order.remarks != null && order.order.remarks != '' && order.order.remarks.length > 0) {
             str += order.order.remarks;
         } else {
