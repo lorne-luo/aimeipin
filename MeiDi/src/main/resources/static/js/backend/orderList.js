@@ -150,56 +150,6 @@ function submitRemarks() {
     })
 }
 
-var dialog2 = new Dialog({
-    dialogtext: "<div class='pr bgf6'><p class='p10 tal bgWhite fs20 p555'>预约时间</p><span class='close'></span><div class='pt40 tac'><input type='text' class='myform-control w340 p10 fs20 bookingTime'><div class='tac pb30  mt60'><a href='javascript:submitBookingTime();' class='btn btn-success'>提交</a></div></div>",
-    hasDialog: true,
-    dialogClass: "erroralert",
-    markColor: "rgba(0,0,0,0.5)"
-});
-
-function bookingTime(id) {
-    var str = $('#bookingTime_' + id).text();
-    if (str != '暂无') {
-        $('.bookingTime').val(str);
-    }
-    dialog2.show();
-    orderId = id;
-    $('.bookingTime').mobiscroll().calendar({
-        theme: 'default',
-        lang: 'zh',
-        display: 'bubble',
-        animate: 'flip',
-        minDate: new Date(),
-        dateFormat: "yy-mm-dd",
-        controls: ['calendar', 'time'],
-        mode: 'mixed'
-    });
-}
-
-function submitBookingTime() {
-    var bookingTimeStr = $('.bookingTime').val();
-    if (bookingTimeStr == '') {
-        dialog2.close();
-        return;
-    }
-    $.ajax({
-        url: BASE_JS_URL + "/backend/bookingTime",
-        type: "post",
-        data: {
-            orderId: orderId,
-            bookingTimeStr: bookingTimeStr
-        },
-        dataType: "json",
-        success: function (data) {
-            dialog2.close();
-            getList(pageNumber);
-            $('.bookingTime').val('');
-            //$('#bookingTime_' + orderId).text(getTime(data.bookingTime));
-        }
-    })
-}
-
-
 function closeOrder(orderId, state) {
     $.ajax({
         url: BASE_JS_URL + '/backend/closeOrder',
