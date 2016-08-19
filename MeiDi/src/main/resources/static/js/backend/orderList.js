@@ -282,7 +282,7 @@ function getOrderState(state) {
         case 2:
             return "已支付";
         case 3:
-            return "已预约";
+            return "已预约"; // FIXME 后端含义是支付失败
         case 4:
             return "已完成";
         case 5:

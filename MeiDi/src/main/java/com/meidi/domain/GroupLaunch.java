@@ -78,6 +78,9 @@ public class GroupLaunch implements Serializable {
     @Column(name = "pay_amount")
     private Integer payAmount;
 
+    /**
+     * 状态 0 拼团中, 1 拼团成功 拼团结束, 3 拼团失败
+     */
     private Integer state = 0;
 
     @Temporal(TemporalType.TIMESTAMP)

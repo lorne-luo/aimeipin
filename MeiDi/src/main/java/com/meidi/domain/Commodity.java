@@ -81,6 +81,9 @@ public class Commodity implements Serializable {
     @Column(name = "commodity_code")
     private String commodityCode;
 
+    /**
+     * 项目类型: 1 拼团, 2 福袋, 3 特惠, 4 咨询
+     */
     private Integer flag = 1;
 
     private String name;
@@ -136,6 +139,9 @@ public class Commodity implements Serializable {
     @Column(name = "custom_sold")
     private Integer customSold = 0;
 
+    /**
+     * 状态: -1 已删除, 0 未上架, 1 已上架
+     */
     private Integer state = 0;
 
     private String tags;

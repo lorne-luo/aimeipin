@@ -246,7 +246,7 @@ public class WxPayController extends WxBaseController {
                     } else if ("CLOSED".equals(trade_state)) {//已关闭
                         //此处不做处理
                     } else if ("PAYERROR".equals(trade_state)) {//支付失败
-                        order.setState(3);
+                        order.setState(3);// FIXME 状态 3 前端显示是已预约
                     }
                     order = orderRepository.save(order);
                     model.put("order", order);
@@ -348,6 +348,7 @@ public class WxPayController extends WxBaseController {
                     for (GroupLaunchUser user : groupLaunchUserList) {
                         //拼团成功 给每个用户发消息
                         WxTemplate.groupLaunchOk(wxTicket.getToken(), order);
+                        // TODO 拼团成功 服务号通知
                     }
                     } else {
                         //成功参团
