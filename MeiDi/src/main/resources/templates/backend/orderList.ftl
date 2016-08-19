@@ -62,7 +62,7 @@
                                     <option value="6">已取消</option>
                                 </select>
                             </th>
-                            <th>备注</th>
+                            <th style="max-width:130px">备注</th>
                             <th>操作</th>
                         </tr>
                         </thead>

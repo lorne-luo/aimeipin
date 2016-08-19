@@ -87,11 +87,12 @@ function createTable(result) {
             '<td>' + getOrderState(order.order.state);
 
         str += '</td>' +
-            '<td id="remarks_' + order.order.id + '">';
+            '<td style="max-width:130px;word-wrap: break-word;" id="remarks_' + order.order.id + '">';
         if (order.order.remarks != null && order.order.remarks != '' && order.order.remarks.length > 0) {
-            str += order.order.remarks;
+            str += '<div class="text-left">'+order.order.remarks;
+            str += ' <a href="javascript:remarks(' + order.order.id + ');" class="text-primary"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></div>';
         } else {
-            str += "暂无";
+            str += '<a href="javascript:remarks(' + order.order.id + ');" class="text-primary"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>';
         }
 
         str += '</td><td>';
@@ -108,7 +109,6 @@ function createTable(result) {
             str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">完成</a>';
             str += ' <a href="javascript:closeOrder(' + order.order.id + ',6);" class="btn btn-danger">退款</a>';
         }
-        str += ' <a href="javascript:remarks(' + order.order.id + ');" class="btn btn-info">备注</a>';
         str += '</td></tr>';
         $('#addList').append(str);
     });
@@ -125,10 +125,11 @@ var orderId = 0;
 function remarks(id) {
     var str = $('#remarks_' + id).text();
     if (str != '暂无') {
-        $('.remarks').val(str);
+        $('.remarks').val($.trim(str));
     }
 
     dialog.show();
+    $('input.remarks').focus();
     orderId = id;
 }
 
@@ -144,7 +145,13 @@ function submitRemarks() {
         dataType: "json",
         success: function (data) {
             dialog.close();
-            $('#remarks_' + orderId).text(remarks);
+            if (remarks){
+                console.log(remarks);
+                $('#remarks_' + orderId).html('<div class="text-left">'+remarks+' <a href="javascript:remarks(' + orderId + ');" class="text-primary"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></div>');
+            }else{
+                console.log('null');
+                $('#remarks_' + orderId).html('<a href="javascript:remarks(' + orderId + ');" class="text-primary"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>');
+            }
             $('.remarks').val('');
         }
     })
@@ -181,6 +188,7 @@ var dialog3 = new Dialog({
 function integral(id) {
     orderId = id;
     dialog3.show();
+    $('input.integral').focus();
 }
 
 function addIntegral() {
