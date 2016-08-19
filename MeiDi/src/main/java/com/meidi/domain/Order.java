@@ -109,8 +109,16 @@ public class Order implements Serializable {
     private String mobile;
 
     /**
-     *支付状态 1 未支付 2已支付  3支付失败 4订单取消 等待退款  5 已退款 订单关闭  6 订单取消 订单关闭（未支付）
-     *        7 订单关闭（拼团超时 已退款）8 订单关闭 （已在医院做完项目）
+     * 支付状态
+     * 1 未支付                       | 未支付
+     * 2 已支付                       | 已支付
+     * 3 支付失败                     | 支付失败
+     * 4 订单取消 等待退款             | 已完成
+     * 5 已退款 订单关闭 取消中 等待审核 | 取消中
+     * 6 订单取消 订单关闭（未支付）     | 已取消(已退款)
+     * 7 订单关闭（拼团超时 已退款）     | 已取消(不退款)
+     * 8 订单关闭（已在医院做完项目）    | 已取消(未付款)
+     * 9 已取消(已退款)                | 已取消(未付款)
      */
     private Integer state = 1;
 
@@ -121,7 +129,8 @@ public class Order implements Serializable {
     private String transactionId;
 
     /**
-     * 订单类别
+     * 项目类型: 1 拼团, 2 福袋, 3 特惠, 4 咨询
+     * 与commondity.flag一致
      */
     private Integer flag = 0;
 

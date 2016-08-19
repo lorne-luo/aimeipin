@@ -14,6 +14,9 @@ public class GroupLaunchUser implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    /**
+     * 成员类型: 0 成员, 1 团长
+     */
     private Integer flag = 0;
 
     @Column(name = "launch_id")

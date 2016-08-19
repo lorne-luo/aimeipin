@@ -238,6 +238,15 @@ public class WxPayController extends WxBaseController {
                             orderHandle(order);
                         }
 
+//                    refer: https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_2
+//                    交易状态码trade_state含义:
+//                    SUCCESS—支付成功
+//                    REFUND—转入退款
+//                    NOTPAY—未支付
+//                    CLOSED—已关闭
+//                    REVOKED—已撤销（刷卡支付）
+//                    USERPAYING--用户支付中
+//                    PAYERROR--支付失败(其他原因，如银行返回失败)
 
                     } else if ("REFUND".equals(trade_state)) {//转入 退款
                         //此处不做处理
@@ -252,7 +261,6 @@ public class WxPayController extends WxBaseController {
                     model.put("order", order);
                     model.put("trade_state", trade_state);
                     model.put("trade_state_desc", trade_state_desc);
-
 
                     if (order.getFlag() == 1) {//拼团跳结果页面
                         GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
@@ -348,6 +356,7 @@ public class WxPayController extends WxBaseController {
                     for (GroupLaunchUser user : groupLaunchUserList) {
                         //拼团成功 给每个用户发消息
                         WxTemplate.groupLaunchOk(wxTicket.getToken(), order);
+                        // TODO 拼团成功 服务号通知
                     }
                     } else {
                         //成功参团

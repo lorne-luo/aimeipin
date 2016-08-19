@@ -160,7 +160,7 @@ function deleteProject(id){
 }
 
 var dialog = new Dialog({
-    dialogtext: "<div class='pr bgf6'><p class='p10 tal bgWhite fs20 p555'>修改权重</p><span class='close'></span><div class='pt40 tac'><input type='text' class='myform-control w340 p10 fs20 weight'><div class='tac pb30  mt60'><a href='javascript:updateWeight();' class='dsavelp btn btn-success'>提交</a></div></div>",
+    dialogtext: "<div class='pr bgf6'><p class='p10 tal bgWhite fs20 p555'>修改权重</p><span class='close'></span><div class='pt40 tac'><input type='text' class='myform-control w340 p10 fs20 weight'><div class='tac pb30  mt60'><a href='javascript:updateWeight();' class='btn btn-success'>提交</a></div></div>",
     hasDialog: true,
     dialogClass: "erroralert",
     markColor: "rgba(0,0,0,0.5)"
