@@ -168,7 +168,6 @@ public class GroupLaunch implements Serializable {
         this.discountPrice = discountPrice;
     }
 
-
     public Integer getPayAmount() {
         return payAmount;
     }
