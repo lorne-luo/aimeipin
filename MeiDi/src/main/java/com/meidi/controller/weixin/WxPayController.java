@@ -255,7 +255,7 @@ public class WxPayController extends WxBaseController {
                     } else if ("CLOSED".equals(trade_state)) {//已关闭
                         //此处不做处理
                     } else if ("PAYERROR".equals(trade_state)) {//支付失败
-                        order.setState(3);// FIXME 状态 3 前端显示是已预约
+                        order.setState(3);
                     }
                     order = orderRepository.save(order);
                     model.put("order", order);
