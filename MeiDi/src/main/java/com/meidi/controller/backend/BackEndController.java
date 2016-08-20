@@ -560,11 +560,11 @@ public class BackEndController implements MdConstants {
             } else if (state == 7) {//不退款(已预约但是超时未消费的)
 
                 if (order.getFlag() == 1 && !MdCommon.isEmpty(order.getLaunchId())) {//拼团订单 关闭该拼团
-                    GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
-                    if (groupLaunch.getState() != 3) {
-                        groupLaunch.setState(3);
-                        groupLaunchRepository.save(groupLaunch);
-                    }
+//                    GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
+//                    if (groupLaunch.getState() != 3) { // 0 拼团中, 1 拼团成功 拼团结束, 3 拼团失败
+//                        groupLaunch.setState(3);
+//                        groupLaunchRepository.save(groupLaunch);
+//                    }
 
                     GroupLaunchUser groupLaunchUser = groupLaunchUserRepository.findByLaunchIdAndWxOpenid(order.getLaunchId(),order.getWxOpenid());
                     if(!MdCommon.isEmpty(groupLaunchUser)){
