@@ -571,6 +571,12 @@ public class BackEndController implements MdConstants {
                         groupLaunchUserRepository.delete(groupLaunchUser);
                     }
 
+                    List<GroupLaunchUser> groupLaunchUserList = groupLaunchUserRepository.findByLaunchId(order.getLaunchId());
+                    if (MdCommon.isEmpty(groupLaunchUserList) || groupLaunchUserList.size() == 0) {
+                        //该拼团下没有用户 设置LaunchId为Null
+                        order.setLaunchId(null);
+                    }
+
                     //同时关闭该拼团下的所有用户订单
 //                    List<Order> orderList = orderRepository.findByLaunchId(order.getLaunchId());
 //                    for (Order o : orderList) {
@@ -582,8 +588,6 @@ public class BackEndController implements MdConstants {
 //                    }
                 }
                 order.setState(7);
-                //设置为Null
-                order.setLaunchId(null);
             }
 
 
