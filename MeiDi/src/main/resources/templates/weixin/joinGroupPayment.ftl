@@ -36,7 +36,7 @@
         <div class="tal  pt10 pb10 pl24 pr24 sign fs24">
             <div class="tac clearfix mt10">
                 <span class="fl t1 mt10">姓名：</span>
-                <input type="text" placeholder="请填写与到院登记一致的名字" name="username" id="username">
+                <input type="text" placeholder="请填写真实姓名" name="username" id="username">
             </div>
             <div class="tac clearfix mt10">
                 <span class="fl mt10">手机号码：</span>
