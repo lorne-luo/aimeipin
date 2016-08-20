@@ -164,7 +164,11 @@ public class Commodity implements Serializable {
     @Column(name = "create_time")
     private Date createTime;
 
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "notice")
+    private String notice;
 
     @Column(name = "label_flag")
     private Integer labelFlag = 0;
@@ -356,6 +360,10 @@ public class Commodity implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getNotice() {return notice;}
+
+    public void setNotice(String notice) {this.notice = notice;}
 
     public String getStartDate() {
         return startDate;
