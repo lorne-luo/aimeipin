@@ -33,22 +33,22 @@
         <input type="hidden" value="#{commodity.id}" name="commodityId" class="commodityId">
 
         <div class="tal  pt10 pb10 pl24 pr24 sign fs24">
-            <div class="tac clearfix mt10">
+            <div class="clearfix mt10">
                 <span class="fl t1 mt10">姓名：</span>
                 <input type="text" placeholder="请填写真实姓名" name="username" id="username">
             </div>
-            <div class="tac clearfix mt10">
+            <div class="clearfix mt10">
                 <span class="fl mt10">手机号码：</span>
                 <input type="tel" placeholder="请务必填写正确的手机号码" name="mobile" id="mobile">
             </div>
-            <div class="tac clearfix mt10">
+            <div class="clearfix mt10">
                 <span class="fl mt10">微信号：</span>
                 <input type="text" placeholder="选填" name="weixin" id="weixin">
             </div>
         <#if commodity.flag == 4>
 
         <#else>
-            <div class="tac clearfix mt10">
+            <div class="clearfix mt10">
                 <span class="fl mt20">预定数量：</span>
 
                 <p class="mpbox clearfix">
@@ -60,9 +60,9 @@
                     <span class="cgplus can  fs18 fl"></span>
                 </p>
             </div>
-            <div class="tac clearfix mt10">
+            <div class="clearfix mt10">
                 <span class="fl mt10">支付订金：</span>
-                <span class="fr mt10 pf40000 fs24 totalDeposit"
+                <span class="fr mt10 pf40000 fs24 totalDeposit" style="height:41px"
                       value="#{commodity.deposit/100}">¥#{commodity.deposit/100}</span>
             </div>
         </#if>
