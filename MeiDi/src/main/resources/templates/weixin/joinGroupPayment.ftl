@@ -68,6 +68,14 @@
             <a href="javascript:submitOrder(${flag});" id="goupay"></a>
         </div>
     </form>
+
+<#if commodity.notice?exists>
+    <div class="earnestills tal fs16 line30 p555">
+        <p class="fs20">本项目注意事项：</p>
+        ${commodity.notice}
+    </div>
+</#if>
+
     <div class="earnestills tal fs16 line30 p555">
         <p class="fs20">订金说明：</p>
 
