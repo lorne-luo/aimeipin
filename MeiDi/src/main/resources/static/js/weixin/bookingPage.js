@@ -58,6 +58,7 @@ function submitOrder(flag) {
     if(weixin == null || weixin == '' || !weixin){
         weixin = '';
     }
+    var remarks = $('#remarks').val();
 
     $.ajax({
         url: BASE_JS_URL + '/business/createOrder',
@@ -68,6 +69,7 @@ function submitOrder(flag) {
             'reservationCount': reservationCount,
             'flag': flag,
             'launchId': 0,
+            'remarks':remarks,
             'weixin':weixin
         },
         type: 'post',

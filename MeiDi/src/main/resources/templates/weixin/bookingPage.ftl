@@ -66,6 +66,10 @@
                       value="#{commodity.deposit/100}">¥#{commodity.deposit/100}</span>
             </div>
         </#if>
+            <div class="clearfix mt10">
+                <span class="fl t1 mt10">备注：</span>
+                <input type="text" placeholder="备注留言" name="remarks" id="remarks">
+            </div>
         </div>
         <div class="goupaybox">
             <a href="javascript:submitOrder(${flag});" id="goupay"></a>

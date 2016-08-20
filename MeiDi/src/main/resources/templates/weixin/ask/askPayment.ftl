@@ -52,6 +52,10 @@
                 <span class="fr mt10 pf40000 fs24 totalDeposit" style="height:41px"
                       value="#{ask.discountPrice}">¥#{ask.discountPrice}</span>
             </div>
+            <div class="clearfix mt10">
+                <span class="fl t1 mt10">备注：</span>
+                <input type="text" placeholder="备注留言" name="remarks" id="remarks">
+            </div>
         </div>
         <div class="goupaybox">
             <a href="javascript:submitOrder();" id="goupay"></a>
