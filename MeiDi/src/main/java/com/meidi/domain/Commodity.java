@@ -170,7 +170,14 @@ public class Commodity implements Serializable {
     @Column(name = "create_time")
     private Date createTime;
 
+    @Column(name = "description")
     private String description;
+
+    /**
+     * 备注,支付说明
+     */
+    @Column(name = "remarks")
+    private String remarks;
 
     @Column(name = "label_flag")
     private Integer labelFlag = 0;
@@ -362,6 +369,10 @@ public class Commodity implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getRemarks() {return remarks;}
+
+    public void setRemarks(String remarks) {this.remarks = remarks;}
 
     public String getStartDate() {
         return startDate;

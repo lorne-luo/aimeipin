@@ -142,7 +142,6 @@ public class BackEndController implements MdConstants {
             commodity.setCustomSold(0);
         }
 
-
         if (!MdCommon.isEmpty(commodity.getPriceDouble())) {
             commodity.setPrice((int) (commodity.getPriceDouble() * 100));
         }
@@ -254,6 +253,7 @@ public class BackEndController implements MdConstants {
         newCommodity.setTags(commodity.getTags());
         newCommodity.setLabelFlag(commodity.getLabelFlag());
         newCommodity.setDescription(commodity.getDescription());
+        newCommodity.setRemarks(commodity.getRemarks());
 
 
         List<CommodityPhoto> photoList = commonParam.getCommodityPhotosList(newCommodity.getCommodityPhotoList());

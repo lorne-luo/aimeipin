@@ -175,8 +175,12 @@ function submitCommodity(num) {
     ue.ready(function () {
         var html = ue.getContent();
         $('.description').val(html);
-    })
+    });
 
+    ue_remarks.ready(function () {
+        var remarks_html = ue_remarks.getContent();
+        $('.remarks').val(remarks_html);
+    });
 
     $('.startDate').removeAttr('readonly');
     $('.endDate').removeAttr('readonly');

@@ -140,6 +140,9 @@ public class Order implements Serializable {
 
     private String remarks;
 
+    /**
+     * 微信号
+     */
     private String weixin;
 
     @Temporal(TemporalType.TIMESTAMP)
