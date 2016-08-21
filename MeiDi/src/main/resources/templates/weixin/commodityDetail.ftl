@@ -46,10 +46,16 @@
                     // 用户取消分享后执行的回调函数
                 }
             });
+
+            <#if commodity.sharingSummary?exists && commodity.sharingSummary!='' >
+                var sharingSummary='${commodity.sharingSummary}';
+            <#else>
+                var sharingSummary ='为您挑选中韩优质医美机构及顶级专家，推荐高性价比明星项目。';
+            </#if>
             //分享好友
             wx.onMenuShareAppMessage({
                 title: '${commodity.name}', // 分享标题
-                desc: '为您挑选中韩优质医美机构及顶级专家，推荐高性价比明星项目。', // 分享描述
+                desc: sharingSummary, // 分享描述
                 link: '${PATH}/business/commodityDetailPage/#{commodity.id}', // 分享链接
                 imgUrl: '${PATH}/images/share.jpg', // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link

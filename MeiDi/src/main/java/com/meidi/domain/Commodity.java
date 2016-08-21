@@ -179,6 +179,12 @@ public class Commodity implements Serializable {
     @Column(name = "remarks")
     private String remarks;
 
+    /**
+     * 分享摘要
+     */
+    @Column(name = "sharing_summary")
+    private String sharingSummary;
+
     @Column(name = "label_flag")
     private Integer labelFlag = 0;
 
@@ -373,6 +379,10 @@ public class Commodity implements Serializable {
     public String getRemarks() {return remarks;}
 
     public void setRemarks(String remarks) {this.remarks = remarks;}
+
+    public String getSharingSummary() {return sharingSummary;}
+
+    public void setSharingSummary(String sharingSummary) {this.sharingSummary = sharingSummary;}
 
     public String getStartDate() {
         return startDate;

@@ -152,6 +152,12 @@
                         <input class="form-control" name="caseUrl" value=""/>
                     </div>
                     <div class="form-group">
+                        <label><span class="star mr6"></span>分享摘要：</label>
+                        <div>
+                            <textarea rows="3" style="width:60%" class="form-control" name="sharingSummary"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <input type="hidden" name="remarks" class="remarks">
                         <label><span class="star mr6"></span>支付说明：</label>
                         <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->

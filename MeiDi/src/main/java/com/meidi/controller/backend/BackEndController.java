@@ -254,6 +254,7 @@ public class BackEndController implements MdConstants {
         newCommodity.setLabelFlag(commodity.getLabelFlag());
         newCommodity.setDescription(commodity.getDescription());
         newCommodity.setRemarks(commodity.getRemarks());
+        newCommodity.setSharingSummary(commodity.getSharingSummary());
 
 
         List<CommodityPhoto> photoList = commonParam.getCommodityPhotosList(newCommodity.getCommodityPhotoList());
