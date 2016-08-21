@@ -95,21 +95,36 @@ function createTable(result) {
             str += '<a href="javascript:remarks(' + order.order.id + ');" class="text-primary"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>';
         }
 
-        str += '</td><td>';
+        // str += '</td><td>';
+        //
+        // if (order.order.state == 1) {
+        //     str += '<a href="javascript:closeOrder(' + order.order.id + ',6);" class="btn btn-warning">取消</a>';
+        // // } else if (order.order.state == 3) {
+        // //     str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">订单完成加积分</a>';
+        // //     str += '<a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-success">取消订单(过期)</a>';
+        // } else if (order.order.state == 5) {
+        //     str += '<a href="javascript:closeOrder(' + order.order.id + ',6);" class="btn btn-danger">退款</a>';
+        //     str += ' <a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-danger">不退款</a>';
+        // }else if (order.order.state == 2) {
+        //     str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">完成</a>';
+        //     str += ' <a href="javascript:closeOrder(' + order.order.id + ',6);" class="btn btn-danger">退款</a>';
+        // }
+        // str += '</td></tr>';
+        str += '</td>' +
+            '<td>';
 
-        if (order.order.state == 1) {
-            str += '<a href="javascript:closeOrder(' + order.order.id + ',6);" class="btn btn-warning">取消</a>';
-        // } else if (order.order.state == 3) {
-        //     str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">订单完成加积分</a>';
-        //     str += '<a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-success">取消订单(过期)</a>';
+        if (order.order.state == 3) {
+            str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">订单完成加积分</a>';
+            str += '<a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-success">取消订单(过期)</a>';
         } else if (order.order.state == 5) {
-            str += '<a href="javascript:closeOrder(' + order.order.id + ',6);" class="btn btn-danger">退款</a>';
-            str += ' <a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-danger">不退款</a>';
-        }else if (order.order.state == 2) {
-            str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">完成</a>';
-            str += ' <a href="javascript:closeOrder(' + order.order.id + ',6);" class="btn btn-danger">退款</a>';
+            str += '<a href="javascript:closeOrder(' + order.order.id + ',6);" class="btn btn-success">退款</a>';
+            str += '<a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-success">不退款</a>';
         }
-        str += '</td></tr>';
+        if (order.order.state == 2 || order.order.state == 3) {
+            str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">完成</a>';
+        }
+        str += '</td>' +
+            '</tr>';
         $('#addList').append(str);
     });
 }
