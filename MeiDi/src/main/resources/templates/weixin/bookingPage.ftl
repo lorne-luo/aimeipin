@@ -76,16 +76,11 @@
         </div>
     </form>
 
-<#if commodity.notice?exists>
-    <div class="earnestills tal fs16 line30 p555" style="padding-bottom: 0;">
-        <b class="fs20">注意事项：</b>
-        ${commodity.notice}
-    </div>
-</#if>
-
     <div class="earnestills tal fs16 line30 p555">
-        <b class="fs20">订金说明：</b>
-
+        <b class="fs20">支付说明：</b>
+    <#if commodity.remarks?exists && commodity.remarks!='' >
+        ${commodity.remarks}
+    <#else>
         <p class="pt10">·预约项目到院支付全款后，系统退还订金；</p>
 
         <p>·福袋可随时取消订单，系统退还订金；</p>
@@ -95,7 +90,7 @@
         <p>·拼团成功后，因个人原因取消订单，订金不予退还；</p>
 
         <p>·已接受聚会美线下服务（面诊、接送机等），但未到院消费，订金不予退还。</p>
-
+    </#if>
     </div>
 </div>
 

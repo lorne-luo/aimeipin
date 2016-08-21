@@ -174,10 +174,10 @@ public class Commodity implements Serializable {
     private String description;
 
     /**
-     * 注意事项
+     * 备注,支付说明
      */
-    @Column(name = "notice")
-    private String notice;
+    @Column(name = "remarks")
+    private String remarks;
 
     @Column(name = "label_flag")
     private Integer labelFlag = 0;
@@ -370,9 +370,9 @@ public class Commodity implements Serializable {
         this.description = description;
     }
 
-    public String getNotice() {return notice;}
+    public String getRemarks() {return remarks;}
 
-    public void setNotice(String notice) {this.notice = notice;}
+    public void setRemarks(String remarks) {this.remarks = remarks;}
 
     public String getStartDate() {
         return startDate;

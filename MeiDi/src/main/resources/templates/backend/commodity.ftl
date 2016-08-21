@@ -152,10 +152,10 @@
                         <input class="form-control" name="caseUrl" value=""/>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" name="notice" class="notice">
-                        <label><span class="star mr6"></span>注意事项：</label>
+                        <input type="hidden" name="remarks" class="remarks">
+                        <label><span class="star mr6"></span>支付说明：</label>
                         <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
-                        <script id="container_notice" name="content_notice" type="text/plain">
+                        <script id="container_remarks" name="content_remarks" type="text/plain">
 
                         </script>
                         <!-- 配置文件 -->
@@ -164,7 +164,7 @@
                         <script type="text/javascript" src="${PATH}/ueditor/ueditor.all.js"></script>
                         <!-- 实例化编辑器 -->
                         <script type="text/javascript">
-                            var ue_notice = UE.getEditor('container_notice');
+                            var ue_remarks = UE.getEditor('container_remarks');
                         </script>
                     </div>
                     <div class="form-group">

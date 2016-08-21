@@ -192,9 +192,9 @@ function submitCommodity(num) {
         $('.description').val(html);
     });
 
-    ue_notice.ready(function () {
-        var notice_html = ue_notice.getContent();
-        $('.notice').val(notice_html);
+    ue_remarks.ready(function () {
+        var remarks_html = ue_remarks.getContent();
+        $('.remarks').val(remarks_html);
     });
 
     $('.startDate').removeAttr('readonly');
