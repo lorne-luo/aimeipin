@@ -167,6 +167,9 @@ public class Commodity implements Serializable {
     @Column(name = "description")
     private String description;
 
+    /**
+     * 注意事项
+     */
     @Column(name = "notice")
     private String notice;
 

@@ -70,14 +70,14 @@
     </form>
 
 <#if commodity.notice?exists>
-    <div class="earnestills tal fs16 line30 p555">
-        <p class="fs20">本项目注意事项：</p>
+    <div class="earnestills tal fs16 line30 p555" style="padding-bottom: 0;">
+        <b class="fs20">注意事项：</b>
         ${commodity.notice}
     </div>
 </#if>
 
     <div class="earnestills tal fs16 line30 p555">
-        <p class="fs20">订金说明：</p>
+        <b class="fs20">订金说明：</b>
 
         <p class="pt10">·预约项目到院支付全款后，系统退还订金；</p>
 
