@@ -191,6 +191,12 @@
                         <input class="form-control" name="caseUrl"
                                value="<#if commodity.caseUrl?exists>${commodity.caseUrl}</#if>"/>
                     </div>
+                    <div class="form-group">
+                        <label><span class="star mr6"></span>分享摘要：</label>
+                        <div>
+                            <textarea rows="3" style="width:60%" class="form-control" name="sharingSummary"><#if commodity.sharingSummary?exists>${commodity.sharingSummary}</#if></textarea>
+                        </div>
+                    </div>
                     <div class="form-group" id="remarks">
                         <input type="hidden" name="remarks" class="remarks">
                         <label><span class="star mr6"></span>支付说明：</label>
