@@ -24,3 +24,4 @@ https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf3d017eaf0b53463&red
 
 SQL
 ALTER TABLE md_commodity ADD remarks text after price_double;
+ALTER TABLE md_commodity ADD sharing_summary text after price_double;
