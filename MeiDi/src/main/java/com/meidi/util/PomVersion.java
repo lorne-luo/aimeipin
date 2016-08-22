@@ -15,13 +15,13 @@ public class PomVersion {
         Properties properties = new Properties();
         try {
             ClassLoader cl=PomVersion.class.getClassLoader();
-            InputStream inStream = cl.getResourceAsStream("build.properties");
+            InputStream inStream = cl.getResourceAsStream("application.properties");
             properties.load(inStream);
         } catch (Exception e){
 //            LOGGER.warn("Unable to load version.properties using PomVersion.class.getClassLoader().getResourceAsStream(...)", e);
             return "null";
         }
-        return properties.getProperty("pom.version");
+        return properties.getProperty("project.version");
     }
 
     public static String getVersion(){
