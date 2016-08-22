@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -40,6 +39,8 @@
                             <a href="javascript:login();" class="btn btn-lg btn-success btn-block">登录</a>
                         </fieldset>
                     </form>
+                    <br/>
+                    <div class="tac"><span class="pccc">V${version}</span></div>
                 </div>
             </div>
         </div>
