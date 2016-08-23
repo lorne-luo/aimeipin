@@ -92,7 +92,6 @@
                 <#list userList as user>
                     <span class="inlineblock ml10">
                         <div class="twoimg pr">
-                            <img src="${PATH}/images/fog.png" class='t2 pa'>
                             <img src="${user.user.headimgurl}" class="t1 ">
                         </div>
                         <#if user.groupLaunchUser.flag == 1>
