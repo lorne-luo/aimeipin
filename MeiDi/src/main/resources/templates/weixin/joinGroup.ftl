@@ -92,13 +92,9 @@
                 <#list userList as user>
                     <span class="inlineblock ml10 mr10 mt10 mb10">
                         <div class="twoimg pr">
-                            <img src="${user.user.headimgurl}" class="t1 ">
+                            <img src="<#if user.user.headimgurl?has_content>${user.user.headimgurl}<#else>/images/fog.png</#if>" class="t1">
                         </div>
-                        <#if user.groupLaunchUser.flag == 1>
-                            <p class="fs16">【团长】&nbsp;${user.user.nickname}</p>
-                        <#else>
-                            <p class="fs16">${user.user.nickname}</p>
-                        </#if>
+                        <p class="fs16"><#if user.groupLaunchUser.flag == 1>【团长】</#if><#if user.user.headimgurl?has_content>${user.user.nickname}<#else>未知</#if></p>
                     </span>
                 </#list>
             </#if>
