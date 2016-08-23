@@ -1,0 +1,84 @@
+_HiStOrY_V2_
+use mysql;
+flush privileges;
+exit;
+flush privileges;
+crant select,insert,delete,update on *.* to 'aimeipin'@'%';
+grant select,insert,delete,update on *.* to 'aimeipin'@'%';
+flush privileges;
+create database aimeipin default character set utf8mb4 collate utf8_general_ci;
+create database aimeipin default character set utf8mb4 collate utf8mb4_general_ci;
+flush privileges;
+exit;
+show variables like '%char%';
+exit;
+show variables like '%char%';
+exit;
+show variables like '%max_allowed_packet%';
+exit;
+show variables like '%max_allowed_packet%';
+exit;
+show variables like '%max_allowed_packet%';
+exit;
+use mysql;
+select * from user;
+flush privileges;
+quit;
+use mysql;
+select * from user;
+update user set host='localhost' where user = 'aimeipin';
+flush privileges;
+show variables like '%max_allowed_packet%';
+SET GLOBAL max_allowed_packet=16777216;
+show variables like '%max_allowed_packet%';
+quit;
+show variables like '%max_allowed_packet%';
+use mysql;
+update user set host='101.201.106.18' where user='aimeipin';
+flush privilegs;
+flush privileges;
+quit;
+show variables like '%max_allowed_packet%';
+quit;
+show databases;
+mysqldump aimeipin >dump.sql
+;
+use aimeipin
+show tables
+;
+select * from user_integral limit 20;
+select * from user_integral ;
+select * from user_integral group by wx_openid;
+select * from user_integral group by wx_openid having count(*) >2;
+select * from user_integral where wx_openid='obfnSs4wWxN1LAKnLY0gE9SfIgLc';
+use aimeipin
+show tables;
+select * from interest_commodity;
+select * from interest_commodity_son;
+delete from interest_commodity_son where parent_id=0;delete from interest_commodity_son where parent_id
+use aimeipin
+select * from interest_commodity_son;
+use aimeipin
+show tables
+;
+select * from md_order
+;
+select * from md_order where id =630;
+select state from md_order where id =630;
+select * from md_order where id =619;
+select state from md_order where id =619;
+use aimeipin
+desc md_commodity
+;
+ALTER TABLE md_commodity ADD remarks text after price_double;
+desc md_commodity
+;
+ALTER TABLE md_commodity ADD sharing_summary text after price_double;
+desc md_commodity;
+show databases;
+CREATE DATABASE IF NOT EXISTS aimeipin_test default charset utf8 COLLATE utf8_general_ci;
+show databases;
+GRANT ALL ON aimeipin_test.* TO 'aimeipin'@'localhost';
+show databases;
+use aimeipin_test
+show tables;

@@ -92,14 +92,6 @@
             <version>3.6.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.wltea.analyzer.lucene</groupId>
-            <artifactId>IKAnalyzer</artifactId>
-            <version>3.2.8</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/IKAnalyzer3.2.8.jar</systemPath>
-        </dependency>
-
         <!-- JUnit -->
         <dependency>
             <groupId>junit</groupId>
@@ -109,26 +101,17 @@
         </dependency>
 
         <!-- log4j -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.5.11</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>slf4j-log4j12</artifactId>-->
+            <!--<version>1.5.11</version>-->
+        <!--</dependency>-->
 
         <!-- activemq-->
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-core</artifactId>
             <version>5.7.0</version>
-        </dependency>
-
-        <!-- MyMessage -->
-        <dependency>
-            <groupId>com.message</groupId>
-            <artifactId>MyMessage</artifactId>
-            <scope>system</scope>
-            <version>1.0</version>
-            <systemPath>${basedir}/lib/MyMessage.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -149,6 +132,33 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.3.4</version>
+        </dependency>
+
+        <!-- IKAnalyzer -->
+        <dependency>
+            <groupId>org.wltea.analyzer.lucene</groupId>
+            <artifactId>IKAnalyzer</artifactId>
+            <version>3.2.8</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/IKAnalyzer3.2.8.jar</systemPath>
+        </dependency>
+
+        <!-- MyMessage -->
+        <dependency>
+            <groupId>com.message</groupId>
+            <artifactId>MyMessage</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${basedir}/lib/MyMessage.jar</systemPath>
+        </dependency>
+
+        <!-- ueditor -->
+        <dependency>
+            <groupId>com.baidu.ueditor</groupId>
+            <artifactId>ueditor</artifactId>
+            <version>1.1.2</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/ueditor-1.1.2.jar</systemPath>
         </dependency>
 
     </dependencies>
