@@ -212,7 +212,7 @@
                         <script type="text/javascript">
                             var ue_remarks = UE.getEditor('container_remarks');
                             ue_remarks.ready(function () {
-                                ue_remarks.setContent('${commodity.remarks}');
+                                ue_remarks.setContent('<#if commodity.remarks?exists>${commodity.remarks}</#if>');
                             });
                         </script>
                     </div>
