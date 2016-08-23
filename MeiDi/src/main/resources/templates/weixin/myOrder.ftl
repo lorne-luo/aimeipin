@@ -19,10 +19,9 @@
         <p class="fs18">全部订单</p>
     </div>
     <div class="myorder p20">
-        <span class="addList">
+        <div class="addList">
 
-
-        </span>
+        </div>
 
         <div class="tac">
             <a href="javascript:getList(0);" class="getmore">点击加载更多...</a>
