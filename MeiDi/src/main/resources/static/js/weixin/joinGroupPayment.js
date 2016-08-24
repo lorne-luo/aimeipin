@@ -28,6 +28,7 @@ function submitOrder(flag) {
     if(reservationCount == null || reservationCount == '' || !reservationCount){
         reservationCount = 0;
     }
+    var remarks = $('#remarks').val();
 
     $.ajax({
         url: BASE_JS_URL + '/business/createOrder',
@@ -38,6 +39,7 @@ function submitOrder(flag) {
             'reservationCount': reservationCount,
             'flag': flag,
             'launchId': groupLaunchId,
+            'remarks': remarks,
             'weixin':''
         },
         type: 'post',

@@ -5,3 +5,26 @@
 建议：
 1.取消首页及所有商品展示页面的登陆要求，直到用户决定下单时再跳转到微信登陆界面
 2.用户管理的信息非常不完整，目前用户表只记录了所有登陆过网站的的用户的昵称，没有保存所在城市，也没有区分管理购买过和未购买过的用户
+
+
+
+额外工作
+1.清理了数据库中一些不一致的无用数据(应该是开发时候留下的测试数据)
+delete from interest_commodity_son where parent_id=0;
+
+
+API文档
+http://mp.weixin.qq.com/wiki/10/e5f772f4521da17fa0d7304f68b97d7e.html
+https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455784140&token=&lang=zh_CN
+
+
+TEST URL
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf3d017eaf0b53463&redirect_uri=http://www.aimeipin.cc/index/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
+
+
+SQL
+CREATE DATABASE aimeipin CHARACTER SET utf8 COLLATE utf8_general_ci;
+create database aimeipin default character set utf8mb4 collate utf8mb4_general_ci;
+grant all on aimeipin.* to 'aimeipin'@'localhost' identified by '123456';
+ALTER TABLE md_commodity ADD remarks text after price_double;
+ALTER TABLE md_commodity ADD sharing_summary text after price_double;

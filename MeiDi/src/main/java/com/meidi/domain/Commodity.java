@@ -81,6 +81,9 @@ public class Commodity implements Serializable {
     @Column(name = "commodity_code")
     private String commodityCode;
 
+    /**
+     * 项目类型: 1 拼团, 2 福袋, 3 特惠, 4 咨询
+     */
     private Integer flag = 1;
 
     private String name;
@@ -136,6 +139,9 @@ public class Commodity implements Serializable {
     @Column(name = "custom_sold")
     private Integer customSold = 0;
 
+    /**
+     * 状态: -1 已删除, 0 未上架, 1 已上架
+     */
     private Integer state = 0;
 
     private String tags;
@@ -164,7 +170,20 @@ public class Commodity implements Serializable {
     @Column(name = "create_time")
     private Date createTime;
 
+    @Column(name = "description")
     private String description;
+
+    /**
+     * 备注,支付说明
+     */
+    @Column(name = "remarks")
+    private String remarks;
+
+    /**
+     * 分享摘要
+     */
+    @Column(name = "sharing_summary")
+    private String sharingSummary;
 
     @Column(name = "label_flag")
     private Integer labelFlag = 0;
@@ -356,6 +375,14 @@ public class Commodity implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getRemarks() {return remarks;}
+
+    public void setRemarks(String remarks) {this.remarks = remarks;}
+
+    public String getSharingSummary() {return sharingSummary;}
+
+    public void setSharingSummary(String sharingSummary) {this.sharingSummary = sharingSummary;}
 
     public String getStartDate() {
         return startDate;

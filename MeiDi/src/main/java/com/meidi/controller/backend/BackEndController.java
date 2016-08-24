@@ -142,7 +142,6 @@ public class BackEndController implements MdConstants {
             commodity.setCustomSold(0);
         }
 
-
         if (!MdCommon.isEmpty(commodity.getPriceDouble())) {
             commodity.setPrice((int) (commodity.getPriceDouble() * 100));
         }
@@ -254,6 +253,8 @@ public class BackEndController implements MdConstants {
         newCommodity.setTags(commodity.getTags());
         newCommodity.setLabelFlag(commodity.getLabelFlag());
         newCommodity.setDescription(commodity.getDescription());
+        newCommodity.setRemarks(commodity.getRemarks());
+        newCommodity.setSharingSummary(commodity.getSharingSummary());
 
 
         List<CommodityPhoto> photoList = commonParam.getCommodityPhotosList(newCommodity.getCommodityPhotoList());
@@ -560,15 +561,21 @@ public class BackEndController implements MdConstants {
             } else if (state == 7) {//不退款(已预约但是超时未消费的)
 
                 if (order.getFlag() == 1 && !MdCommon.isEmpty(order.getLaunchId())) {//拼团订单 关闭该拼团
-                    GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
-                    if (groupLaunch.getState() != 3) {
-                        groupLaunch.setState(3);
-                        groupLaunchRepository.save(groupLaunch);
-                    }
+//                    GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
+//                    if (groupLaunch.getState() != 3) { // 0 拼团中, 1 拼团成功 拼团结束, 3 拼团失败
+//                        groupLaunch.setState(3);
+//                        groupLaunchRepository.save(groupLaunch);
+//                    }
 
                     GroupLaunchUser groupLaunchUser = groupLaunchUserRepository.findByLaunchIdAndWxOpenid(order.getLaunchId(),order.getWxOpenid());
                     if(!MdCommon.isEmpty(groupLaunchUser)){
                         groupLaunchUserRepository.delete(groupLaunchUser);
+                    }
+
+                    List<GroupLaunchUser> groupLaunchUserList = groupLaunchUserRepository.findByLaunchId(order.getLaunchId());
+                    if (MdCommon.isEmpty(groupLaunchUserList) || groupLaunchUserList.size() == 0) {
+                        //该拼团下没有用户 设置LaunchId为Null
+                        order.setLaunchId(null);
                     }
 
                     //同时关闭该拼团下的所有用户订单
@@ -582,8 +589,6 @@ public class BackEndController implements MdConstants {
 //                    }
                 }
                 order.setState(7);
-                //设置为Null
-                order.setLaunchId(null);
             }
 
 
@@ -959,6 +964,7 @@ public class BackEndController implements MdConstants {
     @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
     public ModelAndView loginPage(HttpServletRequest request) {
         MdModel model = new MdModel(request);
+        model.put("version", PomVersion.getVersion());
         return new ModelAndView("backend/login", model);
     }
 

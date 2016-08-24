@@ -28,15 +28,15 @@
     <form action=""  id="addOrder" method="post">
         <input type="hidden" value="#{ask.id}" name="projectId" class="askId">
         <div class="tal  pt10 pb10 pl24 pr24 sign fs24">
-            <div class="tac clearfix mt10">
+            <div class="clearfix mt10">
                 <span class="fl t1 mt10">姓名：</span>
-                <input type="text" placeholder="请填写与到院登记一致的名字" name="username" id="username">
+                <input type="text" placeholder="请填写真实姓名" name="username" id="username">
             </div>
-            <div class="tac clearfix mt10">
+            <div class="clearfix mt10">
                 <span class="fl mt10">手机号码：</span>
                 <input type="tel" placeholder="请务必填写正确的手机号码" name="mobile" id="mobile">
             </div>
-            <#--<div class="tac clearfix mt10">-->
+            <#--<div class="clearfix mt10">-->
                 <#--<span class="fl mt20">预定数量：</span>-->
 
                 <#--<p class="mpbox clearfix">-->
@@ -47,9 +47,14 @@
                     <#--<span class="cgplus can  fs18 fl"></span>-->
                 <#--</p>-->
             <#--</div>-->
-            <div class="tac clearfix mt10">
+            <div class="clearfix mt10">
                 <span class="fl mt10">支付金额：</span>
-                <span class="fr mt10 pf40000 fs24 totalDeposit" value="#{ask.discountPrice}">¥#{ask.discountPrice}</span>
+                <span class="fr mt10 pf40000 fs24 totalDeposit" style="height:41px"
+                      value="#{ask.discountPrice}">¥#{ask.discountPrice}</span>
+            </div>
+            <div class="clearfix mt10">
+                <span class="fl t1 mt10">备注：</span>
+                <input type="text" placeholder="备注留言" name="remarks" id="remarks">
             </div>
         </div>
         <div class="goupaybox">

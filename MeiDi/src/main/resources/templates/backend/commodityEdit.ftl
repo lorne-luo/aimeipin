@@ -191,6 +191,31 @@
                         <input class="form-control" name="caseUrl"
                                value="<#if commodity.caseUrl?exists>${commodity.caseUrl}</#if>"/>
                     </div>
+                    <div class="form-group">
+                        <label><span class="star mr6"></span>分享摘要：</label>
+                        <div>
+                            <textarea rows="3" style="width:60%" class="form-control" name="sharingSummary"><#if commodity.sharingSummary?exists>${commodity.sharingSummary}</#if></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group" id="remarks">
+                        <input type="hidden" name="remarks" class="remarks">
+                        <label><span class="star mr6"></span>支付说明：</label>
+                        <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
+                        <script id="container_remarks" name="content_remarks" type="text/plain">
+
+                        </script>
+                        <!-- 配置文件 -->
+                        <script type="text/javascript" src="${PATH}/ueditor/ueditor.config.js"></script>
+                        <!-- 编辑器源码文件 -->
+                        <script type="text/javascript" src="${PATH}/ueditor/ueditor.all.js"></script>
+                        <!-- 实例化编辑器 -->
+                        <script type="text/javascript">
+                            var ue_remarks = UE.getEditor('container_remarks');
+                            ue_remarks.ready(function () {
+                                ue_remarks.setContent('<#if commodity.remarks?exists>${commodity.remarks}</#if>');
+                            });
+                        </script>
+                    </div>
                     <div class="form-group" id="description">
                         <input type="hidden" name="description" class="description">
                         <label><span class="star mr6"></span>商品描述：</label>
@@ -198,10 +223,7 @@
                         <script id="container" name="content" type="text/plain">
 
                         </script>
-                        <!-- 配置文件 -->
-                        <script type="text/javascript" src="${PATH}/ueditor/ueditor.config.js"></script>
-                        <!-- 编辑器源码文件 -->
-                        <script type="text/javascript" src="${PATH}/ueditor/ueditor.all.js"></script>
+
                         <!-- 实例化编辑器 -->
                         <script type="text/javascript">
                             var ue = UE.getEditor('container');
