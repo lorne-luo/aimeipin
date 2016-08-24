@@ -77,42 +77,40 @@
                 </div>
             </div>
         </div>
-        <div class="tal pt10 pb10">
-            <p class="pl18"><span class="pf40000 fs24 lineblock mr10">¥#{groupLaunch.discountPrice/100}</span>
-                <del>¥#{groupLaunch.price/100}</del>
+        <div class="tal pt10 pb10 mt20">
+            <p class="pl18"><span class="pf40000 fs28 lineblock mr10">¥#{groupLaunch.discountPrice/100}</span>
+                <del class="fs20">¥#{groupLaunch.price/100}</del>
             </p>
-            <p class="pl16 line24 fs16">${groupLaunch.commodityName}</p>
+            <p class="line30 fs24">${groupLaunch.commodityName}</p>
         </div>
     </div>
 
     <div class="pt10 ">
-        <div class=" gogroup fs20">
+        <div class="gogroup fs20">
             <div class="clearfix ">
             <#if userList?exists>
                 <#list userList as user>
-                    <span class="inlineblock ml10">
+                    <span class="inlineblock ml10 mr10 mt10 mb10">
                         <div class="twoimg pr">
-                            <img src="${PATH}/images/fog.png" class='t2 pa'>
-                            <img src="${user.user.headimgurl}" class="t1 ">
+                            <img src="<#if user.user.headimgurl?has_content>${user.user.headimgurl}<#else>/images/fog.png</#if>" class="t1">
                         </div>
-                        <#if user.groupLaunchUser.flag == 1>
-                            <p class="fs16">团长&nbsp;${user.user.nickname}</p>
-                        <#else>
-                            <p class="fs16">成员&nbsp;${user.user.nickname}</p>
-                        </#if>
+                        <p class="fs16"><#if user.groupLaunchUser.flag == 1>【团长】</#if><#if user.user.headimgurl?has_content>${user.user.nickname}<#else>未知</#if></p>
                     </span>
                 </#list>
             </#if>
             </div>
+
+            <div class="mt30 mb30 fs28">
             <#if groupLaunch.state == 0>
                 <#if groupLaunch.peopleNumber - userList?size gt 0>
-                    <p class="mt20">还差<span class="f40b0b">${groupLaunch.peopleNumber - userList?size}</span>人，你来了咱就一起美！</p>
+                    <span>还差<span class="f40b0b">${groupLaunch.peopleNumber - userList?size}</span>人，你来了咱就一起美！</span>
                 </#if>
             <#elseif groupLaunch.state == 1>
-                <p class="mt20">该拼团已成功！</p>
+                <span>该拼团已成功！</span>
             <#else>
-                <p class="mt20">该拼团已结束！</p>
+                <span>该拼团已结束！</span>
             </#if>
+            </div>
         </div>
         <#if groupLaunch.state == 0>
         <div class="ml20 mr20 mt20 fs18 pr">

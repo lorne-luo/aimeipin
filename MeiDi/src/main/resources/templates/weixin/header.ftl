@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
     <link rel="stylesheet" type="text/css" href="${PATH}/css/mobiscroll.custom/mobiscroll.custom-2.17.1.min.css"/>
     <link rel="stylesheet" type="text/css" href="${PATH}/js/msgbox/msgbox.css"/>
     <link rel="stylesheet" type="text/css" href="${PATH}/slick/slick.css"/>
@@ -15,6 +12,3 @@
     <script type="text/javascript" src="${PATH}/js/constants.js"></script>
     <script type="text/javascript" src="${PATH}/js/msgbox/msgbox.js"></script>
     <script type="text/javascript" src="${PATH}/js/mobiscroll.custom-2.17.1.min.js"></script>
-</head>
-
-</html>

@@ -1951,13 +1951,13 @@ a.baseBtn.nof {
 
 /*我的订单*/
 .myorder img {
-    height: 130px;
+    height: 150px;
     width: 332px;
 }
 
 .myorder .left {
     overflow: hidden;
-    height: 130px;
+    height: 150px;
     width: 332px;
     border: 1px solid #ef0341;
 }
