@@ -178,7 +178,8 @@ public class WxPayController extends WxBaseController {
     public ModelAndView payResult(HttpServletRequest request,
                                   @PathVariable String orderCode) {
         MdModel model = new MdModel(request);
-        Order order = null;
+        Order order = orderRepository.findByOrderCode(orderCode);
+        model.put("commodity", commodityRepository.findOne(order.getCommodityId()));
 
         String nonce_str = MdCommon.getRandomString(16);
         SortedMap<String, String> packageParams = new TreeMap<>();
@@ -224,7 +225,6 @@ public class WxPayController extends WxBaseController {
                     String trade_state = MdCommon.null2String(result.get("trade_state"));//订单状态
                     String trade_state_desc = MdCommon.null2String(result.get("trade_state_desc"));//订单状态描述
                     String transaction_id = MdCommon.null2String(result.get("transaction_id"));//微信订单号
-                    order = orderRepository.findByOrderCode(orderCode);
 
                     if ("SUCCESS".equals(trade_state)) {//支付成功
 
@@ -273,7 +273,6 @@ public class WxPayController extends WxBaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         //非拼团直接跳定点列表页
         return new ModelAndView(new RedirectView(PATH + "/business/myOrderPage"));
