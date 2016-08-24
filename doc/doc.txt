@@ -25,5 +25,17 @@ SQL
 CREATE DATABASE aimeipin CHARACTER SET utf8 COLLATE utf8_general_ci;
 create database aimeipin default character set utf8mb4 collate utf8mb4_general_ci;
 grant all on aimeipin.* to 'aimeipin'@'localhost' identified by '123456';
+
+v1.0.1
 ALTER TABLE md_commodity ADD remarks text after price_double;
 ALTER TABLE md_commodity ADD sharing_summary text after price_double;
+
+v1.0.2
+CREATE TABLE `md_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+INSERT INTO `md_category` VALUES (1,'皮肤',''),(2,'微整',NULL),(3,'手术',''),(4,'发现',NULL);
