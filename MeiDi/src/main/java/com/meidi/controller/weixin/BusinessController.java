@@ -13,6 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 /**
@@ -45,6 +46,16 @@ public class BusinessController extends WxBaseController {
     private BuyNoticeRepository buyNoticeRepository;
     @Resource
     private UserIntegralRepository userIntegralRepository;
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView wxLogin(HttpServletRequest request) {
+        String url = request.getHeader("referer");
+        HttpSession session = request.getSession();
+        session.setAttribute(USER_URL, url);
+
+        return new ModelAndView(new RedirectView("https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + WX_APP_ID + "&"
+                + "redirect_uri=http://www.aimeipin.cc/wxAuth/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"));
+    }
 
     /**
      * 获取项目列表
