@@ -109,10 +109,6 @@ public class BusinessController extends WxBaseController {
                                         @PathVariable Integer id) {
         MdModel model = new MdModel(request);
 
-        if (MdCommon.isEmpty(model.get("wx_openid"))) {
-            return wxAuth(request);
-        }
-
         //网页签名
         Map signature = null;
         try {

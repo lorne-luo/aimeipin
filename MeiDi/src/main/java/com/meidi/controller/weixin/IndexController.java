@@ -57,11 +57,6 @@ public class IndexController extends WxBaseController {
     public ModelAndView indexPage(HttpServletRequest request) {
         MdModel model = new MdModel(request);
 
-
-        if (MdCommon.isEmpty(model.get("wx_openid"))) {
-            return wxAuth(request);
-        }
-
         //网页签名
         Map signature = null;
         try {
@@ -88,9 +83,6 @@ public class IndexController extends WxBaseController {
     @RequestMapping(value = "class", method = RequestMethod.GET)
     public ModelAndView classPage(HttpServletRequest request) {
         MdModel model = new MdModel(request);
-        if (MdCommon.isEmpty(model.get("wx_openid"))) {
-            return wxAuth(request);
-        }
         model.put("pageActive", "class");
         return new ModelAndView("weixin/classification", model);
     }
@@ -105,7 +97,7 @@ public class IndexController extends WxBaseController {
     public ModelAndView consultPage(HttpServletRequest request) {
         MdModel model = new MdModel(request);
         if (MdCommon.isEmpty(model.get("wx_openid"))) {
-            return wxAuth(request);
+//            return wxAuth(request);
         }
         model.put("pageActive", "consult");
         return new ModelAndView("weixin/consult", model);
@@ -121,7 +113,7 @@ public class IndexController extends WxBaseController {
     public ModelAndView myPage(HttpServletRequest request) throws UnsupportedEncodingException {
         MdModel model = new MdModel(request);
         if (MdCommon.isEmpty(model.get("wx_openid"))) {
-            return wxAuth(request);
+//            return wxAuth(request);
         }
         User user = userRepository.findByWxOpenid(MdCommon.null2String(model.get("wx_openid")));
         model.put("user", user);
