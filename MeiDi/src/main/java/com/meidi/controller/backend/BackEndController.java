@@ -53,7 +53,8 @@ public class BackEndController implements MdConstants {
     private CommodityRepository commodityRepository;
     @Resource
     private BuyNoticeRepository buyNoticeRepository;
-
+    @Resource
+    private CategoryRepository categoryRepository;
     @Resource
     private InterestCommodityRepository interestCommodityRepository;
     @Resource
@@ -107,6 +108,13 @@ public class BackEndController implements MdConstants {
 
         List<DicCity> cityList = dicCityRepository.findByParentId(provinceList.get(0).getId());
         model.put("cityList", cityList);
+
+        Iterable<Category> categoryIterable = categoryRepository.findAll();
+        List<Category> categoryList = new ArrayList<>();
+        for (Category category : categoryIterable) {
+            categoryList.add(category);
+        }
+        model.put("categoryList", categoryList);
 
         List<DicTag> tagList = dicTagRepository.findByFlag(1);
         model.put("tagList", tagList);
