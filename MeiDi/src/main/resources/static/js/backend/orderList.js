@@ -94,7 +94,7 @@ function createTable(result) {
             str += '<br>' + getLaunchState(order.launch.state);
         }
         str += '</td>' +
-            '<td class="tal"><a href="javascript:getListByCommodity('+order.order.commodityId+',1);">' + order.order.commodityName + '</a></td>' +
+            '<td class="tal">' + order.order.commodityName + ' <a href="javascript:getListByCommodity('+order.order.commodityId+',1);"><i class="fa fa-search" aria-hidden="true"></i></a></td>' +
             '<td>' + order.order.discountPrice/100 + '元</td>' +
             '<td>' + order.order.payAmount/100 + '元</td>' +
             '<td>' + nickname;
@@ -259,7 +259,7 @@ function getProjectFlag(order) {
     }
     switch (flag) {
         case 1:
-            return '<a href="javascript:getListByLaunch('+id+',1);">'+"拼团(" + id+ ")"+'</a>';
+            return "拼团(" + id+ ")"+' <a href="javascript:getListByLaunch('+id+',1);"><i class="fa fa-search" aria-hidden="true"></i></a>';
         case 2:
             return "福袋";
         case 3:
