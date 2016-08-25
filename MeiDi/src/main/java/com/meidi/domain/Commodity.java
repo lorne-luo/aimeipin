@@ -206,7 +206,6 @@ public class Commodity implements Serializable {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
-
     @OneToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "commodity_id", referencedColumnName = "id")
     private List<CommodityPhoto> commodityPhotoList;
@@ -476,6 +475,9 @@ public class Commodity implements Serializable {
         this.priceDouble = priceDouble;
     }
 
+    public Category getCategory() {return category;}
+
+    public void setCategory(Category category) {this.category = category;}
 
 
 }
