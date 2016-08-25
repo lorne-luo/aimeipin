@@ -16,9 +16,10 @@ $(function () {
 });
 
 function searchOrder() {
+    $('#search_commodity_id').val('0');
+    $('#search_launch_id').val('0');
     getList(1);
 }
-
 
 var pageNumber = 1;
 function getList(page) {
@@ -26,11 +27,13 @@ function getList(page) {
         pageNumber = page;
     }
 
+    var order_state
 
     var flag = $('#flag').val();
     var state = $('#state').val();
     var queryStr = $('.queryStr').val();
-
+    var launchID = $('#search_launch_id').val();
+    var commodityID = $('#search_commodity_id').val();
 
     ZENG.msgbox.loadingAnimationPath = BASE_JS_URL + "/images/loading.gif";
     $("#pagediv").myPagination({
@@ -43,6 +46,8 @@ function getList(page) {
             param: {
                 flag: flag,
                 state: state,
+                launchID:launchID,
+                commodityID:commodityID,
                 queryStr: queryStr
             },
             ajaxStart: function () {
@@ -55,6 +60,22 @@ function getList(page) {
             }
         }
     });
+}
+
+function getListByCommodity(commodityID,page) {
+    $('#search_commodity_id').val(commodityID);
+    $('#search_launch_id').val('0');
+    $('.queryStr').val('');
+
+    getList(page);
+}
+
+function getListByLaunch(launchID,page) {
+    $('#search_launch_id').val(launchID);
+    $('#search_commodity_id').val('0');
+    $('.queryStr').val('');
+
+    getList(page);
 }
 
 function createTable(result) {
@@ -73,7 +94,7 @@ function createTable(result) {
             str += '<br>' + getLaunchState(order.launch.state);
         }
         str += '</td>' +
-            '<td class="tal">' + order.order.commodityName + '</td>' +
+            '<td class="tal"><a href="javascript:getListByCommodity('+order.order.commodityId+',1);">' + order.order.commodityName + '</a></td>' +
             '<td>' + order.order.discountPrice/100 + '元</td>' +
             '<td>' + order.order.payAmount/100 + '元</td>' +
             '<td>' + nickname;
@@ -238,7 +259,7 @@ function getProjectFlag(order) {
     }
     switch (flag) {
         case 1:
-            return "拼团(" + id+ ")";
+            return '<a href="javascript:getListByLaunch('+id+',1);">'+"拼团(" + id+ ")"+'</a>';
         case 2:
             return "福袋";
         case 3:

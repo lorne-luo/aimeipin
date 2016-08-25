@@ -7,6 +7,6 @@ import java.util.Map;
  */
 public interface OrderRepositoryCustom {
 
-    Map<String, Object> findOrderWithQuery(int pageNumber,int pageSize,int flag, int state, String queryStr);
+    Map<String, Object> findOrderWithQuery(int pageNumber,int pageSize,int flag, int state, int launchID, int commodityID, String queryStr);
 
 }

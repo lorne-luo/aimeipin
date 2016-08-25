@@ -21,7 +21,7 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
     private EntityManager entityManager;
 
     @Override
-    public Map<String, Object> findOrderWithQuery(int pageNumber, int pageSize, int flag, int state, String queryStr) {
+    public Map<String, Object> findOrderWithQuery(int pageNumber, int pageSize, int flag, int state, int launchID, int commodityID, String queryStr) {
         List<Object> list = new ArrayList<>();
         String sql = "select mo.* " +
                 " from md_order mo " +
@@ -39,6 +39,16 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
 
             list.add(state);
         }
+        if (!MdCommon.isEmpty(launchID) && launchID > 0) {
+            sql += " and mo.launch_id = ? ";
+            list.add(launchID);
+        }
+        if (!MdCommon.isEmpty(commodityID) && commodityID > 0) {
+            sql += " and mo.commodity_id = ? ";
+            list.add(commodityID);
+        }
+
+
         if(!MdCommon.isEmpty(queryStr)){
             sql += " and (mo.username like ? or mo.mobile like ? or mo.commodity_name like ?) ";
             list.add("%" + queryStr + "%");
@@ -73,6 +83,12 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
             }else{
                 sql += " and mo.state >= ? ";
             }
+        }
+        if (!MdCommon.isEmpty(launchID) && launchID > 0) {
+            sql += " and mo.launch_id = ? ";
+        }
+        if (!MdCommon.isEmpty(commodityID) && commodityID > 0) {
+            sql += " and mo.commodity_id = ? ";
         }
         if(!MdCommon.isEmpty(queryStr)){
             sql += " and (mo.username like ? or mo.mobile like ? or mo.commodity_name like ?) ";
