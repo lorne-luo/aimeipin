@@ -191,7 +191,6 @@ public class BackEndController implements MdConstants {
         }
         model.put("provinceList", provinceList);
 
-
         Commodity commodity = commodityRepository.findOne(id);
         model.put("commodity", commodity);
 
@@ -201,6 +200,12 @@ public class BackEndController implements MdConstants {
         List<DicTag> tagList = dicTagRepository.findByFlag(1);
         model.put("tagList", tagList);
 
+        Iterable<Category> categoryIterable = categoryRepository.findAll();
+        List<Category> categoryList = new ArrayList<>();
+        for (Category category : categoryIterable) {
+            categoryList.add(category);
+        }
+        model.put("categoryList", categoryList);
 
         return new ModelAndView("backend/commodityEdit", model);
     }
@@ -240,6 +245,7 @@ public class BackEndController implements MdConstants {
         newCommodity.setKeyword(commodity.getKeyword());
         newCommodity.setDicProvince(commodity.getDicProvince());
         newCommodity.setDicCity(commodity.getDicCity());
+        newCommodity.setCategory(commodity.getCategory());
 //        newCommodity.setPrice(commodity.getPrice());
         newCommodity.setUnit(commodity.getUnit());
         if (MdCommon.isEmpty(commodity.getDiscountUnit())) {
