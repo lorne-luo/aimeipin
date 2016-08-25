@@ -46,6 +46,16 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label><span class="star mr6">*</span>分类类型：</label>
+                        <select name="category.id" class="category">
+                            <option value="">------</option>
+                        <#list categoryList as category>
+                            <option value="#{category.id}"
+                                    <#if commodity.category?exists && commodity.category.id == category.id>selected</#if>><#if category.name?has_content>${category.name}<#else>------</#if></option>
+                        </#list>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label><span class="star mr6">*</span>商品名称：</label>
                         <input class="form-control" placeholder="例如：为你打造美丽" name="name" value="${commodity.name}"/>
                     </div>

@@ -450,7 +450,17 @@ public class BusinessController extends WxBaseController {
                                    @RequestParam(value = "cityId") Integer cityId,
                                    @RequestParam(value = "commodityId") Integer commodityId) {
         MdModel model = new MdModel(request);
-        List<Commodity> commodityList = commodityRepository.findByDicCity_IdAndStateAndIdIsNot(cityId, 1, commodityId, MdCommon.buildPageRequest(1, 3, SORT_BY.ID_DESC));
+
+        Commodity commodity=commodityRepository.findOne(commodityId);
+        List<Commodity> commodityList;
+
+        if (commodity.getCategory()!=null){
+            commodityList = commodityRepository.findByDicCity_IdAndCategory_IdAndStateAndIdIsNot(
+                    cityId, commodity.getCategory().getId(), 1, commodityId, MdCommon.buildPageRequest(1, 3, SORT_BY.ID_DESC));
+        }else{
+            commodityList = commodityRepository.findByDicCity_IdAndStateAndIdIsNot(cityId, 1, commodityId, MdCommon.buildPageRequest(1, 3, SORT_BY.ID_DESC));
+        }
+
         model.put("commodityList", commodityList);
         return model;
     }

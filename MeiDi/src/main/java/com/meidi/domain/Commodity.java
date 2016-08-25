@@ -202,6 +202,9 @@ public class Commodity implements Serializable {
     @JoinColumn(name = "city_id", referencedColumnName = "id")
     private DicCity dicCity;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
 
     @OneToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "commodity_id", referencedColumnName = "id")
@@ -472,6 +475,9 @@ public class Commodity implements Serializable {
         this.priceDouble = priceDouble;
     }
 
+    public Category getCategory() {return category;}
+
+    public void setCategory(Category category) {this.category = category;}
 
 
 }
