@@ -46,7 +46,7 @@
                         <select name="category.id" class="category">
                             <option value="">------</option>
                             <#list categoryList as category>
-                                <option value="#{category.id}">${category.name}</option>
+                                <option value="#{category.id}"><#if category.name?has_content>${category.name}<#else>------</#if></option>
                             </#list>
                         </select>
                     </div>
