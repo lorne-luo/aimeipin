@@ -50,11 +50,13 @@ public class BusinessController extends WxBaseController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView wxLogin(HttpServletRequest request) {
         String url = request.getHeader("referer");
+        if (url == null || url == "" || !url.contains(DOMAIN))
+            url = HOME;
         HttpSession session = request.getSession();
         session.setAttribute(USER_URL, url);
 
         return new ModelAndView(new RedirectView("https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + WX_APP_ID + "&"
-                + "redirect_uri=http://www.aimeipin.cc/wxAuth/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"));
+                + "redirect_uri=" + HOME + "/wxAuth/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"));
     }
 
     /**

@@ -33,10 +33,11 @@ public class WxBaseController implements MdConstants {
     public ModelAndView wxAuth(HttpServletRequest request) {
 
         String url = MdCommon.getUrl(request);
+        if (url == null || url == "") url = HOME;
         HttpSession session = request.getSession();
         session.setAttribute(USER_URL, url);
         return new ModelAndView(new RedirectView("https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + WX_APP_ID + "&"
-                + "redirect_uri=" + PATH + "/wxAuth/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"));
+                + "redirect_uri=" + HOME + "/wxAuth/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"));
     }
 
 

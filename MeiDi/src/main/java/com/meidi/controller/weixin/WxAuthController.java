@@ -93,6 +93,8 @@ public class WxAuthController implements MdConstants {
         String url = (String) session.getAttribute(USER_URL);
         System.out.println("url=" + url);
         session.setAttribute(USER_URL, null);
+        if (url == null || url == "") url = HOME;
+
         return new ModelAndView(new RedirectView(url));
     }
 }

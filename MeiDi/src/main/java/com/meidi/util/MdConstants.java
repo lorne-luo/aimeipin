@@ -69,6 +69,8 @@ public interface MdConstants {
     String WX_APP_ID = "wxf3d017eaf0b53463";
     String WX_SECRET = "d6914a211b5175f62cc5dafb389cd074";
     String PATH = "http://www.aimeipin.cc";
+    String HOME = "http://www.aimeipin.cc";
+    String DOMAIN = "aimeipin.cc";
     String COMMODITY_INDEX_PATH = "/Users/luanpeng/MyProject/lucene/CommodityIndex";
     String MQ_HOST = "localhost:61616";
     String KEY_STORE = "/usr/local/cert/apiclient_cert.p12";
