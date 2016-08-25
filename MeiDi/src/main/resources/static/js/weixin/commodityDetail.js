@@ -82,7 +82,12 @@ function createTable(result) {
 
 
 //收藏动作
-function favoriteAction(id) {
+function favoriteAction(id, openid) {
+    if (!openid){
+        // not login, redirect to login entrypoint
+        window.location ='/business/login';
+    }
+
     $.ajax({
         url: BASE_JS_URL + '/business/favoriteAction',
         data: {
