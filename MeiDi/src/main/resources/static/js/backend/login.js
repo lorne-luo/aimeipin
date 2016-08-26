@@ -2,6 +2,21 @@
  * Created by luanpeng on 16/6/15.
  */
 
+$(function () {
+
+    $("input.account").keyup(function (e) {
+        if ($("input.account:focus") &&e.keyCode == 13) {
+            login();
+        }
+    });
+
+    $("input.password").keyup(function (e) {
+        if ($("input.password:focus") &&e.keyCode == 13) {
+            login();
+        }
+    });
+
+});
 
 function login(){
     var account = $('.account').val();
