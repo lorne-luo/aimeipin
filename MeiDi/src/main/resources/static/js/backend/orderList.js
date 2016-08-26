@@ -10,7 +10,7 @@ $(function () {
         if ($('#flag').val()>0)
             addFilterCondition('flag', $('#flag option:selected').text());
         else
-            removeFilterCondition('flag');
+            removeFilterCondition('flag', false);
         getList(1);
     });
 
@@ -18,7 +18,7 @@ $(function () {
         if ($('#state').val()>0)
             addFilterCondition('state', $('#state option:selected').text());
         else
-            removeFilterCondition('state');
+            removeFilterCondition('state', false);
         getList(1);
     });
 
@@ -31,12 +31,11 @@ $(function () {
 });
 
 function searchOrder() {
-    $('#search_commodity_id').val('0');
-    $('#search_launch_id').val('0');
+    addFilterCondition('search','搜索: '+$('.queryStr').val());
+    removeFilterCondition('launch_id', false);
+    removeFilterCondition('commodity_id', false);
     getList(1);
-    addFilterCondition('search','搜索:'+$('.queryStr').val());
-    removeFilterCondition('launch_id');
-    removeFilterCondition('commodity_id');
+
 }
 
 var pageNumber = 1;
@@ -44,8 +43,6 @@ function getList(page) {
     if (page == 1) {
         pageNumber = page;
     }
-
-    var order_state
 
     var flag = $('#flag').val();
     var state = $('#state').val();
@@ -82,27 +79,23 @@ function getList(page) {
 
 function getListByCommodity(commodityID,commodityName) {
     $('#search_commodity_id').val(commodityID);
-    $('#search_launch_id').val('0');
-    $('.queryStr').val('');
+    addFilterCondition('commodity_id',commodityName);
+    removeFilterCondition('launch_id', false);
+    removeFilterCondition('search', false);
 
     getList(1);
-    addFilterCondition('commodity_id',commodityName);
-    removeFilterCondition('launch_id');
-    removeFilterCondition('search');
 }
 
 function getListByLaunch(launchID) {
     $('#search_launch_id').val(launchID);
-    $('#search_commodity_id').val('0');
-    $('.queryStr').val('');
+    addFilterCondition('launch_id','拼团('+launchID+')');
+    removeFilterCondition('commodity_id', false);
+    removeFilterCondition('search', false);
 
     getList(1);
-    addFilterCondition('launch_id','拼团('+launchID+')');
-    removeFilterCondition('commodity_id');
-    removeFilterCondition('search');
 }
 
-function removeFilterCondition(type) {
+function removeFilterCondition(type, refresh) {
     $('span.'+type,'#filter-panel').remove();
     if(type=='launch_id')
         $('#search_launch_id').val('0');
@@ -114,12 +107,13 @@ function removeFilterCondition(type) {
         $('#flag').val('-1');
     else if(type=='state')
         $('#state').val('-1');
-    getList(1);
+    if(refresh)
+        getList(1);
 }
 
 function addFilterCondition(type,text) {
     $('span.'+type,'#filter-panel').remove();
-    var item='<span class="filter-item '+type+'">'+text+' <a href="javascript:removeFilterCondition(\''+type+'\');"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>';
+    var item='<span class="filter-item '+type+'">'+text+' <a href="javascript:removeFilterCondition(\''+type+'\',true);"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>';
     $('#filter-panel').append(item);
 }
 

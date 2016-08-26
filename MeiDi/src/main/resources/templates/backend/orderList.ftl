@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="pull-right">
-                    <label>请输入：</label>
+                    <label>搜索：</label>
                     <input type="text" class="queryStr  form-control"/>
                     <a href="javascript:searchOrder();" class="btn btn-success">搜索</a>
                 </div>
@@ -63,7 +63,7 @@
                             <th>
                                 <select class="" id="state">
                                     <option value="-1">状态</option>
-                                    <option value="1">未支付</option>
+                                    <option value="1">待支付</option>
                                     <option value="2">已支付</option>
                                     <option value="3">已预约</option>
                                     <option value="4">已完成</option>
