@@ -80,14 +80,13 @@ function createTable(result) {
     });
 }
 
+function redirectLogin() {
+    window.location ='/business/login';
+}
+
 
 //收藏动作
-function favoriteAction(id, openid) {
-    if (!openid){
-        // not login, redirect to login entrypoint
-        window.location ='/business/login';
-    }
-
+function favoriteAction(id) {
     $.ajax({
         url: BASE_JS_URL + '/business/favoriteAction',
         data: {

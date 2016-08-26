@@ -201,7 +201,7 @@
 
                 <p class="mt2">首页</p>
             </a>
-            <a class="borr fl pt8" href="javascript:favoriteAction(#{commodity.id}, '<#if wx_openid?has_content>${wx_openid}<#else></#if>');">
+            <a class="borr fl pt8" href="javascript:<#if wx_openid?has_content>favoriteAction(#{commodity.id})<#else>redirectLogin()</#if>;">
                 <img src="${PATH}/images/detail/sc.png" class="<#if favoriteFlag == 1>hide</#if> favorite1">
                 <img src="${PATH}/images/detail/noc.png" class="<#if favoriteFlag == 2>hide</#if> favorite2">
 
