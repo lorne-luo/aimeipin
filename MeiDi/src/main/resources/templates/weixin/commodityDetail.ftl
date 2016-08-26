@@ -67,7 +67,7 @@
                     // 用户取消分享后执行的回调函数
                 }
             });
-        })
+        });
         </#if>
     </script>
     <script type='text/javascript'>
@@ -201,7 +201,7 @@
 
                 <p class="mt2">首页</p>
             </a>
-            <a class="borr fl pt8" href="javascript:favoriteAction(#{commodity.id});">
+            <a class="borr fl pt8" href="javascript:<#if wx_openid?has_content>favoriteAction(#{commodity.id})<#else>redirectLogin()</#if>;">
                 <img src="${PATH}/images/detail/sc.png" class="<#if favoriteFlag == 1>hide</#if> favorite1">
                 <img src="${PATH}/images/detail/noc.png" class="<#if favoriteFlag == 2>hide</#if> favorite2">
 

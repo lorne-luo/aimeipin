@@ -57,11 +57,6 @@ public class IndexController extends WxBaseController {
     public ModelAndView indexPage(HttpServletRequest request) {
         MdModel model = new MdModel(request);
 
-
-        if (MdCommon.isEmpty(model.get("wx_openid"))) {
-            return wxAuth(request);
-        }
-
         //网页签名
         Map signature = null;
         try {
@@ -88,9 +83,6 @@ public class IndexController extends WxBaseController {
     @RequestMapping(value = "class", method = RequestMethod.GET)
     public ModelAndView classPage(HttpServletRequest request) {
         MdModel model = new MdModel(request);
-        if (MdCommon.isEmpty(model.get("wx_openid"))) {
-            return wxAuth(request);
-        }
         model.put("pageActive", "class");
         return new ModelAndView("weixin/classification", model);
     }

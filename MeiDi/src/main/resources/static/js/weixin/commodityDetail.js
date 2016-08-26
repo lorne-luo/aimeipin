@@ -49,7 +49,7 @@ function createTable(result) {
             '<div class="clearfix gogroup fs18">' +
             '<div class="fl msgbox">' +
             ' <div class="twoimg pr">' +
-            ' <img src=' + BASE_JS_URL + '"/images/fog.png" class="t1">' +
+            ' <img src="' + BASE_JS_URL + '/images/fog.png" class="t1">' +
             ' <img src="' + launch.headimgurl + '" class="t2 pa">' +
             ' </div>' +
             ' <p class="headimg">' + launch.nickname + '</p>' +
@@ -78,6 +78,10 @@ function createTable(result) {
                     endTime: launch.groupLaunch.endTime
                 });
     });
+}
+
+function redirectLogin() {
+    window.location ='/business/login';
 }
 
 

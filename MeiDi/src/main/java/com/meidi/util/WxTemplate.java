@@ -33,6 +33,7 @@ public class WxTemplate implements MdConstants {
                 "\"keyword4\": {\"value\":\"" + order.getOrderCode() + "\",\"color\":\"#888\"}," +
                 "\"remark\": {\"value\":\"点击消息分享给小伙伴，邀请Ta们一起优惠变美吧！\",\"color\":\"#888\"}" +
                 "}}";
+        System.out.println("[groupLaunch]" + jsonStr);
 
         sendMsg(token, jsonStr);
     }
@@ -67,6 +68,7 @@ public class WxTemplate implements MdConstants {
                 "\"keyword3\": {\"value\":\"" + order.getDicCity().getName() + "\",\"color\":\"#888\"}," +
                 "\"remark\": {\"value\":\"客服会尽快与您取得联系，或拨打4006056662预约咨询！\",\"color\":\"#888\"}" +
                 "}}";
+        System.out.println("[groupLaunchOk]" + jsonStr);
 
         sendMsg(token, jsonStr);
     }
@@ -84,6 +86,7 @@ public class WxTemplate implements MdConstants {
                 "\"keyword2\": {\"value\":\"" + order.getCreateTime() + "\",\"color\":\"#888\"}," +
                 "\"remark\": {\"value\":\"赶快分享给小伙伴，邀请Ta们一起优惠变美吧！\",\"color\":\"#888\"}" +
                 "}}";
+        System.out.println("[joinGroup]" + jsonStr);
 
         sendMsg(token, jsonStr);
     }
@@ -104,6 +107,7 @@ public class WxTemplate implements MdConstants {
                 "\"keyword4\": {\"value\":\"" + order.getOrderCode() + "\",\"color\":\"#888\"}," +
                 "\"remark\": {\"value\":\"您有一个拼团因超时失败，请到聚会美商城“我的订单”中查看，重新发起拼团！\",\"color\":\"#888\"}" +
                 "}}";
+        System.out.println("[groupClose]" + jsonStr);
 
         sendMsg(token, jsonStr);
     }
@@ -122,6 +126,7 @@ public class WxTemplate implements MdConstants {
                 "\"keyword2\": {\"value\":\"" + order.getCommodityName() + "\",\"color\":\"#888\"}," +
                 "\"remark\": {\"value\":\"感谢您选择聚会美，如有更多需要，请联系客服！\",\"color\":\"#888\"}" +
                 "}}";
+        System.out.println("[orderComplete]" + jsonStr);
 
         sendMsg(token, jsonStr);
     }
