@@ -21,6 +21,13 @@ $(function () {
             removeFilterCondition('state');
         getList(1);
     });
+
+    $("input.queryStr").keyup(function (e) {
+        if ($("input.queryStr:focus") &&e.keyCode == 13) {
+            searchOrder();
+        }
+    });
+
 });
 
 function searchOrder() {
