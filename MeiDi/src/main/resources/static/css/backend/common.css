@@ -200,3 +200,8 @@
     #page-wrapper{margin: 0 0 0 150px;}
 }
 
+span.filter-item {
+    border-bottom: 1px solid #ccc;
+    margin-right: 12px;
+    padding-bottom: 3px;
+}

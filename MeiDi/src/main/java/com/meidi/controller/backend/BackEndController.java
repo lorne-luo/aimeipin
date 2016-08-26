@@ -453,10 +453,12 @@ public class BackEndController implements MdConstants {
                             @RequestParam(value = "page") Integer pageNumber,
                             @RequestParam(value = "flag") Integer flag,
                             @RequestParam(value = "state") Integer state,
+                            @RequestParam(value = "launchID") Integer launchID,
+                            @RequestParam(value = "commodityID") Integer commodityID,
                             @RequestParam(value = "queryStr") String queryStr) {
         MdModel model = new MdModel(request);
 
-        Map result = orderRepository.findOrderWithQuery(pageNumber, BE_PAGE_SIZE, flag, state, queryStr);
+        Map result = orderRepository.findOrderWithQuery(pageNumber, BE_PAGE_SIZE, flag, state, launchID, commodityID, queryStr);
         List<Map> orders = new ArrayList<>();
         List<Order> orderList = (List<Order>) result.get("orderList");
         for (Order order : orderList) {

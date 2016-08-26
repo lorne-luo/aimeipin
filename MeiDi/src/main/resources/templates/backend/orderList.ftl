@@ -25,11 +25,20 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <div class="p10 form-inline">
-                <label><span class="star mr6"></span>请输入：</label>
-                <input type="text" class="queryStr  form-control"/>
-                <a href="javascript:searchOrder();" class="btn btn-success">搜索</a>
+            <div class="p10 form-inline clearfix">
+                <div class="pull-left fs14" id="filter-panel" style="line-height:34px;">
+                </div>
+
+                <div class="pull-right">
+                    <label>搜索：</label>
+                    <input type="text" class="queryStr  form-control"/>
+                    <a href="javascript:searchOrder();" class="btn btn-success">搜索</a>
+                </div>
             </div>
+
+            <input type="hidden" name="search_launch_id" id="search_launch_id" value="0">
+            <input type="hidden" name="search_commodity_id" id="search_commodity_id" value="0">
+
             <div class=" bor">
                 <div class="table-responsive">
                     <table class="table tac">
@@ -54,7 +63,7 @@
                             <th>
                                 <select class="" id="state">
                                     <option value="-1">状态</option>
-                                    <option value="1">未支付</option>
+                                    <option value="1">待支付</option>
                                     <option value="2">已支付</option>
                                     <option value="3">已预约</option>
                                     <option value="4">已完成</option>
