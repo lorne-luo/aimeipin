@@ -7,10 +7,18 @@ $(function () {
     getList(1);
 
     $('#flag').on('change', function () {
+        if ($('#flag').val()>0)
+            addFilterCondition('flag', $('#flag option:selected').text());
+        else
+            removeFilterCondition('flag');
         getList(1);
     });
 
     $('#state').on('change', function () {
+        if ($('#state').val()>0)
+            addFilterCondition('state', $('#state option:selected').text());
+        else
+            removeFilterCondition('state');
         getList(1);
     });
 });
@@ -19,6 +27,9 @@ function searchOrder() {
     $('#search_commodity_id').val('0');
     $('#search_launch_id').val('0');
     getList(1);
+    addFilterCondition('search','搜索:'+$('.queryStr').val());
+    removeFilterCondition('launch_id');
+    removeFilterCondition('commodity_id');
 }
 
 var pageNumber = 1;
@@ -62,21 +73,49 @@ function getList(page) {
     });
 }
 
-function getListByCommodity(commodityID,page) {
+function getListByCommodity(commodityID,commodityName) {
     $('#search_commodity_id').val(commodityID);
     $('#search_launch_id').val('0');
     $('.queryStr').val('');
 
-    getList(page);
+    getList(1);
+    addFilterCondition('commodity_id',commodityName);
+    removeFilterCondition('launch_id');
+    removeFilterCondition('search');
 }
 
-function getListByLaunch(launchID,page) {
+function getListByLaunch(launchID) {
     $('#search_launch_id').val(launchID);
     $('#search_commodity_id').val('0');
     $('.queryStr').val('');
 
-    getList(page);
+    getList(1);
+    addFilterCondition('launch_id','拼团('+launchID+')');
+    removeFilterCondition('commodity_id');
+    removeFilterCondition('search');
 }
+
+function removeFilterCondition(type) {
+    $('span.'+type,'#filter-panel').remove();
+    if(type=='launch_id')
+        $('#search_launch_id').val('0');
+    else if(type=='commodity_id')
+        $('#search_commodity_id').val('0');
+    else if(type=='search')
+        $('#queryStr').val('');
+    else if(type=='flag')
+        $('#flag').val('-1');
+    else if(type=='state')
+        $('#state').val('-1');
+    getList(1);
+}
+
+function addFilterCondition(type,text) {
+    $('span.'+type,'#filter-panel').remove();
+    var item='<span class="filter-item '+type+'">'+text+' <a href="javascript:removeFilterCondition(\''+type+'\');"><i class="fa fa-times-circle" aria-hidden="true"></i></a></span>';
+    $('#filter-panel').append(item);
+}
+
 
 function createTable(result) {
     $('#addList').html('');
@@ -94,7 +133,7 @@ function createTable(result) {
             str += '<br>' + getLaunchState(order.launch.state);
         }
         str += '</td>' +
-            '<td class="tal">' + order.order.commodityName + ' <a href="javascript:getListByCommodity('+order.order.commodityId+',1);"><i class="fa fa-search" aria-hidden="true"></i></a></td>' +
+            '<td class="tal">' + order.order.commodityName + ' <a href="javascript:getListByCommodity('+order.order.commodityId+', \''+order.order.commodityName+'\');"><i class="fa fa-filter" aria-hidden="true"></i></a></td>' +
             '<td>' + order.order.discountPrice/100 + '元</td>' +
             '<td>' + order.order.payAmount/100 + '元</td>' +
             '<td>' + nickname;
@@ -259,7 +298,7 @@ function getProjectFlag(order) {
     }
     switch (flag) {
         case 1:
-            return "拼团(" + id+ ")"+' <a href="javascript:getListByLaunch('+id+',1);"><i class="fa fa-search" aria-hidden="true"></i></a>';
+            return "拼团(" + id+ ")"+' <a href="javascript:getListByLaunch('+id+');"><i class="fa fa-filter" aria-hidden="true"></i></a>';
         case 2:
             return "福袋";
         case 3:

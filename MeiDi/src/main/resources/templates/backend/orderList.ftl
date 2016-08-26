@@ -26,26 +26,14 @@
                 <!-- /.col-lg-12 -->
             </div>
             <div class="p10 form-inline clearfix">
-                <ul class="nav nav-tabs">
-                    <li id="all-tab" data-status="all" class="active">
-                        <a data-toggle="tab" href="#pane-all"> 全部</a>
-                    </li>
-                    <li id="ongoing-tab" data-status="ongoing">
-                        <a data-toggle="tab" href="#pane-ongoing"> 进行中</a>
-                    </li>
-                    <li id="finished-tab" data-status="finished">
-                        <a data-toggle="tab" href="#pane-finished"> 已完成</a>
-                    </li>
-                    <li id="canceled-tab" data-status="canceled">
-                        <a data-toggle="tab" href="#pane-canceled"> 已取消</a>
-                    </li>
-                    <div class="pull-right">
-                        <label><span class="star mr6"></span>请输入：</label>
-                        <input type="text" class="queryStr  form-control"/>
-                        <a href="javascript:searchOrder();" class="btn btn-success">搜索</a>
-                    </div>
-                </ul>
+                <div class="pull-left fs14" id="filter-panel" style="line-height:34px;">
+                </div>
 
+                <div class="pull-right">
+                    <label>请输入：</label>
+                    <input type="text" class="queryStr  form-control"/>
+                    <a href="javascript:searchOrder();" class="btn btn-success">搜索</a>
+                </div>
             </div>
 
             <input type="hidden" name="search_launch_id" id="search_launch_id" value="0">
