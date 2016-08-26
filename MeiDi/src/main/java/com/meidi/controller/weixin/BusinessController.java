@@ -435,18 +435,24 @@ public class BusinessController extends WxBaseController {
         model.put("endTime", groupLaunch.getEndTime().getTime());
 
         List<GroupLaunchUser> groupLaunchUserList = groupLaunch.getGroupLaunchUserList();
+        model.put("joinedNumber",groupLaunchUserList.size());
+
+        Set<String> userSet= new LinkedHashSet<String>();
         List<Map> userList = new ArrayList<>();
         for (GroupLaunchUser groupLaunchUser : groupLaunchUserList) {
-            Map userMap = new HashMap<>();
-            userMap.put("groupLaunchUser", groupLaunchUser);
-            User user = userRepository.findByWxOpenid(groupLaunchUser.getWxOpenid());
-            userMap.put("user", user);
-
-            if(user.getWxOpenid().equals(model.get("wx_openid"))){//显示分享提示
-                model.put("shareFlag",1);  //1 表示在团中
+            if(groupLaunchUser.getWxOpenid().equals(model.get("wx_openid"))){// 当前用户已参团, 显示分享提示
+                model.put("shareFlag",1);  //1 表示已参加此团
             }
 
-            userList.add(userMap);
+            if(!userSet.contains(groupLaunchUser.getWxOpenid())){
+                Map userMap = new HashMap<>();
+                userMap.put("groupLaunchUser", groupLaunchUser);
+                User user = userRepository.findByWxOpenid(groupLaunchUser.getWxOpenid());
+                userMap.put("user", user);
+
+                userList.add(userMap);
+                userSet.add(groupLaunchUser.getWxOpenid());
+            }
         }
 
         Commodity commodity = commodityRepository.findOne(groupLaunch.getCommodityId());

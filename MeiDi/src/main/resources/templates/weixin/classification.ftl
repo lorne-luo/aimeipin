@@ -5,7 +5,7 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="keywords" content="北"/>
+    <meta name="keywords" content="北京"/>
     <meta name="description" content=""/>
 
     <title>分类</title>
