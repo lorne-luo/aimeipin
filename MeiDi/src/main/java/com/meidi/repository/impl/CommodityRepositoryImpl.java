@@ -21,7 +21,7 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
     private EntityManager entityManager;
 
     @Override
-    public Map<String, Object> findCommodityWithQuery(int pageNumber, int pageSize, int flag, int state, int provinceId, String queryStr) throws Exception {
+    public Map<String, Object> findCommodityWithQuery(int pageNumber, int pageSize, int flag, int state, int provinceId, int categoryId, String queryStr) throws Exception {
         if ("0".equals(queryStr)) {
             queryStr = "";
         }
@@ -53,6 +53,11 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
             paramList.add(state);
         }else{
             sql += " and mc.state > -1 ";
+        }
+
+        if (!MdCommon.isEmpty(categoryId) && categoryId > -1) {
+            sql += " and mc.category_id = ? ";
+            paramList.add(categoryId);
         }
 
         if (!MdCommon.isEmpty(queryStr)) {
@@ -96,6 +101,10 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
             sql += " and mc.state = ? ";
         }else{
             sql += " and mc.state > -1 ";
+        }
+
+        if (!MdCommon.isEmpty(categoryId) && categoryId > -1) {
+            sql += " and mc.category_id = ? ";
         }
 
         if (!MdCommon.isEmpty(queryStr)) {

@@ -321,10 +321,16 @@ public class BackEndController implements MdConstants {
     @RequestMapping(value = "/commodityListPage", method = RequestMethod.GET)
     public ModelAndView commodityListPage(HttpServletRequest request) {
         MdModel model = new MdModel(request);
-//        model.put("flag", flag);
         if (MdCommon.isEmpty(model.get("account"))) {
             return new ModelAndView(new RedirectView(PATH + "/backend/loginPage"));
         }
+
+        Iterable<Category> categoryIterable = categoryRepository.findAll();
+        List<Category> categoryList = new ArrayList<>();
+        for (Category category : categoryIterable) {
+            categoryList.add(category);
+        }
+        model.put("categoryList", categoryList);
 
         Iterable<DicProvince> provinceIterable = dicProvinceRepository.findAll();
         model.put("provinceList", provinceIterable);
@@ -346,12 +352,13 @@ public class BackEndController implements MdConstants {
                                 @RequestParam(value = "flag") Integer flag,
                                 @RequestParam(value = "state") Integer state,
                                 @RequestParam(value = "provinceId") Integer provinceId,
+                                @RequestParam(value = "categoryId") Integer categoryId,
                                 @RequestParam(value = "queryStr") String queryStr) {
 
         MdModel model = new MdModel(request);
         Map<String, Object> result = null;
         try {
-            result = commodityRepository.findCommodityWithQuery(pageNumber, BE_PAGE_SIZE, flag, state, provinceId, queryStr);
+            result = commodityRepository.findCommodityWithQuery(pageNumber, BE_PAGE_SIZE, flag, state, provinceId,categoryId, queryStr);
         } catch (Exception e) {
             e.printStackTrace();
         }

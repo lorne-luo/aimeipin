@@ -43,7 +43,15 @@
                                     <option value="4">咨询</option>
                                 </select>
                             </th>
-                            <th>名称</th>
+                            <th>
+                                <select id="category">
+                                    <option value="-1">所有</option>
+                                    <#list categoryList as category>
+                                        <option value="#{category.id}"><#if category.name?has_content>${category.name}<#else>------</#if></option>
+                                    </#list>
+                                </select>
+                            </th>
+                            <th style="max-width: 300px;min-width: 200px;">名称</th>
                             <th>原价</th>
                             <th>折扣</th>
                             <th>现价</th>

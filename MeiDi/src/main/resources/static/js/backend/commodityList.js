@@ -13,7 +13,9 @@ $(function () {
     $('#province').on("change",function(){
         getList(1);
     });
-
+    $('#category').on("change",function(){
+        getList(1);
+    });
 });
 
 function searchCommodity(){
@@ -31,6 +33,7 @@ function getList(page) {
     var flag = $('#flag').val();
     var state = $('#state').val();
     var province = $('#province').val();
+    var category = $('#category').val();
 
     var queryStr = $('.queryStr').val();
     ZENG.msgbox.loadingAnimationPath = BASE_JS_URL + "/images/loading.gif";
@@ -53,6 +56,7 @@ function getList(page) {
                 flag: flag,
                 state: state,
                 provinceId: province,
+                categoryId: category,
                 queryStr: queryStr
             }
         }
@@ -76,10 +80,14 @@ function createTable(result) {
         } else {
             str += '<tr>';
         }
+
+        var category_name = commodity.category == null?'':commodity.category.name;
+
         str += '<th scope="row">' + commodity.id + '</th>' +
             //'<td>' + project.projectCode + '</td>' +
             '<td>' + getProjectFlag(commodity.flag) + '</td>' +
-            '<td>' + commodity.name + '</span></td>'+
+            '<td>' + category_name + '</td>' +
+            '<td class="tal" style="max-width: 300px;">' + commodity.name + '</span></td>'+
             '<td>' + commodity.priceDouble + '</td>' +
             '<td>' + commodity.discount + '</td>' +
             '<td>' + commodity.discountPriceDouble + '</td>';
@@ -93,14 +101,14 @@ function createTable(result) {
             '<td>' + getDate(commodity.createTime) + '</td>' +
             '<td><a href="javascript:weight(' + commodity.id + ');" class="btn btn-success" target="_blank">' + commodity.weight + '</a></td>' +
             '<td>'+
-            '<a href="' + BASE_JS_URL + '/backend/editCommodityPage/' + commodity.id + '" class="btn btn-success" target="_blank">编辑</a>';
+            '<a href="/backend/editCommodityPage/' + commodity.id + '" class="btn btn-success" target="_blank">编辑</a> ';
 
         if (commodity.state == 0) {
-            str += '<a href="javascript:upProject(' + commodity.id + ');" class="btn btn-warning  ml20">上架</a>';
+            str += '<a href="javascript:upProject(' + commodity.id + ');" class="btn btn-warning">上架</a> ';
         } else if (commodity.state == 1) {
-            str += '<a href="javascript:downProject(' + commodity.id + ');" class="btn btn-warning  ml20">下架</a>';
+            str += '<a href="javascript:downProject(' + commodity.id + ');" class="btn btn-warning">下架</a> ';
         }
-        str += '<a href="javascript:deleteProject(' + commodity.id + ');" class="btn btn-warning  ml20">删除</a>';
+        str += '<a href="javascript:deleteProject(' + commodity.id + ');" class="btn btn-warning">删除</a>';
         str += '</td>' +
             '</tr>';
 
