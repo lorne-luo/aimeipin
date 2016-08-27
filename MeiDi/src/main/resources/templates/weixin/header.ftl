@@ -12,3 +12,14 @@
     <script type="text/javascript" src="${PATH}/js/constants.js"></script>
     <script type="text/javascript" src="${PATH}/js/msgbox/msgbox.js"></script>
     <script type="text/javascript" src="${PATH}/js/mobiscroll.custom-2.17.1.min.js"></script>
+
+    <#-- 百度统计 -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?5d78ee3cc9a030a01c346adeb40dd085";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
