@@ -61,6 +61,7 @@ public class Order implements Serializable {
 
     /**
      * 预订类型 1 发起拼团预订 2 拼团一人预订  3普通预订 4参团预订
+     *         1 拼团专享支付（发起拼团）  2 拼团一人支付  3普通(特惠 福袋)支付  4参团支付
      */
     @Column(name = "booking_flag")
     private Integer bookingFlag = 3 ;

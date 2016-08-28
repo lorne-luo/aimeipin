@@ -165,7 +165,6 @@ public class WxPayController extends WxBaseController {
 
     }
 
-
     /**
      * 支付结果
      *
@@ -278,10 +277,8 @@ public class WxPayController extends WxBaseController {
         return new ModelAndView(new RedirectView(PATH + "/business/myOrderPage"));
     }
 
-
-
     /**
-     * 订单处理
+     * 支付成功订单处理
      *
      * @param order
      */
@@ -315,7 +312,6 @@ public class WxPayController extends WxBaseController {
                     groupLaunch.setUnit(order.getUnit());//单位
                 }
 
-
                 List<GroupLaunchUser> groupLaunchList = new ArrayList<>();
                 GroupLaunchUser groupLaunchUser = new GroupLaunchUser();
                 groupLaunchUser.setFlag(1);//第一人 即拼团发起人
@@ -334,29 +330,27 @@ public class WxPayController extends WxBaseController {
 
             } else if (!MdCommon.isEmpty(order.getLaunchId()) && order.getBookingFlag() == 4) {//参团
                 GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
-
                 List<GroupLaunchUser> groupLaunchUserList = groupLaunch.getGroupLaunchUserList();
 
                 GroupLaunchUser groupLaunchUser = groupLaunchUserRepository.findByLaunchIdAndWxOpenid(order.getLaunchId(),order.getWxOpenid());
                 if(MdCommon.isEmpty(groupLaunchUser)){
-                    groupLaunchUser =  new GroupLaunchUser();
+                    groupLaunchUser = new GroupLaunchUser();
                     groupLaunchUser.setWxOpenid(order.getWxOpenid());
                     groupLaunchUser.setFlag(groupLaunchUserList.size() + 1);
                     groupLaunchUserList.add(groupLaunchUser);
 
                     if (groupLaunchUserList.size() == groupLaunch.getPeopleNumber()) {
                         groupLaunch.setState(1);//拼团成功 拼团结束
-
                         groupLaunch.setGroupLaunchUserList(groupLaunchUserList);
                         groupLaunchRepository.save(groupLaunch);
 
                         //暂时不发
-                    WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
-                    for (GroupLaunchUser user : groupLaunchUserList) {
-                        //拼团成功 给每个用户发消息
-                        WxTemplate.groupLaunchOk(wxTicket.getToken(), order);
-                        // TODO 拼团成功 服务号通知
-                    }
+                        WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
+                        for (GroupLaunchUser user : groupLaunchUserList) {
+                            //拼团成功 给每个用户发消息
+                            WxTemplate.groupLaunchOk(wxTicket.getToken(), order);
+                            // TODO 拼团成功 服务号通知
+                        }
                     } else {
                         //成功参团
                         WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
@@ -365,11 +359,6 @@ public class WxPayController extends WxBaseController {
                 }else{
 
                 }
-
-
-
-
-
             }
         }
     }
