@@ -2,7 +2,7 @@
  * Created by luanpeng on 16/3/24.
  */
 var page = 1;
-function getProjectList(flag, pageNumber, cityId, queryStr) {
+function getProjectList(categoryId, pageNumber, cityId, queryStr) {
     if (pageNumber == 1) {
         page = pageNumber;
     }
@@ -11,7 +11,7 @@ function getProjectList(flag, pageNumber, cityId, queryStr) {
     $.ajax({
         url: BASE_JS_URL + '/business/getCommodityList',
         data: {
-            'flag': flag,
+            'categoryId': categoryId,
             'page': page,
             'state': 1,
             'cityId': cityId,
@@ -31,8 +31,6 @@ function getProjectList(flag, pageNumber, cityId, queryStr) {
             }
 
             createTable(data.commodityList);
-
-
             ZENG.msgbox.hide(); //隐藏加载提示
         }
     });
