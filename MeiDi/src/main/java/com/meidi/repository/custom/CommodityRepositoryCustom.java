@@ -17,7 +17,7 @@ public interface CommodityRepositoryCustom {
      * @return
      * @throws Exception
      */
-    Map<String, Object> findCommodityWithQuery(int pageNumber, int pageSize, int flag,int state, int provinceId, String queryStr) throws Exception;
+    Map<String, Object> findCommodityWithQuery(int pageNumber, int pageSize, int flag,int state, int provinceId, int categoryId, String queryStr) throws Exception;
 
     /**
      * 前台微信用

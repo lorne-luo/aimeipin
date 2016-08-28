@@ -21,7 +21,7 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
     private EntityManager entityManager;
 
     @Override
-    public Map<String, Object> findCommodityWithQuery(int pageNumber, int pageSize, int flag, int state, int provinceId, String queryStr) throws Exception {
+    public Map<String, Object> findCommodityWithQuery(int pageNumber, int pageSize, int flag, int state, int provinceId, int categoryId, String queryStr) throws Exception {
         if ("0".equals(queryStr)) {
             queryStr = "";
         }
@@ -55,12 +55,17 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
             sql += " and mc.state > -1 ";
         }
 
+        if (!MdCommon.isEmpty(categoryId) && categoryId > -1) {
+            sql += " and mc.category_id = ? ";
+            paramList.add(categoryId);
+        }
+
         if (!MdCommon.isEmpty(queryStr)) {
             sql += " and (mc.name like ? or mc.keyword like ?)  ";
             paramList.add("%" + queryStr + "%");
             paramList.add("%" + queryStr + "%");
         }
-        sql += " group by mc.id order by mc.weight asc,mc.create_time desc limit ?,? ";
+        sql += " group by mc.id order by mc.weight desc,mc.create_time desc limit ?,? ";
         Query query = this.entityManager.createNativeQuery(sql, "searchResultMapping.commodity");
         if (paramList.size() > 0) {
             for (int i = 0; i < paramList.size(); i++) {
@@ -96,6 +101,10 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
             sql += " and mc.state = ? ";
         }else{
             sql += " and mc.state > -1 ";
+        }
+
+        if (!MdCommon.isEmpty(categoryId) && categoryId > -1) {
+            sql += " and mc.category_id = ? ";
         }
 
         if (!MdCommon.isEmpty(queryStr)) {
@@ -164,7 +173,7 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
             paramList.add("%" + queryStr + "%");
             paramList.add("%" + queryStr + "%");
         }
-        sql += " group by mc.id order by mc.weight asc,mc.create_time desc limit ?,? ";
+        sql += " group by mc.id order by mc.weight desc,mc.create_time desc limit ?,? ";
         Query query = this.entityManager.createNativeQuery(sql, "searchResultMapping.commodity");
         if (paramList.size() > 0) {
             for (int i = 0; i < paramList.size(); i++) {
