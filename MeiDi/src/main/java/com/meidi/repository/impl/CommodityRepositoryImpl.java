@@ -292,7 +292,7 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
             paramList.add("%" + queryStr + "%");
             paramList.add("%" + queryStr + "%");
         }
-        sql += " group by mc.id order by mc.weight asc,mc.create_time desc limit ?,? ";
+        sql += " group by mc.id order by mc.weight desc,mc.create_time desc limit ?,? ";
         Query query = this.entityManager.createNativeQuery(sql, "searchResultMapping.commodity");
         if (paramList.size() > 0) {
             for (int i = 0; i < paramList.size(); i++) {
