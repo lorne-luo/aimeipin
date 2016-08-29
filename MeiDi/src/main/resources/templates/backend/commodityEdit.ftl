@@ -28,7 +28,7 @@
         <div class="col-lg-10">
             <div class="row">
                 <div class="col-lg-12">
-                    <h4 class="page-header">添加商品</h4>
+                    <h4 class="page-header">编辑商品</h4>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

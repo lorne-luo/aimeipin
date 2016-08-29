@@ -64,21 +64,21 @@ public class BusinessController extends WxBaseController {
      *
      * @param request
      * @param pageNumber
-     * @param flag
+     * @param categoryId
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/getCommodityList", method = RequestMethod.POST)
     public Map getCommodityList(HttpServletRequest request,
                                 @RequestParam(value = "page") Integer pageNumber,
-                                @RequestParam(value = "flag") Integer flag,
+                                @RequestParam(value = "categoryId") Integer categoryId,
                                 @RequestParam(value = "state") Integer state,
                                 @RequestParam(value = "cityId") Integer cityId,
                                 @RequestParam(value = "queryStr") String queryStr) {
 
         MdModel model = new MdModel(request);
         try {
-            Map<String, Object> result = commodityRepository.findCommodityWithQuery2(pageNumber, WX_PAGE_SIZE, flag, state, cityId, queryStr);
+            Map<String, Object> result = commodityRepository.findCommodityWithQuery3(pageNumber, WX_PAGE_SIZE, categoryId, state, cityId, queryStr);
             List<Commodity> commodityList = (List<Commodity>) result.get("commodityList");
             for (Commodity commodity : commodityList) {
                 List<CommodityPhoto> commodityPhotoList = commodityPhotoRepository.findByCommodityId(commodity.getId());
@@ -93,7 +93,6 @@ public class BusinessController extends WxBaseController {
         }
 
         return model;
-
     }
 
 

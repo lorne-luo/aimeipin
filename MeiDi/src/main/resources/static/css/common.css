@@ -2372,45 +2372,45 @@ a.baseBtn.nof {
 }
 
 .classifybox a.t1 {
-    background: url("../images/classify/1.png") center no-repeat;
+    background: url("../images/classify/skin.png") center no-repeat;
     background-size: 100%;
 }
 
 .classifybox a.t2 {
-    background: url("../images/classify/2.png") center no-repeat;
+    background: url("../images/classify/plastic.png") center no-repeat;
     background-size: 100%;
 }
 
 .classifybox a.t3 {
-    background: url("../images/classify/3.png") center no-repeat;
+    background: url("../images/classify/surgery.png") center no-repeat;
     background-size: 100%;
 }
 
 .classifybox a.t4 {
-    background: url("../images/classify/4.png") center no-repeat;
+    background: url("../images/classify/discover.png") center no-repeat;
     background-size: 100%;
 }
 
 .classifybox a.t1.active {
-    background: url("../images/classify/11.png") center no-repeat;
+    background: url("../images/classify/skin2.png") center no-repeat;
     background-size: 100%;
     transform: scale(1.1);
 }
 
 .classifybox a.t2.active {
-    background: url("../images/classify/22.png") center no-repeat;
+    background: url("../images/classify/plastic2.png") center no-repeat;
     background-size: 100%;
     transform: scale(1.1);
 }
 
 .classifybox a.t3.active {
-    background: url("../images/classify/33.png") center no-repeat;
+    background: url("../images/classify/surgery2.png") center no-repeat;
     background-size: 100%;
     transform: scale(1.1);
 }
 
 .classifybox a.t4.active {
-    background: url("../images/classify/44.png") center no-repeat;
+    background: url("../images/classify/discover2.png") center no-repeat;
     background-size: 100%;
     transform: scale(1.1);
 }
