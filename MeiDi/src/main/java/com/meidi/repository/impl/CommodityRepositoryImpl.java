@@ -29,11 +29,12 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
         List<Object> paramList = new ArrayList<>();
         String sql = "select mc.id ,mc.commodity_code,mc.name,mc.flag " +
                 ",mc.discount,mc.discount_price,mc.state,mc.price,mc.create_time " +
-                ",mc.province_id ,dp.name as province_name, mc.city_id ,dc.name as city_name " +
+                ",mc.province_id ,dp.name as province_name, mc.city_id ,dc.name as city_name, mc.category_id ,cate.name as category_name " +
                 ",mc.people_number,mc.label_flag,mc.weight,mc.price_double,mc.discount_price_double " +
                 " from md_commodity mc " +
                 " left join dic_province dp on dp.id = mc.province_id " +
                 " left join dic_city dc on dc.id = mc.city_id " +
+                " left join md_category cate on cate.id = mc.category_id " +
 //                " left join md_commodity_photo cp on mcp.commodity_id = mc.id " +
                 " where mc.id is not null ";
         if (flag > 0 && flag < 5) {
@@ -137,11 +138,12 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
         List<Object> paramList = new ArrayList<>();
         String sql = "select mc.id ,mc.commodity_code,mc.name,mc.flag " +
                 ",mc.discount,mc.discount_price,mc.state,mc.price,mc.create_time " +
-                ",mc.province_id ,dp.name as province_name, mc.city_id ,dc.name as city_name " +
+                ",mc.province_id ,dp.name as province_name, mc.city_id ,dc.name as city_name, mc.category_id ,cate.name as category_name  " +
                 ",mc.people_number,mc.label_flag,mc.weight,mc.price_double,mc.discount_price_double " +
                 " from md_commodity mc " +
                 " left join dic_province dp on dp.id = mc.province_id " +
                 " left join dic_city dc on dc.id = mc.city_id " +
+                " left join md_category cate on cate.id = mc.category_id " +
 //                " left join md_commodity_photo cp on mcp.commodity_id = mc.id " +
                 " where mc.id is not null ";
         if (flag > 0 && flag < 5) {

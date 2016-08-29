@@ -81,7 +81,7 @@ function createTable(result) {
             str += '<tr>';
         }
 
-        var category_name = commodity.category == null?'':commodity.category.name;
+        var category_name = commodity.category.name == null?'':commodity.category.name;
 
         str += '<th scope="row">' + commodity.id + '</th>' +
             //'<td>' + project.projectCode + '</td>' +
