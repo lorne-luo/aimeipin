@@ -7,6 +7,7 @@ import com.meidi.util.MdCommon;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,22 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    private List<Commodity> createEntityList(List<Object[]> resultList) throws Exception {
+
+        Class[] constructorParamTypeList = new Class[]{Integer.class, String.class, Integer.class, String.class, Integer.class, Float.class, Integer.class,
+                Integer.class, java.sql.Timestamp.class, Integer.class, String.class, Integer.class, String.class,
+                Integer.class, Integer.class, Integer.class, Double.class, Double.class, Integer.class, String.class};
+        Constructor<Commodity> constructor = Commodity.class.getConstructor(constructorParamTypeList);
+
+        List<Commodity> returnList = new ArrayList<>();
+
+        for(Object[] o : resultList){
+            returnList.add(constructor.newInstance(o));
+        }
+
+        return returnList;
+    }
 
     @Override
     public Map<String, Object> findCommodityWithQuery(int pageNumber, int pageSize, int flag, int state, int provinceId, int categoryId, String queryStr) throws Exception {
@@ -77,10 +94,7 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
         query.setParameter(paramList.size() + 2, pageSize);
         List resultList = query.getResultList();
 
-        List<Commodity> commodityList = new ArrayList<>();
-        if (!MdCommon.isEmpty(resultList)) {
-            commodityList = MdCommon.castEntity(resultList, Commodity.class);
-        }
+        List<Commodity> commodityList = createEntityList(resultList);
 
         Map<String, Object> result = new HashMap<>();
         result.put("commodityList", commodityList);
@@ -186,10 +200,7 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
         query.setParameter(paramList.size() + 2, pageSize);
         List resultList = query.getResultList();
 
-        List<Commodity> commodityList = new ArrayList<>();
-        if (!MdCommon.isEmpty(resultList)) {
-            commodityList = MdCommon.castEntity(resultList, Commodity.class);
-        }
+        List<Commodity> commodityList = createEntityList(resultList);
 
         Map<String, Object> result = new HashMap<>();
         result.put("commodityList", commodityList);
