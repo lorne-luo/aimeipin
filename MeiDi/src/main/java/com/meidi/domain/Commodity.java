@@ -33,13 +33,13 @@ import java.util.List;
                 @ColumnResult(name = "province_name"),
                 @ColumnResult(name = "city_id"),
                 @ColumnResult(name = "city_name"),
-                @ColumnResult(name = "category_id"),
-                @ColumnResult(name = "category_name"),
                 @ColumnResult(name = "people_number"),
                 @ColumnResult(name = "label_flag"),
                 @ColumnResult(name = "weight"),
                 @ColumnResult(name = "price_double"),
-                @ColumnResult(name = "discount_price_double")
+                @ColumnResult(name = "discount_price_double"),
+                @ColumnResult(name = "category_id"),
+                @ColumnResult(name = "category_name")
         }
 )
 public class Commodity implements Serializable {
@@ -50,8 +50,7 @@ public class Commodity implements Serializable {
 
     public Commodity(Integer id, String commodityCode, Integer flag, String name, Integer price, Float discount, Integer discountPrice,
                      Integer state, Timestamp createTime, Integer provinceId, String provinceName, Integer cityId, String cityName,
-                     Integer categoryId, String categoryName,
-                     Integer peopleNumber,Integer labelFlag,Integer weight,Double priceDouble,Double discountPriceDouble) {
+                     Integer peopleNumber,Integer labelFlag,Integer weight,Double priceDouble,Double discountPriceDouble,Integer categoryId, String categoryName) {
         super();
         this.id = id;
         this.commodityCode = commodityCode;
