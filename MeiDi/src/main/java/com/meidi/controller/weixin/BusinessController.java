@@ -155,32 +155,34 @@ public class BusinessController extends WxBaseController {
             if (MdCommon.isEmpty(model.get("wx_openid"))) {
                 return wxAuth(request);
             }
-
             model.put("flag", flag);
-
-
-
             Commodity commodity = null;
 
-
             if (flag == 4) {//参团支付 单独处理
+                //id 是 GroupLaunch id
                 GroupLaunch groupLaunch = groupLaunchRepository.findOne(id);
-                model.put("groupLaunch", groupLaunch);
+                if(MdCommon.isEmpty(groupLaunch)) {
+                    model.put("groupLaunch", groupLaunch);
 
-                commodity = commodityRepository.findOne(groupLaunch.getCommodityId());
+                    commodity = commodityRepository.findOne(groupLaunch.getCommodityId());
 
-                Order existUnpaidOrder = orderRepository.findByWxOpenidAndCommodityIdAndState(
-                        MdCommon.null2String(model.get("wx_openid")), commodity.getId(), 1);
+                    Order unpaidOrder = orderRepository.findByWxOpenidAndCommodityIdAndState(
+                            MdCommon.null2String(model.get("wx_openid")), commodity.getId(), 1);
 
-                if (existUnpaidOrder == null) {
-                    // 没有待支付的本商品订单,可以新下单
-                    model.put("commodity", commodity);
-                    return new ModelAndView("weixin/joinGroupPayment", model);
-                }else {
-                    // 本商品已存在未支付订单, 转向我的订单页
-                    return new ModelAndView(new RedirectView(PATH + "/business/myOrderPage"));
+                    if (MdCommon.isEmpty(unpaidOrder)) {
+                        // 没有待支付的本商品订单,可以参团
+                        model.put("commodity", commodity);
+                        return new ModelAndView("weixin/joinGroupPayment", model);
+                    } else {
+                        // 本商品已存在未支付订单, 转向我的订单页
+                        return new ModelAndView(new RedirectView(PATH + "/business/myOrderPage"));
+                    }
+                }else{
+//                    no return null commodity
                 }
+
             }else{
+                //id 是 商品 id
                 commodity = commodityRepository.findOne(id);
                 model.put("commodity", commodity);
             }
