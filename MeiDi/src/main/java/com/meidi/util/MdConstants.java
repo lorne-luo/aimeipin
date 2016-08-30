@@ -80,4 +80,5 @@ public interface MdConstants {
     String IMAGE_FORMAL_URL = PATH + "/formal";
     String IMAGE_TEXT_PATH = "/usr/local/imageText";
 
+    Boolean DEBUG = Boolean.parseBoolean(System.getenv("debug"));
 }
