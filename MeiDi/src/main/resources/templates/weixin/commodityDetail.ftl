@@ -213,29 +213,38 @@
                 <p class="mt2">咨询</p>
             </a>
         </div>
-    <#if commodity.flag ==1 >
-        <a class="t2  bgfe91b0" href="${PATH}/business/bookingPage/#{commodity.id}/2">
-            <div class="mt8"><span>¥#{commodity.alonePrice/100}</span></div>
-            <p class="fs16 pwhite fb">单独预订</p>
-        </a>
-        <a class="t2 bgff4d7d" href="${PATH}/business/bookingPage/#{commodity.id}/1">
-            <div class="mt8"><span>¥#{commodity.discountPrice/100}</span></div>
-            <p class='fs16 pwhite fb'>发起拼团</p>
-        </a>
-    <#else>
-        <a class="t4 bgff4d7d" href="${PATH}/business/bookingPage/#{commodity.id}/3">
-            <p class="fs20 mt16 priceorder">
-                <span>¥#{commodity.discountPrice/100}</span>
-                <#if commodity.flag == 4>
-                    <i class="pwhite inlineblock ml4">我要预约</i>
-                <#else>
-                    <i class="pwhite inlineblock ml4">我要参团</i>
-                </#if>
 
+    <#if commodity.state == 1 >
+        <#if commodity.flag ==1 >
+            <#-- 1 拼团 -->
+            <a class="t2  bgfe91b0" href="${PATH}/business/bookingPage/#{commodity.id}/2">
+                <div class="mt8"><span>¥#{commodity.alonePrice/100}</span></div>
+                <p class="fs16 pwhite fb">单独预订</p>
+            </a>
+            <a class="t2 bgff4d7d" href="${PATH}/business/bookingPage/#{commodity.id}/1">
+                <div class="mt8"><span>¥#{commodity.discountPrice/100}</span></div>
+                <p class='fs16 pwhite fb'>发起拼团</p>
+            </a>
+        <#else>
+            <#-- 2 福袋, 3 特惠, 4 咨询 -->
+            <a class="t4 bgff4d7d" href="${PATH}/business/bookingPage/#{commodity.id}/3">
+                <p class="fs20 mt16 priceorder">
+                    <span>¥#{commodity.discountPrice/100}</span>
+                    <#if commodity.flag == 4>
+                        <i class="pwhite inlineblock ml4">我要预约</i>
+                    <#else>
+                        <i class="pwhite inlineblock ml4">我要参团</i>
+                    </#if>
+                </p>
+            </a>
+        </#if>
+    <#else>
+        <a class="t4 ended">
+            <p class="fs20 mt16 priceorder">
+                <i class="pwhite inlineblock ml4">本项目已结束</i>
             </p>
         </a>
     </#if>
-
     </div>
 
 </div>
