@@ -223,6 +223,7 @@ public class BusinessController extends WxBaseController {
                            @RequestParam(value = "reservationCount") Integer reservationCount,
                            @RequestParam(value = "flag") Integer flag,
                            @RequestParam(value = "launchId") Integer launchId,
+                           @RequestParam(value = "remarks") String remarks,
                            @RequestParam(value = "weixin") String weixin) {
         MdModel model = new MdModel(request);
         int ret = 0;
@@ -259,6 +260,7 @@ public class BusinessController extends WxBaseController {
                     order.setWxOpenid(model.get("wx_openid"));
                     order.setMobile(mobile);
                     order.setUsername(username);
+                    order.setRemarks(remarks);
                     order.setCommodityName(commodity.getName());
                     order.setDicProvince(commodity.getDicProvince());
                     order.setDicCity(commodity.getDicCity());
