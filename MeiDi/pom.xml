@@ -20,6 +20,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <aspectj.version>1.8.6</aspectj.version>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
     </properties>
 
     <dependencies>
@@ -147,8 +149,8 @@
         <dependency>
             <groupId>com.message</groupId>
             <artifactId>MyMessage</artifactId>
-            <scope>system</scope>
             <version>1.0</version>
+            <scope>system</scope>
             <systemPath>${basedir}/lib/MyMessage.jar</systemPath>
         </dependency>
 
@@ -160,7 +162,6 @@
             <scope>system</scope>
             <systemPath>${basedir}/lib/ueditor-1.1.2.jar</systemPath>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -182,12 +183,12 @@
                 </includes>
             </resource>
         </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
         <finalName>meidi</finalName>
     </build>
 
