@@ -160,33 +160,39 @@ public class BusinessController extends WxBaseController {
 
             if (flag == 4) {//参团支付 单独处理
                 //id 是 GroupLaunch id
-                GroupLaunch groupLaunch = groupLaunchRepository.findOne(id);
+                Integer launchId = id;
+                GroupLaunch groupLaunch = groupLaunchRepository.findOne(launchId);
                 if(MdCommon.isEmpty(groupLaunch)) {
                     model.put("groupLaunch", groupLaunch);
 
                     commodity = commodityRepository.findOne(groupLaunch.getCommodityId());
 
-                    Order unpaidOrder = orderRepository.findByWxOpenidAndCommodityIdAndState(
-                            MdCommon.null2String(model.get("wx_openid")), commodity.getId(), 1);
-
+                    List<Order> unpaidOrderList = orderRepository.findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(
+                            MdCommon.null2String(model.get("wx_openid")), commodity.getId(), flag, 1);
+                    Order unpaidOrder = unpaidOrderList.get(0);
                     if (MdCommon.isEmpty(unpaidOrder)) {
                         // 没有待支付的本商品订单,可以参团
                         model.put("commodity", commodity);
                         return new ModelAndView("weixin/joinGroupPayment", model);
                     } else {
-                        // 本商品已存在未支付订单, 转向我的订单页
-                        return new ModelAndView(new RedirectView(PATH + "/business/myOrderPage"));
+                        // 本商品已存在未支付订单, 转向该订单支付页面
+                        return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + unpaidOrder.getId().toString()));
                     }
-                }else{
-//                    no return null commodity
                 }
-
-            }else{
+            } else {
                 //id 是 商品 id
-                commodity = commodityRepository.findOne(id);
+                Integer commodityId = id;
+                commodity = commodityRepository.findOne(commodityId);
+                List<Order> unpaidOrderList = orderRepository.findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(
+                        MdCommon.null2String(model.get("wx_openid")), commodity.getId(), flag, 1);
+                Order unpaidOrder = unpaidOrderList.get(0);
+
+                if (!MdCommon.isEmpty(unpaidOrder)){
+                    // 本商品已存在未支付订单, 转向该订单支付页面
+                    return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + unpaidOrder.getId().toString()));
+                }
                 model.put("commodity", commodity);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -309,17 +315,10 @@ public class BusinessController extends WxBaseController {
 
                     order = orderRepository.save(order);
                     model.put("orderId", order.getId());
-
-
-
 //                } else {
 //                    ret = -5;//商品剩余库存不足
 //                }
             }
-
-
-
-
         }
         model.put("ret", ret);
 
