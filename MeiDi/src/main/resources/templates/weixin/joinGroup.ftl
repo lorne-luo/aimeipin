@@ -39,7 +39,7 @@
             //分享好友
             wx.onMenuShareAppMessage({
                 title: '【超值拼团】${commodity.name}', // 分享标题
-                desc: '【还差${groupLaunch.peopleNumber - joinedNumber}人】${commodity.name}', // 分享描述
+                desc: '【还差${groupLaunch.peopleNumber - userList?size}人】${commodity.name}', // 分享描述
                 link: '${PATH}/business/joinGroupPage/#{groupLaunch.id}', // 分享链接
                 imgUrl: '${PATH}/images/share.jpg', // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
@@ -102,8 +102,8 @@
 
             <div class="mt30 mb30 fs28">
             <#if groupLaunch.state == 0>
-                <#if groupLaunch.peopleNumber - joinedNumber gt 0>
-                    <span>还差<span class="f40b0b">${groupLaunch.peopleNumber - joinedNumber}</span>人，你来了咱就一起美！</span>
+                <#if groupLaunch.peopleNumber - userList?size gt 0>
+                    <span>还差<span class="f40b0b">${groupLaunch.peopleNumber - userList?size}</span>人，你来了咱就一起美！</span>
                 </#if>
             <#elseif groupLaunch.state == 1>
                 <span>该拼团已成功！</span>
@@ -137,7 +137,7 @@
     <a href="${PATH}/class" class="t1">更多拼团</a>
     <a href="javascript:checkJoinGroup(#{groupLaunch.id});">我要参团</a>
 </div>
-<#if groupLaunch.peopleNumber - joinedNumber gt 0 && shareFlag?exists && shareFlag == 1>
+<#if groupLaunch.peopleNumber - userList?size gt 0 && shareFlag?exists && shareFlag == 1>
 <div class="sharemark">
     <div class="rightt1">
         <img src="${PATH}/images/row.png">
@@ -146,9 +146,9 @@
     </div>
 
     <#if shareFlag?exists && shareFlag == 1>
-        <p class="fs26 t2">您已经参加该团，<br/>还差${groupLaunch.peopleNumber - joinedNumber}人就拼团成功啦！</p>
+        <p class="fs26 t2">您已经参加该团，<br/>还差${groupLaunch.peopleNumber - userList?size}人就拼团成功啦！</p>
     <#else>
-        <p class="fs28 t1">还差${groupLaunch.peopleNumber - joinedNumber}人就拼团成功啦！</p>
+        <p class="fs28 t1">还差${groupLaunch.peopleNumber - userList?size}人就拼团成功啦！</p>
     </#if>
 </div>
 </#if>
