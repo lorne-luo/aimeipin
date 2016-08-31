@@ -438,7 +438,7 @@ public class Commodity implements Serializable {
     }
 
     public void setWeight(Integer weight) {
-        this.weight = weight;
+        this.weight = weight == null ? 0 : weight;
     }
 
     public String getDiscountUnit() {

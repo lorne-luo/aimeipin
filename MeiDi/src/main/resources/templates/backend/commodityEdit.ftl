@@ -98,6 +98,10 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label><span class="star mr6"></span>权重：</label>
+                        <input class="form-control weight" name="weight" value="<#if commodity.weight?exists>#{commodity.weight}<#else>0</#if>"/>
+                    </div>
+                    <div class="form-group">
                         <label><span class="star mr6">*</span>原价：</label>
                         <input class="form-control price" placeholder="0" value="<#if commodity.priceDouble?exists && commodity.priceDouble != 0>#{commodity.priceDouble}<#else>#{commodity.price}</#if>" name="priceDouble"/>
                         <span class="inlineblock ml10">元</span>

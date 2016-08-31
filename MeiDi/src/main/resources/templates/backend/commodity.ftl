@@ -82,6 +82,10 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label><span class="star mr6"></span>权重：</label>
+                        <input class="form-control weight" name="weight" value="0"/>
+                    </div>
+                    <div class="form-group">
                         <label><span class="star mr6">*</span>原价：</label>
                         <input class="form-control price" placeholder="0" value="" name="priceDouble"/>
                         <span class="inlineblock ml10">元</span>

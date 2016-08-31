@@ -259,6 +259,10 @@ $("#addCommodity").validate({
         "flag": true,
         "name": true,
         "keyword": true,
+        "weight": {
+            number: true,
+            min: 0
+        },
         "priceDouble": {
             required: true,
             number: true,
@@ -300,6 +304,10 @@ $("#addCommodity").validate({
         "flag": "*请选择商品类型",
         "name": "*请填写名称",
         "keyword": "*请填写关键词",
+        "weight": {
+            number: "*必须是数字",
+            min: "*不能小于0"
+        },
         "priceDouble": {
             required: "*请填写价格",
             number: "*必须是数字",
