@@ -167,6 +167,11 @@ public class BusinessController extends WxBaseController {
 
                     commodity = commodityRepository.findOne(groupLaunch.getCommodityId());
 
+                    // 检查项目是否上架中
+                    if (commodity.getState()<1){
+                        return new ModelAndView(new RedirectView(PATH + "/business/commodityDetailPage/" + commodity.getId()));
+                    }
+
                     List<Order> unpaidOrderList = orderRepository.findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(
                             MdCommon.null2String(model.get("wx_openid")), commodity.getId(), flag, 1);
                     Order unpaidOrder = unpaidOrderList.get(0);
@@ -183,14 +188,20 @@ public class BusinessController extends WxBaseController {
                 //id 是 商品 id
                 Integer commodityId = id;
                 commodity = commodityRepository.findOne(commodityId);
+
+                // 检查项目是否上架中
+                if (commodity.getState()<1){
+                    return new ModelAndView(new RedirectView(PATH + "/business/commodityDetailPage/" + commodity.getId()));
+                }
+
+                // 检查本商品是否已存在未支付订单, 若有转向该订单支付页面
                 List<Order> unpaidOrderList = orderRepository.findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(
                         MdCommon.null2String(model.get("wx_openid")), commodity.getId(), flag, 1);
                 Order unpaidOrder = unpaidOrderList.get(0);
-
                 if (!MdCommon.isEmpty(unpaidOrder)){
-                    // 本商品已存在未支付订单, 转向该订单支付页面
                     return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + unpaidOrder.getId().toString()));
                 }
+
                 model.put("commodity", commodity);
             }
         } catch (Exception e) {
