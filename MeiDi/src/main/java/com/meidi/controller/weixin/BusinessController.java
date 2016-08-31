@@ -421,6 +421,23 @@ public class BusinessController extends WxBaseController {
         if (MdCommon.isEmpty(model.get("wx_openid"))) {
             return wxAuth(request);
         }
+
+        // 每个用户只能参团一次, 检查是否已经参加此团
+        List<Order> existOrderList = orderRepository.findByWxOpenidAndLaunchIdOrderByCreateTimeDesc(
+                MdCommon.null2String(model.get("wx_openid")), launchId);
+        if((existOrderList != null) && existOrderList.size() > 0){
+            // 已存在参团订单
+            Order existOrder = existOrderList.get(0);
+            if(existOrder.getState()==1) // 订单未支付
+            {
+                // 转向该订单支付页面
+                return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + existOrder.getId().toString()));
+            }else{ // 订单已支付、已取消
+                // 转向我的订单页
+                return new ModelAndView(new RedirectView(PATH + "/business/myOrderPage"));
+            }
+        }
+
         //网页签名
         Map signature = null;
         try {
@@ -429,7 +446,6 @@ public class BusinessController extends WxBaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         GroupLaunch groupLaunch = groupLaunchRepository.findOne(launchId);
         model.put("endTime", groupLaunch.getEndTime().getTime());

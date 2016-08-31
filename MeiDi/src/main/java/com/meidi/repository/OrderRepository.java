@@ -27,6 +27,8 @@ public interface OrderRepository extends PagingAndSortingRepository<Order,Intege
 
     List<Order> findByLaunchId(Integer id);
 
+    List<Order> findByWxOpenidAndLaunchIdOrderByCreateTimeDesc(String wxOpenid,Integer launchId);
+
     Page<Order> findByFlag(Integer flag, Pageable pageable);
 
     Page<Order> findByFlagIsNot(Integer flag, Pageable pageable);
