@@ -22,6 +22,7 @@ public interface MdConstants {
 
 
     String WX_GROUP_LAUNCH = "VwEjiiMoKn8AwDtHxmIobMzEpJCR5FPYQUuhNIjOOFc";
+    String WX_GROUP_LAUNCH_SUCCESS = "Qes8kpBHC29Wh3q6Dm8Zwq7HGsPmkaOicVxhnKqcMyQ";
     String WX_JOIN_GROUP = "clF_I2A60Z1pN6GbvcDcbG5DOIhHHnTOw_Vg2WB_dj4";
     String WX_GROUP_FAIL = "rXaWbwpLQiWFJKEQYUhuOu3fcqxZ1QHmuUcMt82U0Wc";
     String WX_ORDER_COMPLETE = "L_Wawg6RlUQK6OtYVUp_caPpIFUbrzQ5eEU3tmqyKbc";
