@@ -11,6 +11,7 @@ import com.meidi.repository.*;
 import com.meidi.util.MdCommon;
 
 import com.meidi.util.MdConstants;
+import com.meidi.util.WxTemplate;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -42,19 +43,24 @@ public class ScheduledJobs {
      */
     @Scheduled(cron = "0 5 0 * * *")
     public void checkCommodityEnded() {
-        String today = dateFormat.format(new Date());
-        List<Commodity> endedCommodity = commodityRepository.findByStateAndEndDateBefore(1, today);
+        try{
+            String today = dateFormat.format(new Date());
+            List<Commodity> endedCommodity = commodityRepository.findByStateAndEndDateBefore(1, today);
 
-        for (Commodity commodity : endedCommodity) {
-            // find all unpaid order (state=1) and close it
-            List<Order> orders = orderRepository.findByStateAndCommodityId(1,commodity.getId());
-            for(Order order : orders){
-                order.setState(8);
-                orderRepository.save(order);
+            for (Commodity commodity : endedCommodity) {
+                // find all unpaid order (state=1) and close it
+                List<Order> orders = orderRepository.findByStateAndCommodityId(1,commodity.getId());
+                for(Order order : orders){
+                    order.setState(8);
+                    orderRepository.save(order);
+                }
+                // mark commodity as down
+                commodity.markAsDown();
+                commodityRepository.save(commodity);
             }
-            // mark commodity as down
-            commodity.markAsDown();
-            commodityRepository.save(commodity);
+        } catch (Exception e) {
+            System.out.println("[ScheduledJobs] Check commodity ended failed.");
+            e.printStackTrace();
         }
     }
 
@@ -64,48 +70,43 @@ public class ScheduledJobs {
      */
     @Scheduled(fixedDelay = 300 * 1000)
     public void checkGroupLaunchEnded() {
-        // 查询状态仍为拼团中,实际已经超过结束时间的拼团
-        Date now = new Date();
-        List<GroupLaunch> groupLaunches = groupLaunchRepository.findByStateAndEndTimeIsBefore(0,now);
+        try{
+            String token = wxTicketRepository.findByAppid(MdConstants.WX_APP_ID).getToken();
+            // 查询状态仍为拼团中,实际已经超过结束时间的拼团
+            Date now = new Date();
+            List<GroupLaunch> groupLaunches = groupLaunchRepository.findByStateAndEndTimeIsBefore(0,now);
 
-        for (GroupLaunch groupLaunch : groupLaunches){
-            List<Order> orders = orderRepository.findByLaunchId(groupLaunch.getId());
+            for (GroupLaunch groupLaunch : groupLaunches){
+                //修改商品数量
 
-            for (Order order : orders){
-                if (order.getState() == 1){ // 未支付
-                    order.setState(8);//直接取消订单
-                    orderRepository.save(order);
-                }else if (order.getState() == 2){ //已支付
-                    //退款成功 更改订单状态  请求退款
-//                    sql = "update md_order set state = 5,launch_id = null,refund_code = ? where id = ?";
-//                    daoUtil = new DAOUtil(sql);
-//                    daoUtil.bind(1, refund_id);
-//                    daoUtil.bind(1, order.get("refund_code"));
-//                    daoUtil.bind(2, order.get("id"));
-//                    daoUtil.executeUpdate();
-
-                    //发消息
-//                    sql = "select token from wx_ticket where appid = ?";
-//                    daoUtil = new DAOUtil(sql);
-//                    daoUtil.bind(1, WX_APP_ID);
-//                    Map token = daoUtil.executeQueryOne();
-//                    WxTemplate.groupClose(token.get("token").toString(), order);
+                // 取消所有未支付订单
+                List<Order> orders = orderRepository.findByLaunchId(groupLaunch.getId());
+                for (Order order : orders){
+                    if (order.getState() == 1){ // 未支付
+                        order.setState(8);//直接取消订单
+                        orderRepository.save(order);
+                    }
                 }
 
+                List<GroupLaunchUser> groupLaunchUserList = groupLaunchUserRepository.findByLaunchId(groupLaunch.getId());
+                if (groupLaunchUserList.size() >= groupLaunch.getPeopleNumber()) {
+                    //该拼团成功
+                    groupLaunch.setState(2);//拼团结束
+                }else{
+                    groupLaunch.setState(3);//拼团失败
+                    for (Order order : orders) {
+                        if (order.getState() == 2){ // 拼团失败,退款所有已支付订单
+                            order.setState(5);// 改成取消中待退款
+                            orderRepository.save(order);
+                            WxTemplate.groupClose(token, order);
+                        }
+                    }
+                }
+                groupLaunchRepository.save(groupLaunch);
             }
-
-            //修改商品数量
-
-            // 更新拼团状态
-            List<GroupLaunchUser> groupLaunchUserList = groupLaunchUserRepository.findByLaunchId(groupLaunch.getId());
-            if (groupLaunchUserList.size() >= groupLaunch.getPeopleNumber()) {
-                //该拼团成功
-                groupLaunch.setState(2);//拼团结束
-
-            }else{
-                groupLaunch.setState(3);//拼团失败
-            }
-            groupLaunchRepository.save(groupLaunch);
+        } catch (Exception e) {
+            System.out.println("[ScheduledJobs] Check GroupLaunch ended failed.");
+            e.printStackTrace();
         }
     }
 
