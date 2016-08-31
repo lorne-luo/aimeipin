@@ -32,4 +32,7 @@ public interface OrderRepository extends PagingAndSortingRepository<Order,Intege
     Page<Order> findByFlag(Integer flag, Pageable pageable);
 
     Page<Order> findByFlagIsNot(Integer flag, Pageable pageable);
+
+    List<Order> findByStateAndCommodityId(Integer state,Integer id);
+
 }

@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
-
+import java.util.Date;
 /**
  * Created by luanpeng on 16/5/7.
  */
@@ -23,5 +23,9 @@ public interface CommodityRepository extends PagingAndSortingRepository<Commodit
      * @return
      */
     List<Commodity> findByDicCity_IdAndStateAndIdIsNot(int cityId, int state, int projectId, Pageable pageable);
+
     List<Commodity> findByDicCity_IdAndCategory_IdAndStateAndIdIsNot(int cityId,int categoryId, int state, int projectId, Pageable pageable);
+
+    List<Commodity> findByStateAndEndDateBefore(int state,String datetime);
+
 }
