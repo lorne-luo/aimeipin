@@ -29,6 +29,11 @@ public interface GroupLaunchRepository extends CrudRepository<GroupLaunch, Integ
     */
    List<GroupLaunch> findByCommodityIdAndStateAndEndTimeIsAfter(Integer commodityId,Integer state,Date endTime);
 
+   /**
+    * 实际已结束但状态仍为拼团中的, 用于结束拼团逻辑
+    */
+   List<GroupLaunch> findByStateAndEndTimeIsBefore(Integer state,Date endTime);
+
 
 
 
