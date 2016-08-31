@@ -3,3 +3,4 @@ target/
 .DS_Store
 MeiDi/src/main/webapp
 MeiDi/release
+MeiDiJob/out/

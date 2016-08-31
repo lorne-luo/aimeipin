@@ -174,14 +174,14 @@ public class BusinessController extends WxBaseController {
 
                     List<Order> unpaidOrderList = orderRepository.findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(
                             MdCommon.null2String(model.get("wx_openid")), commodity.getId(), flag, 1);
-                    Order unpaidOrder = unpaidOrderList.get(0);
-                    if (MdCommon.isEmpty(unpaidOrder)) {
+                    if ((unpaidOrderList != null) && unpaidOrderList.size() > 0){
+                        // 本商品已存在未支付订单, 转向该订单支付页面
+                        Order unpaidOrder = unpaidOrderList.get(0);
+                        return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + unpaidOrder.getId().toString()));
+                    }else{
                         // 没有待支付的本商品订单,可以参团
                         model.put("commodity", commodity);
                         return new ModelAndView("weixin/joinGroupPayment", model);
-                    } else {
-                        // 本商品已存在未支付订单, 转向该订单支付页面
-                        return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + unpaidOrder.getId().toString()));
                     }
                 }
             } else {
@@ -197,8 +197,9 @@ public class BusinessController extends WxBaseController {
                 // 检查本商品是否已存在未支付订单, 若有转向该订单支付页面
                 List<Order> unpaidOrderList = orderRepository.findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(
                         MdCommon.null2String(model.get("wx_openid")), commodity.getId(), flag, 1);
-                Order unpaidOrder = unpaidOrderList.get(0);
-                if (!MdCommon.isEmpty(unpaidOrder)){
+                if ((unpaidOrderList != null) && unpaidOrderList.size() > 0) {
+                    // 本新开团、单独预约、咨询商品已存在未支付订单, 转向该订单支付页面
+                    Order unpaidOrder = unpaidOrderList.get(0);
                     return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + unpaidOrder.getId().toString()));
                 }
 
