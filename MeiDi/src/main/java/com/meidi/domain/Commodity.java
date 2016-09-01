@@ -485,5 +485,12 @@ public class Commodity implements Serializable {
 
     public void setCategory(Category category) {this.category = category;}
 
-
+    // 下架
+    public void markAsDown(){
+        this.state = 0;
+    }
+    // 上架
+    public void markAsUp(){
+        this.state = 1;
+    }
 }

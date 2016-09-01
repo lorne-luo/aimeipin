@@ -22,7 +22,6 @@ public class CheckProjectStateJob extends MDJob {
      * @param jobExecutionContext
      * @throws JobExecutionException
      */
-
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         String sql = " select id from md_commodity where state = 1 and  end_date <= date(sysdate())";
@@ -31,12 +30,18 @@ public class CheckProjectStateJob extends MDJob {
             DAOUtil daoUtil = new DAOUtil(sql);
             List<Map> list = daoUtil.executeQuery();
             for(Map map : list){
+                // 下架项目
                 sql = "update md_commodity set state = 0 where id = ?";
                 daoUtil = new DAOUtil(sql);
                 daoUtil.bind(1, map.get("id"));
                 daoUtil.executeUpdate();
-            }
 
+                // 关闭未支付订单
+                sql = "update md_order set state = 8 where state = 1 and commodity_id = ?";
+                daoUtil = new DAOUtil(sql);
+                daoUtil.bind(1, map.get("id"));
+                daoUtil.executeUpdate();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

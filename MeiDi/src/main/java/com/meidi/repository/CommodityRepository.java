@@ -23,5 +23,9 @@ public interface CommodityRepository extends PagingAndSortingRepository<Commodit
      * @return
      */
     List<Commodity> findByDicCity_IdAndStateAndIdIsNot(int cityId, int state, int projectId, Pageable pageable);
+
     List<Commodity> findByDicCity_IdAndCategory_IdAndStateAndIdIsNot(int cityId,int categoryId, int state, int projectId, Pageable pageable);
+
+    List<Commodity> findByStateAndEndDateBefore(int state,String datetime);
+
 }

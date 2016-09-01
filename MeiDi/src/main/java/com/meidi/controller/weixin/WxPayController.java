@@ -349,7 +349,6 @@ public class WxPayController extends WxBaseController {
                         for (GroupLaunchUser user : groupLaunchUserList) {
                             //拼团成功 给每个用户发消息
                             WxTemplate.groupLaunchOk(wxTicket.getToken(), order);
-                            // TODO 拼团成功 服务号通知
                         }
                     } else {
                         //成功参团

@@ -9,34 +9,15 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by luanpeng on 16/4/24.
  */
 public class WxTemplate implements MdConstants {
-
-
-    /**
-     * 开团成功
-     *
-     * @param token
-     * @param order
-     * @throws IOException
-     */
-    public static void groupLaunch(String token, Order order) throws IOException {
-        String jsonStr = "{\"touser\": \"" + order.getWxOpenid() + "\", \"template_id\": \"" + WX_GROUP_LAUNCH + "\", " +
-                "\"url\": \"" + PATH + "/business/joinGroupPage/" + order.getLaunchId() + "\",\"topcolor\":\"#32b16c\"," +
-                "\"data\":{\"first\": {\"value\":\"您已开团成功，立刻邀请小伙伴参团，达到规定人数，团购价立即生效！\",\"color\":\"#0A0A0A\"}," +
-                "\"keyword1\": {\"value\":\"" + order.getPayAmount()/100 + "\",\"color\":\"#888\"}," +
-                "\"keyword2\": {\"value\":\"" + order.getCommodityName() + "\",\"color\":\"#888\"}," +
-//                "\"keyword3\": {\"value\":\"" + order.getDicCity().getName() + "\",\"color\":\"#888\"}," +
-                "\"keyword4\": {\"value\":\"" + order.getOrderCode() + "\",\"color\":\"#888\"}," +
-                "\"remark\": {\"value\":\"点击消息分享给小伙伴，邀请Ta们一起优惠变美吧！\",\"color\":\"#888\"}" +
-                "}}";
-        System.out.println("[groupLaunch]" + jsonStr);
-
-        sendMsg(token, jsonStr);
-    }
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private static final SimpleDateFormat datetimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 //    public static void groupLaunchTest(String token,String wxOpenid) throws IOException {
 //        String jsonStr = "{\"touser\": \"" + wxOpenid + "\", \"template_id\": \"" + WX_GROUP_LAUNCH + "\", " +
@@ -53,6 +34,28 @@ public class WxTemplate implements MdConstants {
 //    }
 
     /**
+     * 开团成功
+     *
+     * @param token
+     * @param order
+     * @throws IOException
+     */
+    public static void groupLaunch(String token, Order order) throws IOException {
+        String jsonStr = "{\"touser\": \"" + order.getWxOpenid() + "\", \"template_id\": \"" + WX_GROUP_LAUNCH + "\", " +
+                "\"url\": \"" + PATH + "/business/joinGroupPage/" + order.getLaunchId() + "\",\"topcolor\":\"#32b16c\"," +
+                "\"data\":{\"first\": {\"value\":\"您已开团成功，立刻邀请小伙伴参团，达到规定人数，团购价立即生效！\",\"color\":\"#0A0A0A\"}," +
+                "\"keyword1\": {\"value\":\"" + order.getPayAmount()/100 + "\",\"color\":\"#888\"}," +
+                "\"keyword2\": {\"value\":\"" + order.getCommodityName() + "\",\"color\":\"#888\"}," +
+                "\"keyword3\": {\"value\":\"" + "" + "\",\"color\":\"#888\"}," +
+                "\"keyword4\": {\"value\":\"" + order.getOrderCode() + "\",\"color\":\"#888\"}," +
+                "\"remark\": {\"value\":\"点击消息分享给小伙伴，邀请Ta们一起优惠变美吧！\",\"color\":\"#888\"}" +
+                "}}";
+        System.out.println("[groupLaunch]" + jsonStr);
+
+        sendMsg(token, jsonStr);
+    }
+
+    /**
      * 拼团成功
      *
      * @param token
@@ -60,13 +63,18 @@ public class WxTemplate implements MdConstants {
      * @throws IOException
      */
     public static void groupLaunchOk(String token, Order order) throws IOException {
-        String jsonStr = "{\"touser\": \"" + order.getWxOpenid() + "\", \"template_id\": \"" + WX_GROUP_LAUNCH + "\", " +
-                "\"url\": \"" +  ""  + "\",\"topcolor\":\"#32b16c\"," +
-                "\"data\":{\"first\": {\"value\":\"您好, 恭喜您的拼团已成功！\",\"color\":\"#0A0A0A\"}," +
+        String date = dateFormat.format(new Date());
+        Integer price = order.getPayAmount()/100;
+        String priceStr = price.toString();
+        String url = PATH + "/business/myOrderPage";
+
+        String jsonStr = "{\"touser\": \"" + order.getWxOpenid() + "\", \"template_id\": \"" + WX_GROUP_LAUNCH_SUCCESS + "\", " +
+                "\"url\": \"" +  url  + "\",\"topcolor\":\"#32b16c\"," +
+                "\"data\":{\"first\": {\"value\":\"恭喜您，拼团已成功！到院需预约，请勿直接前往.\",\"color\":\"#0A0A0A\"}," +
                 "\"keyword1\": {\"value\":\"" + order.getCommodityName() + "\",\"color\":\"#888\"}," +
-                "\"keyword2\": {\"value\":\"" + "" + "\",\"color\":\"#888\"}," +
-                "\"keyword3\": {\"value\":\"" + order.getDicCity().getName() + "\",\"color\":\"#888\"}," +
-                "\"remark\": {\"value\":\"客服会尽快与您取得联系，或拨打4006056662预约咨询！\",\"color\":\"#888\"}" +
+                "\"keyword2\": {\"value\":\"" + priceStr + "\",\"color\":\"#888\"}," +
+                "\"keyword3\": {\"value\":\"" + date + "\",\"color\":\"#888\"}," +
+                "\"remark\": {\"value\":\"客服会尽快与您取得联系，或拨打4006056662预约咨询。到院支付项目实际金额，系统退还订金。\",\"color\":\"#888\"}" +
                 "}}";
         System.out.println("[groupLaunchOk]" + jsonStr);
 
@@ -132,14 +140,14 @@ public class WxTemplate implements MdConstants {
     }
 
     public static void sendMsg(String token, String jsonStr) throws IOException{
+        String datetime = datetimeFormat.format(new Date());
         String url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + token;
         HttpClient client = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost(url);
 
-
         httpPost.setEntity(new StringEntity(jsonStr, "utf-8"));
         HttpResponse response = client.execute(httpPost);
         String returnStr = EntityUtils.toString(response.getEntity(), "UTF-8");
-        System.out.println(returnStr);
+        System.out.println("["+datetime+"]"+returnStr);
     }
 }
