@@ -70,7 +70,7 @@ public class WxTemplate implements MdConstants {
 
         String jsonStr = "{\"touser\": \"" + order.getWxOpenid() + "\", \"template_id\": \"" + WX_GROUP_LAUNCH_SUCCESS + "\", " +
                 "\"url\": \"" +  url  + "\",\"topcolor\":\"#32b16c\"," +
-                "\"data\":{\"first\": {\"value\":\"恭喜您，您的拼团已成功！\",\"color\":\"#0A0A0A\"}," +
+                "\"data\":{\"first\": {\"value\":\"恭喜您，拼团已成功！到院需预约，请勿直接前往.\",\"color\":\"#0A0A0A\"}," +
                 "\"keyword1\": {\"value\":\"" + order.getCommodityName() + "\",\"color\":\"#888\"}," +
                 "\"keyword2\": {\"value\":\"" + priceStr + "\",\"color\":\"#888\"}," +
                 "\"keyword3\": {\"value\":\"" + date + "\",\"color\":\"#888\"}," +
