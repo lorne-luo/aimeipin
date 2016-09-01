@@ -426,15 +426,15 @@ public class BusinessController extends WxBaseController {
         List<Order> existOrderList = orderRepository.findByWxOpenidAndLaunchIdOrderByCreateTimeDesc(
                 MdCommon.null2String(model.get("wx_openid")), launchId);
         if((existOrderList != null) && existOrderList.size() > 0){
-            // 已存在参团订单
-            Order existOrder = existOrderList.get(0);
-            if(existOrder.getState()==1) // 订单未支付
-            {
-                // 转向该订单支付页面
-                return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + existOrder.getId().toString()));
-            }else{ // 订单已支付、已取消
-                // 转向我的订单页
-                return new ModelAndView(new RedirectView(PATH + "/business/myOrderPage"));
+            for(Order order : existOrderList){
+                if(order.getState()==1) // 订单未支付
+                {
+                    // 转向该订单支付页面
+                    return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + order.getId().toString()));
+                }else if (order.getState()==2 || order.getState()==4) { // 订单已支付、已完成
+                    // 转向我的订单页
+                    return new ModelAndView(new RedirectView(PATH + "/business/myOrderPage"));
+                }
             }
         }
 
