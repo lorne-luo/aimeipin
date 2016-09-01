@@ -2,14 +2,6 @@
  * Created by luanpeng on 16/4/3.
  */
 
-
-$(function(){
-
-
-
-
-
-});
 function cancelOrder(id){
     if (confirm("确认取消订单？", "确认", "取消")) {
         $.ajax({
