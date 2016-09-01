@@ -17,10 +17,11 @@ public class MdModel extends HashMap<String, Object> implements MdConstants {
             this.put("account", userSession.getAccount());
             this.put("bu_flag", userSession.getBu_flag());
         }
+        
+//        this.put("wx_openid", "obfnSs5n7HU9nRzfGwdJ0NEM3blQ"); //luotao
 //        this.put("wx_openid", "obfnSs1ml4_otdFAZuc0-urgWwbA");
 //        this.put("wx_openid", "obfnSs6hVB7yTVpeSLX9t7M0A2zE");
 //        this.put("wx_openid", "dfgerhrthsh");
-
 
         this.put("PATH", PATH);
         this.put("IMAGE_FORMAL_URL", IMAGE_FORMAL_URL);
