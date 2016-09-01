@@ -162,27 +162,25 @@ public class BusinessController extends WxBaseController {
                 //id 是 GroupLaunch id
                 Integer launchId = id;
                 GroupLaunch groupLaunch = groupLaunchRepository.findOne(launchId);
-                if(MdCommon.isEmpty(groupLaunch)) {
-                    model.put("groupLaunch", groupLaunch);
+                model.put("groupLaunch", groupLaunch);
 
-                    commodity = commodityRepository.findOne(groupLaunch.getCommodityId());
+                commodity = commodityRepository.findOne(groupLaunch.getCommodityId());
 
-                    // 检查项目是否上架中
-                    if (commodity.getState()<1){
-                        return new ModelAndView(new RedirectView(PATH + "/business/commodityDetailPage/" + commodity.getId()));
-                    }
+                // 检查项目是否上架中
+                if (commodity.getState()<1){
+                    return new ModelAndView(new RedirectView(PATH + "/business/commodityDetailPage/" + commodity.getId()));
+                }
 
-                    List<Order> unpaidOrderList = orderRepository.findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(
-                            MdCommon.null2String(model.get("wx_openid")), commodity.getId(), flag, 1);
-                    if ((unpaidOrderList != null) && unpaidOrderList.size() > 0){
-                        // 本商品已存在未支付订单, 转向该订单支付页面
-                        Order unpaidOrder = unpaidOrderList.get(0);
-                        return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + unpaidOrder.getId().toString()));
-                    }else{
-                        // 没有待支付的本商品订单,可以参团
-                        model.put("commodity", commodity);
-                        return new ModelAndView("weixin/joinGroupPayment", model);
-                    }
+                List<Order> unpaidOrderList = orderRepository.findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(
+                        MdCommon.null2String(model.get("wx_openid")), commodity.getId(), flag, 1);
+                if ((unpaidOrderList != null) && unpaidOrderList.size() > 0){
+                    // 本商品已存在未支付订单, 转向该订单支付页面
+                    Order unpaidOrder = unpaidOrderList.get(0);
+                    return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + unpaidOrder.getId().toString()));
+                }else{
+                    // 没有待支付的本商品订单,可以参团
+                    model.put("commodity", commodity);
+                    return new ModelAndView("weixin/joinGroupPayment", model);
                 }
             } else {
                 //id 是 商品 id
