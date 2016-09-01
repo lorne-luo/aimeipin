@@ -52,11 +52,11 @@
                     </div>
                     <div class="form-group">
                         <label><span class="star mr6">*</span>商品名称：</label>
-                        <input class="form-control" placeholder="例如：为你打造美丽" name="name"/>
+                        <input class="form-control" placeholder="例如：为你打造美丽" name="name" style="width: 70%"/>
                     </div>
                     <div class="form-group">
                         <label><span class="star mr6">*</span>商品关键词：</label>
-                        <input class="form-control" placeholder="例如：为你打造美丽" name="keyword"/>
+                        <input class="form-control" placeholder="例如：为你打造美丽" name="keyword" style="width: 70%"/>
                     </div>
                     <div class="form-group">
                         <div id="dbpicbox" class="dbpicbox  clearfix ">
