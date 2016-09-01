@@ -57,12 +57,11 @@
                     </div>
                     <div class="form-group">
                         <label><span class="star mr6">*</span>商品名称：</label>
-                        <input class="form-control" placeholder="例如：为你打造美丽" name="name" value="${commodity.name}"/>
+                        <input class="form-control" placeholder="例如：为你打造美丽" name="name" value="${commodity.name}" style="width: 70%"/>
                     </div>
                     <div class="form-group">
                         <label><span class="star mr6">*</span>商品关键词：</label>
-                        <input class="form-control" placeholder="例如：为你打造美丽" name="keyword"
-                               value="${commodity.keyword}"/>
+                        <input class="form-control" placeholder="例如：为你打造美丽" name="keyword" value="${commodity.keyword}" style="width: 70%"/>
                     </div>
                     <div class="form-group">
                         <div id="dbpicbox" class="dbpicbox  clearfix ">
@@ -96,6 +95,10 @@
                                     <#if commodity.dicCity.id == city.id>selected</#if>>${city.name}</option>
                         </#list>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label><span class="star mr6"></span>权重：</label>
+                        <input class="form-control weight" name="weight" value="<#if commodity.weight?exists>#{commodity.weight}<#else>0</#if>"/>
                     </div>
                     <div class="form-group">
                         <label><span class="star mr6">*</span>原价：</label>

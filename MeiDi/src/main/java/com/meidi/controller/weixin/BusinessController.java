@@ -150,47 +150,49 @@ public class BusinessController extends WxBaseController {
                                     @PathVariable Integer id,
                                     @PathVariable Integer flag) {
         MdModel model = new MdModel(request);
+        //网页授权
+        if (MdCommon.isEmpty(model.get("wx_openid"))) {
+            return wxAuth(request);
+        }
+
+        Commodity commodity = null;
+        model.put("flag", flag);
+
         try {
-            //网页授权
-            if (MdCommon.isEmpty(model.get("wx_openid"))) {
-                return wxAuth(request);
-            }
 
-            model.put("flag", flag);
-
-
-
-            Commodity commodity = null;
-
-
-            if (flag == 4) {//参团支付 单独处理
-                GroupLaunch groupLaunch = groupLaunchRepository.findOne(id);
+            if (flag == 4) {//参团支付 单独处理, id 是 GroupLaunch id
+                Integer launchId = id;
+                GroupLaunch groupLaunch = groupLaunchRepository.findOne(launchId);
                 model.put("groupLaunch", groupLaunch);
-
                 commodity = commodityRepository.findOne(groupLaunch.getCommodityId());
-
-                Order existUnpaidOrder = orderRepository.findByWxOpenidAndCommodityIdAndState(
-                        MdCommon.null2String(model.get("wx_openid")), commodity.getId(), 1);
-
-                if (existUnpaidOrder == null) {
-                    // 没有待支付的本商品订单,可以新下单
-                    model.put("commodity", commodity);
-                    return new ModelAndView("weixin/joinGroupPayment", model);
-                }else {
-                    // 本商品已存在未支付订单, 转向我的订单页
-                    return new ModelAndView(new RedirectView(PATH + "/business/myOrderPage"));
-                }
-            }else{
-                commodity = commodityRepository.findOne(id);
-                model.put("commodity", commodity);
+            }else{ //id 是 商品 id
+                Integer commodityId = id;
+                commodity = commodityRepository.findOne(commodityId);
             }
 
+            // 非上架中的项目转去详情页
+            if (commodity.getState() < 1) {
+                return new ModelAndView(new RedirectView(PATH + "/business/commodityDetailPage/" + commodity.getId()));
+            }
+
+            List<Order> unpaidOrderList = orderRepository.findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(
+                    MdCommon.null2String(model.get("wx_openid")), commodity.getId(), flag, 1);
+            if ((unpaidOrderList != null) && unpaidOrderList.size() > 0) {
+                // 本商品已存在未支付订单, 转向该订单支付页面
+                Order unpaidOrder = unpaidOrderList.get(0);
+                return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + unpaidOrder.getId().toString()));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return new ModelAndView("weixin/bookingPage", model);
-
+        // 可以参团
+        model.put("commodity", commodity);
+        if (flag == 4) {//参团支付 单独处理
+            return new ModelAndView("weixin/joinGroupPayment", model);
+        } else {
+            return new ModelAndView("weixin/bookingPage", model);
+        }
     }
 
 
@@ -215,6 +217,7 @@ public class BusinessController extends WxBaseController {
                            @RequestParam(value = "reservationCount") Integer reservationCount,
                            @RequestParam(value = "flag") Integer flag,
                            @RequestParam(value = "launchId") Integer launchId,
+                           @RequestParam(value = "remarks") String remarks,
                            @RequestParam(value = "weixin") String weixin) {
         MdModel model = new MdModel(request);
         int ret = 0;
@@ -251,6 +254,7 @@ public class BusinessController extends WxBaseController {
                     order.setWxOpenid(model.get("wx_openid"));
                     order.setMobile(mobile);
                     order.setUsername(username);
+                    order.setRemarks(remarks);
                     order.setCommodityName(commodity.getName());
                     order.setDicProvince(commodity.getDicProvince());
                     order.setDicCity(commodity.getDicCity());
@@ -307,17 +311,10 @@ public class BusinessController extends WxBaseController {
 
                     order = orderRepository.save(order);
                     model.put("orderId", order.getId());
-
-
-
 //                } else {
 //                    ret = -5;//商品剩余库存不足
 //                }
             }
-
-
-
-
         }
         model.put("ret", ret);
 

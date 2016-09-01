@@ -1900,6 +1900,10 @@ a.baseBtn.nof {
     border-color: #d3d3d3;
 }
 
+.detailnav .ended {
+    background: #999;
+}
+
 .detailnav .tt2 a {
     height: 58px;
     width: 33.3%;

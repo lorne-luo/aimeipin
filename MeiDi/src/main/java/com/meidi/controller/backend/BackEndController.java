@@ -142,7 +142,9 @@ public class BackEndController implements MdConstants {
         if (MdCommon.isEmpty(commodity.getEndDate())) {
             commodity.setEndDate(null);
         }
-
+        if (MdCommon.isEmpty(commodity.getWeight())) {
+            commodity.setWeight(0);
+        }
         if (MdCommon.isEmpty(commodity.getCaseUrl())) {
             commodity.setCaseUrl(null);
         }
@@ -268,6 +270,7 @@ public class BackEndController implements MdConstants {
         newCommodity.setLabelFlag(commodity.getLabelFlag());
         newCommodity.setDescription(commodity.getDescription());
         newCommodity.setRemarks(commodity.getRemarks());
+        newCommodity.setWeight(commodity.getWeight());
         newCommodity.setSharingSummary(commodity.getSharingSummary());
 
 
