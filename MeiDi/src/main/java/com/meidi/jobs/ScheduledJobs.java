@@ -90,8 +90,8 @@ public class ScheduledJobs {
 
                 List<GroupLaunchUser> groupLaunchUserList = groupLaunchUserRepository.findByLaunchId(groupLaunch.getId());
                 if (groupLaunchUserList.size() >= groupLaunch.getPeopleNumber()) {
-                    //该拼团成功
-                    groupLaunch.setState(2);//拼团结束
+                    //人数达标, 该拼团成功
+                    groupLaunch.setState(2);//拼团结束 & 拼团成功
                 }else{
                     groupLaunch.setState(3);//拼团失败
                     for (Order order : orders) {
@@ -116,7 +116,7 @@ public class ScheduledJobs {
     @Scheduled(fixedRate = 3600 * 1000)
     public void updateWxTicket() {
         String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" +
-                MdConstants.WX_APP_ID + "&secret=d6914a211b5175f62cc5dafb389cd074";
+                MdConstants.WX_APP_ID + "&secret=" + MdConstants.WX_SECRET;
         try {
             HttpClient client = HttpClients.createDefault();
             HttpGet httpGet = new HttpGet();
