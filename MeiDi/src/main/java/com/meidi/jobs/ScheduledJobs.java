@@ -90,8 +90,8 @@ public class ScheduledJobs {
 
                 List<GroupLaunchUser> groupLaunchUserList = groupLaunchUserRepository.findByLaunchId(groupLaunch.getId());
                 if (groupLaunchUserList.size() >= groupLaunch.getPeopleNumber()) {
-                    //该拼团成功
-                    groupLaunch.setState(2);//拼团结束
+                    //人数达标, 该拼团成功
+                    groupLaunch.setState(2);//拼团结束 & 拼团成功
                 }else{
                     groupLaunch.setState(3);//拼团失败
                     for (Order order : orders) {
