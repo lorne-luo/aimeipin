@@ -165,20 +165,27 @@ public class BusinessController extends WxBaseController {
                 GroupLaunch groupLaunch = groupLaunchRepository.findOne(launchId);
                 model.put("groupLaunch", groupLaunch);
                 commodity = commodityRepository.findOne(groupLaunch.getCommodityId());
+                if(groupLaunch.getState() > 1){ // 该拼团已结束
+                    if (commodity.getState() < 1) { // 该项目已结束
+                        return new ModelAndView(new RedirectView(PATH + "/business/commodityDetailPage/" + commodity.getId()));
+                    }else{
+                        model.put("isExpired", true);// 本拼团过期,本项目人在上架中
+                    }
+                }
             }else{ //id 是 商品 id
                 Integer commodityId = id;
                 commodity = commodityRepository.findOne(commodityId);
+
+                // 非上架中的项目转去详情页
+                if (commodity.getState() < 1) {
+                    return new ModelAndView(new RedirectView(PATH + "/business/commodityDetailPage/" + commodity.getId()));
+                }
             }
 
-            // 非上架中的项目转去详情页
-            if (commodity.getState() < 1) {
-                return new ModelAndView(new RedirectView(PATH + "/business/commodityDetailPage/" + commodity.getId()));
-            }
-
+            // 若本商品已存在未支付订单, 转向该订单支付页面
             List<Order> unpaidOrderList = orderRepository.findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(
                     MdCommon.null2String(model.get("wx_openid")), commodity.getId(), flag, 1);
             if ((unpaidOrderList != null) && unpaidOrderList.size() > 0) {
-                // 本商品已存在未支付订单, 转向该订单支付页面
                 Order unpaidOrder = unpaidOrderList.get(0);
                 return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + unpaidOrder.getId().toString()));
             }

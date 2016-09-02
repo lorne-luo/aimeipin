@@ -29,6 +29,18 @@
 
         <p class="fs20 mlf6 pt10">${groupLaunch.commodityName}</p>
     </div>
+
+<#if isExpired?has_content>
+    <div class="fs20 mt30 pt30">
+        <p>对不起,本次拼团已结束,</p>
+        <br/>
+        <br/>
+        <p>您仍然可以
+        <a class="pred" href="/business/commodityDetailPage/${commodity.id}">访问该项目发起新拼团</a>
+        </p>
+    </div>
+    <#include "footer.ftl"/>
+<#else>
     <form action="" id="addOrder" method="post">
         <input type="hidden" value="#{groupLaunch.commodityId}" name="commodityId" class="commodityId">
         <input type="hidden" value="#{groupLaunch.id}" name="groupLaunchId" class="groupLaunchId">
@@ -85,6 +97,7 @@
         <p>·已接受聚会美线下服务（面诊、接送机等），但未到院消费，订金不予退还。</p>
     </#if>
     </div>
+</#if>
 </div>
 
 </body>
