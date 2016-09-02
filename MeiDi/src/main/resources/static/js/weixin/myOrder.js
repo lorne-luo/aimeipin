@@ -59,15 +59,9 @@ function createTable(result) {
             '</div>';
             str += '<p class="fs20 mt15">' + order.order.commodityName + '</p>';
         str += '<div class="fs20 mt20 clearfix">';
-        if(order.order.flag == 1){
-            //未付款 的  或者 已付款 但是 没有其他人参团的才可以取消
-            if(order.order.state == 1 || (order.order.state == 2 && order.launch!=null && order.launch.state == 0)){
-                str += '<a href="javascript:cancelOrder(' + order.order.id + ');"  class="cancelorder fr ">取消订单</a>';
-            }
-        }else{
-            if (order.order.state < 3) {//订单正常
-                str += '<a href="javascript:cancelOrder(' + order.order.id + ');"  class="cancelorder fr ">取消订单</a>';
-            }
+
+        if (order.order.state < 3) {//订单正常
+            str += '<a href="javascript:cancelOrder(' + order.order.id + ');"  class="cancelorder fr ">取消订单</a>';
         }
 
         if (order.order.state == 1) {//未支付
