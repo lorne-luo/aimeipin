@@ -176,14 +176,14 @@ function createTable(result) {
 
         if (order.order.state == 3) {
             str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">订单完成加积分</a> ';
-            str += '<a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-success">取消订单(过期)</a>';
+            str += '<a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-success">取消订单(过期)</a> ';
         } else if (order.order.state == 5) {
             str += '<a href="javascript:closeOrder(' + order.order.id + ',6);" class="btn btn-success">退款</a> ';
-            str += '<a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-success">不退款</a>';
+            str += '<a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-success">不退款</a> ';
         }
         if (order.order.state == 2 || order.order.state == 3) {
-            str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">完成</a>';
-            str += ' <a href="javascript:confirmCloseOrder(' + order.order.id + ');" class="btn btn-danger">取消</a>';
+            str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">完成</a> ';
+            str += ' <a href="javascript:confirmCloseOrder(' + order.order.id + ',6);" class="btn btn-danger">取消</a> ';
         }
         str += '</td>' +
             '</tr>';
@@ -191,10 +191,10 @@ function createTable(result) {
     });
 }
 
-function confirmCloseOrder(orderId){
+function confirmCloseOrder(orderId,state){
     var result = confirm('确定取消此订单?');
     if(result){
-        closeOrder(orderId,6);
+        closeOrder(orderId,state);
     }
 }
 
