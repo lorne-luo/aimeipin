@@ -297,9 +297,11 @@ function getProjectFlag(order) {
     if(id == null){
         id = 0;
     }
+    var groupName=order.bookingFlag==1?'团长':'拼团';
+    
     switch (flag) {
         case 1:
-            return "拼团(" + id+ ")"+' <a href="javascript:getListByLaunch('+id+');"><i class="fa fa-filter" aria-hidden="true"></i></a>';
+            return groupName+"(" + id+ ")"+' <a href="javascript:getListByLaunch('+id+');"><i class="fa fa-filter" aria-hidden="true"></i></a>';
         case 2:
             return "福袋";
         case 3:
