@@ -61,7 +61,13 @@ function createTable(result) {
         str += '<div class="fs20 mt20 clearfix">';
 
         if (order.order.state < 3) {//订单正常
-            str += '<a href="javascript:cancelOrder(' + order.order.id + ');"  class="cancelorder fr ">取消订单</a>';
+            if(order.launch!=null){
+                if (order.launch.state == 1 || order.launch.state == 2){ //拼团进行中,可以退款
+                    str += '<a href="javascript:alert(\'本次拼团已成功，请拨打400-605-6662联系客服取消订单！\');"  class="cancelorder fr ">取消订单</a>';
+                }
+            }else{
+                str += '<a href="javascript:cancelOrder(' + order.order.id + ');"  class="cancelorder fr ">取消订单</a>';
+            }
         }
 
         if (order.order.state == 1) {//未支付

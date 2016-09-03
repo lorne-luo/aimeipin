@@ -564,7 +564,7 @@ public class BusinessController extends WxBaseController {
         } else if (order.getState() == 2) {//已支付
 //        通知客服退款 TODO
             try {
-                //判断是否是拼团 并且
+                //判断是否是拼团 且 属于某个拼团
                 if (order.getFlag() == 1 && !MdCommon.isEmpty(order.getLaunchId())) {
                     GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
                     //该拼团还未拼团成功 拼团成功不退款
