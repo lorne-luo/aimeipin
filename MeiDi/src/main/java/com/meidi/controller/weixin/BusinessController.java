@@ -421,9 +421,6 @@ public class BusinessController extends WxBaseController {
                 {
                     // 转向该订单支付页面
                     return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + order.getId().toString()));
-                }else if (order.getState()==2 || order.getState()==4) { // 订单已支付、已完成
-                    // 转向我的订单页
-                    return new ModelAndView(new RedirectView(PATH + "/business/myOrderPage"));
                 }
             }
         }

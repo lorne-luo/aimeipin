@@ -5,6 +5,7 @@ import com.meidi.domain.*;
 import com.meidi.repository.*;
 import com.meidi.util.*;
 import com.sun.javafx.sg.prism.NGShape;
+import org.apache.http.HttpException;
 import org.apache.log4j.MDC;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -408,7 +409,16 @@ public class BackEndController implements MdConstants {
                              @RequestParam(value = "id") Integer id) {
         MdModel model = new MdModel(request);
         Commodity commodity = commodityRepository.findOne(id);
-        commodity.setState(0);
+
+        // find all unpaid order (state=1) and close it
+        List<Order> orders = orderRepository.findByStateAndCommodityId(1,commodity.getId());
+        for(Order order : orders){
+            order.setState(8);
+            orderRepository.save(order);
+        }
+        // mark commodity as down
+        commodity.markAsDown();
+        commodity.setWeight(0);
         commodityRepository.save(commodity);
 
         return model;
@@ -1246,5 +1256,41 @@ public class BackEndController implements MdConstants {
         return model;
     }
 
+    /**
+     * 测试页面
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/test/{testItem}", method = RequestMethod.GET)
+    public ModelAndView testPage(HttpServletRequest request,@PathVariable String testItem) throws Exception {
+        MdModel model = new MdModel(request);
+        // only tester can see this
+        if(!model.get("wx_openid").equals(MdConstants.TEST_OPENID))
+            throw new HttpException("");
 
+        String token = wxTicketRepository.findByAppid(WX_APP_ID).getToken();
+        Iterable<Order> allOrders = orderRepository.findAll();
+        Order order = null;
+        for (Order o : allOrders) {
+            order = o;
+            break;
+        }
+        order.setWxOpenid(MdConstants.TEST_OPENID);
+
+        if(testItem.equals("groupLaunch"))
+            WxTemplate.groupLaunch(token,order);
+        else if(testItem.equals("groupLaunchOk"))
+            WxTemplate.groupLaunchOk(token,order);
+        else if(testItem.equals("groupClose"))
+            WxTemplate.groupClose(token,order);
+        else if(testItem.equals("joinGroup"))
+            WxTemplate.joinGroup(token,order);
+        else if(testItem.equals("orderComplete"))
+            WxTemplate.orderComplete(token,order);
+
+        model.put("trade_state", testItem);
+        model.put("trade_state_desc", "456");
+        return new ModelAndView("test", model);
+    }
 }

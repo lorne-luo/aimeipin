@@ -135,7 +135,17 @@
 </div>
 <div class="sharebtnbox clearfix btfix">
     <a href="${PATH}/class" class="t1">更多拼团</a>
-    <a href="javascript:checkJoinGroup(#{groupLaunch.id});">我要参团</a>
+
+
+<#if commodity.state!=1>
+    <a class="ended">项目已结束</a>
+<#else>
+    <#if shareFlag?exists && shareFlag == 1>
+        <a>已参团</a>
+    <#else>
+        <a href="javascript:checkJoinGroup(#{groupLaunch.id});">我要参团</a>
+    </#if>
+</#if>
 </div>
 <#if groupLaunch.peopleNumber - userList?size gt 0 && shareFlag?exists && shareFlag == 1>
 <div class="sharemark">
