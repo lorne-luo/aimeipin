@@ -312,13 +312,13 @@ public class WxPayController extends WxBaseController {
                     groupLaunch.setUnit(order.getUnit());//单位
                 }
 
-                List<GroupLaunchUser> groupLaunchList = new ArrayList<>();
+                List<GroupLaunchUser> groupLaunchUserList = new ArrayList<>();
                 GroupLaunchUser groupLaunchUser = new GroupLaunchUser();
                 groupLaunchUser.setFlag(1);//第一人 即拼团发起人
                 groupLaunchUser.setWxOpenid(order.getWxOpenid());
-                groupLaunchList.add(groupLaunchUser);
+                groupLaunchUserList.add(groupLaunchUser);
 
-                groupLaunch.setGroupLaunchUserList(groupLaunchList);
+                groupLaunch.setGroupLaunchUserList(groupLaunchUserList);
                 groupLaunch = groupLaunchRepository.save(groupLaunch);
                 //设置订单的 拼团属性
                 order.setLaunchId(groupLaunch.getId());
