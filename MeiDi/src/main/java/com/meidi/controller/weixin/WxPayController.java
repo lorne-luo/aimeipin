@@ -328,6 +328,10 @@ public class WxPayController extends WxBaseController {
                 WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
                 WxTemplate.groupLaunch(wxTicket.getToken(), order);
 
+                //一人成团,开团即拼团成功
+                if (groupLaunch.getPeopleNumber()==1){
+                    WxTemplate.groupLaunchOk(wxTicket.getToken(), order);
+                }
             } else if (!MdCommon.isEmpty(order.getLaunchId()) && order.getBookingFlag() == 4) {//参团
                 GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
                 List<GroupLaunchUser> groupLaunchUserList = groupLaunch.getGroupLaunchUserList();
@@ -344,11 +348,14 @@ public class WxPayController extends WxBaseController {
                         groupLaunch.setGroupLaunchUserList(groupLaunchUserList);
                         groupLaunchRepository.save(groupLaunch);
 
-                        //暂时不发
+                        //拼团成功 给团内每个用户发消息
                         WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
                         for (GroupLaunchUser user : groupLaunchUserList) {
-                            //拼团成功 给每个用户发消息
-                            WxTemplate.groupLaunchOk(wxTicket.getToken(), order);
+                            List<Order> queryOrders = orderRepository.findByWxOpenidAndLaunchIdOrderByCreateTimeDesc(
+                                    user.getWxOpenid(), groupLaunch.getId());
+                            if (queryOrders!=null && queryOrders.size()>0){
+                                WxTemplate.groupLaunchOk(wxTicket.getToken(), queryOrders.get(0));
+                            }
                         }
                     } else {
                         //成功参团
