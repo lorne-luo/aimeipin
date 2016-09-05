@@ -1834,7 +1834,6 @@ a.baseBtn.nof {
     height: 80px;
     line-height: 80px;
     width: 640px;
-    border-top: 1px solid #f40909;
     margin-left: -320px;
     left: 50%;
     z-index: 999;
@@ -1854,9 +1853,8 @@ a.baseBtn.nof {
 }
 
 .sharebtnbox a.t1 {
-    color: #999;
-    border-right: 1px solid #fd5380;
-    background: white;
+    color: #666;
+    background: #eeeeee;
 }
 
 .detailnav {
@@ -1900,7 +1898,7 @@ a.baseBtn.nof {
     border-color: #d3d3d3;
 }
 
-.detailnav .ended {
+.detailnav .ended,.sharebtnbox .ended {
     background: #999;
 }
 
