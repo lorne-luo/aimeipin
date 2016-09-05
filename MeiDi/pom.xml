@@ -6,7 +6,7 @@
 
     <groupId>com.meidi</groupId>
     <artifactId>MeiDi</artifactId>
-    <version>1.0.4c</version>
+    <version>1.0.4d</version>
     <packaging>war</packaging>
 
     <parent>
