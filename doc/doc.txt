@@ -16,7 +16,13 @@ delete from interest_commodity_son where parent_id=0;
 API文档
 http://mp.weixin.qq.com/wiki/10/e5f772f4521da17fa0d7304f68b97d7e.html
 https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455784140&token=&lang=zh_CN
+微信支付
+https://pay.weixin.qq.com/wiki/doc/api/index.html
+公众平台
+https://mp.weixin.qq.com/wiki/home/index.html
 
+SPRING BOOT
+https://spring.io/guides/gs/spring-boot/
 
 TEST URL
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf3d017eaf0b53463&redirect_uri=http://www.aimeipin.cc/index/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect

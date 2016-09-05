@@ -409,7 +409,16 @@ public class BackEndController implements MdConstants {
                              @RequestParam(value = "id") Integer id) {
         MdModel model = new MdModel(request);
         Commodity commodity = commodityRepository.findOne(id);
-        commodity.setState(0);
+
+        // find all unpaid order (state=1) and close it
+        List<Order> orders = orderRepository.findByStateAndCommodityId(1,commodity.getId());
+        for(Order order : orders){
+            order.setState(8);
+            orderRepository.save(order);
+        }
+        // mark commodity as down
+        commodity.markAsDown();
+        commodity.setWeight(0);
         commodityRepository.save(commodity);
 
         return model;

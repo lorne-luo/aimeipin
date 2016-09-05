@@ -31,7 +31,7 @@
 
                 <div class="pull-right">
                     <label>搜索：</label>
-                    <input type="text" class="queryStr  form-control"/>
+                    <input type="text" id="queryStr" class="queryStr  form-control"/>
                     <a href="javascript:searchOrder();" class="btn btn-success">搜索</a>
                 </div>
             </div>

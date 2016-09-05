@@ -16,10 +16,10 @@
 <div class="wrapper pr pb130">
     <div class="pl20 pr20">
         <div class="classifybox">
-            <a href="javascript:setProjectFlagAndGetProject(1,-2,1,1);" class="t1 active"></a>
-            <a href="javascript:setProjectFlagAndGetProject(2,-2,1,2);" class="t2"></a>
-            <a href="javascript:setProjectFlagAndGetProject(3,-2,1,3);" class="t3"></a>
-            <a href="javascript:setProjectFlagAndGetProject(4,-2,1,4);" class="t4"></a>
+            <a href="javascript:setProjectFlagAndGetProject(1,-1,1,1);" class="t1 active"></a>
+            <a href="javascript:setProjectFlagAndGetProject(2,-1,1,2);" class="t2"></a>
+            <a href="javascript:setProjectFlagAndGetProject(3,-1,1,3);" class="t3"></a>
+            <a href="javascript:setProjectFlagAndGetProject(4,-1,1,4);" class="t4"></a>
         </div>
         <div class="itemlistbox">
 
