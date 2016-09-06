@@ -580,6 +580,7 @@ public class BackEndController implements MdConstants {
                         GroupLaunchUser firstGroupUser = allGroupUsers.get(0);
                         if (firstGroupUser.getWxOpenid().equals(order.getWxOpenid())) { //确认是团长订单
                             if (allGroupUsers.size() > 1) { //团内不止一人
+                                //后继成员顶替为团长
                                 GroupLaunchUser secondGroupUser = allGroupUsers.get(1);
                                 secondGroupUser.setFlag(1);
                                 List<Order> secondUserOrders = orderRepository.findByWxOpenidAndLaunchIdOrderByCreateTimeDesc(secondGroupUser.getWxOpenid(), order.getLaunchId());
