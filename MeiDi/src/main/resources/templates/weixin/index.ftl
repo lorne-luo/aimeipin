@@ -94,7 +94,7 @@
 
     <ul id="getmore" class="md-news hide" style="display:none" mbsc-enhance></ul>
     <div id="getmore-loading" class="mbsc-btn-ic"  style="display:none" mbsc-enhance>
-        <span href="javascript:getMore();" class="getmore">加载中...</span>
+        <span class="getmore">加载中...</span>
     </div>
 
 </div>
