@@ -14,6 +14,10 @@
     <script>
         window.UEDITOR_HOME_URL = BASE_JS_URL + "/ueditor/";
     </script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="${PATH}/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="${PATH}/ueditor/ueditor.all.min.js"></script>
 
 </head>
 <body>
@@ -177,10 +181,6 @@
                         <script id="container_remarks" name="content_remarks" type="text/plain">
 
                         </script>
-                        <!-- 配置文件 -->
-                        <script type="text/javascript" src="${PATH}/ueditor/ueditor.config.js"></script>
-                        <!-- 编辑器源码文件 -->
-                        <script type="text/javascript" src="${PATH}/ueditor/ueditor.all.js"></script>
                         <!-- 实例化编辑器 -->
                         <script type="text/javascript">
                             var ue_remarks = UE.getEditor('container_remarks');
