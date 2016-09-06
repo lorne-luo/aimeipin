@@ -35,7 +35,7 @@
                 </tbody>
             </table>
             <ul id="getmore" class="md-news hide" style="display:none" mbsc-enhance></ul>
-            <div id="getmore-loading" class="mbsc-btn-ic"  style="display:none" mbsc-enhance>
+            <div id="getmore-loading" class="tac mbsc-btn-ic"  style="display:none" mbsc-enhance>
                 <span class="getmore">加载中...</span>
             </div>
         </div>
