@@ -39,35 +39,15 @@
         </div>
         <div class="itemlistbox">
 
-
         </div>
-        <a href="javascript:getMore();" class="getmore">点击加载更多...</a>
     </div>
-    <div class=" zx btfix  clearfix itemsbtnbox">
-        <a href="${PATH}/index" class="fl <#if pageActive == 'index'>active</#if>">
-            <span class="shouyeicon"></span>
 
-            <p>首页</p>
-        </a>
-        <a href="${PATH}/class" class="fl <#if pageActive == 'class'>active</#if>">
-            <span class="fenleicon"></span>
-
-            <p>分类</p>
-        </a>
-        <a href="${PATH}/consult" class="fl <#if pageActive == 'consult'>active</#if>">
-            <span class="zixunicon"></span>
-
-            <p>咨询</p>
-        </a>
-        <a href="${PATH}/my" class="fl <#if pageActive == 'my'>active</#if>">
-            <span class="myicon"></span>
-
-            <p>我的</p>
-        </a>
+    <ul id="getmore" class="md-news hide" style="display:none" mbsc-enhance></ul>
+    <div id="getmore-loading" class="mbsc-btn-ic"  style="display:none" mbsc-enhance>
+        <span href="javascript:getMore();" class="getmore">加载中...</span>
     </div>
 </div>
-
-
+<#include "footer.ftl"/>
 </body>
 </html>
 <script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js"></script>

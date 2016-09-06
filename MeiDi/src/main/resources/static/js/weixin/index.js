@@ -54,7 +54,6 @@ $(function () {
         isLoading = false,
         feedNum = 10;
     function getFeed() {
-        console.log($loadingIc);
         $loadingIc.show();
         getMore();
         isLoading = false;
