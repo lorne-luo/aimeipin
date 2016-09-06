@@ -573,6 +573,33 @@ public class BackEndController implements MdConstants {
         try {
             Order order = orderRepository.findOne(orderId);
             if (state == 6) {//主动申请的退款
+                if (order.getFlag() == 1 && order.getState() == 2){
+                    //已支付的拼团订单退款,需要对团长取消进行特别处理
+                    if (order.getBookingFlag() == 1 && order.getLaunchId() > 0) { //团长取消
+                        List<GroupLaunchUser> allGroupUsers = groupLaunchUserRepository.findByLaunchIdOrderByFlagAsc(order.getLaunchId());
+                        GroupLaunchUser firstGroupUser = allGroupUsers.get(0);
+                        if (firstGroupUser.getWxOpenid().equals(order.getWxOpenid())) { //确认是团长订单
+                            if (allGroupUsers.size() > 1) { //团内不止一人
+                                //后继成员顶替为团长
+                                GroupLaunchUser secondGroupUser = allGroupUsers.get(1);
+                                secondGroupUser.setFlag(1);
+                                List<Order> secondUserOrders = orderRepository.findByWxOpenidAndLaunchIdOrderByCreateTimeDesc(secondGroupUser.getWxOpenid(), order.getLaunchId());
+                                Order secondUserOrder = secondUserOrders.get(0);
+                                secondUserOrder.setBookingFlag(1);
+
+                                groupLaunchUserRepository.save(secondGroupUser);
+                                orderRepository.save(secondUserOrder);
+                                groupLaunchUserRepository.delete(firstGroupUser);
+                                order.setLaunchId(null);
+                            } else {//该团只有团长一人
+                                GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
+                                groupLaunch.setState(3); //唯一的团长取消,拼团失败
+                                groupLaunchRepository.save(groupLaunch);
+                            }
+                        }
+                    }
+                }
+
                 //TODO 走退款流程
 //                WxBaseController wxBaseController = new WxBaseController();
 //                Map result = wxBaseController.orderRefund(order);
@@ -594,6 +621,7 @@ public class BackEndController implements MdConstants {
 //                    ret = -2;//退款失败
 //                    System.out.println(return_msg);
 //                }
+
             } else if (state == 7) {//不退款(已预约但是超时未消费的)
 
                 if (order.getFlag() == 1 && !MdCommon.isEmpty(order.getLaunchId())) {//拼团订单 关闭该拼团

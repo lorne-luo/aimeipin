@@ -561,22 +561,23 @@ public class BusinessController extends WxBaseController {
         } else if (order.getState() == 2) {//已支付
 //        通知客服退款 TODO
             try {
-                //判断是否是拼团 并且
+                //判断是否是拼团 且 属于某个拼团
                 if (order.getFlag() == 1 && !MdCommon.isEmpty(order.getLaunchId())) {
                     GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
                     //该拼团还未拼团成功 拼团成功不退款
                     if (groupLaunch.getState() == 0) {//拼团还未成功
                         GroupLaunchUser groupLaunchUser = groupLaunchUserRepository.findByLaunchIdAndWxOpenid(order.getLaunchId(), model.get("wx_openid"));
+                        Integer userFlag = groupLaunchUser.getFlag();
                         if (!MdCommon.isEmpty(groupLaunchUser)) {//删除当前拼团下的 此用户
                             groupLaunchUserRepository.delete(groupLaunchUser);
                         }
+
                         //判断当前团状态
-                        List<GroupLaunchUser> groupLaunchUserList = groupLaunchUserRepository.findByLaunchId(order.getLaunchId());
+                        List<GroupLaunchUser> groupLaunchUserList = groupLaunchUserRepository.findByLaunchIdOrderByFlagAsc(order.getLaunchId());
                         if (MdCommon.isEmpty(groupLaunchUserList) || groupLaunchUserList.size() == 0) {//该拼团下没有用户 表示拼团失败
                             groupLaunch.setState(3);
                             groupLaunch.setGroupLaunchUserList(null);
                             groupLaunchRepository.save(groupLaunch);
-
 
 //                            Commodity commodity = commodityRepository.findOne(order.getCommodityId());
 //                            commodity.setSold(commodity.getSold() - order.getCommodityNumber());//销量还原
@@ -585,9 +586,13 @@ public class BusinessController extends WxBaseController {
 //                            }
 //                            commodityRepository.save(commodity);
 
-//                            //拼团失败
+                            //拼团失败
                             WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
                             WxTemplate.groupClose(wxTicket.getToken(), order);
+                        }else if (userFlag == 1){ //团长退出,后续参团成员顶替团长
+                            GroupLaunchUser firstLaunchUser = groupLaunchUserList.get(0);
+                            firstLaunchUser.setFlag(1);
+                            groupLaunchUserRepository.save(firstLaunchUser);
                         }
 
                         order.setLaunchId(null);

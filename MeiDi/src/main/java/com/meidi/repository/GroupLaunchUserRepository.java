@@ -24,4 +24,6 @@ public interface GroupLaunchUserRepository extends CrudRepository<GroupLaunchUse
      * @return
      */
     List<GroupLaunchUser> findByLaunchId(Integer id);
+
+    List<GroupLaunchUser> findByLaunchIdOrderByFlagAsc(Integer id);
 }

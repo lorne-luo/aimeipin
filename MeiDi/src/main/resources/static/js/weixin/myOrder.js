@@ -59,13 +59,13 @@ function createTable(result) {
             '</div>';
             str += '<p class="fs20 mt15">' + order.order.commodityName + '</p>';
         str += '<div class="fs20 mt20 clearfix">';
-        if(order.order.flag == 1){
-            //未付款 的  或者 已付款 但是 没有其他人参团的才可以取消
-            if(order.order.state == 1 || (order.order.state == 2 && order.launch!=null && order.launch.state == 0)){
-                str += '<a href="javascript:cancelOrder(' + order.order.id + ');"  class="cancelorder fr ">取消订单</a>';
-            }
-        }else{
-            if (order.order.state < 3) {//订单正常
+
+        if (order.order.state < 3) {//订单正常
+            if(order.launch!=null){
+                if (order.launch.state == 1 || order.launch.state == 2){ //拼团进行中,可以退款
+                    str += '<a href="javascript:alert(\'本次拼团已成功，请拨打400-605-6662联系客服取消订单！\');"  class="cancelorder fr ">取消订单</a>';
+                }
+            }else{
                 str += '<a href="javascript:cancelOrder(' + order.order.id + ');"  class="cancelorder fr ">取消订单</a>';
             }
         }

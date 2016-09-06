@@ -56,7 +56,7 @@ public class ScheduledJobs {
                 }
                 // mark commodity as down
                 commodity.markAsDown();
-                commodity.setWeight(0);
+                commodity.setWeight(0); // 重置权重为0
                 commodityRepository.save(commodity);
             }
         } catch (Exception e) {

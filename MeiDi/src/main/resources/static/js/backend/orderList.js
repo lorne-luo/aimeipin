@@ -176,18 +176,26 @@ function createTable(result) {
 
         if (order.order.state == 3) {
             str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">订单完成加积分</a> ';
-            str += '<a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-success">取消订单(过期)</a>';
+            str += '<a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-success">取消订单(过期)</a> ';
         } else if (order.order.state == 5) {
             str += '<a href="javascript:closeOrder(' + order.order.id + ',6);" class="btn btn-success">退款</a> ';
-            str += '<a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-success">不退款</a>';
+            str += '<a href="javascript:closeOrder(' + order.order.id + ',7);" class="btn btn-success">不退款</a> ';
         }
         if (order.order.state == 2 || order.order.state == 3) {
-            str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">完成</a>';
+            str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">完成</a> ';
+            str += ' <a href="javascript:confirmCloseOrder(' + order.order.id + ',6);" class="btn btn-danger">取消</a> ';
         }
         str += '</td>' +
             '</tr>';
         $('#addList').append(str);
     });
+}
+
+function confirmCloseOrder(orderId,state){
+    var result = confirm('确定取消此订单?');
+    if(result){
+        closeOrder(orderId,state);
+    }
 }
 
 var dialog = new Dialog({
@@ -273,6 +281,7 @@ function addIntegral() {
         dialog3.close();
         return;
     }
+    //order.state将变更为4已完成
     $.ajax({
         url: BASE_JS_URL + '/backend/addIntegral',
         data: {
@@ -297,9 +306,11 @@ function getProjectFlag(order) {
     if(id == null){
         id = 0;
     }
+    var groupName=order.bookingFlag==1?'团长':'拼团';
+    
     switch (flag) {
         case 1:
-            return "拼团(" + id+ ")"+' <a href="javascript:getListByLaunch('+id+');"><i class="fa fa-filter" aria-hidden="true"></i></a>';
+            return groupName+"(" + id+ ")"+' <a href="javascript:getListByLaunch('+id+');"><i class="fa fa-filter" aria-hidden="true"></i></a>';
         case 2:
             return "福袋";
         case 3:
@@ -320,7 +331,7 @@ function getOrderState(state) {
         case 4:
             return "已完成";
         case 5:
-            return "取消中";
+            return "取消中(待退款)";
         case 6:
             return "已取消(已退款)";
         case 7:
