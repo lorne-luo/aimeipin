@@ -1216,8 +1216,11 @@ a.blue {
     background: #fd5380;
     padding: 10px;
     color: white;
-    margin-top: 30px;
+    margin-top: 20px;
     font-size: 20px;
+}
+#getmore-loading{
+    background: transparent;
 }
 
 .width100 {
