@@ -34,8 +34,9 @@
 
                 </tbody>
             </table>
-            <div class="tac">
-                <a href="javascript:getList(0);" class="getmore">点击加载更多...</a>
+            <ul id="getmore" class="md-news hide" style="display:none" mbsc-enhance></ul>
+            <div id="getmore-loading" class="tac mbsc-btn-ic"  style="display:none" mbsc-enhance>
+                <span class="getmore">加载中...</span>
             </div>
         </div>
     </div>

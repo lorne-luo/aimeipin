@@ -536,6 +536,7 @@ public class BusinessController extends WxBaseController {
 
         model.put("orderList", orderList);
         model.put("pageNumber", pageNumber);
+        model.put("pageSize", WX_PAGE_SIZE);
         return model;
     }
 

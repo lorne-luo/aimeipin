@@ -23,13 +23,13 @@
 
         <div class="itemlistbox">
         </div>
-        <div class="tac">
-            <a href="javascript:getFavoriteList(0);" class="getmore">点击加载更多...</a>
+        <ul id="getmore" class="md-news hide" style="display:none" mbsc-enhance></ul>
+        <div id="getmore-loading" class="tac mbsc-btn-ic"  style="display:none" mbsc-enhance>
+            <span class="getmore">加载中...</span>
         </div>
     </div>
-
 </div>
-
+<#include "footer.ftl"/>
 </body>
 <script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js"></script>
 <script src="${PATH}/js/weixin/myFavorite.js"></script>
