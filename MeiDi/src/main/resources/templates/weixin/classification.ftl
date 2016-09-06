@@ -14,7 +14,7 @@
 </head>
 <body style="background:#ffffff">
 <div class="wrapper pr pb130">
-    <div class="pl20 pr20">
+    <div class="pl20 pr20" style="margin-bottom: -20px">
         <div class="classifybox">
             <a href="javascript:setProjectFlagAndGetProject(1,-1,1,1);" class="t1 active"></a>
             <a href="javascript:setProjectFlagAndGetProject(2,-1,1,2);" class="t2"></a>
@@ -23,9 +23,12 @@
         </div>
         <div class="itemlistbox">
 
-
         </div>
-        <a href="javascript:getMore();" class="getmore">点击加载更多...</a>
+    </div>
+
+    <ul id="getmore" class="md-news hide" style="display:none" mbsc-enhance></ul>
+    <div id="getmore-loading" class="mbsc-btn-ic"  style="display:none" mbsc-enhance>
+        <span href="javascript:getMore();" class="getmore">加载中...</span>
     </div>
 </div>
 <#include "footer.ftl"/>
