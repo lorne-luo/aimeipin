@@ -18,7 +18,6 @@
     <script type="text/javascript" src="${PATH}/ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
     <script type="text/javascript" src="${PATH}/ueditor/ueditor.all.min.js"></script>
-    <script type="text/javascript" src="${PATH}/ueditor/lang/zh-cn/zh-cn.js"></script>
     <!-- 自动恢复草稿 -->
     <script type="text/javascript">
         $(document).ready(function() {
@@ -35,7 +34,6 @@
             });
         });
     </script>
-
 </head>
 <body>
 
@@ -194,10 +192,9 @@
                     <div class="form-group">
                         <input type="hidden" name="remarks" class="remarks">
                         <label><span class="star mr6"></span>支付说明：</label>
-                        <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
-                        <script id="container_remarks" name="content_remarks" type="text/plain">
 
-                        </script>
+                        <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
+                        <script id="container_remarks" name="content_remarks" type="text/plain"></script>
                         <!-- 实例化编辑器 -->
                         <script type="text/javascript">
                             var ue_remarks = UE.getEditor('container_remarks');
@@ -206,15 +203,12 @@
                     <div class="form-group">
                         <input type="hidden" name="description" class="description">
                         <label><span class="star mr6"></span>商品描述：</label>
+
                         <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
-                        <script id="container" name="content" type="text/plain">
-
-                        </script>
-
+                        <script id="container" name="content" type="text/plain"></script>
                         <!-- 实例化编辑器 -->
                         <script type="text/javascript">
                             var ue = UE.getEditor('container');
-                            //                            var config = UE.getOpt('config');
                         </script>
                     </div>
                     <div class="text-center col-lg-10 mt20">
