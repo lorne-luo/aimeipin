@@ -409,7 +409,20 @@ public class BackEndController implements MdConstants {
         MdModel model = new MdModel(request);
         Commodity commodity = commodityRepository.findOne(id);
 
-        // find all unpaid order (state=1) and close it
+        // close all ongoing group launch
+        List<GroupLaunch> groupLaunchList = groupLaunchRepository.findByCommodityIdAndState(commodity.getId(),0);
+        for(GroupLaunch group : groupLaunchList) {
+            group.setState(3);
+            groupLaunchRepository.save(group);
+            //已支付订单
+            List<Order> orders = orderRepository.findByLaunchIdAndState(group.getId(),2);
+            for(Order order : orders) {
+                order.setState(5);//订单取消中 待退款
+                orderRepository.save(order);
+            }
+        }
+
+        // close all unpaid order (state=1)
         List<Order> orders = orderRepository.findByStateAndCommodityId(1,commodity.getId());
         for(Order order : orders){
             order.setState(8);

@@ -241,7 +241,7 @@
     <#else>
         <a class="t4 ended">
             <p class="fs20 mt16 priceorder">
-                <i class="pwhite inlineblock ml4">本项目已结束</i>
+                <i class="pwhite inlineblock ml4">项目已结束</i>
             </p>
         </a>
     </#if>
