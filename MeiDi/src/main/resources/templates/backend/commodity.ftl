@@ -18,28 +18,20 @@
     <script type="text/javascript" src="${PATH}/ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
     <script type="text/javascript" src="${PATH}/ueditor/ueditor.all.min.js"></script>
-    <!-- 定时保存草稿 -->
-    <script type="text/javascript" src="${PATH}/js/ueditor-draft.js"></script>
-    <!-- autosave -->
+    <script type="text/javascript" src="${PATH}/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <!-- 自动恢复草稿 -->
     <script type="text/javascript">
         $(document).ready(function() {
-            autosave('container');
             var ue = UE.getEditor('container');
             ue.addListener("ready", function() {
-                // editor准备好之后才可以使用
-                var html = localStorage.getItem("container");
-                if(html)
-                    ue.setContent(html);
-            });
-        });
-        $(document).ready(function() {
-            autosave('container_remarks');
-            var ue = UE.getEditor('container_remarks');
-            ue.addListener("ready", function() {
-                // editor准备好之后才可以使用
-                var html = localStorage.getItem("container_remarks");
-                if(html)
-                    ue.setContent(html);
+                setTimeout(function () {
+                    var html = ue.execCommand( "getlocaldata" );
+                    if (html) {
+                        ue.setContent(html);
+                        ue_remarks = UE.getEditor('container_remarks');
+                        ue_remarks.setContent(ue_remarks.execCommand( "getlocaldata" ));
+                    }
+                }, 1000);
             });
         });
     </script>
