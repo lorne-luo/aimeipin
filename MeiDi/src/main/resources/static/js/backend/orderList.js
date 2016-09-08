@@ -15,10 +15,10 @@ $(function () {
     });
 
     $('#state').on('change', function () {
-        if ($('#state').val()>0)
-            addFilterCondition('state', $('#state option:selected').text());
-        else
+        if ($('#state').val() == -1) // -1 是默认条件
             removeFilterCondition('state', false);
+        else
+            addFilterCondition('state', $('#state option:selected').text());
         getList(1);
     });
 
@@ -183,13 +183,16 @@ function createTable(result) {
         }
         if (order.order.state == 2 || order.order.state == 3) {
             str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">完成</a> ';
-            str += ' <a href="javascript:confirmCloseOrder(' + order.order.id + ',6);" class="btn btn-danger">取消</a> ';
+            str += '<a href="javascript:confirmCloseOrder(' + order.order.id + ',6);" class="btn btn-danger">取消</a> ';
         }
 
-        if (order.order.state == 1 || (order.order.state < 100 && order.order.state > 5)) {
-            str += ' <a href="javascript:confirmDeleteOrder(' + order.order.id + ');" class="btn btn-danger">删除</a> ';
-        }else if (order.order.state >= 100) {
-            str += ' <a href="javascript:confirmUndoDeleteOrder(' + order.order.id + ');" class="btn btn-warning">恢复</a> ';
+
+        if (order.order.deleted == true) {
+            str += '<a href="javascript:confirmUndoDeleteOrder(' + order.order.id + ');" class="btn btn-warning">恢复</a> ';
+        }else{
+            if (order.order.state == 1 || (order.order.state < 100 && order.order.state > 5)) {
+                str += '<a href="javascript:confirmDeleteOrder(' + order.order.id + ');" class="btn btn-danger">删除</a> ';
+            }
         }
 
         str += '</td>' +
@@ -223,7 +226,7 @@ function undoDeleteOrder(orderId) {
 }
 
 function confirmDeleteOrder(orderId){
-    if(confirm('被删除的订单将不在正常订单中显示,\n但仍可以进入已删除订单列表中恢复.\n\n确定删除此订单? ')){
+    if(confirm('被删除订单将不在正常订单中显示,\n但仍可以进入回收站中恢复.\n\n确定删除此订单? ')){
         deleteOrder(orderId);
     }
 }
@@ -375,7 +378,7 @@ function getProjectFlag(order) {
 function getOrderState(state) {
     switch (state) {
         case 1:
-            return "待支付";
+            return "未支付";
         case 2:
             return "已支付";
         case 3:
@@ -392,9 +395,6 @@ function getOrderState(state) {
             return "已取消(未支付)";
         case 9:
             return "已取消(已退款)";
-        default:
-            if (state >= 100)
-            return "已删除";
     }
 }
 
