@@ -389,7 +389,7 @@ function getOrderState(state) {
         case 7:
             return "已取消(不退款)";
         case 8:
-            return "已取消(未付款)";
+            return "已取消(未支付)";
         case 9:
             return "已取消(已退款)";
         default:

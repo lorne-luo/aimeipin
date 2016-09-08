@@ -357,6 +357,13 @@ public class WxPayController extends WxBaseController {
                                 WxTemplate.groupLaunchOk(wxTicket.getToken(), queryOrders.get(0));
                             }
                         }
+
+                        // 取消所有未支付订单
+                        List<Order> orders = orderRepository.findByLaunchIdAndState(groupLaunch.getId(),1);
+                        for (Order o : orders){
+                                o.setState(8);
+                                orderRepository.save(o);
+                        }
                     } else {
                         //成功参团
                         WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
