@@ -78,13 +78,12 @@ public class ScheduledJobs {
             List<GroupLaunch> groupLaunches = groupLaunchRepository.findByStateAndEndTimeIsBefore(0,now);
 
             for (GroupLaunch groupLaunch : groupLaunches){
-                //修改商品数量
+                List<Order> orders = orderRepository.findByLaunchId(groupLaunch.getId());
 
                 // 取消所有未支付订单
-                List<Order> orders = orderRepository.findByLaunchId(groupLaunch.getId());
                 for (Order order : orders){
                     if (order.getState() == 1){ // 未支付
-                        order.setState(8);//直接取消订单
+                        order.setState(8);
                         orderRepository.save(order);
                     }
                 }
