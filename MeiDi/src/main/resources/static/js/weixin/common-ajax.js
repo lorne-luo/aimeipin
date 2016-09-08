@@ -196,7 +196,7 @@ function createTable(commodityList) {
                 '    <div class="lefticon dzf"></div>' +
                 '    <div class="righticon cleafix pr askdz">' +
                 '      <span class="yuanj  fl ">原价:<del>' + commodity.price/100 + '</del></span>' +
-                '      <span class="fs16 mt4 line16 fl">现价:' + commodity.discountPrice/100 + '</span>' +
+                '      <span class="ml30 mr10 fl fs19">现价:' + commodity.discountPrice/100 + '</span>' +
                 '      <a href="' + BASE_JS_URL + '/business/commodityDetailPage/' + commodity.id + '"></a>' +
                 '    </div>' +
                 '  </div>' +
