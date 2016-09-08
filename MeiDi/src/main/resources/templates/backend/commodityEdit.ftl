@@ -33,7 +33,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <div class="col-lg-12">
-                <form class="createVenueForm" role="form" method="post" id="addCommodity" name="addCommodity">
+                <form class="createVenueForm" role="form" method="post" id="addCommodity" name="addCommodity" autocomplete="off">
                     <input type="hidden" name="id" value="#{commodity.id}">
 
                     <div class="form-group">
