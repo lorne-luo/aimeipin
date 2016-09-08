@@ -20,6 +20,17 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     *
+     * @param pageNumber
+     * @param pageSize
+     * @param flag
+     * @param state -1 查询所有未删除, -2 查询所有已删除, -3 查询所有
+     * @param launchID
+     * @param commodityID
+     * @param queryStr
+     * @return
+     */
     @Override
     public Map<String, Object> findOrderWithQuery(int pageNumber, int pageSize, int flag, int state, int launchID, int commodityID, String queryStr) {
         List<Object> list = new ArrayList<>();
@@ -31,17 +42,19 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
             list.add(flag);
         }
 
-        if (!MdCommon.isEmpty(state) && state < 0){
-            sql += " and mo.state < 100 "; // 不显示已删除订单
-        }else if (!MdCommon.isEmpty(state) && state > 0) {
+        if (!MdCommon.isEmpty(state) && state > 0) {
             if(state < 6){
                 sql += " and mo.state = ? ";
-            }else if(state < 100){ // 6 <> 100 已取消
-                sql += " and mo.state >= ? and mo.state < 100 ";
-            }else if(state ==100){ // > 100 已删除
+            }else{
                 sql += " and mo.state >= ? ";
             }
             list.add(state);
+        } else if (!MdCommon.isEmpty(state) && state == -1) {
+            sql += " and mo.is_deleted = 0 ";
+        } else if (!MdCommon.isEmpty(state) && state == -2) {
+            sql += " and mo.is_deleted = 1 ";
+        } else if (!MdCommon.isEmpty(state) && state == -3) {
+
         }
 
         if (!MdCommon.isEmpty(launchID) && launchID > 0) {

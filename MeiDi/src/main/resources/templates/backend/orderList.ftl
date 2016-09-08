@@ -63,13 +63,13 @@
                             <th>
                                 <select class="" id="state">
                                     <option value="-1">状态</option>
-                                    <option value="1">待支付</option>
+                                    <option value="1">未支付</option>
                                     <option value="2">已支付</option>
                                     <option value="3">已预约</option>
                                     <option value="4">已完成</option>
                                     <option value="5">取消中</option>
                                     <option value="6">已取消</option>
-                                    <option value="100">已删除</option>
+                                    <option value="-2">回收站</option>
                                 </select>
                             </th>
                             <th style="max-width:130px">备注</th>
