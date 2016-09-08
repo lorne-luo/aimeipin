@@ -1,19 +1,32 @@
+#!/bin/bash
 
 if [ -z "$1" ]
   then
-    echo "input tag name plz"
+    echo "Please input version tag name."
     exit 0
 fi
 
-git tag -d $1
-git remote update
-git reset --hard $1
-rm target/* -rf
-mvn package
+VERSION=$1
+DEPLOYDIR=/opt/webapps/meidi/WEB-INF
+
+echo $VERSION
+
+git tag -d $VERSION
+git fetch --all
+git reset --hard $VERSION
+rm -rf target/*
+mvn package -q
 pushd .
+
 cd target/meidi/WEB-INF/
-zip -qr $1.zip classes/
-cp -f $1.zip ../../../backups/
-cp -f $1.zip /opt/webapps/meidi/WEB-INF/
+zip -qr $VERSION.zip classes/
+cp -f $VERSION.zip ../../../backups/
+cp -f $VERSION.zip $DEPLOYDIR/
+cp -n lib/* $DEPLOYDIR/lib/
+
+/usr/local/tomcat8/bin/shutdown.sh
+rm -rf $DEPLOYDIR/classes/
+cp classes $DEPLOYDIR/
+/usr/local/tomcat8/bin/startup.sh
+
 popd
-cp -n target/meidi/WEB-INF/lib/* /opt/webapps/meidi/WEB-INF/lib/
