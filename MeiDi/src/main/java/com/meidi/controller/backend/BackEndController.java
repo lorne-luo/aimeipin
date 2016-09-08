@@ -569,6 +569,46 @@ public class BackEndController implements MdConstants {
     }
 
     /**
+     * 删除订单
+     *
+     * @param request
+     * @param orderId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/deleteOrder", method = RequestMethod.POST)
+    public Map deleteOrder(HttpServletRequest request,
+                          @RequestParam(value = "orderId") Integer orderId) {
+        Order order = orderRepository.findOne(orderId);
+        order.delete();
+        orderRepository.save(order);
+
+        MdModel model = new MdModel(request);
+        model.put("ret", 0);
+        return model;
+    }
+
+    /**
+     * 恢复删除订单
+     *
+     * @param request
+     * @param orderId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/undoDeleteOrder", method = RequestMethod.POST)
+    public Map undoDeleteOrder(HttpServletRequest request,
+                           @RequestParam(value = "orderId") Integer orderId) {
+        Order order = orderRepository.findOne(orderId);
+        order.undoDelete();
+        orderRepository.save(order);
+
+        MdModel model = new MdModel(request);
+        model.put("ret", 0);
+        return model;
+    }
+
+    /**
      * 关闭订单
      *
      * @param request

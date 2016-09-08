@@ -120,6 +120,7 @@ public class Order implements Serializable {
      * 7 订单关闭（拼团超时 已退款）     | 已取消(不退款)
      * 8 订单关闭（已在医院做完项目）    | 已取消(未付款)
      * 9 已取消(已退款)                | 已取消(未付款)
+     * 以上状态+100是被删除,例如101表示未支付被删除
      */
     private Integer state = 1;
 
@@ -387,5 +388,18 @@ public class Order implements Serializable {
         this.unit = unit;
     }
 
+    public Boolean isDeleted() { return state >= 100; }
+
+    public void delete() {
+        if (state < 100) {
+            state += 100;
+        }
+    }
+
+    public void undoDelete() {
+        if (state >= 100) {
+            state -= 100;
+        }
+    }
 
 }
