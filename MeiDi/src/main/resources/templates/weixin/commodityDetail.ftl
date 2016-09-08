@@ -230,11 +230,7 @@
             <a class="t4 bgff4d7d" href="${PATH}/business/bookingPage/#{commodity.id}/3">
                 <p class="fs20 mt16 priceorder">
                     <span>¥#{commodity.discountPrice/100}</span>
-                    <#if commodity.flag == 4>
-                        <i class="pwhite inlineblock ml4">我要预约</i>
-                    <#else>
-                        <i class="pwhite inlineblock ml4">我要参团</i>
-                    </#if>
+                    <i class="pwhite inlineblock ml4">我要预订</i>
                 </p>
             </a>
         </#if>

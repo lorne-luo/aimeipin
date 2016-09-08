@@ -163,7 +163,7 @@ function getProjectFlag(flag, aloneFlag) {
 function getOrderState(state) {
     switch (state) {
         case 1:
-            return "待支付";
+            return "未支付";
         case 2:
             return "已支付";
         case 3:

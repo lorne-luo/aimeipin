@@ -120,9 +120,14 @@ public class Order implements Serializable {
      * 7 订单关闭（拼团超时 已退款）     | 已取消(不退款)
      * 8 订单关闭（已在医院做完项目）    | 已取消(未支付)
      * 9 已取消(已退款)                | 已取消(未支付)
-     * 以上状态+100是被删除,例如101表示未支付被删除
      */
     private Integer state = 1;
+
+    /**
+     * 假删除标志, 订单列表页隐藏部分不想看到的订单
+     */
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
 
     /**
      * 微信订单号
@@ -388,18 +393,16 @@ public class Order implements Serializable {
         this.unit = unit;
     }
 
-    public Boolean isDeleted() { return state >= 100; }
+    public Boolean getDeleted() { return isDeleted; }
+
+    public void setDeleted(Boolean deleted) { isDeleted = deleted; }
 
     public void delete() {
-        if (state < 100) {
-            state += 100;
-        }
+        isDeleted = true;
     }
 
     public void undoDelete() {
-        if (state >= 100) {
-            state -= 100;
-        }
+        isDeleted = false;
     }
 
 }
