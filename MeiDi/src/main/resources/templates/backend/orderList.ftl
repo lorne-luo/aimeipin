@@ -69,6 +69,7 @@
                                     <option value="4">已完成</option>
                                     <option value="5">取消中</option>
                                     <option value="6">已取消</option>
+                                    <option value="100">已删除</option>
                                 </select>
                             </th>
                             <th style="max-width:130px">备注</th>
