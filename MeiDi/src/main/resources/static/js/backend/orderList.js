@@ -185,17 +185,65 @@ function createTable(result) {
             str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">完成</a> ';
             str += ' <a href="javascript:confirmCloseOrder(' + order.order.id + ',6);" class="btn btn-danger">取消</a> ';
         }
+
+        if (order.order.state == 1 || (order.order.state < 100 && order.order.state > 5)) {
+            str += ' <a href="javascript:confirmDeleteOrder(' + order.order.id + ');" class="btn btn-danger">删除</a> ';
+        }else if (order.order.state >= 100) {
+            str += ' <a href="javascript:confirmUndoDeleteOrder(' + order.order.id + ');" class="btn btn-warning">恢复</a> ';
+        }
+
         str += '</td>' +
             '</tr>';
         $('#addList').append(str);
     });
 }
 
-function confirmCloseOrder(orderId,state){
-    var result = confirm('确定取消此订单?');
-    if(result){
-        closeOrder(orderId,state);
+function confirmUndoDeleteOrder(orderId){
+    if(confirm('确定恢复此订单?')){
+        undoDeleteOrder(orderId);
     }
+}
+
+function undoDeleteOrder(orderId) {
+    $.ajax({
+        url: BASE_JS_URL + '/backend/undoDeleteOrder',
+        data: {
+            'orderId': orderId
+        },
+        type: 'post',
+        dataType: 'json',
+        success: function (data) {
+            if (data.ret == 0) {
+                getList(pageNumber);
+            } else {
+                alert("操作失败，请稍后再试！");
+            }
+        }
+    });
+}
+
+function confirmDeleteOrder(orderId){
+    if(confirm('被删除的订单将不在正常订单中显示,\n但仍可以进入已删除订单列表中恢复.\n\n确定删除此订单? ')){
+        deleteOrder(orderId);
+    }
+}
+
+function deleteOrder(orderId) {
+    $.ajax({
+        url: BASE_JS_URL + '/backend/deleteOrder',
+        data: {
+            'orderId': orderId
+        },
+        type: 'post',
+        dataType: 'json',
+        success: function (data) {
+            if (data.ret == 0) {
+                getList(pageNumber);
+            } else {
+                alert("操作失败，请稍后再试！");
+            }
+        }
+    });
 }
 
 var dialog = new Dialog({
@@ -241,6 +289,12 @@ function submitRemarks() {
     })
 }
 
+function confirmCloseOrder(orderId,state){
+    if(confirm('确定取消此订单?')){
+        closeOrder(orderId,state);
+    }
+}
+
 function closeOrder(orderId, state) {
     $.ajax({
         url: BASE_JS_URL + '/backend/closeOrder',
@@ -252,7 +306,6 @@ function closeOrder(orderId, state) {
         dataType: 'json',
         success: function (data) {
             if (data.ret == 0) {
-                alert("操作成功！");
                 getList(pageNumber);
             } else {
                 alert("操作失败，请稍后再试！");
@@ -260,7 +313,6 @@ function closeOrder(orderId, state) {
         }
     });
 }
-
 
 var dialog3 = new Dialog({
     dialogtext: "<div class='pr bgf6'><p class='p10 tal bgWhite fs20 p555'>加积分</p><span class='close'></span><div class='pt40 tac'><input type='text' class='myform-control w340 p10 fs20 integral'><div class='tac pb30  mt60'><a href='javascript:addIntegral();' class='btn btn-success'>提交</a></div></div>",
@@ -340,6 +392,9 @@ function getOrderState(state) {
             return "已取消(未付款)";
         case 9:
             return "已取消(已退款)";
+        default:
+            if (state >= 100)
+            return "已删除";
     }
 }
 
