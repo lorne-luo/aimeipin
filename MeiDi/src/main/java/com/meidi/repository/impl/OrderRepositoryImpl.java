@@ -30,15 +30,20 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
             sql += " and mo.flag = ? ";
             list.add(flag);
         }
-        if (!MdCommon.isEmpty(state) && state > 0) {
+
+        if (!MdCommon.isEmpty(state) && state < 0){
+            sql += " and mo.state < 100 "; // 不显示已删除订单
+        }else if (!MdCommon.isEmpty(state) && state > 0) {
             if(state < 6){
                 sql += " and mo.state = ? ";
-            }else{
+            }else if(state < 100){ // 6 <> 100 已取消
+                sql += " and mo.state >= ? and mo.state < 100 ";
+            }else if(state ==100){ // > 100 已删除
                 sql += " and mo.state >= ? ";
             }
-
             list.add(state);
         }
+
         if (!MdCommon.isEmpty(launchID) && launchID > 0) {
             sql += " and mo.launch_id = ? ";
             list.add(launchID);

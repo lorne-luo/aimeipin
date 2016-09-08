@@ -14,11 +14,11 @@
 <#--<script src="${PATH}/ueditor/ueditor.parse.js"></script>-->
     <script>
         window.UEDITOR_HOME_URL = BASE_JS_URL + "/ueditor/";
-        <#--uParse("#description",{-->
-        <#--rootPath:'${PATH}/ueditor'-->
-        <#--});-->
     </script>
-
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="${PATH}/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="${PATH}/ueditor/ueditor.all.min.js"></script>
 </head>
 <body>
 
@@ -33,7 +33,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <div class="col-lg-12">
-                <form class="createVenueForm" role="form" method="post" id="addCommodity" name="addCommodity">
+                <form class="createVenueForm" role="form" method="post" id="addCommodity" name="addCommodity" autocomplete="off">
                     <input type="hidden" name="id" value="#{commodity.id}">
 
                     <div class="form-group">
@@ -213,14 +213,9 @@
                     <div class="form-group" id="remarks">
                         <input type="hidden" name="remarks" class="remarks">
                         <label><span class="star mr6"></span>支付说明：</label>
-                        <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
-                        <script id="container_remarks" name="content_remarks" type="text/plain">
 
-                        </script>
-                        <!-- 配置文件 -->
-                        <script type="text/javascript" src="${PATH}/ueditor/ueditor.config.js"></script>
-                        <!-- 编辑器源码文件 -->
-                        <script type="text/javascript" src="${PATH}/ueditor/ueditor.all.js"></script>
+                        <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
+                        <script id="container_remarks" name="content_remarks" type="text/plain"></script>
                         <!-- 实例化编辑器 -->
                         <script type="text/javascript">
                             var ue_remarks = UE.getEditor('container_remarks');
@@ -232,18 +227,15 @@
                     <div class="form-group" id="description">
                         <input type="hidden" name="description" class="description">
                         <label><span class="star mr6"></span>商品描述：</label>
+
                         <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
-                        <script id="container" name="content" type="text/plain">
-
-                        </script>
-
+                        <script id="container" name="content" type="text/plain"></script>
                         <!-- 实例化编辑器 -->
                         <script type="text/javascript">
                             var ue = UE.getEditor('container');
                             ue.ready(function () {
                                 ue.setContent('${commodity.description}');
                             });
-                            //                            var config = UE.getOpt('config');
                         </script>
                     </div>
                     <div class="text-center col-lg-10 mt20">
