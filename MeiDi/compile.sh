@@ -12,8 +12,8 @@ rm target/* -rf
 mvn package
 pushd .
 cd target/meidi/WEB-INF/
-zip -qr classes-$1.zip classes/
-cp -f classes-$1.zip ../../../backups/
-cp -f classes-$1.zip /opt/webapps/meidi/WEB-INF/
+zip -qr $1.zip classes/
+cp -f $1.zip ../../../backups/
+cp -f $1.zip /opt/webapps/meidi/WEB-INF/
 popd
 cp -n target/meidi/WEB-INF/lib/* /opt/webapps/meidi/WEB-INF/lib/
