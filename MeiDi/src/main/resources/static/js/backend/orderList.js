@@ -54,6 +54,7 @@ function getList(page) {
     $("#pagediv").myPagination({
         cssStyle: 'scott',
         currPage: pageNumber,
+        pageNumber: 20,
         ajax: {
             on: true,
             url: BASE_JS_URL + "/backend/getOrderList",
