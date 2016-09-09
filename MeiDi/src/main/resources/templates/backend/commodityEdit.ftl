@@ -38,7 +38,7 @@
 
                     <div class="form-group">
                         <label><span class="star mr6">*</span>商品类型：</label>
-                        <select name="flag" class="flag" disabled>
+                        <select name="flag" class="flag">
                             <option value="1" <#if commodity.flag == 1>selected</#if>>拼团</option>
                             <option value="2" <#if commodity.flag == 2>selected</#if>>福袋</option>
                             <option value="3" <#if commodity.flag == 3>selected</#if>>特惠</option>
