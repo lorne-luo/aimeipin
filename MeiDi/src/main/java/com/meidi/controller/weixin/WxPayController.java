@@ -284,10 +284,6 @@ public class WxPayController extends WxBaseController {
      * @param order
      */
     private void orderHandle(Order order) throws IOException {
-
-        if(order.getState() >1 ){
-           return;
-        }
         //订单已支付
         order.setState(2);
         order = orderRepository.save(order);
