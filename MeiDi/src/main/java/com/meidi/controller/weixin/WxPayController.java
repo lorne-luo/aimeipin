@@ -290,6 +290,8 @@ public class WxPayController extends WxBaseController {
         }
         //订单已支付
         order.setState(2);
+        order = orderRepository.save(order);
+
         if (order.getFlag() == 1) {
             //以下处理拼团逻辑
             if (MdCommon.isEmpty(order.getLaunchId()) && order.getBookingFlag() == 1) {//如果是发起拼团
@@ -323,6 +325,7 @@ public class WxPayController extends WxBaseController {
                 groupLaunch = groupLaunchRepository.save(groupLaunch);
                 //设置订单的 拼团属性
                 order.setLaunchId(groupLaunch.getId());
+                order = orderRepository.save(order);
 
                 //成功发起拼团
                 //发消息
