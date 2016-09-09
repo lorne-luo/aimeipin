@@ -633,7 +633,7 @@ public class BackEndController implements MdConstants {
                         GroupLaunchUser firstGroupUser = allGroupUsers.get(0);
                         if (firstGroupUser.getWxOpenid().equals(order.getWxOpenid())) { //确认是团长订单
                             if (allGroupUsers.size() > 1) { //团内不止一人
-                                //后继成员顶替为团长
+                                //团长退出,后续参团成员顶替团长 x2
                                 GroupLaunchUser secondGroupUser = allGroupUsers.get(1);
                                 secondGroupUser.setFlag(1);
                                 List<Order> secondUserOrders = orderRepository.findByWxOpenidAndLaunchIdOrderByCreateTimeDesc(secondGroupUser.getWxOpenid(), order.getLaunchId());
@@ -643,7 +643,10 @@ public class BackEndController implements MdConstants {
                                 groupLaunchUserRepository.save(secondGroupUser);
                                 orderRepository.save(secondUserOrder);
                                 groupLaunchUserRepository.delete(firstGroupUser);
-                                order.setLaunchId(null);
+                                // FIXME: 如何处理退出的团长
+//                                order.setLaunchId(null);
+                                order.setBookingFlag(4); //将取消的团长改为参团者
+                                orderRepository.save(order);
                             } else {//该团只有团长一人
                                 GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
                                 groupLaunch.setState(3); //唯一的团长取消,拼团失败

@@ -349,7 +349,7 @@ public class BusinessController extends WxBaseController {
             Map launch = new HashMap<>();
             launch.put("groupLaunch", groupLaunch);
             for (GroupLaunchUser groupLaunchUser : groupLaunch.getGroupLaunchUserList()) {
-                if (groupLaunchUser.getFlag() == 1) {
+                if (groupLaunchUser.getFlag() == 1) { // 团长
                     User user = userRepository.findByWxOpenid(groupLaunchUser.getWxOpenid());
                     launch.put("headimgurl", user.getHeadimgurl());
                     launch.put("nickname", user.getNickname());
@@ -590,10 +590,19 @@ public class BusinessController extends WxBaseController {
                             //拼团失败
                             WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
                             WxTemplate.groupClose(wxTicket.getToken(), order);
-                        }else if (userFlag == 1){ //团长退出,后续参团成员顶替团长
+                        }else if (userFlag == 1){ //团长退出,后续参团成员顶替团长 x2
                             GroupLaunchUser firstLaunchUser = groupLaunchUserList.get(0);
                             firstLaunchUser.setFlag(1);
                             groupLaunchUserRepository.save(firstLaunchUser);
+                            List<Order> nextOrders=orderRepository.findByWxOpenidAndLaunchIdOrderByCreateTimeDesc(firstLaunchUser.getWxOpenid(),order.getLaunchId());
+                            if (nextOrders!=null && nextOrders.size()>0){
+                                Order nextOrder=nextOrders.get(0);
+                                nextOrder.setBookingFlag(1);
+                                orderRepository.save(nextOrder);
+                            }
+
+                            order.setBookingFlag(4); //将取消的团长改为参团者
+                            orderRepository.save(order);
                         }
 
                         order.setLaunchId(null);

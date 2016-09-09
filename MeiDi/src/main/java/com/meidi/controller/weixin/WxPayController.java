@@ -337,15 +337,17 @@ public class WxPayController extends WxBaseController {
                 List<GroupLaunchUser> groupLaunchUserList = groupLaunch.getGroupLaunchUserList();
 
                 GroupLaunchUser groupLaunchUser = groupLaunchUserRepository.findByLaunchIdAndWxOpenid(order.getLaunchId(),order.getWxOpenid());
-                if(MdCommon.isEmpty(groupLaunchUser)){
+                if(MdCommon.isEmpty(groupLaunchUser)){ // 该拼团userlist里没有当前用户
                     groupLaunchUser = new GroupLaunchUser();
                     groupLaunchUser.setWxOpenid(order.getWxOpenid());
+                    // FIXME: 若有已支付用户取消订单,此flag顺序可能有重复
                     groupLaunchUser.setFlag(groupLaunchUserList.size() + 1);
                     groupLaunchUserList.add(groupLaunchUser);
+                    groupLaunch.setGroupLaunchUserList(groupLaunchUserList);
+                    groupLaunchRepository.save(groupLaunch);
 
                     if (groupLaunchUserList.size() == groupLaunch.getPeopleNumber()) {
                         groupLaunch.setState(1);//拼团成功 拼团结束
-                        groupLaunch.setGroupLaunchUserList(groupLaunchUserList);
                         groupLaunchRepository.save(groupLaunch);
 
                         //拼团成功 给团内每个用户发消息
@@ -369,8 +371,6 @@ public class WxPayController extends WxBaseController {
                         WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
                         WxTemplate.joinGroup(wxTicket.getToken(), order);
                     }
-                }else{
-
                 }
             }
         }
