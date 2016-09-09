@@ -8,7 +8,7 @@
     <script type="text/javascript" src="${PATH}/js/common.js"></script>
     <script type="text/javascript" src="${PATH}/js/DialogClass.js"></script>
     <script type="text/javascript" src="${PATH}/js/jquery.lazyload.js"></script>
-    <script type="text/javascript" src="${PATH}/slick/slick.js"></script>
+    <script type="text/javascript" src="${PATH}/slick/slick.min.js"></script>
     <script type="text/javascript" src="${PATH}/js/constants.js"></script>
     <script type="text/javascript" src="${PATH}/js/msgbox/msgbox.js"></script>
     <script type="text/javascript" src="${PATH}/js/mobiscroll.custom-2.17.1.min.js"></script>
