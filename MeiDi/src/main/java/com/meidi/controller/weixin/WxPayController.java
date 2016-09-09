@@ -131,11 +131,10 @@ public class WxPayController extends WxBaseController {
                 }
                 try {
                     orderHandle(order);//处理订单
+                    orderRepository.save(order);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-                orderRepository.save(order);
             } else {
                 result_code = "FAIL";
                 return_msg = MdCommon.null2String(result.get("err_code_des"));
@@ -231,7 +230,7 @@ public class WxPayController extends WxBaseController {
                             order.setTransactionId(transaction_id);
                         }
                         //以下逻辑为确保如果微信回调 notifyUrl处理失败时 的情况
-                        if (order.getState() == 2) {//表示在回调时以处理
+                        if (order.getState() == 2) {//已支付,表示在回调时以处理
                             //以处理则不做任何操作
                         } else {//回调未处理
                             orderHandle(order);
@@ -331,6 +330,8 @@ public class WxPayController extends WxBaseController {
                 //一人成团,开团即拼团成功
                 if (groupLaunch.getPeopleNumber()==1){
                     WxTemplate.groupLaunchOk(wxTicket.getToken(), order);
+                    groupLaunch.setState(1);
+                    groupLaunch = groupLaunchRepository.save(groupLaunch);
                 }
             } else if (!MdCommon.isEmpty(order.getLaunchId()) && order.getBookingFlag() == 4) {//参团
                 GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
