@@ -50,7 +50,7 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
             }
             list.add(state);
         } else if (!MdCommon.isEmpty(state) && state == -1) {
-            sql += " and mo.is_deleted != 1 ";
+            sql += " and (mo.is_deleted != 1 or mo.is_deleted is null)";
         } else if (!MdCommon.isEmpty(state) && state == -2) {
             sql += " and mo.is_deleted = 1 ";
         } else if (!MdCommon.isEmpty(state) && state == -3) {
