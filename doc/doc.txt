@@ -50,4 +50,4 @@ INSERT INTO `md_category` VALUES (1,'皮肤','皮肤'),(2,'微整','皮肤'),(3,
 ALTER TABLE md_commodity ADD category_id INT after city_id , ADD CONSTRAINT `FK_commodity_category_id` FOREIGN KEY (`category_id`) REFERENCES `md_category` (`id`);
 
 v1.0.5
-ALTER TABLE md_order ADD is_deleted tinyint(1) DEFAULT 0 after booking_time;
+ALTER TABLE md_order ADD is_deleted tinyint(1) NOT NULL DEFAULT 0 after booking_time;
