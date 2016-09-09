@@ -22,6 +22,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -30,6 +31,7 @@ import java.util.*;
 @Controller
 @RequestMapping("/pay")
 public class WxPayController extends WxBaseController {
+    private static final SimpleDateFormat datetimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Resource
     private OrderRepository orderRepository;
@@ -345,11 +347,16 @@ public class WxPayController extends WxBaseController {
                     groupLaunchUser.setFlag(groupLaunchUserList.size() + 1);
                     groupLaunchUserList.add(groupLaunchUser);
                     groupLaunch.setGroupLaunchUserList(groupLaunchUserList);
-                    groupLaunchRepository.save(groupLaunch);
+                    groupLaunch = groupLaunchRepository.save(groupLaunch);
+
+                    System.out.println("[" + datetimeFormat.format(new Date()) +
+                            "] $$$$$$$$ add group user wxopenid=" + order.getWxOpenid() +
+                            " flag=" + groupLaunchUser.getFlag().toString() +
+                            " for launch_id=" + groupLaunch.getId().toString());
 
                     if (groupLaunchUserList.size() == groupLaunch.getPeopleNumber()) {
                         groupLaunch.setState(1);//拼团成功 拼团结束
-                        groupLaunchRepository.save(groupLaunch);
+                        groupLaunch = groupLaunchRepository.save(groupLaunch);
 
                         //拼团成功 给团内每个用户发消息
                         WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
