@@ -26,7 +26,7 @@ cp -n lib/* $DEPLOYDIR/lib/
 
 /usr/local/tomcat8/bin/shutdown.sh
 rm -rf $DEPLOYDIR/classes/
-cp classes $DEPLOYDIR/
+cp -r classes $DEPLOYDIR/
 /usr/local/tomcat8/bin/startup.sh
 
 popd
