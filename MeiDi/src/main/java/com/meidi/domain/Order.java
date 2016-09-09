@@ -127,7 +127,7 @@ public class Order implements Serializable {
      * 假删除标志, 订单列表页隐藏部分不想看到的订单
      */
     @Column(name = "is_deleted")
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
 
     /**
      * 微信订单号
