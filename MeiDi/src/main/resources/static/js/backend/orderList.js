@@ -188,9 +188,13 @@ function createTable(result) {
                 str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">完成</a> ';
                 str += '<a href="javascript:confirmCloseOrder(' + order.order.id + ',6);" class="btn btn-danger">取消</a> ';
             }
-            if (order.order.state == 1 || (order.order.state < 100 && order.order.state > 5)) {
+            if(order.order.state == 1){
+                str += '<a href="javascript:confirmCloseOrder(' + order.order.id + ',8);" class="btn btn-danger">取消</a> ';
+            }
+            if (order.order.state == 1 || order.order.state > 5) {
                 str += '<a href="javascript:confirmDeleteOrder(' + order.order.id + ');" class="btn btn-danger">删除</a> ';
             }
+
         }
 
         str += '</td>' +
@@ -388,7 +392,7 @@ function getOrderState(state) {
         case 6:
             return "已取消(已退款)";
         case 7:
-            return "已取消(不退款)";
+            return "已取消(未退款)";
         case 8:
             return "已取消(未支付)";
         case 9:
