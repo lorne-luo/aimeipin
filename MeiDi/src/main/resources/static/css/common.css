@@ -1589,12 +1589,14 @@ a.baseBtn.nof {
 .itemlist .righticon.askdz {
     background: url(../images/ask/g.png) center no-repeat;
     width: 446px;
+    margin-left:12px;
+    padding-left:10px;
 }
 
 .itemlist .price.askpic {
-    padding-top: 30px;
+    padding-top: 25px;
     padding-left: 10px;
-    padding-bottom: 6px;
+    margin-bottom:10px;
 }
 
 .itemlist .righticon.askdz a {
