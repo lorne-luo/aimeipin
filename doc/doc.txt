@@ -45,7 +45,7 @@ CREATE TABLE `md_category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
-INSERT INTO `md_category` VALUES (1,'皮肤','皮肤'),(2,'微整','皮肤'),(3,'手术','皮肤'),(4,'发现','皮肤');
+INSERT INTO `md_category` VALUES (1,'皮肤','皮肤'),(2,'微整','皮肤'),(3,'手术','皮肤'),(4,'发现','皮肤'),(5,'咨询','咨询');
 
 ALTER TABLE md_commodity ADD category_id INT after city_id , ADD CONSTRAINT `FK_commodity_category_id` FOREIGN KEY (`category_id`) REFERENCES `md_category` (`id`);
 
