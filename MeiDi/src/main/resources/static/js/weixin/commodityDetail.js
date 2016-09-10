@@ -45,8 +45,13 @@ function getGroupLaunch() {
 }
 
 function createTable(result) {
+
+    if (result.length>0){
+        $('.addList').append('<p class="tal fs16">本项目有下列拼团正在进行中, 点击“去参团”参加:</p>');
+    }
+
     $.each(result, function (index, launch) {
-        var str = '<div class="pt20 pb20 goutuanbox mt16">' +
+        var str = '<div class="pt20 pb20 goutuanbox mt10">' +
             '<div class="clearfix gogroup fs18">' +
             '<div class="fl msgbox">' +
             ' <div class="twoimg pr">' +
@@ -56,8 +61,8 @@ function createTable(result) {
             ' <p class="headimg">' + launch.nickname + '</p>' +
             ' </div>' +
 
-            '<div class="fl  mr10 tar">' +
-            ' <p class="mt20">' +
+            '<div class="fl ml10 mr30 tar fs16 line20">' +
+            ' <p>' +
             ' 正在发起拼团，还差<span>' + (launch.groupLaunch.peopleNumber - launch.groupLaunch.groupLaunchUserList.length) + '</span>人成团' +
             ' </p>' +
             ' <p class="times" id="times_' + index + '" endtime="' + launch.groupLaunch.endTime +'">剩余时间：' +
@@ -67,7 +72,7 @@ function createTable(result) {
             '  </p>' +
             '  </div>' +
             '   <div class="fl">' +
-            '   <a href="javascript:joinGroup(' + launch.groupLaunch.id +');" class="mt20"></a>' +
+            '   <a href="javascript:joinGroup(' + launch.groupLaunch.id +');"></a>' +
             '  </div>' +
 
             '  </div>' +

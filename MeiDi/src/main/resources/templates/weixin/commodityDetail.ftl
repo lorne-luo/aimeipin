@@ -184,9 +184,9 @@
         </div>
     </div>
 </#if>
-    <span class="addList">
+    <div class="addList mt20">
 
-    </span>
+    </div>
 
     <ul class="tabClick">
         <li><a href="#description">项目详情</a></li>
