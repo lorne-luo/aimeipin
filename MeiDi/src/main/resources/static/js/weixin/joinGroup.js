@@ -54,7 +54,7 @@ function checkJoinGroup(launchId) {
 }
 
 //获取猜你喜欢的数据
-//同地区下的项目
+//同地区下同类别项目
 function youLike() {
     var commodityId = $('#commodityId').val();
     var cityId = $('#cityId').val();

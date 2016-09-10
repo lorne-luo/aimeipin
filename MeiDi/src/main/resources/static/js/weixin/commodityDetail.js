@@ -17,6 +17,7 @@ $(function () {
 
     getGroupLaunch();
 
+    youLike();
 });
 
 /**
@@ -129,3 +130,119 @@ function joinGroup(id) {
     });
 }
 
+
+//获取猜你喜欢的数据
+//同地区下同类别项目
+function youLike() {
+    var commodityId = $('.commodityId').val();
+    var cityId = $('.cityId').val();
+    $.ajax({
+        url: BASE_JS_URL + '/business/getYouLikeCommodity',
+        data: {
+            'cityId': cityId,
+            'commodityId': commodityId
+        },
+        type: 'post',
+        dataType: 'json',
+        success: function (data) {
+            if (data.commodityList == null || data.commodityList.length <= 0) {
+                $('#youlike').parent().hide();
+                return;
+            }
+            createTable_youlike(data.commodityList);
+        }
+    });
+}
+
+function createTable_youlike(commodityList) {
+
+    $.each(commodityList, function (index, commodity) {
+        // only show first 5
+        if (index > 4){
+            return;
+        }
+
+        var str = '';
+        if (commodity.flag == 1) {//拼团项目
+            str += '<div class="itemlist shadowall mb20">'+
+                '  <div class="focusImgs pr ">' +
+                '    <div class="slider multiple-items">' +
+                '      <div>' +
+                '        <a href="javascript:;">';
+            if (commodity.commodityPhotoList != null && commodity.commodityPhotoList.length > 0) {
+                str += '          <img src=' + IMAGE_FORMAL_URL + '/' + commodity.commodityPhotoList[0].imageName + '>';
+            }
+            str += '        </a>' +
+                '      </div>' +
+                '    </div>' +
+                '  </div>' +
+                '  <div class="tal">' +
+                '    <p class="pl16 line24 fs20 pr16 mt4">' + commodity.name + '</p>' +
+                '    <div class=" pr price">' +
+                '      <div class="lefticon "></div>' +
+                '      <div class="righticon cleafix pr ">' +
+                '        <span class=" ml50 mr10 fl fs16">原价：<del>' + commodity.price / 100 + '</del></span>' +
+                '        <span class="fs24 fl">' + commodity.peopleNumber + '人团：¥' + commodity.discountPrice / 100 + '</span>' +
+                '        <a href="' + BASE_JS_URL + '/business/commodityDetailPage/' + commodity.id + '"></a>' +
+                '      </div>' +
+                '    </div>' +
+                '  </div>' +
+                '</div>';
+        } else if (commodity.flag == 2) {//福袋
+            str += '<div class="itemlist shadowall mb20">'+
+                '  <div class="focusImgs pr ">' +
+                '    <div class="slider multiple-items">' +
+                '      <div>' +
+                '        <a href="javascript:;">';
+            if (commodity.commodityPhotoList != null && commodity.commodityPhotoList.length > 0) {
+                str += '          <img src=' + IMAGE_FORMAL_URL + '/' + commodity.commodityPhotoList[0].imageName + '>';
+            }
+            str += '        </a>' +
+                '      </div>' +
+                '    </div>' +
+                '  </div>' +
+                '  <div class="tal">' +
+                '    <p class="pl16 line24 fs20 pr16 mt4">' + commodity.name + '</p>' +
+                '  <div class=" pr price">' +
+                '    <div class="lefticon fu"></div>' +
+                '      <div class="righticon cleafix pr qiang">' +
+                '        <span class=" ml50 mr10 fl fs16">原价：<del>' + commodity.price / 100 + '</del></span>' +
+                '        <span class="fs24 fl">现价：¥' + commodity.discountPrice / 100 + '</span>' +
+                '        <a href="' + BASE_JS_URL + '/business/commodityDetailPage/' + commodity.id + '"></a>' +
+                '      </div>' +
+                '    </div>' +
+                '  </div>' +
+                '</div>';
+        } else if (commodity.flag == 3) {//特惠
+            str += '<div class="itemlist shadowall mb20">'+
+                '  <div class="focusImgs pr ">' +
+                '    <div class="slider multiple-items">' +
+                '      <div>' +
+                '        <a href="javascript:;">';
+
+            if (commodity.commodityPhotoList != null && commodity.commodityPhotoList.length > 0) {
+                str += '          <img src=' + IMAGE_FORMAL_URL + '/' + commodity.commodityPhotoList[0].imageName + '>';
+            }
+
+            str += '        </a>' +
+                '      </div>' +
+                '    </div>' +
+                '  </div>' +
+                '  <div class="tal">' +
+                '    <p class="pl16 pr16 line24 fs20 mt4">' + commodity.name + '</p>' +
+                '    <div class=" pr price">' +
+                '      <div class="lefticon sale"></div>' +
+                '      <div class="righticon cleafix pr qiang">' +
+                '        <span class=" ml50 mr10 fl fs16">原价：<del>' + commodity.price / 100 + '</del></span>' +
+                '        <span class="fs24 fl">现价：¥' + commodity.discountPrice / 100 + '</span>' +
+                '        <a href="' + BASE_JS_URL + '/business/commodityDetailPage/' + commodity.id + '"></a>' +
+                '      </div>' +
+                '    </div>' +
+                '  </div>' +
+                '</div>';
+        }
+
+        $('.youlikeList').append(str);
+    });
+
+}

@@ -1111,6 +1111,10 @@ a.blue {
     line-height: 16px;
 }
 
+.line18 {
+    line-height: 18px;
+}
+
 .line20 {
     line-height: 20px;
 }
@@ -1526,10 +1530,8 @@ a.baseBtn.nof {
 .zx .tuan{font-size: 12px;margin-left:11px;font-weight: bold;}
 
 .itemlist .price {
-    height: 50px;
     width: 500px;
-    padding-top: 20px;
-    padding-left: 30px;
+    padding: 20px 0 20px 30px;
 }
 
 .itemlist .lefticon {
@@ -1732,9 +1734,8 @@ a.baseBtn.nof {
     border-bottom: 1px solid #f10202;
 }
 .activeills {
-    border-top: 1px solid #f10202;
-    border-bottom: 1px solid #f10202;
-    font-size: 12px;
+    border-top: 1px solid #ff4d7d;
+    border-bottom: 1px solid #ff4d7d;
 }
 
 .casebtn {
