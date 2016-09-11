@@ -35,6 +35,7 @@ $(function () {
             var str = '<div class="form-group">' +
                 ' <label><span class="star mr6">*</span>团购价：</label>' +
                 '<input class="form-control discountPrice" name="discountPriceDouble"/>' +
+                '<span class="inlineblock ml10">元</span>' +
                 '</div>' +
                 '<div class="form-group">' +
                 '<label><span class="star mr6">*</span>拼团人数：</label>' +
@@ -57,6 +58,7 @@ $(function () {
             var str = '<div class="form-group">' +
                 ' <label><span class="star mr6">*</span>现价：</label>' +
                 '<input class="form-control discountPrice" name="discountPriceDouble"/>' +
+                '<span class="inlineblock ml10">元</span>' +
                 '</div>';
             $('#cmbox').append(str);
             $('#djbox').html('');
@@ -68,6 +70,7 @@ $(function () {
             var str = '<div class="form-group">' +
                 ' <label><span class="star mr6">*</span>现价：</label>' +
                 '<input class="form-control discountPrice" name="discountPriceDouble"/>' +
+                '<span class="inlineblock ml10">元</span>' +
                 '</div>';
             $('#cmbox').append(str);
             $('#djbox').html('');
@@ -78,6 +81,7 @@ $(function () {
             $('#djbox').append(str);
 
         }
+
         discount = $(".discount");//折扣系数
         discountPrice = $(".discountPrice");//折扣价格
         price = $(".price");//价格
