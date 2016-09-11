@@ -30,7 +30,7 @@
         <div class="col-lg-10">
             <div class="row">
                 <div class="col-lg-12">
-                    <h4 class="page-header">购买须知</h4>
+                    <h4 class="page-header">购买须知 & 默认支付说明</h4>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -66,7 +66,7 @@
                     </script>
                     <br/>
 
-                    <h5>支付说明</h5>
+                    <h5>默认支付说明</h5>
                     <!-- 加载编辑器的容器 -->
                     <script id="payment_container" name="content" type="text/plain"></script>
 
