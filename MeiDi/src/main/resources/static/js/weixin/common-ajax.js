@@ -191,7 +191,7 @@ function createTable(commodityList) {
                 '  </div>' +
                 '</div>' +
                 '<div class="tal">' +
-                '  <p class="pl16 line24 fs16 pr18 mt6">' + commodity.name + '</p>' +
+                '  <p class="pl16 line24 fs20 pr18 mt6">' + commodity.name + '</p>' +
                 '  <div class=" pr price askpic">' +
                 '    <div class="lefticon dzf"></div>' +
                 '    <div class="righticon cleafix pr askdz">' +
