@@ -1767,7 +1767,7 @@ a.baseBtn.nof {
 }
 
 .gogroup {
-    width: 90%;
+    width: 95%;
     margin: 4px auto;
     font-size: 12px;
 }
@@ -2688,7 +2688,6 @@ a.baseBtn.nof {
     .zx .itemlist .focusImgs img{height:172px;}
     .cancelboximg{height:200px;}
     .cancelboximg img{height:200px;}
-    .gogroup{width:76%;}
     .detailnav {
         height: 50px;
         width: 100%;
@@ -2827,7 +2826,6 @@ a.baseBtn.nof {
     .zx .itemlist .focusImgs img{height:190px;}
     .cancelboximg{height:200px;}
     .cancelboximg img{height:200px;}
-    .gogroup{width:69%;}
     .detailnav {
         height: 56px;
         width: 100%;
@@ -2946,6 +2944,5 @@ a.baseBtn.nof {
     .zx .itemlist .focusImgs img{height:200px;}
     .cancelboximg{height:200px;}
     .cancelboximg img{height:200px;}
-    .gogroup{width:86%;}
 }
 
