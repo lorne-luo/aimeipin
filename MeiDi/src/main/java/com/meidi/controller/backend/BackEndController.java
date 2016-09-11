@@ -937,7 +937,8 @@ public class BackEndController implements MdConstants {
     @RequestMapping(value = "/updateBuyNotice", method = RequestMethod.POST)
     public Map updateBuyNotice(HttpServletRequest request,
                                @RequestParam(value = "flag") Integer flag,
-                               @RequestParam(value = "description") String description) {
+                               @RequestParam(value = "description") String description,
+                               @RequestParam(value = "paymentNote") String paymentNote) {
         MdModel model = new MdModel(request);
         BuyNotice buyNotice = buyNoticeRepository.findByFlag(flag);
         if (MdCommon.isEmpty(buyNotice)) {
@@ -946,6 +947,7 @@ public class BackEndController implements MdConstants {
         }
         buyNotice.setCreateTime(new Date());
         buyNotice.setDescription(description);
+        buyNotice.setPaymentNote(paymentNote);
         buyNoticeRepository.save(buyNotice);
 
         return model;
