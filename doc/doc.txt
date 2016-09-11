@@ -51,3 +51,7 @@ ALTER TABLE md_commodity ADD category_id INT after city_id , ADD CONSTRAINT `FK_
 
 v1.0.5
 ALTER TABLE md_order ADD is_deleted tinyint(1) DEFAULT 0 after booking_time;
+
+v1.0.6
+ALTER TABLE buy_notice ADD payment_note text after description;
+UPDATE buy_notice SET payment_note='<p>· 预约项目到院支付全款后，系统退还订金；</p><p>· 福袋可随时取消订单，系统退还订金；</p><p>· 拼团成功前，可随时取消订单，系统退还订金；</p><p>· 拼团成功后，因个人原因取消订单，订金不予退还；</p><p>· 已接受聚会美线下服务（面诊、接送机等），但未到院消费，订金不予退还。</p>';

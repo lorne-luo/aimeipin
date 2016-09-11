@@ -195,6 +195,8 @@ public class BusinessController extends WxBaseController {
 
         // 可以参团
         model.put("commodity", commodity);
+        BuyNotice buyNotice = buyNoticeRepository.findByFlag(commodity.getFlag());
+        model.put("buyNotice", buyNotice);
         if (flag == 4) {//参团支付 单独处理
             return new ModelAndView("weixin/joinGroupPayment", model);
         } else {
