@@ -1543,7 +1543,7 @@ a.baseBtn.nof {
     background: url(../images/index/tuan.png) center no-repeat;
     background-size: 100%;
     height: 38px;
-    width: 494px;
+    width: 98%;
     line-height: 38px;
 }
 
@@ -1567,12 +1567,13 @@ a.baseBtn.nof {
     background: url(../images/index/sale.png) center no-repeat;
     height: 57px;
     width: 61px;
-    top: 5px;
     left: 18px;
 }
 
 .itemlist .righticon.qiang {
     background: url(../images/index/qiang.png) center no-repeat;
+    background-size: 100%;
+    width:98%;
 }
 
 .itemlist .lefticon.dzf {
@@ -1763,7 +1764,7 @@ a.baseBtn.nof {
 }
 
 .gogroup {
-    width: 95%;
+    width: 98%;
     margin: 4px auto;
     font-size: 12px;
 }
