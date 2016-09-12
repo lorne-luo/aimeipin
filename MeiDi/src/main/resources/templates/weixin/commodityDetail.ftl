@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>项目详情</title>
+    <title>${commodity.name}</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <#include "header.ftl"/>
@@ -114,11 +114,19 @@
         _MEIQIA('withoutBtn', true);
         </#if>
     </script>
+    <style>
+        .tabClick{ background: #f3f3f3; overflow: hidden;margin-top: 10px;border-bottom:2px solid #ff4d7d;}
+        .tabClick li{ height:40px; line-height: 40px; width: 33%; float: left; text-align: center;font-size: 16px;border-right:0px solid #ff4d7d;}
+        .tabClick li.active{ color: #099; transition: 0.1s; font-weight: bold}
+        .tabClick li:not(:last-child){ border-right:1px solid #ddd;}
+    </style>
 </head>
+
 <body style="background:#ffffff">
 <div class="wrapper pr pb80 zx">
     <input type="hidden" value="#{commodity.id}" class="commodityId">
     <input type="hidden" value="${commodity.flag}" class="commodityFlag">
+    <input type="hidden" value="#{commodity.dicCity.id}" class="cityId">
 
     <div class="pl12 pr12 mt20">
         <div class="itemlist shadowall ">
@@ -176,24 +184,42 @@
         </div>
     </div>
 </#if>
-    <span class="addList">
+    <div class="addList mt20">
 
-    </span>
+    </div>
 
+    <ul class="tabClick">
+        <li><a href="#description">项目详情</a></li>
+        <li><a href="#buyNotice">订购须知</a></li>
+        <li><a href="#youlike">猜你喜欢</a></li>
+    </ul>
 
     <div class="casebox pl20 pr20 clearfix tal">
     <#if commodity.caseUrl?exists>
         <div class="casebtn"><a href="${commodity.caseUrl}"></a></div>
     </#if>
 
-        <div id="description" class="">${commodity.description}</div>
+        <div id="description" class="line18">${commodity.description}</div>
     </div>
 
-    <div class="activeills  tal pl10 pr10 pt10 pb10 fs20 buyNotice">
+    <div id="buyNotice" class=" mb10 tal pl10 pr10 pt10 pb10 line18 buyNotice">
+        <section class="fs18" style="display: inline-block; height: 2em; max-width: 100%; line-height: 1em;box-sizing: border-box; border-top: 1.1em solid #ff4d7d; border-bottom: 1.1em solid #ff4d7d; border-right: 1em solid transparent;">
+            <section style="height: 2em; margin-top: -1em; color: white; padding: 0.5em 1em; max-width: 100%; white-space: nowrap;text-overflow: ellipsis;">订购须知</section>
+        </section>
     <#if buyNotice?exists && buyNotice.description?exists>
         ${buyNotice.description}
     </#if>
     </div>
+
+    <div id="youlike" class="tal pl10 pr10 moreclassify clearfix youlike">
+        <section class="fs18" style="display: inline-block; height: 2em; max-width: 100%; line-height: 1em;box-sizing: border-box; border-top: 1.1em solid #ff4d7d; border-bottom: 1.1em solid #ff4d7d; border-right: 1em solid transparent;">
+            <section style="height: 2em; margin-top: -1em; color: white; padding: 0.5em 1em; max-width: 100%; white-space: nowrap;text-overflow: ellipsis;">猜你喜欢</section>
+        </section>
+        <div class="youlikeList pt10">
+
+        </div>
+    </div>
+
     <div class="detailnav clearfix btfix">
         <div class="t1  tt2 fs12">
             <a class="borr fl pt8" href="${PATH}/index">

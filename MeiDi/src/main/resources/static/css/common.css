@@ -1107,6 +1107,10 @@ a.blue {
     line-height: 16px;
 }
 
+.line18 {
+    line-height: 18px;
+}
+
 .line20 {
     line-height: 20px;
 }
@@ -1522,10 +1526,8 @@ a.baseBtn.nof {
 .zx .tuan{font-size: 12px;margin-left:11px;font-weight: bold;}
 
 .itemlist .price {
-    height: 50px;
     width: 500px;
-    padding-top: 20px;
-    padding-left: 30px;
+    padding: 20px 0 20px 30px;
 }
 
 .itemlist .lefticon {
@@ -1728,9 +1730,8 @@ a.baseBtn.nof {
     border-bottom: 1px solid #f10202;
 }
 .activeills {
-    border-top: 1px solid #f10202;
-    border-bottom: 1px solid #f10202;
-    font-size: 12px;
+    border-top: 1px solid #ff4d7d;
+    border-bottom: 1px solid #ff4d7d;
 }
 
 .casebtn {
@@ -1762,7 +1763,7 @@ a.baseBtn.nof {
 }
 
 .gogroup {
-    width: 90%;
+    width: 95%;
     margin: 4px auto;
     font-size: 12px;
 }
@@ -1788,10 +1789,10 @@ a.baseBtn.nof {
 .gogroup a {
     background: url(../images/detail/gogroup.png) center no-repeat;
     background-size: 100%;
-    height: 26px;
-    width: 60px;
+    height: 46px;
+    width: 97px;
     display: inline-block;
-    margin-top:10px;
+    margin-top:0;
 }
 .gogroup p{margin-top: 4px;}
 .gogroup p.headimg{width: 100%;text-overflow: ellipsis;
@@ -2684,7 +2685,6 @@ a.baseBtn.nof {
     .zx .itemlist .focusImgs img{height:172px;}
     .cancelboximg{height:200px;}
     .cancelboximg img{height:200px;}
-    .gogroup{width:76%;}
     .detailnav {
         height: 50px;
         width: 100%;
@@ -2823,7 +2823,6 @@ a.baseBtn.nof {
     .zx .itemlist .focusImgs img{height:190px;}
     .cancelboximg{height:200px;}
     .cancelboximg img{height:200px;}
-    .gogroup{width:69%;}
     .detailnav {
         height: 56px;
         width: 100%;
@@ -2942,6 +2941,5 @@ a.baseBtn.nof {
     .zx .itemlist .focusImgs img{height:200px;}
     .cancelboximg{height:200px;}
     .cancelboximg img{height:200px;}
-    .gogroup{width:86%;}
 }
 
