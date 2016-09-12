@@ -79,7 +79,7 @@ public class GroupLaunch implements Serializable {
     private Integer payAmount;
 
     /**
-     * 状态 0 拼团中, 1 拼团成功 & 仍在进行中, 2 拼团结束 & 拼团成功, 3 拼团失败
+     * 状态 0 拼团中, 1 拼团成功, 3 拼团失败
      */
     private Integer state = 0;
 

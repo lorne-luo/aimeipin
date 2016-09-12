@@ -40,6 +40,7 @@ function getList(page) {
     $("#pagediv").myPagination({
         cssStyle: 'scott',
         currPage: pageNumber,
+        pageNumber: 10,
         ajax: {
             on: true,
             ajaxStart: function () {

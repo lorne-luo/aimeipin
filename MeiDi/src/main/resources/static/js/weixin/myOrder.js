@@ -160,6 +160,7 @@ function getProjectFlag(flag, aloneFlag) {
     }
 }
 
+// same with orderList.js
 function getOrderState(state) {
     switch (state) {
         case 1:
@@ -167,19 +168,19 @@ function getOrderState(state) {
         case 2:
             return "已支付";
         case 3:
-            return "已预约";
+            return "支付失败";
         case 4:
             return "已完成";
         case 5:
-            return "取消中";
+            return "取消中(待退款)";
         case 6:
             return "已取消(已退款)";
         case 7:
-            return "已取消(不退款)";
+            return "已取消(未退款)";
         case 8:
-            return "已取消";
-        case 9:
-            return "拼团失败(已退款)";
+            return "已取消(未支付)";
+        default:
+            return "已取消(其他)"
     }
 }
 
