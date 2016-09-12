@@ -54,6 +54,7 @@ function getList(page) {
     $("#pagediv").myPagination({
         cssStyle: 'scott',
         currPage: pageNumber,
+        pageNumber: 20,
         ajax: {
             on: true,
             url: BASE_JS_URL + "/backend/getOrderList",
@@ -177,9 +178,13 @@ function createTable(result) {
                 str += '<a href="javascript:integral(' + order.order.id + ');" class="btn btn-success">完成</a> ';
                 str += '<a href="javascript:confirmCloseOrder(' + order.order.id + ',5);" class="btn btn-danger">取消</a> ';
             }
-            if (order.order.state == 1 || (order.order.state < 100 && order.order.state > 5)) { //仅能删除未支付和已取消
+            if(order.order.state == 1){
+                str += '<a href="javascript:confirmCloseOrder(' + order.order.id + ',8);" class="btn btn-danger">取消</a> ';
+            }
+            if (order.order.state == 1 || order.order.state > 5) { //仅能删除未支付和已取消
                 str += '<a href="javascript:confirmDeleteOrder(' + order.order.id + ');" class="btn btn-danger">删除</a> ';
             }
+
         }
 
         str += '</td></tr>';

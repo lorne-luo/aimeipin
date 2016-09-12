@@ -22,6 +22,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -30,6 +31,7 @@ import java.util.*;
 @Controller
 @RequestMapping("/pay")
 public class WxPayController extends WxBaseController {
+    private static final SimpleDateFormat datetimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Resource
     private OrderRepository orderRepository;
@@ -131,11 +133,10 @@ public class WxPayController extends WxBaseController {
                 }
                 try {
                     orderHandle(order);//处理订单
+                    orderRepository.save(order);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-                orderRepository.save(order);
             } else {
                 result_code = "FAIL";
                 return_msg = MdCommon.null2String(result.get("err_code_des"));
@@ -231,7 +232,7 @@ public class WxPayController extends WxBaseController {
                             order.setTransactionId(transaction_id);
                         }
                         //以下逻辑为确保如果微信回调 notifyUrl处理失败时 的情况
-                        if (order.getState() == 2) {//表示在回调时以处理
+                        if (order.getState() == 2) {//已支付,表示在回调时以处理
                             //以处理则不做任何操作
                         } else {//回调未处理
                             orderHandle(order);
@@ -283,12 +284,10 @@ public class WxPayController extends WxBaseController {
      * @param order
      */
     private void orderHandle(Order order) throws IOException {
-
-        if(order.getState() >1 ){
-           return;
-        }
         //订单已支付
         order.setState(2);
+        order = orderRepository.save(order);
+
         if (order.getFlag() == 1) {
             //以下处理拼团逻辑
             if (MdCommon.isEmpty(order.getLaunchId()) && order.getBookingFlag() == 1) {//如果是发起拼团
@@ -322,6 +321,7 @@ public class WxPayController extends WxBaseController {
                 groupLaunch = groupLaunchRepository.save(groupLaunch);
                 //设置订单的 拼团属性
                 order.setLaunchId(groupLaunch.getId());
+                order = orderRepository.save(order);
 
                 //成功发起拼团
                 //发消息
@@ -331,22 +331,31 @@ public class WxPayController extends WxBaseController {
                 //一人成团,开团即拼团成功
                 if (groupLaunch.getPeopleNumber()==1){
                     WxTemplate.groupLaunchOk(wxTicket.getToken(), order);
+                    groupLaunch.setState(1);
+                    groupLaunch = groupLaunchRepository.save(groupLaunch);
                 }
             } else if (!MdCommon.isEmpty(order.getLaunchId()) && order.getBookingFlag() == 4) {//参团
                 GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
                 List<GroupLaunchUser> groupLaunchUserList = groupLaunch.getGroupLaunchUserList();
 
                 GroupLaunchUser groupLaunchUser = groupLaunchUserRepository.findByLaunchIdAndWxOpenid(order.getLaunchId(),order.getWxOpenid());
-                if(MdCommon.isEmpty(groupLaunchUser)){
+                if(MdCommon.isEmpty(groupLaunchUser)){ // 该拼团userlist里没有当前用户
                     groupLaunchUser = new GroupLaunchUser();
                     groupLaunchUser.setWxOpenid(order.getWxOpenid());
+                    // FIXME: 若有已支付用户取消订单,此flag顺序可能有重复
                     groupLaunchUser.setFlag(groupLaunchUserList.size() + 1);
                     groupLaunchUserList.add(groupLaunchUser);
+                    groupLaunch.setGroupLaunchUserList(groupLaunchUserList);
+                    groupLaunch = groupLaunchRepository.save(groupLaunch);
+
+                    System.out.println("[" + datetimeFormat.format(new Date()) +
+                            "] $$$$$$$$ add group user wxopenid=" + order.getWxOpenid() +
+                            " flag=" + groupLaunchUser.getFlag().toString() +
+                            " for launch_id=" + groupLaunch.getId().toString());
 
                     if (groupLaunchUserList.size() == groupLaunch.getPeopleNumber()) {
                         groupLaunch.setState(1);//拼团成功 拼团结束
-                        groupLaunch.setGroupLaunchUserList(groupLaunchUserList);
-                        groupLaunchRepository.save(groupLaunch);
+                        groupLaunch = groupLaunchRepository.save(groupLaunch);
 
                         //拼团成功 给团内每个用户发消息
                         WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
@@ -369,8 +378,6 @@ public class WxPayController extends WxBaseController {
                         WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
                         WxTemplate.joinGroup(wxTicket.getToken(), order);
                     }
-                }else{
-
                 }
             }
         }

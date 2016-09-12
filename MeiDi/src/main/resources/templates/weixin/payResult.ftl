@@ -23,7 +23,7 @@
 
 					<#if order?exists && order.launchId?exists>
                         <div class="p10 tac mt30">
-                            <a href="${PATH}/business/joinGroupPage/"  class=" fs28 baseBtn" style="background:#fd5380;width:500px;margin:0 auto;">分享拼团邀请好友参团</a>
+                            <a href="${PATH}/business/joinGroupPage/#{order.launchId}"  class=" fs28 baseBtn" style="background:#fd5380;width:500px;margin:0 auto;">分享拼团邀请好友参团</a>
                         </div>
 					</#if>
 

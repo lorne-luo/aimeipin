@@ -9,7 +9,8 @@
     <meta name="description" content=""/>
 
     <title>定制咨询</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
+    <#--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
 <#include "header.ftl"/>
 
 </head>
@@ -31,13 +32,13 @@
     //无按钮模式
     _MEIQIA('withoutBtn', true);
 </script>
-<div class="wrapper pr pb130 zx">
+<div class="wrapper pr pb130">
     <div class="zxdivbox">
         <div class="zxbox">
-            <a href="javascript:void(0);" class="dz"></a><a href="javascript:void(0)" onclick="_MEIQIA._SHOWPANEL()"
-                                                            class="mf"></a>
+            <a href="javascript:void(0);" class="dz"></a>
+            <a href="javascript:void(0)" onclick="_MEIQIA._SHOWPANEL()" class="mf"></a>
         </div>
-        <div class="itemlistbox">
+        <div class="itemlistbox pl20 pr20" style="margin-bottom: -20px">
 
         </div>
     </div>
