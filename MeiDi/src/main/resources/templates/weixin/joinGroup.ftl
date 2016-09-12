@@ -113,9 +113,9 @@
             </div>
         </div>
         <#if groupLaunch.state == 0>
-        <div class="ml20 mr20 mt20 fs18 pr">
+        <div class="ml20 mr20 mt20 pr">
             <span class="line"></span>
-            <span class="times p9c" id="times" endtime="#{endTime}">剩余时间：
+            <span class="times p9c fs22" id="times" endtime="#{endTime}">剩余时间：
                 <span class="f40b0b">23</span><i class="f40b0b">:</i>
                 <span class="f40b0b">55</span><i class="f40b0b">:</i>
                 <span class="f40b0b">59</span>
