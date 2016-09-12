@@ -77,7 +77,7 @@
                             <a href="${PATH}/backend/indexImage">首页轮播图</a>
                         </li>
                         <li>
-                            <a href="${PATH}/backend/buyNotice/1">购买须知</a>
+                            <a href="${PATH}/backend/buyNotice/1">购买&支付说明</a>
                         </li>
                         <li>
                             <a href="${PATH}/backend/tagsPage/1">项目标签</a>
