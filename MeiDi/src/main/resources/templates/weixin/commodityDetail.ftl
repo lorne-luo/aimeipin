@@ -246,11 +246,11 @@
         <#if commodity.flag ==1 >
             <#-- 1 拼团 -->
             <a class="t2  bgfe91b0" href="${PATH}/business/bookingPage/#{commodity.id}/2">
-                <div class="mt8"><span>¥#{commodity.alonePrice/100}</span></div>
+                <div class="mt2"><span>¥#{commodity.alonePrice/100}</span></div>
                 <p class="fs16 pwhite fb">单独预订</p>
             </a>
             <a class="t2 bgff4d7d" href="${PATH}/business/bookingPage/#{commodity.id}/1">
-                <div class="mt8"><span>¥#{commodity.discountPrice/100}</span></div>
+                <div class="mt2"><span>¥#{commodity.discountPrice/100}</span></div>
                 <p class='fs16 pwhite fb'>发起拼团</p>
             </a>
         <#else>

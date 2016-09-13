@@ -1545,7 +1545,7 @@ a.baseBtn.nof {
     background: url(../images/index/tuan.png) center no-repeat;
     background-size: 100%;
     height: 38px;
-    width: 494px;
+    width: 98%;
     line-height: 38px;
 }
 
@@ -1575,6 +1575,7 @@ a.baseBtn.nof {
 
 .itemlist .righticon.qiang {
     background: url(../images/index/qiang.png) center no-repeat;
+    background-size: 100%;
 }
 
 .itemlist .lefticon.dzf {

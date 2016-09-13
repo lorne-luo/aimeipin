@@ -196,8 +196,8 @@ function createTable_youlike(commodityList) {
                 '    <div class=" pr price">' +
                 '      <div class="lefticon "></div>' +
                 '      <div class="righticon cleafix pr ">' +
-                '        <span class=" ml50 mr10 fl fs16">原价：<del>' + commodity.price / 100 + '</del></span>' +
-                '        <span class="fs24 fl">' + commodity.peopleNumber + '人团：¥' + commodity.discountPrice / 100 + '</span>' +
+                '        <span class=" ml50 mr10 fl fs12">原价：<del>' + commodity.price / 100 + '</del></span>' +
+                '        <span class="fs16 fl">' + commodity.peopleNumber + '人团：¥' + commodity.discountPrice / 100 + '</span>' +
                 '        <a href="' + BASE_JS_URL + '/business/commodityDetailPage/' + commodity.id + '"></a>' +
                 '      </div>' +
                 '    </div>' +
@@ -221,8 +221,8 @@ function createTable_youlike(commodityList) {
                 '  <div class=" pr price">' +
                 '    <div class="lefticon fu"></div>' +
                 '      <div class="righticon cleafix pr qiang">' +
-                '        <span class=" ml50 mr10 fl fs16">原价：<del>' + commodity.price / 100 + '</del></span>' +
-                '        <span class="fs24 fl">现价：¥' + commodity.discountPrice / 100 + '</span>' +
+                '        <span class=" ml50 mr10 fl fs12">原价：<del>' + commodity.price / 100 + '</del></span>' +
+                '        <span class="fs16 fl">现价：¥' + commodity.discountPrice / 100 + '</span>' +
                 '        <a href="' + BASE_JS_URL + '/business/commodityDetailPage/' + commodity.id + '"></a>' +
                 '      </div>' +
                 '    </div>' +
@@ -248,8 +248,8 @@ function createTable_youlike(commodityList) {
                 '    <div class=" pr price">' +
                 '      <div class="lefticon sale"></div>' +
                 '      <div class="righticon cleafix pr qiang">' +
-                '        <span class=" ml50 mr10 fl fs16">原价：<del>' + commodity.price / 100 + '</del></span>' +
-                '        <span class="fs24 fl">现价：¥' + commodity.discountPrice / 100 + '</span>' +
+                '        <span class=" ml50 mr10 fl fs12">原价：<del>' + commodity.price / 100 + '</del></span>' +
+                '        <span class="fs16 fl">现价：¥' + commodity.discountPrice / 100 + '</span>' +
                 '        <a href="' + BASE_JS_URL + '/business/commodityDetailPage/' + commodity.id + '"></a>' +
                 '      </div>' +
                 '    </div>' +
