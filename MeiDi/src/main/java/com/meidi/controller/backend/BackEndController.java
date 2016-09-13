@@ -709,8 +709,9 @@ public class BackEndController implements MdConstants {
 //                    }
                 }
                 order.setState(7);
+            }else if (state > 4){
+                order.setState(state);
             }
-
 
             if (ret == 0) {
                 orderRepository.save(order);
