@@ -28,6 +28,21 @@ $(function () {
         }
     });
 
+    var filterDate = $('#calendar-filter').mobiscroll().calendar({
+        theme: 'default',
+        lang: 'zh',
+        display: 'bubble',
+        animate: false,
+        dateFormat: "yy-mm-dd",
+        buttons:[],
+        closeOnSelect: true,
+        onDayChange: function (day, inst) {
+            var date_str = getDate(day.date);
+            $('#filter_date').val(date_str);
+            addFilterCondition('date', date_str);
+        }
+    });
+
 });
 
 function searchOrder() {
@@ -108,6 +123,9 @@ function removeFilterCondition(type, refresh) {
         $('#flag').val('-1');
     else if(type=='state')
         $('#state').val('-1');
+    else if(type=='date')
+        $('#filter_date').val('');
+
     if(refresh)
         getList(1);
 }
