@@ -64,11 +64,9 @@ function createTable(result) {
             str += '<p class="fs20 mt15">' + order.order.commodityName + '</p>';
         str += '<div class="fs20 mt20 clearfix">';
 
-        if (order.order.state < 3) {//订单正常
-            if(order.launch!=null){
-                if (order.launch.state == 1 || order.launch.state == 2){ //拼团进行中,可以退款
-                    str += '<a href="javascript:alert(\'本次拼团已成功，请拨打400-605-6662联系客服取消订单！\');"  class="cancelorder fr ">取消订单</a>';
-                }
+        if (order.order.state < 3) {// 1未支付,2已支付才可取消
+            if(order.launch != null && order.launch.state == 1){ //拼团已成功,找客服退款
+                str += '<a href="javascript:alert(\'本次拼团已成功，请拨打400-605-6662联系客服取消订单！\');"  class="cancelorder fr ">取消订单</a>';
             }else{
                 str += '<a href="javascript:cancelOrder(' + order.order.id + ');"  class="cancelorder fr ">取消订单</a>';
             }

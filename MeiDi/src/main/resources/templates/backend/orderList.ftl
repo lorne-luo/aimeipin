@@ -30,6 +30,7 @@
                 </div>
 
                 <div class="pull-right">
+                    <i id="calendar-filter" class="btn btn-info fa fa-calendar fa-lg" aria-hidden="true"></i>
                     <label>搜索：</label>
                     <input type="text" id="queryStr" class="queryStr  form-control"/>
                     <a href="javascript:searchOrder();" class="btn btn-success">搜索</a>
@@ -38,6 +39,7 @@
 
             <input type="hidden" name="search_launch_id" id="search_launch_id" value="0">
             <input type="hidden" name="search_commodity_id" id="search_commodity_id" value="0">
+            <input type="hidden" name="filter_date" id="filter_date" value="">
 
             <div class=" bor">
                 <div class="table-responsive">

@@ -115,8 +115,8 @@
         </#if>
     </script>
     <style>
-        .tabClick{ background: #f3f3f3; overflow: hidden;margin-top: 10px;border-bottom:2px solid #ff4d7d;}
-        .tabClick li{ height:40px; line-height: 40px; width: 33%; float: left; text-align: center;font-size: 16px;border-right:0px solid #ff4d7d;}
+        .tabClick{ background: #f3f3f3; overflow: hidden;border-bottom:2px solid #ff4d7d;}
+        .tabClick li{ height:30px; line-height: 30px; width: 33%; float: left; text-align: center;font-size: 16px;border-right:0px solid #ff4d7d;}
         .tabClick li.active{ color: #099; transition: 0.1s; font-weight: bold}
         .tabClick li:not(:last-child){ border-right:1px solid #ddd;}
     </style>
@@ -166,7 +166,7 @@
                         class="pf40000 fs18 lineblock mr10">¥#{commodity.discountPrice/100}<#if commodity.discountUnit?exists>${commodity.discountUnit}</#if></span>
                     <del>¥#{commodity.price/100}<#if commodity.unit?exists>${commodity.unit}</#if></del>
                 </p>
-                <p class="pl16 line24 fs18 menutitle">${commodity.name}</p>
+                <p id="title" class="pl16 line24 fs18 menutitle">${commodity.name}</p>
             </div>
         </div>
     </div>
@@ -184,12 +184,12 @@
         </div>
     </div>
 </#if>
-    <div class="addList mt20">
+    <div id="joinGroup" class="addList mt20 mb10">
 
     </div>
 
     <ul class="tabClick">
-        <li><a href="#description">项目详情</a></li>
+        <li><a href="#title">项目详情</a></li>
         <li><a href="#buyNotice">订购须知</a></li>
         <li><a href="#youlike">猜你喜欢</a></li>
     </ul>
@@ -202,7 +202,8 @@
         <div id="description" class="line18">${commodity.description}</div>
     </div>
 
-    <div id="buyNotice" class=" mb10 tal pl10 pr10 pt10 pb10 line18 buyNotice">
+    <div id="buyNotice" class="mb30"></div>
+    <div class="tal pl10 pr10 line18 buyNotice">
         <section class="fs18" style="display: inline-block; height: 2em; max-width: 100%; line-height: 1em;box-sizing: border-box; border-top: 1.1em solid #ff4d7d; border-bottom: 1.1em solid #ff4d7d; border-right: 1em solid transparent;">
             <section style="height: 2em; margin-top: -1em; color: white; padding: 0.5em 1em; max-width: 100%; white-space: nowrap;text-overflow: ellipsis;">订购须知</section>
         </section>
@@ -211,6 +212,7 @@
     </#if>
     </div>
 
+    <div id="youlike" class="mb30"></div>
     <div id="youlike" class="tal pl10 pr10 moreclassify clearfix youlike">
         <section class="fs18" style="display: inline-block; height: 2em; max-width: 100%; line-height: 1em;box-sizing: border-box; border-top: 1.1em solid #ff4d7d; border-bottom: 1.1em solid #ff4d7d; border-right: 1em solid transparent;">
             <section style="height: 2em; margin-top: -1em; color: white; padding: 0.5em 1em; max-width: 100%; white-space: nowrap;text-overflow: ellipsis;">猜你喜欢</section>
@@ -222,18 +224,18 @@
 
     <div class="detailnav clearfix btfix">
         <div class="t1  tt2 fs12">
-            <a class="borr fl pt8" href="${PATH}/index">
+            <a class="borr fl pt2" href="${PATH}/index">
                 <img src="${PATH}/images/detail/indicon.png">
 
                 <p class="mt2">首页</p>
             </a>
-            <a class="borr fl pt8" href="javascript:<#if wx_openid?has_content>favoriteAction(#{commodity.id})<#else>redirectLogin()</#if>;">
+            <a class="borr fl pt2" href="javascript:<#if wx_openid?has_content>favoriteAction(#{commodity.id})<#else>redirectLogin()</#if>;">
                 <img src="${PATH}/images/detail/sc.png" class="<#if favoriteFlag == 1>hide</#if> favorite1">
                 <img src="${PATH}/images/detail/noc.png" class="<#if favoriteFlag == 2>hide</#if> favorite2">
 
                 <p class="mt2">收藏</p>
             </a>
-            <a class=" fl pt8" href="javascript:void(0);" onclick="_MEIQIA._SHOWPANEL()">
+            <a class=" fl pt2" href="javascript:void(0);" onclick="_MEIQIA._SHOWPANEL()">
                 <img src="${PATH}/images/detail/zx.png">
 
                 <p class="mt2">咨询</p>
@@ -244,11 +246,11 @@
         <#if commodity.flag ==1 >
             <#-- 1 拼团 -->
             <a class="t2  bgfe91b0" href="${PATH}/business/bookingPage/#{commodity.id}/2">
-                <div class="mt8"><span>¥#{commodity.alonePrice/100}</span></div>
+                <div class="mt2"><span>¥#{commodity.alonePrice/100}</span></div>
                 <p class="fs16 pwhite fb">单独预订</p>
             </a>
             <a class="t2 bgff4d7d" href="${PATH}/business/bookingPage/#{commodity.id}/1">
-                <div class="mt8"><span>¥#{commodity.discountPrice/100}</span></div>
+                <div class="mt2"><span>¥#{commodity.discountPrice/100}</span></div>
                 <p class='fs16 pwhite fb'>发起拼团</p>
             </a>
         <#else>
