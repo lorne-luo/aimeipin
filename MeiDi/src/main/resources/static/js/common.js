@@ -6,8 +6,12 @@ function getDate(obj) {
     if (obj == null || obj == "") {
         return "";
     }
-    var time = JSON.parse(obj);
-    time = new Date(time);
+    var time;
+    if (obj instanceof Date){
+        time = obj;
+    }else{
+        time = new Date(JSON.parse(obj));
+    }
     var year = time.getFullYear();
     var month = time.getMonth() + 1;
     var day = time.getDate();
@@ -28,8 +32,12 @@ function getDateYYMMDD(obj) {
     if (obj == null || obj == "") {
         return "";
     }
-    var time = JSON.parse(obj);
-    time = new Date(time);
+    var time;
+    if (obj instanceof Date){
+        time = obj;
+    }else{
+        time = new Date(JSON.parse(obj));
+    }
     var year = time.getFullYear();
     var month = time.getMonth() + 1;
     var day = time.getDate();
@@ -48,7 +56,12 @@ function getDateNew(obj) {
     if (obj == null || obj == "") {
         return "";
     }
-    var time = new Date(obj);
+    var time;
+    if (obj instanceof Date){
+        time = obj;
+    }else{
+        time = new Date(obj);
+    }
     var year = time.getFullYear();
     var month = time.getMonth() + 1;
     var day = time.getDate();
@@ -70,8 +83,12 @@ function getTime(obj) {
     if (obj == null || obj == "") {
         return "";
     }
-    var time = JSON.parse(obj);
-    time = new Date(time);
+    var time;
+    if (obj instanceof Date){
+        time = obj;
+    }else{
+        time = new Date(JSON.parse(obj));
+    }
     var year = time.getFullYear();
     var month = time.getMonth() + 1;
     var day = time.getDate();
@@ -106,8 +123,12 @@ function getTime2(obj) {
     if (obj == null || obj == "") {
         return "";
     }
-    var time = JSON.parse(obj);
-    time = new Date(time);
+    var time;
+    if (obj instanceof Date){
+        time = obj;
+    }else{
+        time = new Date(JSON.parse(obj));
+    }
     var year = time.getFullYear();
     var month = time.getMonth() + 1;
     var day = time.getDate();
@@ -136,8 +157,12 @@ function getTimeMMDDhhmm(obj) {
     if (obj == null || obj == "") {
         return "";
     }
-    var time = JSON.parse(obj);
-    time = new Date(time);
+    var time;
+    if (obj instanceof Date){
+        time = obj;
+    }else{
+        time = new Date(JSON.parse(obj));
+    }
     var month = time.getMonth() + 1;
     var day = time.getDate();
     var hour = time.getHours();

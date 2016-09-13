@@ -28,6 +28,22 @@ $(function () {
         }
     });
 
+    var filterDate = $('#calendar-filter').mobiscroll().calendar({
+        theme: 'default',
+        lang: 'zh',
+        display: 'bubble',
+        animate: false,
+        dateFormat: "yy-mm-dd",
+        buttons:[],
+        closeOnSelect: true,
+        onDayChange: function (day, inst) {
+            var date_str = getDate(day.date);
+            $('#filter_date').val(date_str);
+            addFilterCondition('date', date_str);
+            getList(1);
+        }
+    });
+
 });
 
 function searchOrder() {
@@ -49,6 +65,7 @@ function getList(page) {
     var queryStr = $('.queryStr').val();
     var launchID = $('#search_launch_id').val();
     var commodityID = $('#search_commodity_id').val();
+    var filter_date = $('#filter_date').val();
 
     ZENG.msgbox.loadingAnimationPath = BASE_JS_URL + "/images/loading.gif";
     $("#pagediv").myPagination({
@@ -62,8 +79,9 @@ function getList(page) {
             param: {
                 flag: flag,
                 state: state,
-                launchID:launchID,
-                commodityID:commodityID,
+                launchID: launchID,
+                commodityID: commodityID,
+                date: filter_date,
                 queryStr: queryStr
             },
             ajaxStart: function () {
@@ -108,6 +126,9 @@ function removeFilterCondition(type, refresh) {
         $('#flag').val('-1');
     else if(type=='state')
         $('#state').val('-1');
+    else if(type=='date')
+        $('#filter_date').val('');
+
     if(refresh)
         getList(1);
 }

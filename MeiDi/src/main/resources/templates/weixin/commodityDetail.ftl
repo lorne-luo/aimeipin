@@ -222,18 +222,18 @@
 
     <div class="detailnav clearfix btfix">
         <div class="t1  tt2 fs12">
-            <a class="borr fl pt8" href="${PATH}/index">
+            <a class="borr fl pt2" href="${PATH}/index">
                 <img src="${PATH}/images/detail/indicon.png">
 
                 <p class="mt2">首页</p>
             </a>
-            <a class="borr fl pt8" href="javascript:<#if wx_openid?has_content>favoriteAction(#{commodity.id})<#else>redirectLogin()</#if>;">
+            <a class="borr fl pt2" href="javascript:<#if wx_openid?has_content>favoriteAction(#{commodity.id})<#else>redirectLogin()</#if>;">
                 <img src="${PATH}/images/detail/sc.png" class="<#if favoriteFlag == 1>hide</#if> favorite1">
                 <img src="${PATH}/images/detail/noc.png" class="<#if favoriteFlag == 2>hide</#if> favorite2">
 
                 <p class="mt2">收藏</p>
             </a>
-            <a class=" fl pt8" href="javascript:void(0);" onclick="_MEIQIA._SHOWPANEL()">
+            <a class=" fl pt2" href="javascript:void(0);" onclick="_MEIQIA._SHOWPANEL()">
                 <img src="${PATH}/images/detail/zx.png">
 
                 <p class="mt2">咨询</p>
