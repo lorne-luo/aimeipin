@@ -32,7 +32,7 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
      * @return
      */
     @Override
-    public Map<String, Object> findOrderWithQuery(int pageNumber, int pageSize, int flag, int state, int launchID, int commodityID, String queryStr) {
+    public Map<String, Object> findOrderWithQuery(int pageNumber, int pageSize, int flag, int state, int launchID, int commodityID, String dateStr, String queryStr) {
         List<Object> list = new ArrayList<>();
         String sql = "select mo.* " +
                 " from md_order mo " +
@@ -65,7 +65,10 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
             sql += " and mo.commodity_id = ? ";
             list.add(commodityID);
         }
-
+        if (!MdCommon.isEmpty(dateStr) && dateStr.length() > 9) { //yyyy-MM-dd
+            sql += " and mo.create_time like ? ";
+            list.add(dateStr + "%");
+        }
 
         if(!MdCommon.isEmpty(queryStr)){
             sql += " and (mo.username like ? or mo.mobile like ? or mo.commodity_name like ?) ";
@@ -107,6 +110,9 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
         }
         if (!MdCommon.isEmpty(commodityID) && commodityID > 0) {
             sql += " and mo.commodity_id = ? ";
+        }
+        if (!MdCommon.isEmpty(dateStr) && dateStr.length() > 9) { //yyyy-MM-dd
+            sql += " and mo.create_time like ? ";
         }
         if(!MdCommon.isEmpty(queryStr)){
             sql += " and (mo.username like ? or mo.mobile like ? or mo.commodity_name like ?) ";
