@@ -1858,7 +1858,7 @@ a.baseBtn.nof {
 }
 
 .detailnav {
-    height: 58px;
+    height: 50px;
     width: 100%;
     background: #f2f2f2;
     box-shadow: 1px 0 5px #5d5d5d;
@@ -1869,20 +1869,20 @@ a.baseBtn.nof {
 .detailnav .t1 {
     width: 44%;
     float: left;
-    height: 58px;
+    height: 50px;
     box-sizing: border-box;
 }
 .detailnav .t2 {
     width: 28%;
     float: left;
-    height: 58px;
+    height: 50px;
     box-sizing: border-box;
 }
 
 .detailnav .t4 {
-    width: 54%;
+    width: 56%;
     float: left;
-    height: 58px;
+    height: 50px;
     box-sizing: border-box;
 }
 
