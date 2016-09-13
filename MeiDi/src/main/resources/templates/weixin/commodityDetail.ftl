@@ -115,8 +115,8 @@
         </#if>
     </script>
     <style>
-        .tabClick{ background: #f3f3f3; overflow: hidden;margin-top: 10px;border-bottom:2px solid #ff4d7d;}
-        .tabClick li{ height:40px; line-height: 40px; width: 33%; float: left; text-align: center;font-size: 16px;border-right:0px solid #ff4d7d;}
+        .tabClick{ background: #f3f3f3; overflow: hidden;border-bottom:2px solid #ff4d7d;}
+        .tabClick li{ height:30px; line-height: 30px; width: 33%; float: left; text-align: center;font-size: 16px;border-right:0px solid #ff4d7d;}
         .tabClick li.active{ color: #099; transition: 0.1s; font-weight: bold}
         .tabClick li:not(:last-child){ border-right:1px solid #ddd;}
     </style>
@@ -166,7 +166,7 @@
                         class="pf40000 fs18 lineblock mr10">¥#{commodity.discountPrice/100}<#if commodity.discountUnit?exists>${commodity.discountUnit}</#if></span>
                     <del>¥#{commodity.price/100}<#if commodity.unit?exists>${commodity.unit}</#if></del>
                 </p>
-                <p class="pl16 line24 fs18 menutitle">${commodity.name}</p>
+                <p id="title" class="pl16 line24 fs18 menutitle">${commodity.name}</p>
             </div>
         </div>
     </div>
@@ -184,12 +184,12 @@
         </div>
     </div>
 </#if>
-    <div class="addList mt20">
+    <div id="joinGroup" class="addList mt20 mb10">
 
     </div>
 
     <ul class="tabClick">
-        <li><a href="#description">项目详情</a></li>
+        <li><a href="#title">项目详情</a></li>
         <li><a href="#buyNotice">订购须知</a></li>
         <li><a href="#youlike">猜你喜欢</a></li>
     </ul>
@@ -202,7 +202,8 @@
         <div id="description" class="line18">${commodity.description}</div>
     </div>
 
-    <div id="buyNotice" class=" mb10 tal pl10 pr10 pt10 pb10 line18 buyNotice">
+    <div id="buyNotice" class="mb30"></div>
+    <div class="tal pl10 pr10 line18 buyNotice">
         <section class="fs18" style="display: inline-block; height: 2em; max-width: 100%; line-height: 1em;box-sizing: border-box; border-top: 1.1em solid #ff4d7d; border-bottom: 1.1em solid #ff4d7d; border-right: 1em solid transparent;">
             <section style="height: 2em; margin-top: -1em; color: white; padding: 0.5em 1em; max-width: 100%; white-space: nowrap;text-overflow: ellipsis;">订购须知</section>
         </section>
@@ -211,6 +212,7 @@
     </#if>
     </div>
 
+    <div id="youlike" class="mb30"></div>
     <div id="youlike" class="tal pl10 pr10 moreclassify clearfix youlike">
         <section class="fs18" style="display: inline-block; height: 2em; max-width: 100%; line-height: 1em;box-sizing: border-box; border-top: 1.1em solid #ff4d7d; border-bottom: 1.1em solid #ff4d7d; border-right: 1em solid transparent;">
             <section style="height: 2em; margin-top: -1em; color: white; padding: 0.5em 1em; max-width: 100%; white-space: nowrap;text-overflow: ellipsis;">猜你喜欢</section>
