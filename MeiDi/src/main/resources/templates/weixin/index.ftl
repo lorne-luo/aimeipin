@@ -66,7 +66,7 @@
         <div class="slider multiple-items sliderbox">
         <#if images?exists>
             <#list images as image>
-                <div><a href="<#if image.url?exists>${image.url}<#else>javascript:void(0);</#if>"><img
+                <div><a href="<#if image.url?exists>${image.url}?from_slider=${image?index}<#else>javascript:void(0);</#if>"><img
                         src="${IMAGE_FORMAL_URL}/${image.imageName}"></a></div>
             </#list>
         </#if>
