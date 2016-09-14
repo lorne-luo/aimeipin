@@ -123,7 +123,7 @@
 </head>
 
 <body style="background:#ffffff">
-<div class="wrapper pr pb80 zx">
+<div class="wrapper pr pb80">
     <input type="hidden" value="#{commodity.id}" class="commodityId">
     <input type="hidden" value="${commodity.flag}" class="commodityFlag">
     <input type="hidden" value="#{commodity.dicCity.id}" class="cityId">

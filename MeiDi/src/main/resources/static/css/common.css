@@ -487,66 +487,10 @@ a.baseBtn.nof {
 .itemlist .focusImgs img {
     width: 100%;
     background: url(../images/loading.gif) center no-repeat;
+    background-size: 24px;
 }
 
 .itemlist .water {
-    background: url(../images/index/water.png) center no-repeat;
-    background-size: 100%;
-    font-weight: bold;
-    height: 85px;
-    width: 85px;
-    position: absolute;
-    top: -26px;
-    left: -18px;
-    z-index: 98;
-    color: white;
-    text-align: left;
-}
-
-.itemlist .hot {
-    background: url(../images/index/hot.png) center no-repeat;
-    background-size: 100%;
-    height: 54px;
-    width: 57px;
-    position: absolute;
-    top: -2px;
-    left: 97px;
-    z-index: 98;
-}
-
-.itemlist .new {
-    background: url(../images/index/new.png) center no-repeat;
-    background-size: 100%;
-    height: 54px;
-    width: 57px;
-    position: absolute;
-    top: -2px;
-    left: 97px;
-    z-index: 98;
-}
-
-.itemlist .lt {
-    background: url(../images/index/lt.png) center no-repeat;
-    background-size: 100%;
-    height: 54px;
-    width: 57px;
-    position: absolute;
-    top: -2px;
-    left: 97px;
-    z-index: 98;
-}
-
-.itemlist .ll {
-    background: url(../images/index/ll.png) center no-repeat;
-    background-size: 100%;
-    height: 54px;
-    width: 57px;
-    position: absolute;
-    top: -2px;
-    left: 97px;
-    z-index: 98;
-}
-.zx .itemlist .water {
     background: url(../images/index/water.png) center no-repeat;
     background-size:54px 54px;
     height: 54px;
@@ -559,7 +503,8 @@ a.baseBtn.nof {
     text-align: left;
     font-weight: normal;
 }
-.zx .itemlist .hot {
+
+.itemlist .hot {
     background: url(../images/index/hot.png) center no-repeat;
     background-size: 40px 40px;
     height: 40px;
@@ -570,7 +515,8 @@ a.baseBtn.nof {
     z-index: 98;
     font-weight: normal;
 }
-.zx .itemlist .new {
+
+.itemlist .new {
     background: url(../images/index/new.png) center no-repeat;
     background-size: 40px 40px;
     height: 40px;
@@ -581,7 +527,8 @@ a.baseBtn.nof {
     z-index: 98;
     font-weight: normal;
 }
-.zx .itemlist .lt {
+
+.itemlist .lt {
     background: url(../images/index/lt.png) center no-repeat;
     background-size: 40px 40px;
     height: 40px;
@@ -592,7 +539,8 @@ a.baseBtn.nof {
     z-index: 98;
     font-weight: normal;
 }
-.zx .itemlist .ll {
+
+.itemlist .ll {
     background: url(../images/index/ll.png) center no-repeat;
     background-size: 40px 40px;
     height: 40px;
@@ -603,13 +551,14 @@ a.baseBtn.nof {
     z-index: 98;
     font-weight: normal;
 }
-.zx .zhe{font-size: 13px;margin-left:10px;margin-top:18px;font-weight: bold;}
-.zx .zhe1{font-size: 12px;margin-left:11px;margin-top:10px;font-weight: bold;}
-.zx .tuan{font-size: 12px;margin-left:11px;font-weight: bold;}
+.zhe{font-size: 13px;margin-left:10px;margin-top:18px;font-weight: bold;}
+.zhe1{font-size: 12px;margin-left:11px;margin-top:10px;font-weight: bold;}
+.tuan{font-size: 12px;margin-left:11px;font-weight: bold;}
 
 .itemlist .price {
     width: 500px;
     padding: 20px 0 20px 30px;
+    box-sizing: border-box;
 }
 
 .itemlist .lefticon {
@@ -763,38 +712,10 @@ a.baseBtn.nof {
     height: 31px;
     width: 100%;
     line-height: 31px;
-}
-.zx .detailtip {
-    background: url(../images/detail/tip.png) center no-repeat;
-    background-size: 100%;
-    height: 31px;
-    width: 100%;
-    line-height: 31px;
     font-size: 12px;
 }
 
-
 .virtue {
-    /*height: 35px;*/
-    line-height: 35px;
-    background: #ebebeb;
-    width: 100%;
-    border-top: 1px solid #b7b7b7;
-    border-bottom: 1px solid #b7b7b7;
-}
-
-.virtue .t1 {
-    width: 100%;
-    margin: 0 auto;
-}
-
-.virtue .t1 span {
-    background: url(../images/detail/righticon.png) left 10px no-repeat;
-    display: inline-block;
-    padding-left: 20px;
-    margin: 0 10px;
-}
-.zx .virtue {
     /*height: 30px;*/
     line-height: 30px;
     background: #ebebeb;
@@ -803,7 +724,13 @@ a.baseBtn.nof {
     border-bottom: 1px solid #b7b7b7;
     font-size: 12px;
 }
-.zx .virtue .t1 span{
+
+.virtue .t1 {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.virtue .t1 span {
     background: url(../images/detail/righticon.png) left 10px no-repeat;
     display: inline-block;
     padding-left: 17px;
@@ -900,7 +827,6 @@ a.baseBtn.nof {
 }
 
 .moreclassify img {
-    height: 100%;
     -webkit-box-shadow: 0px 0 0px #c7c7c7, /*左边阴影*/ 2px 0 2px #c7c7c7, /*右边阴影*/ 0 0px 0px #c7c7c7, /*顶部阴影*/ 0 2px 2px #c7c7c7; /*底边阴影*/;
 }
 
@@ -1358,78 +1284,15 @@ a.baseBtn.nof {
     background-size: 100%;
 }
 
-.zx .zxdivbox {
+.zxdivbox {
     padding: 0 0.7rem;
 }
 
-.zx .itemlist .focusImgs {
-    width: 100%;
-    background: url(../images/loading.gif) center no-repeat;
-    background-size: 24px;
-}
-
-.zx .itemlist .focusImgs img {
-    width: 100%;
-    background: none;
-}
-
-.zx .itemlist .righticon.askdz {
-    background: url(../images/ask/g.png) 26px top no-repeat;
-    width: 100%;
-    box-sizing: border-box;
-    height: 24px;
-    background-size: auto 24px;
-}
-
-.zx .itemlist .lefticon.dzf {
-    width: 32px;
-    height: 32px;
-    top: 6px;
-}
-
-.zx .itemlist .price {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.zx .itemlist .righticon a {
-    height: 24px;
-}
-
-.zx .itemlist .price.askpic {
-    padding-top: 10px;
-}
-
-.zx .yuanj {
+.yuanj {
     margin-left: 36px;
     line-height: 16px;
     margin-top: 4px;
     margin-right: 6px;
-}
-
-.zx .getmore {
-    width: 150px;
-    font-size: 16px;
-    padding: 6px;
-}
-
-.zx.itemsbtnbox {
-    width: 100%;
-    margin-left: 0;
-    left: 0;
-    height: 58px;
-    font-size: 14px;
-    background-size: 2px 58px;
-}
-
-.zx .itemsbtnbox a {
-    height: 58px;
-    padding-top: 10px;
-}
-
-.zx .itemsbtnbox .shouyeicon, .zx .itemsbtnbox .fenleicon, .zx .itemsbtnbox .zixunicon, .zx .itemsbtnbox .myicon {
-    width: 21px;
-    height: 21px;
 }
 
 .afterimg {
