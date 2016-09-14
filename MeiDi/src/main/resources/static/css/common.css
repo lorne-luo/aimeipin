@@ -1396,12 +1396,12 @@ a.baseBtn.nof {
 }
 
 .itemlist .focusImgs {
-    width: 598px;
+    width: 100%;
     overflow: hidden;
 }
 
 .itemlist .focusImgs img {
-    width: 598px;
+    width: 100%;
     background: url(../images/loading.gif) center no-repeat;
 }
 
@@ -1573,7 +1573,6 @@ a.baseBtn.nof {
 .itemlist .righticon.qiang {
     background: url(../images/index/qiang.png) center no-repeat;
     background-size: 100%;
-    width:98%;
 }
 
 .itemlist .lefticon.dzf {
@@ -1678,7 +1677,7 @@ a.baseBtn.nof {
     background: url(../images/detail/tip.png) center no-repeat;
     background-size: 100%;
     height: 31px;
-    width: 640px;
+    width: 100%;
     line-height: 31px;
 }
 .zx .detailtip {
@@ -1817,8 +1816,7 @@ a.baseBtn.nof {
 }
 
 .moreclassify img {
-    width: 200px;
-    height: 200px;
+    height: 100%;
     -webkit-box-shadow: 0px 0 0px #c7c7c7, /*左边阴影*/ 2px 0 2px #c7c7c7, /*右边阴影*/ 0 0px 0px #c7c7c7, /*顶部阴影*/ 0 2px 2px #c7c7c7; /*底边阴影*/;
 }
 
@@ -1859,7 +1857,7 @@ a.baseBtn.nof {
 }
 
 .detailnav {
-    height: 58px;
+    height: 50px;
     width: 100%;
     background: #f2f2f2;
     box-shadow: 1px 0 5px #5d5d5d;
@@ -1870,20 +1868,20 @@ a.baseBtn.nof {
 .detailnav .t1 {
     width: 44%;
     float: left;
-    height: 58px;
+    height: 50px;
     box-sizing: border-box;
 }
 .detailnav .t2 {
     width: 28%;
     float: left;
-    height: 58px;
+    height: 50px;
     box-sizing: border-box;
 }
 
 .detailnav .t4 {
-    width: 54%;
+    width: 56%;
     float: left;
-    height: 58px;
+    height: 50px;
     box-sizing: border-box;
 }
 
@@ -1904,7 +1902,7 @@ a.baseBtn.nof {
 }
 
 .detailnav .tt2 a {
-    height: 58px;
+    height: 50px;
     width: 33.3%;
     box-sizing: border-box;
 }
@@ -2244,7 +2242,7 @@ a.baseBtn.nof {
 
 /*咨询*/
 .zxbox {
-    width: 600px;
+    width: 500px;
     padding: 16px 0;
     margin: 0 auto;
 }
@@ -2517,6 +2515,7 @@ a.baseBtn.nof {
 .rightt1 p{position: absolute;right:50px;top:136px;font-size: 22px;width:190px;}
 .sharemark .t1{top:48%;position: absolute;width:100%;right:0;font-size: 36px;}
 .sharemark .t2{top:42%;position: absolute;width:100%;right:0;font-size: 34px;line-height: 60px;}
+
 .dw-bf {
     margin-top: 50px;
 }
