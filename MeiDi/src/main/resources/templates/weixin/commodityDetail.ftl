@@ -116,7 +116,7 @@
     </script>
     <style>
         .tabClick{ background: #f3f3f3; overflow: hidden;border-bottom:2px solid #ff4d7d;}
-        .tabClick li{ height:30px; line-height: 30px; width: 33%; float: left; text-align: center;font-size: 16px;border-right:0px solid #ff4d7d;}
+        .tabClick li{ height:40px; line-height: 40px; width: 33%; float: left; text-align: center;font-size: 16px;border-right:0px solid #ff4d7d;}
         .tabClick li.active{ color: #099; transition: 0.1s; font-weight: bold}
         .tabClick li:not(:last-child){ border-right:1px solid #ddd;}
     </style>
@@ -204,19 +204,22 @@
 
     <div id="buyNotice" class="mb30"></div>
     <div class="tal pl10 pr10 line18 buyNotice">
-        <section class="fs18" style="display: inline-block; height: 2em; max-width: 100%; line-height: 1em;box-sizing: border-box; border-top: 1.1em solid #ff4d7d; border-bottom: 1.1em solid #ff4d7d; border-right: 1em solid transparent;">
-            <section style="height: 2em; margin-top: -1em; color: white; padding: 0.5em 1em; max-width: 100%; white-space: nowrap;text-overflow: ellipsis;">订购须知</section>
+        <section class="fs18" style="display: inline-block; padding: 0.1em 1em; height: 2em; max-width: 100%; line-height: 2em;background-color: #ff4d7d;">
+            <section style="color: white;">订购须知</section>
         </section>
+        <div style="line-height: 1.8em">
     <#if buyNotice?exists && buyNotice.description?exists>
         ${buyNotice.description}
     </#if>
+        </div>
     </div>
 
     <div id="youlike" class="mb30"></div>
     <div id="youlike" class="tal pl10 pr10 moreclassify clearfix youlike">
-        <section class="fs18" style="display: inline-block; height: 2em; max-width: 100%; line-height: 1em;box-sizing: border-box; border-top: 1.1em solid #ff4d7d; border-bottom: 1.1em solid #ff4d7d; border-right: 1em solid transparent;">
-            <section style="height: 2em; margin-top: -1em; color: white; padding: 0.5em 1em; max-width: 100%; white-space: nowrap;text-overflow: ellipsis;">猜你喜欢</section>
+        <section class="fs18" style="display: inline-block; padding: 0.1em 1em; height: 2em; max-width: 100%; line-height: 2em;background-color: #ff4d7d;">
+            <section style="color: white;">猜你喜欢</section>
         </section>
+
         <div class="youlikeList pt10">
 
         </div>
