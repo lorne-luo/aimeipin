@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>定制咨询</title>
+    <title>聚会美商城-定制咨询</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
     <#--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
 <#include "header.ftl"/>

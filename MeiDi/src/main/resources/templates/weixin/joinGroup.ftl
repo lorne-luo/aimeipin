@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>参团</title>
+    <title>聚会美商城</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 <#include "header.ftl"/>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>

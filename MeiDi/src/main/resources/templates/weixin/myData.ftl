@@ -17,7 +17,7 @@
     <div class="header pwhite bg  bor_b ">
         <a class="fs14 pa iconfont icon-back base" href="${PATH}/my"></a>
 
-        <p class="fs18">我的资料</p>
+        <p class="fs18">聚会美商城-我的资料</p>
     </div>
     <div class="pt10 pl20 tal">
         <div class="mt10 pr20">

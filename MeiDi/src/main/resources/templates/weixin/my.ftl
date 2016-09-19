@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>我的</title>
+    <title>聚会美商城-我的信息</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 <#include "header.ftl"/>
 </head>
