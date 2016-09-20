@@ -280,4 +280,4 @@
 </body>
 </html>
 <script type="text/javascript" src="${PATH}/js/CountTClass.js"></script>
-<script type="text/javascript" src="${PATH}/js/weixin/commodityDetail.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/commodityDetail.js?v=${version}"></script>

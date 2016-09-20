@@ -34,5 +34,5 @@
 <#include "footer.ftl"/>
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js"></script>
-<script type="text/javascript" src="${PATH}/js/weixin/classification.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js?v=${version}"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/classification.js?v=${version}"></script>

@@ -166,6 +166,6 @@
 
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/myData.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/myData.js?v=${version}"></script>
 
 

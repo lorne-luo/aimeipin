@@ -200,5 +200,5 @@
 </div>
 
 </body>
-<script src="${PATH}/js/weixin/order.js"></script>
+<script src="${PATH}/js/weixin/order.js?v=${version}"></script>
 </html>

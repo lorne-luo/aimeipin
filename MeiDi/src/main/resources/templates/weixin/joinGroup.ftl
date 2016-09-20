@@ -166,4 +166,4 @@
 </body>
 </html>
 <script type="text/javascript" src="${PATH}/js/CountTClass.js"></script>
-<script type="text/javascript" src="${PATH}/js/weixin/joinGroup.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/joinGroup.js?v=${version}"></script>

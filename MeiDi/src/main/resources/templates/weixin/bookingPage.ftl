@@ -90,4 +90,4 @@
 
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/bookingPage.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/bookingPage.js?v=${version}"></script>

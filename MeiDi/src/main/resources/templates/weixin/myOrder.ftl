@@ -33,4 +33,4 @@
 <#include "footer.ftl"/>
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/myOrder.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/myOrder.js?v=${version}"></script>

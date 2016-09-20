@@ -31,6 +31,6 @@
 </div>
 <#include "footer.ftl"/>
 </body>
-<script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js"></script>
-<script src="${PATH}/js/weixin/myFavorite.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js?v=${version}"></script>
+<script src="${PATH}/js/weixin/myFavorite.js?v=${version}"></script>
 </html>

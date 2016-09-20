@@ -14,7 +14,7 @@
 
 <#include "header.ftl"/>
 
-    <script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js"></script>
+    <script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js?v=${version}"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
         <#if signature?exists>
@@ -102,4 +102,4 @@
 </body>
 </html>
 
-<script type="text/javascript" src="${PATH}/js/weixin/index.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/index.js?v=${version}"></script>

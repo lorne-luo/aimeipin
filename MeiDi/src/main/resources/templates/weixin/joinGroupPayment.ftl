@@ -96,4 +96,4 @@
 
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/joinGroupPayment.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/joinGroupPayment.js?v=${version}"></script>

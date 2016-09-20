@@ -46,5 +46,5 @@
 <#include "footer.ftl"/>
 
 </body>
-<script src="${PATH}/js/weixin/myIntegral.js"></script>
+<script src="${PATH}/js/weixin/myIntegral.js?v=${version}"></script>
 </html>

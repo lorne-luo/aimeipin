@@ -68,4 +68,4 @@
 
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/askPayment.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/askPayment.js?v=${version}"></script>
