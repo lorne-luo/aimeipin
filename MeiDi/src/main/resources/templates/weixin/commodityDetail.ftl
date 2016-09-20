@@ -215,7 +215,7 @@
     </div>
 
     <div id="youlike" class="mb30"></div>
-    <div id="youlike" class="tal pl10 pr10 moreclassify clearfix youlike">
+    <div class="tal pl10 pr10 moreclassify clearfix youlike">
         <section class="fs18" style="display: inline-block; padding: 0.1em 1em; height: 2em; max-width: 100%; line-height: 2em;background-color: #ff4d7d;">
             <section style="color: white;">猜你喜欢</section>
         </section>
