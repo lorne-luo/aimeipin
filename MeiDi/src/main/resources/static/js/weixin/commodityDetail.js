@@ -57,7 +57,7 @@ function getGroupLaunch() {
 function createTable(result) {
 
     if (result.length>0){
-        $('.addList').append('<p class="tal fs14">本项目有下列拼团正在进行中, 点击“去参团”参加:</p>');
+        $('.addList').append('<p class="tal fs14">以下拼团正在进行中，点击“去参团”加入</p>');
     }
 
     $.each(result, function (index, launch) {
