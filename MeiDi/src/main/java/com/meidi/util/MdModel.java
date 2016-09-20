@@ -25,6 +25,7 @@ public class MdModel extends HashMap<String, Object> implements MdConstants {
 
         this.put("PATH", PATH);
         this.put("IMAGE_FORMAL_URL", IMAGE_FORMAL_URL);
+        this.put("version", PomVersion.getVersion());
     }
 
     public String get(String key) {
