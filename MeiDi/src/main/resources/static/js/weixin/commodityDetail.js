@@ -192,7 +192,7 @@ function createTable_youlike(commodityList) {
                 '    </div>' +
                 '  </div>' +
                 '  <div class="tal">' +
-                '    <p class="pl16 line24 fs20 pr16 mt4">' + commodity.name + '</p>' +
+                '    <p class="pl16 pr16 line18 fs16 mt4">' + commodity.name + '</p>' +
                 '    <div class=" pr price">' +
                 '      <div class="lefticon "></div>' +
                 '      <div class="righticon cleafix pr ">' +
@@ -217,7 +217,7 @@ function createTable_youlike(commodityList) {
                 '    </div>' +
                 '  </div>' +
                 '  <div class="tal">' +
-                '    <p class="pl16 line24 fs20 pr16 mt4">' + commodity.name + '</p>' +
+                '    <p class="pl16 pr16 line18 fs16 mt4">' + commodity.name + '</p>' +
                 '  <div class=" pr price">' +
                 '    <div class="lefticon fu"></div>' +
                 '      <div class="righticon cleafix pr qiang">' +
@@ -244,7 +244,7 @@ function createTable_youlike(commodityList) {
                 '    </div>' +
                 '  </div>' +
                 '  <div class="tal">' +
-                '    <p class="pl16 pr16 line24 fs20 mt4">' + commodity.name + '</p>' +
+                '    <p class="pl16 pr16 line18 fs16 mt4">' + commodity.name + '</p>' +
                 '    <div class=" pr price">' +
                 '      <div class="lefticon sale"></div>' +
                 '      <div class="righticon cleafix pr qiang">' +
