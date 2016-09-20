@@ -18,7 +18,7 @@
 <div class="wrapper pr pt10">
 
     <div class="cancelboximg borall ">
-        <img src="${PATH}/images/index/1.jpg">
+        <img src="http://s.luotao.net/static/aimeipin/index/1.jpg">
     </div>
     <div class="pl24  pr24 tal mt10">
         <p class="pf40000 fs28 ml4">¥#{ask.discountPrice}</p>

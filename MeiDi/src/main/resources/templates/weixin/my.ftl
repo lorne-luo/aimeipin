@@ -23,7 +23,7 @@
             <a href="${PATH}/business/myOrderPage">
                 <div class=" ">
                     <div class=" t1 pr bor_b">
-                        <img src="${PATH}/images/my/order.png" class="rowimg1">
+                        <img src="http://s.luotao.net/static/aimeipin/my/order.png" class="rowimg1">
                         <span class="fs28 hl36 ml10 ">我的订单</span>
                         <span class="iconfont icon-more p555 pa"></span>
                     </div>
@@ -34,7 +34,7 @@
             <a href="${PATH}/business/myFavoritePage">
                 <div class=" ">
                     <div class=" t1 pr bor_b">
-                        <img src="${PATH}/images/my/c.png" class="rowimg">
+                        <img src="http://s.luotao.net/static/aimeipin/my/c.png" class="rowimg">
                         <span class="fs28 hl36 ml10 ">我的收藏</span>
                         <span class="iconfont icon-more p555 pa"></span>
                     </div>
@@ -45,7 +45,7 @@
             <a href="${PATH}/business/myDataPage">
                 <div class=" ">
                     <div class=" t1 pr bor_b">
-                        <img src="${PATH}/images/my/file.png" class="rowimg3">
+                        <img src="http://s.luotao.net/static/aimeipin/my/file.png" class="rowimg3">
                         <span class="fs28 hl36 ml10 ">我的资料</span>
                         <span class="iconfont icon-more p555 pa"></span>
                     </div>
@@ -56,7 +56,7 @@
             <a href="${PATH}/business/myIntegral">
                 <div class=" ">
                     <div class=" t1 pr bor_b">
-                        <img src="${PATH}/images/my/jf.png" class="rowimg">
+                        <img src="http://s.luotao.net/static/aimeipin/my/jf.png" class="rowimg">
                         <span class="fs28 hl36 ml10 ">我的积分</span>
                         <span class="iconfont icon-more p555 pa"></span>
                     </div>
@@ -67,7 +67,7 @@
             <a href="javascript:alert('敬请期待');">
                 <div class=" ">
                     <div class=" t1 pr bor_b">
-                        <img src="${PATH}/images/my/sc.png" class="rowimg2">
+                        <img src="http://s.luotao.net/static/aimeipin/my/sc.png" class="rowimg2">
                         <span class="fs28 hl36 ml10 ">积分商城</span>
                         <span class="iconfont icon-more p555 pa"></span>
                     </div>
@@ -78,7 +78,7 @@
             <a href="${PATH}/business/commonProblem">
                 <div class=" ">
                     <div class=" t1 pr bor_b">
-                        <img src="${PATH}/images/my/q.png" class="rowimg">
+                        <img src="http://s.luotao.net/static/aimeipin/my/q.png" class="rowimg">
                         <span class="fs28 hl36 ml10 ">常见问题</span>
                         <span class="iconfont icon-more p555 pa"></span>
                     </div>
