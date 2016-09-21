@@ -184,8 +184,12 @@
         </div>
     </div>
 </#if>
-    <div id="joinGroup" class="addList mt20 mb10">
+    <div id="joinGroup" class="addList mt20">
 
+    </div>
+    
+    <div>
+        <img width="100%" src="${PATH}/images/barcode.jpg">
     </div>
 
     <ul class="tabClick">

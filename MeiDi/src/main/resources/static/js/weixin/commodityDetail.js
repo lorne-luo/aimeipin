@@ -18,7 +18,7 @@ $(function () {
     // 置顶tab导航条
     var top=$(".tabClick").offset().top;
     $(window).scroll(function () {
-        if ($(window).scrollTop() >= top+200) {
+        if ($(window).scrollTop() >= top+500) {
             $(".tabClick").attr("style", "position:fixed;top:0;left:0;z-index:10;width:100%");
         } else {
             $(".tabClick").attr("style", "");
