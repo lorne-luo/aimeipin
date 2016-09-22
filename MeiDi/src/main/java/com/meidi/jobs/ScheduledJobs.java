@@ -1,26 +1,26 @@
 package com.meidi.jobs;
 
+import com.meidi.domain.*;
+import com.meidi.repository.*;
+import com.meidi.util.MdCommon;
+import com.meidi.util.MdConstants;
+import com.meidi.util.WxTemplate;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import com.meidi.domain.*;
-import com.meidi.repository.*;
-import com.meidi.util.MdCommon;
-
-import com.meidi.util.MdConstants;
-import com.meidi.util.WxTemplate;
-import org.apache.http.HttpResponse;
-import org.apache.http.util.EntityUtils;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClients;
-
-import javax.annotation.Resource;
 
 @Component
 public class ScheduledJobs {
@@ -35,6 +35,8 @@ public class ScheduledJobs {
     private GroupLaunchRepository groupLaunchRepository;
     @Resource
     private GroupLaunchUserRepository groupLaunchUserRepository;
+    @Resource
+    private UserRepository userRepository;
 
     /**
      * 每天00:05检查上架商品到期
@@ -43,14 +45,14 @@ public class ScheduledJobs {
      */
     @Scheduled(cron = "0 5 0 * * *")
     public void checkCommodityEnded() {
-        try{
+        try {
             String today = dateFormat.format(new Date());
             List<Commodity> endedCommodity = commodityRepository.findByStateAndEndDateBefore(1, today);
 
             for (Commodity commodity : endedCommodity) {
                 // find all unpaid order (state=1) and close it
-                List<Order> orders = orderRepository.findByStateAndCommodityId(1,commodity.getId());
-                for(Order order : orders){
+                List<Order> orders = orderRepository.findByStateAndCommodityId(1, commodity.getId());
+                for (Order order : orders) {
                     order.setState(8);
                     orderRepository.save(order);
                 }
@@ -71,18 +73,18 @@ public class ScheduledJobs {
      */
     @Scheduled(fixedDelay = 300 * 1000)
     public void checkGroupLaunchEnded() {
-        try{
+        try {
             String token = wxTicketRepository.findByAppid(MdConstants.WX_APP_ID).getToken();
             // 查询状态仍为拼团中,实际已经超过结束时间的拼团
             Date now = new Date();
-            List<GroupLaunch> groupLaunches = groupLaunchRepository.findByStateAndEndTimeIsBefore(0,now);
+            List<GroupLaunch> groupLaunches = groupLaunchRepository.findByStateAndEndTimeIsBefore(0, now);
 
-            for (GroupLaunch groupLaunch : groupLaunches){
+            for (GroupLaunch groupLaunch : groupLaunches) {
                 List<Order> orders = orderRepository.findByLaunchId(groupLaunch.getId());
 
                 // 取消所有未支付订单
-                for (Order order : orders){
-                    if (order.getState() == 1){ // 未支付
+                for (Order order : orders) {
+                    if (order.getState() == 1) { // 未支付
                         order.setState(8);
                         orderRepository.save(order);
                     }
@@ -92,10 +94,10 @@ public class ScheduledJobs {
                 if (groupLaunchUserList.size() >= groupLaunch.getPeopleNumber()) {
                     //人数达标, 该拼团成功
                     groupLaunch.setState(1);//拼团结束 & 拼团成功
-                }else{
+                } else {
                     groupLaunch.setState(3);//拼团失败
                     for (Order order : orders) {
-                        if (order.getState() == 2){ // 拼团失败,退款所有已支付订单
+                        if (order.getState() == 2) { // 拼团失败,退款所有已支付订单
                             order.setState(5);// 改成取消中待退款
                             orderRepository.save(order);
                             WxTemplate.groupClose(token, order);
@@ -145,5 +147,56 @@ public class ScheduledJobs {
             System.out.println("[ScheduledJobs] update weixin ticket failed.");
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 每天01:15 更新公众号关注用户,将是否关注置为是
+     */
+    @Scheduled(cron = "0 15 1 * * *")
+    public void updateSubscribeUser() {
+        //reset subscribe
+        Iterable<User> allUsers=userRepository.findAll();
+        for (User user : allUsers) {
+            user.setIsSubscribe(false);
+            userRepository.save(user);
+        }
+
+        String token = wxTicketRepository.findByAppid(MdConstants.WX_APP_ID).getToken();
+        String next_openid = "";
+        Integer total = 0;
+        Integer count = 10000;
+        String url;
+
+        HttpClient client = HttpClients.createDefault();
+        HttpGet httpGet;
+        HttpResponse httpResponse;
+
+        while (count >= 10000) {
+            url = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=" + token + "&next_openid=" + next_openid;
+            try {
+                httpGet = new HttpGet();
+                httpGet.setURI(new URI(url));
+                httpResponse = client.execute(httpGet);
+                String returnStr = EntityUtils.toString(httpResponse.getEntity());
+                JSONObject obj = JSONObject.fromObject(returnStr);
+                next_openid = obj.getString("next_openid");
+                total = obj.getInt("total");
+                count = obj.getInt("count");
+                JSONArray openidArr = obj.getJSONObject("data").getJSONArray("openid");
+
+                for (Object openid : openidArr) {
+                    User u = userRepository.findByWxOpenid(openid.toString());
+                    if (!MdCommon.isEmpty(u)) {
+                        u.setIsSubscribe(true);
+                        userRepository.save(u);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("[ScheduledJobs] update subscribe list failed.");
+                break;
+            }
+        }
+        System.out.println("[ScheduledJobs] "+total.toString()+" subscribe user updated.");
     }
 }
