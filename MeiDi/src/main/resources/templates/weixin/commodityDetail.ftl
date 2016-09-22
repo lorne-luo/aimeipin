@@ -114,12 +114,6 @@
         _MEIQIA('withoutBtn', true);
         </#if>
     </script>
-    <style>
-        .tabClick{ background: #f3f3f3; overflow: hidden;border-bottom:2px solid #ff4d7d;}
-        .tabClick li{ height:40px; line-height: 40px; width: 33%; float: left; text-align: center;font-size: 16px;border-right:0px solid #ff4d7d;}
-        .tabClick li.active{ color: #099; transition: 0.1s; font-weight: bold}
-        .tabClick li:not(:last-child){ border-right:1px solid #ddd;}
-    </style>
 </head>
 
 <body style="background:#ffffff">
