@@ -17,7 +17,7 @@
     <div class="header pwhite bg  bor_b ">
         <a class="fs14 pa iconfont icon-back base" href="${PATH}/my"></a>
 
-        <p class="fs18">我的资料</p>
+        <p class="fs18">聚会美商城-我的资料</p>
     </div>
     <div class="pt10 pl20 tal">
         <div class="mt10 pr20">
@@ -25,9 +25,9 @@
                 <a href="#">
                     <div class="">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/images/my/z1.png" class="rowimg">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z1.png" class="rowimg">
                             <span class="fs28 hl36 ml10 ">姓名</span>
-                            <span class="result"><#if user.name?exists>${user.name}</#if></span>
+                            <span class="result"><#if userProfile.name?exists>${userProfile.name}</#if></span>
 
                             <div class='fs24 p20 hide readyinput'>姓名：
                                 <input type='text' name='name' class='userinput  commoninput' placeholder=''></div>
@@ -40,9 +40,9 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/images/my/z2.png" class="rowimg4">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z2.png" class="rowimg4">
                             <span class="fs28 hl36 ml10 ">手机号</span>
-                            <span class="result"><#if user.mobile?exists>${user.mobile}</#if></span>
+                            <span class="result"><#if userProfile.mobile?exists>${userProfile.mobile}</#if></span>
 
                             <div class='fs24 p20 hide readyinput'>手机号：
                                 <input type='text' name='mobile' class='userinput  commoninput' placeholder=''></div>
@@ -55,9 +55,9 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/images/my/z3.png" class="rowimg3">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z3.png" class="rowimg3">
                             <span class="fs28 hl36 ml10 ">微信号</span>
-                            <span class="result"><#if user.wxNumber?exists>${user.wxNumber}</#if></span>
+                            <span class="result"><#if userProfile.wxNumber?exists>${userProfile.wxNumber}</#if></span>
 
                             <div class='fs24 p20 hide readyinput'>微信号：
                                 <input type='text' name='wx_number' class='userinput  commoninput' placeholder=''></div>
@@ -70,9 +70,9 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/images/my/z4.png" class="rowimg3">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z4.png" class="rowimg3">
                             <span class="fs28 hl36 ml10 ">性别</span>
-                            <span class="result gender"><#if user.gender?exists><#if user.gender == 1>男<#elseif user.gender == 2 >女</#if></#if></span>
+                            <span class="result gender"><#if userProfile.gender?exists><#if userProfile.gender == 1>男<#elseif userProfile.gender == 2 >女</#if></#if></span>
 
                             <div class="databox hide">
                                 <select id="gender">
@@ -89,9 +89,9 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/images/my/z5.png" class="rowimg4">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z5.png" class="rowimg4">
                             <span class="fs28 hl36 ml10 ">所在地</span>
-                            <span class="result city"><#if user.dicCity?exists>${user.dicCity.name}</#if></span>
+                            <span class="result city"><#if userProfile.dicCity?exists>${userProfile.dicCity.name}</#if></span>
 
                             <div class="databox hide">
                                 <select id="city">
@@ -107,9 +107,9 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/images/my/z6.png" class="rowimg5">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z6.png" class="rowimg5">
                             <span class="fs28 hl36 ml10 ">从何种渠道认识聚会美</span>
-                            <span class="result channels"><#if user.channels?exists>${user.channels}</#if></span>
+                            <span class="result channels"><#if userProfile.channels?exists>${userProfile.channels}</#if></span>
 
                             <div class="databox hide">
                                 <select id="channels" multiple>
@@ -124,9 +124,9 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/images/my/z7.png" class="rowimg5">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z7.png" class="rowimg5">
                             <span class="fs28 hl36 ml10 ">感兴趣的医美项目</span>
-                            <span class="result interests"><#if user.interests?exists>${user.interests}</#if></span>
+                            <span class="result interests"><#if userProfile.interests?exists>${userProfile.interests}</#if></span>
 
                             <div class="databox hide">
                                 <select id="interests" multiple>
@@ -142,12 +142,12 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/images/my/z8.png" class="rowimg5">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z8.png" class="rowimg5">
                             <span class="fs28 hl36 ml10 ">会选择去哪里做项目</span>
-                            <span class="result wheres" multiple><#if user.wheres?exists>${user.wheres}</#if></span>
+                            <span class="result wheres" multiple><#if userProfile.wheres?exists>${userProfile.wheres}</#if></span>
 
                             <div class="databox hide">
-                                <input type="hidden" value="<#if user.wheres?exists>${user.wheres}</#if>" id="wheresinp">
+                                <input type="hidden" value="<#if userProfile.wheres?exists>${userProfile.wheres}</#if>" id="wheresinp">
                                 <select id="wheres" multiple>
                                     <option value="韩国">韩国</option>
                                     <option value="中国">中国</option>
@@ -166,6 +166,6 @@
 
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/myData.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/myData.js?v=${version}"></script>
 
 

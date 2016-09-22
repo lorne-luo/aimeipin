@@ -18,7 +18,7 @@ $(function () {
     // 置顶tab导航条
     var top=$(".tabClick").offset().top;
     $(window).scroll(function () {
-        if ($(window).scrollTop() >= top) {
+        if ($(window).scrollTop() >= top+400) {
             $(".tabClick").attr("style", "position:fixed;top:0;left:0;z-index:10;width:100%");
         } else {
             $(".tabClick").attr("style", "");
@@ -57,7 +57,7 @@ function getGroupLaunch() {
 function createTable(result) {
 
     if (result.length>0){
-        $('.addList').append('<p class="tal fs14">本项目有下列拼团正在进行中, 点击“去参团”参加:</p>');
+        $('.addList').append('<p class="tal fs14">以下拼团正在进行中，点击“去参团”加入</p>');
     }
 
     $.each(result, function (index, launch) {
@@ -161,7 +161,7 @@ function youLike() {
         dataType: 'json',
         success: function (data) {
             if (data.commodityList == null || data.commodityList.length <= 0) {
-                $('#youlike').parent().hide();
+                $('div.youlike').hide();
                 return;
             }
             createTable_youlike(data.commodityList);
@@ -192,7 +192,7 @@ function createTable_youlike(commodityList) {
                 '    </div>' +
                 '  </div>' +
                 '  <div class="tal">' +
-                '    <p class="pl16 line24 fs20 pr16 mt4">' + commodity.name + '</p>' +
+                '    <p class="pl16 pr16 line18 fs16 mt4">' + commodity.name + '</p>' +
                 '    <div class=" pr price">' +
                 '      <div class="lefticon "></div>' +
                 '      <div class="righticon cleafix pr ">' +
@@ -217,7 +217,7 @@ function createTable_youlike(commodityList) {
                 '    </div>' +
                 '  </div>' +
                 '  <div class="tal">' +
-                '    <p class="pl16 line24 fs20 pr16 mt4">' + commodity.name + '</p>' +
+                '    <p class="pl16 pr16 line18 fs16 mt4">' + commodity.name + '</p>' +
                 '  <div class=" pr price">' +
                 '    <div class="lefticon fu"></div>' +
                 '      <div class="righticon cleafix pr qiang">' +
@@ -244,7 +244,7 @@ function createTable_youlike(commodityList) {
                 '    </div>' +
                 '  </div>' +
                 '  <div class="tal">' +
-                '    <p class="pl16 pr16 line24 fs20 mt4">' + commodity.name + '</p>' +
+                '    <p class="pl16 pr16 line18 fs16 mt4">' + commodity.name + '</p>' +
                 '    <div class=" pr price">' +
                 '      <div class="lefticon sale"></div>' +
                 '      <div class="righticon cleafix pr qiang">' +
@@ -253,6 +253,28 @@ function createTable_youlike(commodityList) {
                 '        <a href="' + BASE_JS_URL + '/business/commodityDetailPage/' + commodity.id + '"></a>' +
                 '      </div>' +
                 '    </div>' +
+                '  </div>' +
+                '</div>';
+        } else if (commodity.flag == 4) {//咨询
+            str += '<div class="itemlist shadowall focusImgs pr ">' +
+                '  <div class="slider multiple-items">' +
+                '    <div>' +
+                '        <a href="' + BASE_JS_URL + '/business/commodityDetailPage/' + commodity.id + '">';
+            if (commodity.commodityPhotoList != null && commodity.commodityPhotoList.length > 0) {
+                str += '          <img src=' + IMAGE_FORMAL_URL + '/' + commodity.commodityPhotoList[0].imageName + '>';
+            }
+            str += '        </a>' +
+                '    </div>' +
+                '<div class="tal">' +
+                '  <p class="pl16 pr16 line18 fs16 mt6">' + commodity.name + '</p>' +
+                '  <div class=" pr price askpic">' +
+                '    <div class="ml12 lefticon dzf"></div>' +
+                '    <div class="righticon cleafix pr askdz">' +
+                '      <span class="ml50 yuanj fl ">原价:<del>' + commodity.price/100 + '</del></span>' +
+                '      <span class="line24 fs16 fl">现价:' + commodity.discountPrice/100 + '</span>' +
+                '      <a href="' + BASE_JS_URL + '/business/commodityDetailPage/' + commodity.id + '"></a>' +
+                '    </div>' +
+                '  </div>' +
                 '  </div>' +
                 '</div>';
         }

@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>我的收藏</title>
+    <title>聚会美商城-我的收藏</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 <#include "header.ftl"/>
 </head>
@@ -31,6 +31,6 @@
 </div>
 <#include "footer.ftl"/>
 </body>
-<script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js"></script>
-<script src="${PATH}/js/weixin/myFavorite.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js?v=${version}"></script>
+<script src="${PATH}/js/weixin/myFavorite.js?v=${version}"></script>
 </html>

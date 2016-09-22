@@ -38,7 +38,7 @@
             wx.onMenuShareTimeline({
                 title: '${commodity.name}', // 分享标题
                 link: '${PATH}/business/commodityDetailPage/#{commodity.id}', // 分享链接
-                imgUrl: '${PATH}/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
                 },
@@ -57,7 +57,7 @@
                 title: '${commodity.name}', // 分享标题
                 desc: sharingSummary, // 分享描述
                 link: '${PATH}/business/commodityDetailPage/#{commodity.id}', // 分享链接
-                imgUrl: '${PATH}/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
@@ -114,12 +114,6 @@
         _MEIQIA('withoutBtn', true);
         </#if>
     </script>
-    <style>
-        .tabClick{ background: #f3f3f3; overflow: hidden;border-bottom:2px solid #ff4d7d;}
-        .tabClick li{ height:30px; line-height: 30px; width: 33%; float: left; text-align: center;font-size: 16px;border-right:0px solid #ff4d7d;}
-        .tabClick li.active{ color: #099; transition: 0.1s; font-weight: bold}
-        .tabClick li:not(:last-child){ border-right:1px solid #ddd;}
-    </style>
 </head>
 
 <body style="background:#ffffff">
@@ -184,9 +178,18 @@
         </div>
     </div>
 </#if>
-    <div id="joinGroup" class="addList mt20 mb10">
+    <div id="joinGroup" class="addList mt20">
 
     </div>
+
+<#if user?exists && user.isSubscribe?has_content && user.isSubscribe == true >
+
+<#else>
+    <#-- 未关注用户显示二维码 -->
+    <div id="barcode">
+        <img width="100%" src="${PATH}/images/barcode.jpg">
+    </div>
+</#if>
 
     <ul class="tabClick">
         <li><a href="#title">项目详情</a></li>
@@ -204,19 +207,22 @@
 
     <div id="buyNotice" class="mb30"></div>
     <div class="tal pl10 pr10 line18 buyNotice">
-        <section class="fs18" style="display: inline-block; height: 2em; max-width: 100%; line-height: 1em;box-sizing: border-box; border-top: 1.1em solid #ff4d7d; border-bottom: 1.1em solid #ff4d7d; border-right: 1em solid transparent;">
-            <section style="height: 2em; margin-top: -1em; color: white; padding: 0.5em 1em; max-width: 100%; white-space: nowrap;text-overflow: ellipsis;">订购须知</section>
+        <section class="fs18" style="display: inline-block; padding: 0.1em 1em; height: 2em; max-width: 100%; line-height: 2em;background-color: #ff4d7d;">
+            <section style="color: white;">订购须知</section>
         </section>
+        <div style="line-height: 1.8em">
     <#if buyNotice?exists && buyNotice.description?exists>
         ${buyNotice.description}
     </#if>
+        </div>
     </div>
 
     <div id="youlike" class="mb30"></div>
-    <div id="youlike" class="tal pl10 pr10 moreclassify clearfix youlike">
-        <section class="fs18" style="display: inline-block; height: 2em; max-width: 100%; line-height: 1em;box-sizing: border-box; border-top: 1.1em solid #ff4d7d; border-bottom: 1.1em solid #ff4d7d; border-right: 1em solid transparent;">
-            <section style="height: 2em; margin-top: -1em; color: white; padding: 0.5em 1em; max-width: 100%; white-space: nowrap;text-overflow: ellipsis;">猜你喜欢</section>
+    <div class="tal pl10 pr10 moreclassify clearfix youlike">
+        <section class="fs18" style="display: inline-block; padding: 0.1em 1em; height: 2em; max-width: 100%; line-height: 2em;background-color: #ff4d7d;">
+            <section style="color: white;">猜你喜欢</section>
         </section>
+
         <div class="youlikeList pt10">
 
         </div>
@@ -224,19 +230,19 @@
 
     <div class="detailnav clearfix btfix">
         <div class="t1  tt2 fs12">
-            <a class="borr fl pt2" href="${PATH}/index">
-                <img src="${PATH}/images/detail/indicon.png">
+            <a class="borr fl pt4" href="${PATH}/index">
+                <img src="http://s.luotao.net/static/aimeipin/detail/indicon.png">
 
                 <p class="mt2">首页</p>
             </a>
-            <a class="borr fl pt2" href="javascript:<#if wx_openid?has_content>favoriteAction(#{commodity.id})<#else>redirectLogin()</#if>;">
-                <img src="${PATH}/images/detail/sc.png" class="<#if favoriteFlag == 1>hide</#if> favorite1">
-                <img src="${PATH}/images/detail/noc.png" class="<#if favoriteFlag == 2>hide</#if> favorite2">
+            <a class="borr fl pt4" href="javascript:<#if wx_openid?has_content>favoriteAction(#{commodity.id})<#else>redirectLogin()</#if>;">
+                <img src="http://s.luotao.net/static/aimeipin/detail/sc.png" class="<#if favoriteFlag == 1>hide</#if> favorite1">
+                <img src="http://s.luotao.net/static/aimeipin/detail/noc.png" class="<#if favoriteFlag == 2>hide</#if> favorite2">
 
                 <p class="mt2">收藏</p>
             </a>
-            <a class=" fl pt2" href="javascript:void(0);" onclick="_MEIQIA._SHOWPANEL()">
-                <img src="${PATH}/images/detail/zx.png">
+            <a class=" fl pt4" href="javascript:void(0);" onclick="_MEIQIA._SHOWPANEL()">
+                <img src="http://s.luotao.net/static/aimeipin/detail/zx.png">
 
                 <p class="mt2">咨询</p>
             </a>
@@ -277,4 +283,4 @@
 </body>
 </html>
 <script type="text/javascript" src="${PATH}/js/CountTClass.js"></script>
-<script type="text/javascript" src="${PATH}/js/weixin/commodityDetail.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/commodityDetail.js?v=${version}"></script>

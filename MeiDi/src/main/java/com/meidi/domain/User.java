@@ -45,6 +45,9 @@ public class User implements Serializable{
 
     private String wheres;
 
+    @Column(name = "is_subscribe")
+    private Boolean isSubscribe = false;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "city_id", referencedColumnName = "id")
     private DicCity dicCity;
@@ -168,4 +171,9 @@ public class User implements Serializable{
     public void setIntegral(Integer integral) {
         this.integral = integral;
     }
+
+    public Boolean getIsSubscribe() { return isSubscribe; }
+
+    public void setIsSubscribe(Boolean isSubscribe) { this.isSubscribe = isSubscribe; }
+
 }

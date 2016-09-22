@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>订单</title>
+    <title>聚会美商城</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <#include "header.ftl"/>
@@ -111,7 +111,7 @@
 <div class="wrapper pr pb80">
     <div class="clearfix cancelboxtop">
         <div class="fl">
-            <img src="${PATH}/images/cancel/s.png">
+            <img src="http://s.luotao.net/static/aimeipin/cancel/s.png">
         </div>
         <div class="fr pf40000 fs14 mt20">
         <#if order.state == 1>
@@ -176,8 +176,8 @@
     </div>
     <div class="chatbox tac fs14">
         <a href="javascript:void(0);" class="mr20" onclick="_MEIQIA._SHOWPANEL()"><img
-                src="${PATH}/images/cancel/h.png">在线咨询</a>
-        <a href="tel:4006056662"><img src="${PATH}/images/cancel/t.png">拨打电话</a>
+                src="http://s.luotao.net/static/aimeipin/cancel/h.png">在线咨询</a>
+        <a href="tel:4006056662"><img src="http://s.luotao.net/static/aimeipin/cancel/t.png">拨打电话</a>
     </div>
 
     <div class=" btfix  clearfix cancelbtnbox">
@@ -200,5 +200,5 @@
 </div>
 
 </body>
-<script src="${PATH}/js/weixin/order.js"></script>
+<script src="${PATH}/js/weixin/order.js?v=${version}"></script>
 </html>

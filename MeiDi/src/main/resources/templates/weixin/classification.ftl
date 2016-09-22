@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>分类</title>
+    <title>聚会美商城</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 <#include "header.ftl"/>
 </head>
@@ -34,5 +34,5 @@
 <#include "footer.ftl"/>
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js"></script>
-<script type="text/javascript" src="${PATH}/js/weixin/classification.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js?v=${version}"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/classification.js?v=${version}"></script>

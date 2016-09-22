@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>我的订单</title>
+    <title>聚会美商城-我的订单</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 <#include "header.ftl"/>
 </head>
@@ -33,4 +33,4 @@
 <#include "footer.ftl"/>
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/myOrder.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/myOrder.js?v=${version}"></script>

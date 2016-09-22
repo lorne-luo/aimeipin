@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>参团</title>
+    <title>聚会美商城</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 <#include "header.ftl"/>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -28,7 +28,7 @@
             wx.onMenuShareTimeline({
                 title: '【超值拼团】${commodity.name}', // 分享标题
                 link: '${PATH}/business/joinGroupPage/#{groupLaunch.id}', // 分享链接
-                imgUrl: '${PATH}/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
                 },
@@ -41,7 +41,7 @@
                 title: '【超值拼团】${commodity.name}', // 分享标题
                 desc: '【还差${groupLaunch.peopleNumber - userList?size}人】${commodity.name}', // 分享描述
                 link: '${PATH}/business/joinGroupPage/#{groupLaunch.id}', // 分享链接
-                imgUrl: '${PATH}/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
@@ -113,9 +113,9 @@
             </div>
         </div>
         <#if groupLaunch.state == 0>
-        <div class="ml20 mr20 mt20 fs18 pr">
+        <div class="ml20 mr20 mt20 pr">
             <span class="line"></span>
-            <span class="times p9c" id="times" endtime="#{endTime}">剩余时间：
+            <span class="times p9c fs22" id="times" endtime="#{endTime}">剩余时间：
                 <span class="f40b0b">23</span><i class="f40b0b">:</i>
                 <span class="f40b0b">55</span><i class="f40b0b">:</i>
                 <span class="f40b0b">59</span>
@@ -150,7 +150,7 @@
 <#if groupLaunch.peopleNumber - userList?size gt 0 && shareFlag?exists && shareFlag == 1>
 <div class="sharemark">
     <div class="rightt1">
-        <img src="${PATH}/images/row.png">
+        <img src="http://s.luotao.net/static/aimeipin/row.png">
 
         <p>发送给小伙伴参团</p>
     </div>
@@ -166,4 +166,4 @@
 </body>
 </html>
 <script type="text/javascript" src="${PATH}/js/CountTClass.js"></script>
-<script type="text/javascript" src="${PATH}/js/weixin/joinGroup.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/joinGroup.js?v=${version}"></script>

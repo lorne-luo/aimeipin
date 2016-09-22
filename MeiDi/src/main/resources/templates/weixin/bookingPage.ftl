@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>购买</title>
+    <title>聚会美商城</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 <#include "header.ftl"/>
 
@@ -90,4 +90,4 @@
 
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/bookingPage.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/bookingPage.js?v=${version}"></script>

@@ -1088,7 +1088,6 @@ public class BackEndController implements MdConstants {
     @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
     public ModelAndView loginPage(HttpServletRequest request) {
         MdModel model = new MdModel(request);
-        model.put("version", PomVersion.getVersion());
         return new ModelAndView("backend/login", model);
     }
 
