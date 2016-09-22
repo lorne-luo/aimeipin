@@ -181,10 +181,15 @@
     <div id="joinGroup" class="addList mt20">
 
     </div>
-    
-    <div>
+
+<#if user?exists && user.isSubscribe?has_content && user.isSubscribe == true >
+
+<#else>
+    <#-- 未关注用户显示二维码 -->
+    <div id="barcode">
         <img width="100%" src="${PATH}/images/barcode.jpg">
     </div>
+</#if>
 
     <ul class="tabClick">
         <li><a href="#title">项目详情</a></li>

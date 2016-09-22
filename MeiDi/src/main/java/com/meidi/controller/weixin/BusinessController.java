@@ -130,8 +130,8 @@ public class BusinessController extends WxBaseController {
 
         BuyNotice buyNotice = buyNoticeRepository.findByFlag(commodity.getFlag());
         model.put("buyNotice", buyNotice);
-
         model.put("commodity", commodity);
+        model.put("user", userRepository.findByWxOpenid(model.get("wx_openid")));
 
         return new ModelAndView("weixin/commodityDetail", model);
     }
