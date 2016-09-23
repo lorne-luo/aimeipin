@@ -13,6 +13,8 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <#include "header.ftl"/>
     <script src="${PATH}/ueditor/ueditor.parse.js"></script>
+    <script type="text/javascript" src="${PATH}/js/jquery.cookie.js"></script>
+
     <script>
         uParse("#description", {
             rootPath: '${PATH}/ueditor'
@@ -183,11 +185,11 @@
     </div>
 
 <#if user?exists && user.isSubscribe?has_content && user.isSubscribe == true >
-
 <#else>
     <#-- 未关注用户显示二维码 -->
-    <div id="barcode">
+    <div id="barcode" class="pr hide">
         <img width="100%" src="${PATH}/images/barcode.jpg">
+        <button class="closebtn" onclick="javascript:closeBarCode()">X</button>
     </div>
 </#if>
 

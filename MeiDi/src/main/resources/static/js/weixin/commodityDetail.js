@@ -28,6 +28,11 @@ $(function () {
     getGroupLaunch();
 
     youLike();
+
+    //显示二维码
+    if ($.cookie('showBarCode') != 'false'){
+        $('#barcode').show();
+    }
 });
 
 /**
@@ -282,4 +287,10 @@ function createTable_youlike(commodityList) {
         $('.youlikeList').append(str);
     });
 
+}
+
+function closeBarCode(){
+    $('#barcode').hide();
+    // hide barcode for 2 weeks
+    $.cookie('showBarCode', 'false', { expires: 14 });
 }
