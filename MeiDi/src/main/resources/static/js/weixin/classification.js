@@ -23,7 +23,7 @@ function setProjectFlagAndGetProject(categoryId, city, pageNumber, tag) {
 
     cityId = city;
     getProjectList(categoryId, pageNumber, cityId,'');
-
+    flag = categoryId;
     $('.getmore').show();
 
 }
