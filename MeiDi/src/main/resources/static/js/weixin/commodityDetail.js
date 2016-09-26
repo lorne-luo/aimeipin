@@ -292,5 +292,5 @@ function createTable_youlike(commodityList) {
 function closeBarCode(){
     $('#barcode').hide();
     // hide barcode for 2 weeks
-    $.cookie('showBarCode', 'false', { expires: 14 });
+    $.cookie('showBarCode', 'false', { expires: 1 });
 }

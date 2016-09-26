@@ -1609,10 +1609,20 @@ a.baseBtn.nof {
 .tabClick li.active{ color: #099; transition: 0.1s; font-weight: bold}
 .tabClick li:not(:last-child){ border-right:1px solid #ddd;}
 
-.closebtn{
+
+#barcode{
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
+    margin-left: -50%;
+    left: 50%;
+    z-index: 999;
+}
+
+#barcode .closebtn{
     position: absolute;
-    top:10px;
-    right:10px;
+    top:12px;
+    right:5px;
     width:32px;
     height:32px;
     font-size: 16px;
