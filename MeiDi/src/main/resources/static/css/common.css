@@ -1622,7 +1622,7 @@ a.baseBtn.nof {
 #barcode .closebtn{
     position: absolute;
     top:12px;
-    right:5px;
+    left:5px;
     width:32px;
     height:32px;
     font-size: 16px;
