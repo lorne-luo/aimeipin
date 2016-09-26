@@ -81,7 +81,7 @@ function createTable(result) {
 
         }
         if(order.order.flag == 1 && order.order.state == 2 &&  order.launch != null &&  order.launch.state == 0){//拼团订单 并且还未成功
-            str += '<a href="' + BASE_JS_URL + '/business/joinGroupPage/ '+ order.launch.id + '" class="gopay fr">找人拼团</a>';
+            str += '<a href="' + BASE_JS_URL + '/business/joinGroupPage/'+ order.launch.id + '" class="gopay fr">找人拼团</a>';
 
         }
 
