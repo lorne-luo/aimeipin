@@ -134,7 +134,7 @@
 
 </div>
 <div class="sharebtnbox clearfix btfix">
-    <a href="${PATH}/class" class="t1">更多拼团</a>
+    <a href="${PATH}/index" class="t1">商城首页</a>
 
 
 <#if commodity.state!=1>
