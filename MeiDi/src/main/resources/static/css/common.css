@@ -285,7 +285,7 @@ input{border:none}
 
 .w580 {
     width: 580px;
-    background: url(http://s.luotao.net/static/aimeipin/loading.gif) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/loading.gif) center no-repeat;
     min-height: 200px;
     margin: 0 auto;
 }
@@ -410,7 +410,7 @@ a.baseBtn.nof {
 .focusImg img {
     width: 595px;
     height: 290px;
-    background: url(http://s.luotao.net/static/aimeipin/loading.gif) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/loading.gif) center no-repeat;
 }
 .focusImg.topimg{
     height: 200px;
@@ -420,7 +420,7 @@ a.baseBtn.nof {
 .focusImg.topimg img {
     width: 100%;
     height: 200px;
-    background: url(http://s.luotao.net/static/aimeipin/loading.gif) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/loading.gif) center no-repeat;
 }
 .searchdiv {
     height: 99px;
@@ -486,11 +486,11 @@ a.baseBtn.nof {
 
 .itemlist .focusImgs img {
     width: 100%;
-    background: url(http://s.luotao.net/static/aimeipin/loading.gif) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/loading.gif) center no-repeat;
 }
 
 .itemlist .water {
-    background: url(http://s.luotao.net/static/aimeipin/index/water.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/water.png) center no-repeat;
     background-size: 100%;
     font-weight: bold;
     height: 85px;
@@ -504,7 +504,7 @@ a.baseBtn.nof {
 }
 
 .itemlist .hot {
-    background: url(http://s.luotao.net/static/aimeipin/index/hot.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/hot.png) center no-repeat;
     background-size: 100%;
     height: 54px;
     width: 57px;
@@ -515,7 +515,7 @@ a.baseBtn.nof {
 }
 
 .itemlist .new {
-    background: url(http://s.luotao.net/static/aimeipin/index/new.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/new.png) center no-repeat;
     background-size: 100%;
     height: 54px;
     width: 57px;
@@ -526,7 +526,7 @@ a.baseBtn.nof {
 }
 
 .itemlist .lt {
-    background: url(http://s.luotao.net/static/aimeipin/index/lt.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/lt.png) center no-repeat;
     background-size: 100%;
     height: 54px;
     width: 57px;
@@ -537,7 +537,7 @@ a.baseBtn.nof {
 }
 
 .itemlist .ll {
-    background: url(http://s.luotao.net/static/aimeipin/index/ll.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/ll.png) center no-repeat;
     background-size: 100%;
     height: 54px;
     width: 57px;
@@ -547,7 +547,7 @@ a.baseBtn.nof {
     z-index: 98;
 }
 .zx .itemlist .water {
-    background: url(http://s.luotao.net/static/aimeipin/index/water.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/water.png) center no-repeat;
     background-size:54px 54px;
     height: 54px;
     width: 54px;
@@ -560,7 +560,7 @@ a.baseBtn.nof {
     font-weight: normal;
 }
 .zx .itemlist .hot {
-    background: url(http://s.luotao.net/static/aimeipin/index/hot.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/hot.png) center no-repeat;
     background-size: 40px 40px;
     height: 40px;
     width: 40px;
@@ -571,7 +571,7 @@ a.baseBtn.nof {
     font-weight: normal;
 }
 .zx .itemlist .new {
-    background: url(http://s.luotao.net/static/aimeipin/index/new.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/new.png) center no-repeat;
     background-size: 40px 40px;
     height: 40px;
     width: 40px;
@@ -582,7 +582,7 @@ a.baseBtn.nof {
     font-weight: normal;
 }
 .zx .itemlist .lt {
-    background: url(http://s.luotao.net/static/aimeipin/index/lt.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/lt.png) center no-repeat;
     background-size: 40px 40px;
     height: 40px;
     width: 40px;
@@ -593,7 +593,7 @@ a.baseBtn.nof {
     font-weight: normal;
 }
 .zx .itemlist .ll {
-    background: url(http://s.luotao.net/static/aimeipin/index/ll.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/ll.png) center no-repeat;
     background-size: 40px 40px;
     height: 40px;
     width: 40px;
@@ -613,7 +613,7 @@ a.baseBtn.nof {
 }
 
 .itemlist .lefticon {
-    background: url(http://s.luotao.net/static/aimeipin/index/tuanicon.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/tuanicon.png) center no-repeat;
     background-size: 100%;
     height: 50px;
     width: 52px;
@@ -624,7 +624,7 @@ a.baseBtn.nof {
 }
 
 .itemlist .righticon {
-    background: url(http://s.luotao.net/static/aimeipin/index/tuan.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/tuan.png) center no-repeat;
     background-size: 100%;
     height: 38px;
     width: 98%;
@@ -640,7 +640,7 @@ a.baseBtn.nof {
 }
 
 .itemlist .lefticon.fu {
-    background: url(http://s.luotao.net/static/aimeipin/index/fu.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/fu.png) center no-repeat;
     height: 59px;
     width: 55px;
     top: 2px;
@@ -648,19 +648,19 @@ a.baseBtn.nof {
 }
 
 .itemlist .lefticon.sale {
-    background: url(http://s.luotao.net/static/aimeipin/index/sale.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/sale.png) center no-repeat;
     height: 57px;
     width: 61px;
     left: 18px;
 }
 
 .itemlist .righticon.qiang {
-    background: url(http://s.luotao.net/static/aimeipin/index/qiang.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/qiang.png) center no-repeat;
     background-size: 100%;
 }
 
 .itemlist .lefticon.dzf {
-    background: url(http://s.luotao.net/static/aimeipin/ask/f.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/ask/f.png) center no-repeat;
     width: 65px;
     height: 65px;
     background-size: 100%;
@@ -669,7 +669,7 @@ a.baseBtn.nof {
 }
 
 .itemlist .righticon.askdz {
-    background: url(http://s.luotao.net/static/aimeipin/ask/g.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/ask/g.png) center no-repeat;
     width: 446px;
     margin-left:12px;
     padding-left:10px;
@@ -689,7 +689,7 @@ a.baseBtn.nof {
 .itemsbtnbox {
     width: 640px;
     height: 92px;
-    background: url(http://s.luotao.net/static/aimeipin/index/bottombg.png) repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/bottombg.png) repeat;
     margin-left: -320px;
     left: 50%;
 }
@@ -701,7 +701,7 @@ a.baseBtn.nof {
 }
 
 .itemsbtnbox .shouyeicon {
-    background: url(http://s.luotao.net/static/aimeipin/index/1.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/1.png) center no-repeat;
     background-size: 100%;
     height: 42px;
     width: 42px;
@@ -709,7 +709,7 @@ a.baseBtn.nof {
 }
 
 .itemsbtnbox .fenleicon {
-    background: url(http://s.luotao.net/static/aimeipin/index/2.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/2.png) center no-repeat;
     background-size: 100%;
     height: 42px;
     width: 42px;
@@ -717,7 +717,7 @@ a.baseBtn.nof {
 }
 
 .itemsbtnbox .zixunicon {
-    background: url(http://s.luotao.net/static/aimeipin/index/3.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/3.png) center no-repeat;
     background-size: 100%;
     height: 42px;
     width: 42px;
@@ -725,7 +725,7 @@ a.baseBtn.nof {
 }
 
 .itemsbtnbox .myicon {
-    background: url(http://s.luotao.net/static/aimeipin/index/4.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/4.png) center no-repeat;
     background-size: 100%;
     height: 42px;
     width: 42px;
@@ -737,35 +737,35 @@ a.baseBtn.nof {
 }
 
 .itemsbtnbox a.active .shouyeicon {
-    background: url(http://s.luotao.net/static/aimeipin/index/11.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/11.png) center no-repeat;
     background-size: 100%;
 }
 
 .itemsbtnbox a.active .fenleicon {
-    background: url(http://s.luotao.net/static/aimeipin/index/22.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/22.png) center no-repeat;
     background-size: 100%;
 }
 
 .itemsbtnbox a.active .zixunicon {
-    background: url(http://s.luotao.net/static/aimeipin/index/33.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/33.png) center no-repeat;
     background-size: 100%;
 }
 
 .itemsbtnbox a.active .myicon {
-    background: url(http://s.luotao.net/static/aimeipin/index/44.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/index/44.png) center no-repeat;
     background-size: 100%;
 }
 
 /*-特惠福袋团购详情页--*/
 .detailtip {
-    background: url(http://s.luotao.net/static/aimeipin/detail/tip.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/detail/tip.png) center no-repeat;
     background-size: 100%;
     height: 31px;
     width: 100%;
     line-height: 31px;
 }
 .zx .detailtip {
-    background: url(http://s.luotao.net/static/aimeipin/detail/tip.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/detail/tip.png) center no-repeat;
     background-size: 100%;
     height: 31px;
     width: 100%;
@@ -789,7 +789,7 @@ a.baseBtn.nof {
 }
 
 .virtue .t1 span {
-    background: url(http://s.luotao.net/static/aimeipin/detail/righticon.png) left 10px no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/detail/righticon.png) left 10px no-repeat;
     display: inline-block;
     padding-left: 20px;
     margin: 0 10px;
@@ -804,7 +804,7 @@ a.baseBtn.nof {
     font-size: 12px;
 }
 .zx .virtue .t1 span{
-    background: url(http://s.luotao.net/static/aimeipin/detail/righticon.png) left 10px no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/detail/righticon.png) left 10px no-repeat;
     display: inline-block;
     padding-left: 17px;
     margin: 0 4px;
@@ -826,7 +826,7 @@ a.baseBtn.nof {
 }
 
 .casebtn a {
-    background: url(http://s.luotao.net/static/aimeipin/detail/fenxi.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/detail/fenxi.png) center no-repeat;
     background-size: 150px 30px;
     display: inline-block;
     width: 150px;
@@ -871,7 +871,7 @@ a.baseBtn.nof {
 }
 
 .gogroup a {
-    background: url(http://s.luotao.net/static/aimeipin/detail/gogroup.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/detail/gogroup.png) center no-repeat;
     background-size: 100%;
     height: 46px;
     width: 97px;
@@ -887,7 +887,7 @@ a.baseBtn.nof {
     text-align: center;
 }
 .line {
-    background: url(http://s.luotao.net/static/aimeipin/detail/line.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/detail/line.png) center no-repeat;
     background-size: 100%;
     height: 1px;
     width: 25%;
@@ -1029,7 +1029,7 @@ a.baseBtn.nof {
 .mypage .aboutustip {
     width: 580px;
     height: 50px;
-    background: url(http://s.luotao.net/static/aimeipin/my/about.png) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/my/about.png) center no-repeat;
     margin: 40px auto;
     background-size: 100%;
 }
@@ -1191,22 +1191,22 @@ a.baseBtn.nof {
 }
 
 .mpbox .cgminus {
-    background: url("http://s.luotao.net/static/aimeipin/buy/minus.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/buy/minus.png") center no-repeat;
     background-size: 100%;
 }
 
 .mpbox .cgplus {
-    background: url("http://s.luotao.net/static/aimeipin/buy/plus.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/buy/plus.png") center no-repeat;
     background-size: 100%;
 }
 
 .mpbox .cgminus.can {
-    background: url("http://s.luotao.net/static/aimeipin/buy/minus1.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/buy/minus1.png") center no-repeat;
     background-size: 100%;
 }
 
 .mpbox .cgplus.can {
-    background: url("http://s.luotao.net/static/aimeipin/buy/plus1.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/buy/plus1.png") center no-repeat;
     background-size: 100%;
 }
 
@@ -1238,7 +1238,7 @@ a.baseBtn.nof {
 .goupaybox a {
     height: 52px;
     width: 511px;
-    background: url("http://s.luotao.net/static/aimeipin/buy/gopaybg.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/buy/gopaybg.png") center no-repeat;
     display: inline-block;
     margin: 0 auto;
 }
@@ -1339,22 +1339,22 @@ a.baseBtn.nof {
 }
 
 .zxbox a.dz {
-    background: url("http://s.luotao.net/static/aimeipin/ask/d.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/ask/d.png") center no-repeat;
     background-size: 100%;
 }
 
 .zxbox a.mf {
-    background: url("http://s.luotao.net/static/aimeipin/ask/m.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/ask/m.png") center no-repeat;
     background-size: 100%;
 }
 
 .zxbox a.dz1 {
-    background: url("http://s.luotao.net/static/aimeipin/ask/dz1.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/ask/dz1.png") center no-repeat;
     background-size: 100%;
 }
 
 .zxbox a.mf1 {
-    background: url("http://s.luotao.net/static/aimeipin/ask/mf1.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/ask/mf1.png") center no-repeat;
     background-size: 100%;
 }
 
@@ -1364,7 +1364,7 @@ a.baseBtn.nof {
 
 .zx .itemlist .focusImgs {
     width: 100%;
-    background: url(http://s.luotao.net/static/aimeipin/loading.gif) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/loading.gif) center no-repeat;
     background-size: 24px;
 }
 
@@ -1374,7 +1374,7 @@ a.baseBtn.nof {
 }
 
 .zx .itemlist .righticon.askdz {
-    background: url(http://s.luotao.net/static/aimeipin/ask/g.png) 26px top no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/ask/g.png) 26px top no-repeat;
     width: 100%;
     box-sizing: border-box;
     height: 24px;
@@ -1455,45 +1455,45 @@ a.baseBtn.nof {
 }
 
 .classifybox a.t1 {
-    background: url("http://s.luotao.net/static/aimeipin/classify/skin.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/classify/skin.png") center no-repeat;
     background-size: 100%;
 }
 
 .classifybox a.t2 {
-    background: url("http://s.luotao.net/static/aimeipin/classify/plastic.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/classify/plastic.png") center no-repeat;
     background-size: 100%;
 }
 
 .classifybox a.t3 {
-    background: url("http://s.luotao.net/static/aimeipin/classify/surgery.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/classify/surgery.png") center no-repeat;
     background-size: 100%;
 }
 
 .classifybox a.t4 {
-    background: url("http://s.luotao.net/static/aimeipin/classify/discover.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/classify/discover.png") center no-repeat;
     background-size: 100%;
 }
 
 .classifybox a.t1.active {
-    background: url("http://s.luotao.net/static/aimeipin/classify/skin2.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/classify/skin2.png") center no-repeat;
     background-size: 100%;
     transform: scale(1.1);
 }
 
 .classifybox a.t2.active {
-    background: url("http://s.luotao.net/static/aimeipin/classify/plastic2.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/classify/plastic2.png") center no-repeat;
     background-size: 100%;
     transform: scale(1.1);
 }
 
 .classifybox a.t3.active {
-    background: url("http://s.luotao.net/static/aimeipin/classify/surgery2.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/classify/surgery2.png") center no-repeat;
     background-size: 100%;
     transform: scale(1.1);
 }
 
 .classifybox a.t4.active {
-    background: url("http://s.luotao.net/static/aimeipin/classify/discover2.png") center no-repeat;
+    background: url("http://www.aimeipin.cc/static/images/classify/discover2.png") center no-repeat;
     background-size: 100%;
     transform: scale(1.1);
 }
@@ -1582,7 +1582,7 @@ a.baseBtn.nof {
 
 .w580 {
     width: 580px;
-    background: url(http://s.luotao.net/static/aimeipin/loading.gif) center no-repeat;
+    background: url(http://www.aimeipin.cc/static/images/loading.gif) center no-repeat;
     min-height: 200px;
     margin: 0 auto;
 }

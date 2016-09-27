@@ -111,7 +111,7 @@
 <div class="wrapper pr pb80">
     <div class="clearfix cancelboxtop">
         <div class="fl">
-            <img src="http://s.luotao.net/static/aimeipin/cancel/s.png">
+            <img src="${PATH}/static/images/cancel/s.png">
         </div>
         <div class="fr pf40000 fs14 mt20">
         <#if order.state == 1>
@@ -176,8 +176,8 @@
     </div>
     <div class="chatbox tac fs14">
         <a href="javascript:void(0);" class="mr20" onclick="_MEIQIA._SHOWPANEL()"><img
-                src="http://s.luotao.net/static/aimeipin/cancel/h.png">在线咨询</a>
-        <a href="tel:4006056662"><img src="http://s.luotao.net/static/aimeipin/cancel/t.png">拨打电话</a>
+                src="${PATH}/static/images/cancel/h.png">在线咨询</a>
+        <a href="tel:4006056662"><img src="${PATH}/static/images/cancel/t.png">拨打电话</a>
     </div>
 
     <div class=" btfix  clearfix cancelbtnbox">
