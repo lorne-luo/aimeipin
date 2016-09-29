@@ -25,7 +25,7 @@
                 <a href="#">
                     <div class="">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/static/images/my/z1.png" class="rowimg">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z1.png" class="rowimg">
                             <span class="fs28 hl36 ml10 ">姓名</span>
                             <span class="result"><#if userProfile.name?exists>${userProfile.name}</#if></span>
 
@@ -40,7 +40,7 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/static/images/my/z2.png" class="rowimg4">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z2.png" class="rowimg4">
                             <span class="fs28 hl36 ml10 ">手机号</span>
                             <span class="result"><#if userProfile.mobile?exists>${userProfile.mobile}</#if></span>
 
@@ -55,7 +55,7 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/static/images/my/z3.png" class="rowimg3">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z3.png" class="rowimg3">
                             <span class="fs28 hl36 ml10 ">微信号</span>
                             <span class="result"><#if userProfile.wxNumber?exists>${userProfile.wxNumber}</#if></span>
 
@@ -70,7 +70,7 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/static/images/my/z4.png" class="rowimg3">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z4.png" class="rowimg3">
                             <span class="fs28 hl36 ml10 ">性别</span>
                             <span class="result gender"><#if userProfile.gender?exists><#if userProfile.gender == 1>男<#elseif userProfile.gender == 2 >女</#if></#if></span>
 
@@ -89,7 +89,7 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/static/images/my/z5.png" class="rowimg4">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z5.png" class="rowimg4">
                             <span class="fs28 hl36 ml10 ">所在地</span>
                             <span class="result city"><#if userProfile.dicCity?exists>${userProfile.dicCity.name}</#if></span>
 
@@ -107,7 +107,7 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/static/images/my/z6.png" class="rowimg5">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z6.png" class="rowimg5">
                             <span class="fs28 hl36 ml10 ">从何种渠道认识聚会美</span>
                             <span class="result channels"><#if userProfile.channels?exists>${userProfile.channels}</#if></span>
 
@@ -124,7 +124,7 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/static/images/my/z7.png" class="rowimg5">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z7.png" class="rowimg5">
                             <span class="fs28 hl36 ml10 ">感兴趣的医美项目</span>
                             <span class="result interests"><#if userProfile.interests?exists>${userProfile.interests}</#if></span>
 
@@ -142,7 +142,7 @@
                 <a href="#">
                     <div class=" ">
                         <div class=" t1 pr bor_b">
-                            <img src="${PATH}/static/images/my/z8.png" class="rowimg5">
+                            <img src="http://s.luotao.net/static/aimeipin/my/z8.png" class="rowimg5">
                             <span class="fs28 hl36 ml10 ">会选择去哪里做项目</span>
                             <span class="result wheres" multiple><#if userProfile.wheres?exists>${userProfile.wheres}</#if></span>
 

@@ -28,7 +28,7 @@
             wx.onMenuShareTimeline({
                 title: '【超值拼团】${commodity.name}', // 分享标题
                 link: '${PATH}/business/joinGroupPage/#{groupLaunch.id}', // 分享链接
-                imgUrl: '${PATH}/static/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
                 },
@@ -41,7 +41,7 @@
                 title: '【超值拼团】${commodity.name}', // 分享标题
                 desc: '【还差${groupLaunch.peopleNumber - userList?size}人】${commodity.name}', // 分享描述
                 link: '${PATH}/business/joinGroupPage/#{groupLaunch.id}', // 分享链接
-                imgUrl: '${PATH}/static/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
@@ -150,7 +150,7 @@
 <#if groupLaunch.peopleNumber - userList?size gt 0 && shareFlag?exists && shareFlag == 1>
 <div class="sharemark">
     <div class="rightt1">
-        <img src="${PATH}/static/images/row.png">
+        <img src="http://s.luotao.net/static/aimeipin/row.png">
 
         <p>发送给小伙伴参团</p>
     </div>

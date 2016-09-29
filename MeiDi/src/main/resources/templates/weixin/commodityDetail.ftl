@@ -40,7 +40,7 @@
             wx.onMenuShareTimeline({
                 title: '${commodity.name}', // 分享标题
                 link: '${PATH}/business/commodityDetailPage/#{commodity.id}', // 分享链接
-                imgUrl: '${PATH}/static/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
                 },
@@ -59,7 +59,7 @@
                 title: '${commodity.name}', // 分享标题
                 desc: sharingSummary, // 分享描述
                 link: '${PATH}/business/commodityDetailPage/#{commodity.id}', // 分享链接
-                imgUrl: '${PATH}/static/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
@@ -233,18 +233,18 @@
     <div class="detailnav clearfix btfix">
         <div class="t1  tt2 fs12">
             <a class="borr fl pt4" href="${PATH}/index">
-                <img src="${PATH}/static/images/detail/indicon.png">
+                <img src="http://s.luotao.net/static/aimeipin/detail/indicon.png">
 
                 <p class="mt2">首页</p>
             </a>
             <a class="borr fl pt4" href="javascript:<#if wx_openid?has_content>favoriteAction(#{commodity.id})<#else>redirectLogin()</#if>;">
-                <img src="${PATH}/static/images/detail/sc.png" class="<#if favoriteFlag == 1>hide</#if> favorite1">
-                <img src="${PATH}/static/images/detail/noc.png" class="<#if favoriteFlag == 2>hide</#if> favorite2">
+                <img src="http://s.luotao.net/static/aimeipin/detail/sc.png" class="<#if favoriteFlag == 1>hide</#if> favorite1">
+                <img src="http://s.luotao.net/static/aimeipin/detail/noc.png" class="<#if favoriteFlag == 2>hide</#if> favorite2">
 
                 <p class="mt2">收藏</p>
             </a>
             <a class=" fl pt4" href="javascript:void(0);" onclick="_MEIQIA._SHOWPANEL()">
-                <img src="${PATH}/static/images/detail/zx.png">
+                <img src="http://s.luotao.net/static/aimeipin/detail/zx.png">
 
                 <p class="mt2">咨询</p>
             </a>

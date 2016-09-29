@@ -45,7 +45,7 @@
             wx.onMenuShareTimeline({
                 title: '聚会美商城', // 分享标题
                 link: '${PATH}', // 分享链接
-                imgUrl: '${PATH}/static/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
                 },
@@ -58,7 +58,7 @@
                 title: '聚会美商城', // 分享标题
                 desc: '为您挑选中韩优质医美机构及顶级专家，推荐高性价比明星项目。', // 分享描述
                 link: '${PATH}', // 分享链接
-                imgUrl: '${PATH}/static/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
@@ -88,12 +88,12 @@
     <div class="pl20 pr20" style="margin-bottom: -20px">
 
         <div class="searchdiv pr">
-            <img src="${PATH}/static/images/index/flower.png" class="flower">
+            <img src="http://s.luotao.net/static/aimeipin/index/flower.png" class="flower">
 
 
             <form action="javascript:searchAction();" id="searchform">
                 <div class="searchbox pa">
-                    <img src="${PATH}/static/images/index/search.png" class="searchimg">
+                    <img src="http://s.luotao.net/static/aimeipin/index/search.png" class="searchimg">
                     <input type="search" id="searchinput">
                     <a href="javascript:void(0);" class="searchbtn"></a>
                 </div>
