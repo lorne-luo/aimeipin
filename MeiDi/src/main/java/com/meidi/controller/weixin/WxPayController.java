@@ -286,6 +286,8 @@ public class WxPayController extends WxBaseController {
     private void orderHandle(Order order) throws IOException {
         //订单已支付
         order.setState(2);
+        Commodity commodity = commodityRepository.findOne(order.getCommodityId());
+        commodity.setSold(commodity.getSold() + order.getCommodityNumber());//销量更新
         order = orderRepository.save(order);
 
         if (order.getFlag() == 1) {
