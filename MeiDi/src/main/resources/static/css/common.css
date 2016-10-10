@@ -1630,3 +1630,23 @@ a.baseBtn.nof {
     background-color:rgba(255,255,255,0.6);
     border: 0;
 }
+
+span.sold-badge{
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 98;
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    margin:0px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 12px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    color: #fff;
+    background-color: #f8517d;
+    border-radius: 10px;
+}
