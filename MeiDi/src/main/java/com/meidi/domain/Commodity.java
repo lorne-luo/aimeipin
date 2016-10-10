@@ -34,6 +34,8 @@ import java.util.List;
                 @ColumnResult(name = "city_id"),
                 @ColumnResult(name = "city_name"),
                 @ColumnResult(name = "people_number"),
+                @ColumnResult(name = "sold"),
+                @ColumnResult(name = "custom_sold"),
                 @ColumnResult(name = "label_flag"),
                 @ColumnResult(name = "weight"),
                 @ColumnResult(name = "price_double"),
@@ -50,7 +52,8 @@ public class Commodity implements Serializable {
 
     public Commodity(Integer id, String commodityCode, Integer flag, String name, Integer price, Float discount, Integer discountPrice,
                      Integer state, Timestamp createTime, Integer provinceId, String provinceName, Integer cityId, String cityName,
-                     Integer peopleNumber,Integer labelFlag,Integer weight,Double priceDouble,Double discountPriceDouble,Integer categoryId, String categoryName) {
+                     Integer peopleNumber,Integer sold,Integer customSold,Integer labelFlag,Integer weight,Double priceDouble,
+                     Double discountPriceDouble,Integer categoryId, String categoryName) {
         super();
         this.id = id;
         this.commodityCode = commodityCode;
@@ -74,6 +77,8 @@ public class Commodity implements Serializable {
         this.dicCity = dicCity;
         this.category = category;
         this.peopleNumber = peopleNumber;
+        this.sold = sold;
+        this.customSold = customSold;
         this.labelFlag = labelFlag;
         this.weight = weight;
         this.priceDouble = priceDouble;

@@ -287,7 +287,8 @@ public class WxPayController extends WxBaseController {
         //订单已支付
         order.setState(2);
         Commodity commodity = commodityRepository.findOne(order.getCommodityId());
-        commodity.setSold(commodity.getSold() + order.getCommodityNumber());//销量更新
+        commodity.setSold(commodity.getSold() + order.getCommodityNumber());//更新实际销量
+        commodity.setCustomSold(commodity.getCustomSold() + order.getCommodityNumber());//更新自定义销量
         order = orderRepository.save(order);
 
         if (order.getFlag() == 1) {

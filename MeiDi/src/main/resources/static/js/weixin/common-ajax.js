@@ -71,7 +71,7 @@ function createTable(commodityList) {
             }
 
             str += '  <div class="tal">' +
-                '<span class="sold-badge">已售' + commodity.commodityNumber +'</span>'+
+                '<span class="sold-badge">已售' + commodity.customSold +'</span>'+
                 '    <p class="pl16 line40 fs26 pr16 mt8">' + commodity.name + '</p>' +
                 '    <div class=" pr price">' +
                 '      <div class="lefticon "></div>' +
@@ -116,7 +116,7 @@ function createTable(commodityList) {
                 str += '<div class="ll"></div>';
             }
             str += '  <div class="tal">' +
-                '<span class="sold-badge">已售' + commodity.commodityNumber +'</span>'+
+                '<span class="sold-badge">已售' + commodity.customSold +'</span>'+
                 '    <p class="pl16 line40 fs26 pr16 mt8">' + commodity.name + '</p>' +
                 '  <div class=" pr price">' +
                 '    <div class="lefticon fu"></div>' +
@@ -161,7 +161,7 @@ function createTable(commodityList) {
                 str += '<div class="ll"></div>';
             }
             str += '  <div class="tal">' +
-                '<span class="sold-badge">已售' + commodity.commodityNumber +'</span>'+
+                '<span class="sold-badge">已售' + commodity.customSold +'</span>'+
                 '    <p class="pl16 pr16 line40 fs26 mt8">' + commodity.name + '</p>' +
                 '    <div class=" pr price">' +
                 '      <div class="lefticon sale"></div>' +
@@ -194,7 +194,7 @@ function createTable(commodityList) {
                 '  </div>' +
                 '</div>' +
                 '<div class="tal">' +
-                '<span class="sold-badge">已售' + commodity.commodityNumber +'</span>'+
+                '<span class="sold-badge">已售' + commodity.customSold +'</span>'+
                 '  <p class="pl16 line24 fs20 pr18 mt6">' + commodity.name + '</p>' +
                 '  <div class=" pr price askpic">' +
                 '    <div class="lefticon dzf"></div>' +
