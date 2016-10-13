@@ -26,7 +26,7 @@
         wx.ready(function () {
             //分享朋友圈
             wx.onMenuShareTimeline({
-                title: '【超值拼团】${commodity.name}', // 分享标题
+                title: '【还差${groupLaunch.peopleNumber - userList?size}人】${commodity.name}', // 分享标题
                 link: '${PATH}/business/joinGroupPage/#{groupLaunch.id}', // 分享链接
                 imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 success: function () {
