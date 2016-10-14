@@ -320,22 +320,24 @@ public class WxPayController extends WxBaseController {
                 groupLaunchUser.setWxOpenid(order.getWxOpenid());
                 groupLaunchUserList.add(groupLaunchUser);
 
-                groupLaunch.setGroupLaunchUserList(groupLaunchUserList);
-                groupLaunch = groupLaunchRepository.save(groupLaunch);
-                //设置订单的 拼团属性
-                order.setLaunchId(groupLaunch.getId());
-                order = orderRepository.save(order);
-
-                //成功发起拼团
-                //发消息
-                WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
-                WxTemplate.groupLaunch(wxTicket.getToken(), order);
-
-                //一人成团,开团即拼团成功
-                if (groupLaunch.getPeopleNumber()==1){
-                    WxTemplate.groupLaunchOk(wxTicket.getToken(), order);
-                    groupLaunch.setState(1);
+                if(MdCommon.isEmpty(orderRepository.findOne(order.getId()).getLaunchId())){
+                    //防止重复生成拼团
+                    groupLaunch.setGroupLaunchUserList(groupLaunchUserList);
                     groupLaunch = groupLaunchRepository.save(groupLaunch);
+                    //设置订单的 拼团属性
+                    order.setLaunchId(groupLaunch.getId());
+                    order = orderRepository.save(order);
+
+                    //成功发起拼团,发消息
+                    WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
+                    WxTemplate.groupLaunch(wxTicket.getToken(), order);
+
+                    //一人成团,开团即拼团成功
+                    if (groupLaunch.getPeopleNumber()==1){
+                        WxTemplate.groupLaunchOk(wxTicket.getToken(), order);
+                        groupLaunch.setState(1);
+                        groupLaunch = groupLaunchRepository.save(groupLaunch);
+                    }
                 }
             } else if (!MdCommon.isEmpty(order.getLaunchId()) && order.getBookingFlag() == 4) {//参团
                 GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
