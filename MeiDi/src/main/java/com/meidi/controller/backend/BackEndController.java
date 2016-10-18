@@ -242,8 +242,6 @@ public class BackEndController implements MdConstants {
             newCommodity.setDeposit((int) (commodity.getDepositDouble() * 100));
         }
 
-
-
         newCommodity.setName(commodity.getName());
         newCommodity.setKeyword(commodity.getKeyword());
         newCommodity.setDicProvince(commodity.getDicProvince());
@@ -257,7 +255,7 @@ public class BackEndController implements MdConstants {
             newCommodity.setDiscountUnit(commodity.getDiscountUnit());
         }
         newCommodity.setDiscount(commodity.getDiscount());
-//        newCommodity.setDiscountPrice(commodity.getDiscountPrice());
+
         if (commodity.getFlag() == 1) {
             newCommodity.setPeopleNumber(commodity.getPeopleNumber());
             if (!MdCommon.isEmpty(commodity.getAlonePriceDouble())) {
@@ -265,7 +263,7 @@ public class BackEndController implements MdConstants {
                 newCommodity.setAlonePrice((int) (commodity.getAlonePriceDouble() * 100));
             }
         }
-//        newCommodity.setDeposit(commodity.getDeposit());
+        newCommodity.setFlag(commodity.getFlag());
         newCommodity.setSold(commodity.getSold());
         newCommodity.setTags(commodity.getTags());
         newCommodity.setLabelFlag(commodity.getLabelFlag());
@@ -274,12 +272,10 @@ public class BackEndController implements MdConstants {
         newCommodity.setWeight(commodity.getWeight());
         newCommodity.setSharingSummary(commodity.getSharingSummary());
 
-
         List<CommodityPhoto> photoList = commonParam.getCommodityPhotosList(newCommodity.getCommodityPhotoList());
         if (!MdCommon.isEmpty(photoList) && photoList.size() > 0) {
             newCommodity.setCommodityPhotoList(photoList);
         }
-
 
         if (MdCommon.isEmpty(commodity.getCommodityNumber())) {
             newCommodity.setCommodityNumber(0);//不限量
