@@ -696,6 +696,11 @@ public class BackEndController implements MdConstants {
                     List<GroupLaunchUser> groupLaunchUserList = groupLaunchUserRepository.findByLaunchId(order.getLaunchId());
                     if (MdCommon.isEmpty(groupLaunchUserList) || groupLaunchUserList.size() == 0) {
                         //该拼团下没有用户 设置LaunchId为Null
+                        if (order.getBookingFlag() == 1) { //团长
+                            order.setRemarks("团长(" + order.getLaunchId().toString() + ")," + order.getRemarks());
+                        } else if (order.getBookingFlag() == 4) { //参团
+                            order.setRemarks("拼团(" + order.getLaunchId().toString() + ")," + order.getRemarks());
+                        }
                         order.setLaunchId(null);
                     }
 

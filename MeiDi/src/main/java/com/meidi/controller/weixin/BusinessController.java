@@ -575,6 +575,12 @@ public class BusinessController extends WxBaseController {
                             groupLaunchUserRepository.delete(groupLaunchUser);
                         }
 
+                        if (userFlag == 1) { //团长
+                            order.setRemarks("团长(" + order.getLaunchId().toString() + ")," + order.getRemarks());
+                        } else { //参团
+                            order.setRemarks("拼团(" + order.getLaunchId().toString() + ")," + order.getRemarks());
+                        }
+
                         //判断当前团状态
                         List<GroupLaunchUser> groupLaunchUserList = groupLaunchUserRepository.findByLaunchIdOrderByFlagAsc(order.getLaunchId());
                         if (MdCommon.isEmpty(groupLaunchUserList) || groupLaunchUserList.size() == 0) {//该拼团下没有用户 表示拼团失败
@@ -596,9 +602,9 @@ public class BusinessController extends WxBaseController {
                             GroupLaunchUser firstLaunchUser = groupLaunchUserList.get(0);
                             firstLaunchUser.setFlag(1);
                             groupLaunchUserRepository.save(firstLaunchUser);
-                            List<Order> nextOrders=orderRepository.findByWxOpenidAndLaunchIdOrderByCreateTimeDesc(firstLaunchUser.getWxOpenid(),order.getLaunchId());
+                            List<Order> nextOrders = orderRepository.findByWxOpenidAndLaunchIdOrderByCreateTimeDesc(firstLaunchUser.getWxOpenid(),order.getLaunchId());
                             if (nextOrders!=null && nextOrders.size()>0){
-                                Order nextOrder=nextOrders.get(0);
+                                Order nextOrder = nextOrders.get(0);
                                 nextOrder.setBookingFlag(1);
                                 orderRepository.save(nextOrder);
                             }
