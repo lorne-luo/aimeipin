@@ -561,8 +561,8 @@ public class BusinessController extends WxBaseController {
         if (order.getState() == 1 ) {
             order.setState(8);//直接取消订单
             orderRepository.save(order);
-        } else if (order.getState() == 2) {//已支付
-//        通知客服退款 TODO
+        } else if (order.getState() == 2) {//已支付未完成
+//        TODO 通知客服退款
             try {
                 //判断是否是拼团 且 属于某个拼团
                 if (order.getFlag() == 1 && !MdCommon.isEmpty(order.getLaunchId())) {
@@ -621,7 +621,7 @@ public class BusinessController extends WxBaseController {
                     } else {//拼团已经成功
                         ret = -3;// 该拼团已成成功无法取消
                     }
-                } else if( order.getFlag() != 1){//非拼团项目
+                } else {//非拼团项目
                     order.setState(5);//订单取消中 等待审核
                     order.setRefundCode("MR" + MdCommon.getNowDate() + MdCommon.getRandomNum(5));
                     orderRepository.save(order);
@@ -630,6 +630,8 @@ public class BusinessController extends WxBaseController {
                 ret = -2;//服务器异常   请稍后再试！
                 e.printStackTrace();
             }
+        } else if (order.getState() == 4){
+            ret = -3;// 该订单已完成
         } else {
             ret = -1;//订单已取消或关闭
         }

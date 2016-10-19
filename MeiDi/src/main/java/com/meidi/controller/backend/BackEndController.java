@@ -652,6 +652,7 @@ public class BackEndController implements MdConstants {
                         }
                     }
                 }
+                order.setState(6);
 
                 //TODO 走退款流程
 //                WxBaseController wxBaseController = new WxBaseController();
@@ -664,7 +665,7 @@ public class BackEndController implements MdConstants {
 //                    if ("SUCCESS".equals(result_code)) {
 //                        String refund_id = MdCommon.null2String(result.get("refund_id"));//微信退款单号
 //                        order.setRefundId(refund_id);
-                        order.setState(6);
+//                        order.setState(6);
 //
 //                    } else {
 //                        ret = -2;//退款失败
