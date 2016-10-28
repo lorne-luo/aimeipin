@@ -57,7 +57,7 @@ textarea{resize:none}
 .wordwrap{word-break:break-all;word-wrap:break-word}
 pre.wordwrap{white-space:pre-wrap}
 .op8{opacity:.8;filter:alpha(opacity=80)}
-img{vertical-align:top;width:100%}
+img{vertical-align:top;}
 input{border:none}
 .fl{float:left}
 .fr{float:right}
