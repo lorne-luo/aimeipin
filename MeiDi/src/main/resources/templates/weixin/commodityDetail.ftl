@@ -95,8 +95,8 @@
         //无按钮模式
         _MEIQIA('withoutBtn', true);
         <#else>
-        (function (m, ei, q, i, a, j, s) {
-            m[a] = m[a] || function () {
+        (function(m, ei, q, i, a, j, s) {
+            m[a] = m[a] || function() {
                         (m[a].a = m[a].a || []).push(arguments)
                     };
             j = ei.createElement(q),
@@ -108,10 +108,6 @@
 
         })(window, document, 'script', '//static.meiqia.com/dist/meiqia.js', '_MEIQIA');
         _MEIQIA('entId', 2247);
-        
-        _MEIQIA('assign', {
-            agentToken: 'f63c019c0610f177cdacc757c3acdc3e'
-        });
         //无按钮模式
         _MEIQIA('withoutBtn', true);
         </#if>
