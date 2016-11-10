@@ -13,6 +13,8 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <#include "header.ftl"/>
     <script src="${PATH}/ueditor/ueditor.parse.js"></script>
+    <script type="text/javascript" src="${PATH}/js/jquery.cookie.js"></script>
+
     <script>
         uParse("#description", {
             rootPath: '${PATH}/ueditor'
@@ -93,8 +95,8 @@
         //无按钮模式
         _MEIQIA('withoutBtn', true);
         <#else>
-        (function (m, ei, q, i, a, j, s) {
-            m[a] = m[a] || function () {
+        (function(m, ei, q, i, a, j, s) {
+            m[a] = m[a] || function() {
                         (m[a].a = m[a].a || []).push(arguments)
                     };
             j = ei.createElement(q),
@@ -106,10 +108,6 @@
 
         })(window, document, 'script', '//static.meiqia.com/dist/meiqia.js', '_MEIQIA');
         _MEIQIA('entId', 2247);
-        
-        _MEIQIA('assign', {
-            agentToken: 'f63c019c0610f177cdacc757c3acdc3e'
-        });
         //无按钮模式
         _MEIQIA('withoutBtn', true);
         </#if>
@@ -182,15 +180,6 @@
 
     </div>
 
-<#if user?exists && user.isSubscribe?has_content && user.isSubscribe == true >
-
-<#else>
-    <#-- 未关注用户显示二维码 -->
-    <div id="barcode">
-        <img width="100%" src="${PATH}/images/barcode.jpg">
-    </div>
-</#if>
-
     <ul class="tabClick">
         <li><a href="#title">项目详情</a></li>
         <li><a href="#buyNotice">订购须知</a></li>
@@ -227,6 +216,15 @@
 
         </div>
     </div>
+
+<#if user?exists && user.isSubscribe?has_content && user.isSubscribe == true >
+<#else>
+    <#-- 未关注用户显示二维码 -->
+    <div id="barcode" class="pr hide">
+        <img width="100%" src="${PATH}/images/barcode.jpg">
+        <button class="closebtn" onclick="javascript:closeBarCode()">X</button>
+    </div>
+</#if>
 
     <div class="detailnav clearfix btfix">
         <div class="t1  tt2 fs12">

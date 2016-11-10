@@ -64,7 +64,7 @@ public class WxAuthController implements MdConstants {
 //            String nickname = new String(MdCommon.null2String(ret.get("nickname")).getBytes("ISO-8859-1"), "utf-8");
 //            String nickname = MdCommon.nicknameEscape(MdCommon.null2String(ret.get("nickname")));
             String nickname = new String(MdCommon.null2String(ret.get("nickname")).getBytes("ISO-8859-1"), "utf8");
-            String sex = MdCommon.null2String(ret.get("sex"));;
+            String sex = MdCommon.null2String(ret.get("sex"));
             String province = new String(MdCommon.null2String(ret.get("province")).getBytes("ISO-8859-1"), "utf8");
             String city = new String(MdCommon.null2String(ret.get("city")).getBytes("ISO-8859-1"), "utf8");
             String country = new String(MdCommon.null2String(ret.get("country")).getBytes("ISO-8859-1"), "utf8");

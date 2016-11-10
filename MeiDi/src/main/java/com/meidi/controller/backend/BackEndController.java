@@ -242,8 +242,6 @@ public class BackEndController implements MdConstants {
             newCommodity.setDeposit((int) (commodity.getDepositDouble() * 100));
         }
 
-
-
         newCommodity.setName(commodity.getName());
         newCommodity.setKeyword(commodity.getKeyword());
         newCommodity.setDicProvince(commodity.getDicProvince());
@@ -257,7 +255,7 @@ public class BackEndController implements MdConstants {
             newCommodity.setDiscountUnit(commodity.getDiscountUnit());
         }
         newCommodity.setDiscount(commodity.getDiscount());
-//        newCommodity.setDiscountPrice(commodity.getDiscountPrice());
+
         if (commodity.getFlag() == 1) {
             newCommodity.setPeopleNumber(commodity.getPeopleNumber());
             if (!MdCommon.isEmpty(commodity.getAlonePriceDouble())) {
@@ -265,7 +263,7 @@ public class BackEndController implements MdConstants {
                 newCommodity.setAlonePrice((int) (commodity.getAlonePriceDouble() * 100));
             }
         }
-//        newCommodity.setDeposit(commodity.getDeposit());
+        newCommodity.setFlag(commodity.getFlag());
         newCommodity.setSold(commodity.getSold());
         newCommodity.setTags(commodity.getTags());
         newCommodity.setLabelFlag(commodity.getLabelFlag());
@@ -274,12 +272,10 @@ public class BackEndController implements MdConstants {
         newCommodity.setWeight(commodity.getWeight());
         newCommodity.setSharingSummary(commodity.getSharingSummary());
 
-
         List<CommodityPhoto> photoList = commonParam.getCommodityPhotosList(newCommodity.getCommodityPhotoList());
         if (!MdCommon.isEmpty(photoList) && photoList.size() > 0) {
             newCommodity.setCommodityPhotoList(photoList);
         }
-
 
         if (MdCommon.isEmpty(commodity.getCommodityNumber())) {
             newCommodity.setCommodityNumber(0);//不限量
@@ -656,6 +652,7 @@ public class BackEndController implements MdConstants {
                         }
                     }
                 }
+                order.setState(6);
 
                 //TODO 走退款流程
 //                WxBaseController wxBaseController = new WxBaseController();
@@ -668,7 +665,7 @@ public class BackEndController implements MdConstants {
 //                    if ("SUCCESS".equals(result_code)) {
 //                        String refund_id = MdCommon.null2String(result.get("refund_id"));//微信退款单号
 //                        order.setRefundId(refund_id);
-                        order.setState(6);
+//                        order.setState(6);
 //
 //                    } else {
 //                        ret = -2;//退款失败
@@ -696,6 +693,11 @@ public class BackEndController implements MdConstants {
                     List<GroupLaunchUser> groupLaunchUserList = groupLaunchUserRepository.findByLaunchId(order.getLaunchId());
                     if (MdCommon.isEmpty(groupLaunchUserList) || groupLaunchUserList.size() == 0) {
                         //该拼团下没有用户 设置LaunchId为Null
+                        if (order.getBookingFlag() == 1) { //团长
+                            order.setRemarks("团长(" + order.getLaunchId().toString() + ")," + order.getRemarks());
+                        } else if (order.getBookingFlag() == 4) { //参团
+                            order.setRemarks("拼团(" + order.getLaunchId().toString() + ")," + order.getRemarks());
+                        }
                         order.setLaunchId(null);
                     }
 

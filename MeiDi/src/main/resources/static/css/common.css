@@ -1608,3 +1608,45 @@ a.baseBtn.nof {
 .tabClick li{ height:40px; line-height: 40px; width: 33%; float: left; text-align: center;font-size: 16px;border-right:0px solid #ff4d7d;}
 .tabClick li.active{ color: #099; transition: 0.1s; font-weight: bold}
 .tabClick li:not(:last-child){ border-right:1px solid #ddd;}
+
+
+#barcode{
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
+    margin-left: -50%;
+    left: 50%;
+    z-index: 999;
+}
+
+#barcode .closebtn{
+    position: absolute;
+    top:12px;
+    left:5px;
+    width:32px;
+    height:32px;
+    font-size: 16px;
+    border-radius: 1em;
+    background-color:rgba(255,255,255,0.6);
+    border: 0;
+}
+
+span.sold-badge{
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 98;
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    margin:0px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    color: #fff;
+    background-color: #f8517d;
+    border-radius: 10px;
+}

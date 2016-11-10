@@ -286,6 +286,9 @@ public class WxPayController extends WxBaseController {
     private void orderHandle(Order order) throws IOException {
         //订单已支付
         order.setState(2);
+        Commodity commodity = commodityRepository.findOne(order.getCommodityId());
+        commodity.setSold(commodity.getSold() + order.getCommodityNumber());//更新实际销量
+        commodity.setCustomSold(commodity.getCustomSold() + order.getCommodityNumber());//更新自定义销量
         order = orderRepository.save(order);
 
         if (order.getFlag() == 1) {
@@ -317,22 +320,24 @@ public class WxPayController extends WxBaseController {
                 groupLaunchUser.setWxOpenid(order.getWxOpenid());
                 groupLaunchUserList.add(groupLaunchUser);
 
-                groupLaunch.setGroupLaunchUserList(groupLaunchUserList);
-                groupLaunch = groupLaunchRepository.save(groupLaunch);
-                //设置订单的 拼团属性
-                order.setLaunchId(groupLaunch.getId());
-                order = orderRepository.save(order);
-
-                //成功发起拼团
-                //发消息
-                WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
-                WxTemplate.groupLaunch(wxTicket.getToken(), order);
-
-                //一人成团,开团即拼团成功
-                if (groupLaunch.getPeopleNumber()==1){
-                    WxTemplate.groupLaunchOk(wxTicket.getToken(), order);
-                    groupLaunch.setState(1);
+                if(MdCommon.isEmpty(orderRepository.findOne(order.getId()).getLaunchId())){
+                    //防止重复生成拼团
+                    groupLaunch.setGroupLaunchUserList(groupLaunchUserList);
                     groupLaunch = groupLaunchRepository.save(groupLaunch);
+                    //设置订单的 拼团属性
+                    order.setLaunchId(groupLaunch.getId());
+                    order = orderRepository.save(order);
+
+                    //成功发起拼团,发消息
+                    WxTicket wxTicket = wxTicketRepository.findByAppid(WX_APP_ID);
+                    WxTemplate.groupLaunch(wxTicket.getToken(), order);
+
+                    //一人成团,开团即拼团成功
+                    if (groupLaunch.getPeopleNumber()==1){
+                        WxTemplate.groupLaunchOk(wxTicket.getToken(), order);
+                        groupLaunch.setState(1);
+                        groupLaunch = groupLaunchRepository.save(groupLaunch);
+                    }
                 }
             } else if (!MdCommon.isEmpty(order.getLaunchId()) && order.getBookingFlag() == 4) {//参团
                 GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
