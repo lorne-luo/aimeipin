@@ -264,7 +264,7 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
                 " left join dic_city dc on dc.id = mc.city_id " +
                 " left join md_category cate on cate.id = mc.category_id " +
 //                " left join md_commodity_photo cp on mcp.commodity_id = mc.id " +
-                " where mc.id is not null ";
+                " where mc.id is not null and mc.flag != 5 ";  // 除去打卡项目
         if (categoryId > 0) {
             sql += " and mc.category_id = ? ";
             paramList.add(categoryId);
