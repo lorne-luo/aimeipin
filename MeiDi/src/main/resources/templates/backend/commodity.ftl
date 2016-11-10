@@ -58,6 +58,7 @@
                             <option value="2">福袋</option>
                             <option value="3">特惠</option>
                             <option value="4">咨询</option>
+                            <option value="5">打卡</option>
                         </select>
                     </div>
                     <div class="form-group">

@@ -36,16 +36,17 @@
                             <th>编号</th>
                             <th>
                                 <select class="" id="flag">
-                                    <option value="-1">类型</option>
+                                    <option value="-1">所有类型</option>
                                     <option value="1">拼团</option>
                                     <option value="2">福袋</option>
                                     <option value="3">特惠</option>
                                     <option value="4">咨询</option>
+                                    <option value="5">打卡</option>
                                 </select>
                             </th>
                             <th>
                                 <select id="category">
-                                    <option value="-1">所有</option>
+                                    <option value="-1">所有分类</option>
                                     <#list categoryList as category>
                                         <option value="#{category.id}"><#if category.name?has_content>${category.name}<#else>------</#if></option>
                                     </#list>

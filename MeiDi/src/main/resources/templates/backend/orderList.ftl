@@ -49,11 +49,12 @@
                             <th>编号</th>
                             <th>
                                 <select class="" id="flag">
-                                    <option value="-1">类型</option>
+                                    <option value="-1">所有类型</option>
                                     <option value="1">拼团</option>
                                     <option value="2">福袋</option>
                                     <option value="3">特惠</option>
                                     <option value="4">咨询</option>
+                                    <option value="5">打卡</option>
                                 </select>
                             </th>
                             <th style="width:300px">名称</th>
@@ -64,7 +65,7 @@
                             <th>时间</th>
                             <th>
                                 <select class="" id="state">
-                                    <option value="-1">状态</option>
+                                    <option value="-1">所有状态</option>
                                     <option value="1">未支付</option>
                                     <option value="2">已支付</option>
                                     <option value="3">已预约</option>

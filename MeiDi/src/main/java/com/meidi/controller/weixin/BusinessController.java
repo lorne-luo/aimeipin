@@ -142,7 +142,7 @@ public class BusinessController extends WxBaseController {
      *
      * @param request
      * @param id      如果是参团 则此时ID 就是grouplaunch 的ID
-     * @param flag    1 拼团专享支付（发起拼团）  2 拼团一人支付  3普通(特惠 福袋)支付  4参团支付
+     * @param flag    1 拼团专享支付（发起拼团）  2 拼团一人支付  3普通(特惠 福袋 打卡)支付  4参团支付
      * @return
      */
     @RequestMapping(value = "/bookingPage/{id}/{flag}", method = RequestMethod.GET)

@@ -21,7 +21,7 @@ public class BuyNotice implements Serializable {
     private String paymentNote;
 
     /**
-     * 1 拼团, 2 福袋, 3 特惠, 咨询
+     * 1 拼团, 2 福袋, 3 特惠, 4 咨询, 5 打卡
      */
     private Integer flag;
 

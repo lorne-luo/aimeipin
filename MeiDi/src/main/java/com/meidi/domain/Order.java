@@ -135,7 +135,7 @@ public class Order implements Serializable {
     private String transactionId;
 
     /**
-     * 项目类型: 1 拼团, 2 福袋, 3 特惠, 4 咨询
+     * 项目类型: 1 拼团, 2 福袋, 3 特惠, 4 咨询, 5 打卡
      * 与commondity.flag一致
      */
     private Integer flag = 0;

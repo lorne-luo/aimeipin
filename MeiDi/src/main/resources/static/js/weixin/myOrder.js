@@ -155,6 +155,8 @@ function getProjectFlag(flag, aloneFlag) {
             return "特惠";
         case 4:
             return "咨询";
+        case 5:
+            return "打卡";
     }
 }
 

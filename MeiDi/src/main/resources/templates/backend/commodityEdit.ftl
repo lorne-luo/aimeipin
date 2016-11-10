@@ -43,6 +43,7 @@
                             <option value="2" <#if commodity.flag == 2>selected</#if>>福袋</option>
                             <option value="3" <#if commodity.flag == 3>selected</#if>>特惠</option>
                             <option value="4" <#if commodity.flag == 4>selected</#if>>咨询</option>
+                            <option value="5" <#if commodity.flag == 5>selected</#if>>打卡</option>
                         </select>
                     </div>
                     <div class="form-group">

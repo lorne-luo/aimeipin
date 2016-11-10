@@ -47,6 +47,7 @@
                             <option value="2" <#if flag == 2>selected</#if>>福袋</option>
                             <option value="3" <#if flag == 3>selected</#if>>特惠</option>
                             <option value="4" <#if flag == 4>selected</#if>>咨询</option>
+                            <option value="5" <#if flag == 5>selected</#if>>打卡</option>
                         </select>
                     </div>
                     <br/>
