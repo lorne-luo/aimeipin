@@ -54,7 +54,7 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
                 " left join md_category cate on cate.id = mc.category_id " +
 //                " left join md_commodity_photo cp on mcp.commodity_id = mc.id " +
                 " where mc.id is not null ";
-        if (flag > 0 && flag < 5) {
+        if (flag > 0) {
             sql += " and mc.flag = ? ";
             paramList.add(flag);
         }else if(flag == -2){
@@ -103,7 +103,7 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
         sql = " select count(0) from (" +
                 "select count(0) from md_commodity mc " +
                 " where mc.id is not null ";
-        if (flag > 0 && flag < 5) {
+        if (flag > 0) {
             sql += " and mc.flag = ? ";
         }else if(flag == -2){
             sql += " and mc.flag < 4 ";
@@ -159,7 +159,7 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
                 " left join md_category cate on cate.id = mc.category_id " +
 //                " left join md_commodity_photo cp on mcp.commodity_id = mc.id " +
                 " where mc.id is not null ";
-        if (flag > 0 && flag < 5) {
+        if (flag > 0) {
             sql += " and mc.flag = ? ";
             paramList.add(flag);
         }else if(flag == -2){
@@ -208,7 +208,7 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
         sql = " select count(0) from (" +
                 "select count(0) from md_commodity mc " +
                 " where mc.id is not null ";
-        if (flag > 0 && flag < 5) {
+        if (flag > 0) {
             sql += " and mc.flag = ? ";
         }else if(flag == -2){
             sql += " and mc.flag < 4 ";
