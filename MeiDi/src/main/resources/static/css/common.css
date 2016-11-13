@@ -1093,8 +1093,7 @@ a.baseBtn.nof {
 .cancelboxtop img{width:60px;}
 .cancelboximg {
     width: 96%;
-    height: 160px;
-    overflow: hidden;
+    max-height: 400px;
     margin: 0 auto;
 }
 
