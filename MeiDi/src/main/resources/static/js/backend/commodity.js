@@ -65,8 +65,10 @@ $(function () {
                 '</div>';
             $('#cmbox').append(str);
             $('#djbox').html('');
-
-
+        } else if (flag == 5) {//打卡
+            $('#ptbox').html('');
+            $('#cmbox').html('');
+            $('#djbox').html('');
         } else {
             $('#ptbox').html('');
             $('#cmbox').html('');
