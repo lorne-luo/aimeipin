@@ -246,7 +246,11 @@ public class BackEndController implements MdConstants {
         newCommodity.setKeyword(commodity.getKeyword());
         newCommodity.setDicProvince(commodity.getDicProvince());
         newCommodity.setDicCity(commodity.getDicCity());
-        newCommodity.setCategory(commodity.getCategory());
+        if (commodity.getCategory() == null || commodity.getCategory().getId() == null){
+            newCommodity.setCategory(null);
+        }else{
+            newCommodity.setCategory(commodity.getCategory());
+        }
 //        newCommodity.setPrice(commodity.getPrice());
         newCommodity.setUnit(commodity.getUnit());
         if (MdCommon.isEmpty(commodity.getDiscountUnit())) {
