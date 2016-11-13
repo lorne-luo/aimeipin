@@ -33,7 +33,7 @@ public interface CommodityRepositoryCustom {
     Map<String, Object> findCommodityWithQuery2(int pageNumber, int pageSize, int flag,int state, int cityId, String queryStr) throws Exception;
 
     /**
-     * 前台微信用
+     * 前台微信用, 查询所有商品列表但排除打卡类型项目
      * @param pageNumber
      * @param pageSize
      * @param categoryId -1查所有

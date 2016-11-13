@@ -248,6 +248,7 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
         return result;
     }
 
+    //查询所有商品列表但排除打卡类型项目
     @Override
     public Map<String, Object> findCommodityWithQuery3(int pageNumber, int pageSize, int categoryId, int state, int cityId, String queryStr) throws Exception {
         if ("0".equals(queryStr)) {
@@ -311,7 +312,7 @@ public class CommodityRepositoryImpl implements CommodityRepositoryCustom {
         /**获取总页数**/
         sql = " select count(0) from (" +
                 "select count(0) from md_commodity mc " +
-                " where mc.id is not null ";
+                " where mc.id is not null and mc.flag != 5 ";
         if (categoryId > 0) {
             sql += " and mc.category_id = ? ";
         }
