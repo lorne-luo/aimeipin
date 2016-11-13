@@ -158,7 +158,7 @@
     <div class="tal orderdetail pt10 pb10 mt10 mb10">
         <div class="pl24 line24 fs14">
             <p>订单编号：${order.orderCode}</p>
-            <p>支付方式：微信</p>
+            <p>支付方式：微信支付</p>
             <p>姓名：${order.username}</p>
             <p>电话：${order.mobile}</p>
             <p>备注：${order.remarks}</p>

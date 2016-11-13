@@ -83,9 +83,9 @@ public class WxPayController extends WxBaseController {
             }
 
             Commodity commodity = commodityRepository.findOne(order.getCommodityId());
-
             model.put("commodity", commodity);
 
+            //todo 打卡项目采用单独页面模板
             return new ModelAndView("weixin/order", model);
         }
         //如果此订单不属于本人 则进入商品详情页
