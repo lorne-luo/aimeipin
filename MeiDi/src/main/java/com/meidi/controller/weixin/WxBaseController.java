@@ -40,6 +40,20 @@ public class WxBaseController implements MdConstants {
                 + "redirect_uri=" + HOME + "/wxAuth/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"));
     }
 
+    /**
+     * 跳打卡公众号授权
+     *
+     * @param request
+     * @return
+     */
+    public ModelAndView dkAuth(HttpServletRequest request) {
+
+        String url = MdCommon.getUrl(request);
+        HttpSession session = request.getSession();
+        session.setAttribute(USER_URL, url);
+        return new ModelAndView(new RedirectView("https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + WX_DK_APP_ID + "&"
+                + "redirect_uri=" + HOME + "/dkAuth/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"));
+    }
 
     /**
      * 使用SHA-1生成

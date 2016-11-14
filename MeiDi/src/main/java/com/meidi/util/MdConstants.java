@@ -66,6 +66,10 @@ public interface MdConstants {
 //    String IMAGE_FORMAL_URL = PATH + "/formal";
 //    String IMAGE_TEXT_PATH = "/usr/local/imageText";
 
+    //打卡公众号
+    String WX_DK_APP_ID = "wxf3d017eaf0b53463";
+    String WX_DK_SECRET = "d6914a211b5175f62cc5dafb389cd074";
+
     //aimeipin
     String WX_APP_ID = "wxf3d017eaf0b53463";
     String WX_SECRET = "d6914a211b5175f62cc5dafb389cd074";

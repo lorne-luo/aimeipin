@@ -149,7 +149,7 @@ public class BusinessController extends WxBaseController {
         MdModel model = new MdModel(request);
         //网页授权
         if (MdCommon.isEmpty(model.get("wx_openid"))) {
-            // todo 转去打卡公众号的登陆
+            return dkAuth(request);
         }
 
         String wxOpenid = MdCommon.null2String(model.get("wx_openid"));

@@ -28,4 +28,6 @@ public interface CommodityRepository extends PagingAndSortingRepository<Commodit
 
     List<Commodity> findByStateAndEndDateBefore(int state,String datetime);
 
+    List<Commodity> findByFlagAndState(int flag,int state);
+
 }

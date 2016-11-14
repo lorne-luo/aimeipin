@@ -1,6 +1,8 @@
 package com.meidi.controller.weixin;
 
+import com.meidi.domain.Commodity;
 import com.meidi.domain.User;
+import com.meidi.repository.CommodityRepository;
 import com.meidi.repository.UserRepository;
 import com.meidi.util.MdCommon;
 import com.meidi.util.MdConstants;
@@ -14,46 +16,46 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.URI;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by luanpeng on 16/3/31.
  */
 @Controller
-@RequestMapping("/wxAuth")
-public class WxAuthController implements MdConstants {
+@RequestMapping("/dkAuth")
+public class DkAuthController implements MdConstants {
 
     @Resource
     private UserRepository userRepository;
+    @Resource
+    private CommodityRepository commodityRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView wxAuth(HttpServletRequest request) {
+    public ModelAndView wxAuth(HttpServletRequest request) throws NoSuchRequestHandlingMethodException {
         HttpSession session = request.getSession();
         String code = request.getParameter("code");
         System.out.println("code=" + code);
         try {
-
-            String wx_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + MdConstants.WX_APP_ID + "&secret=" + MdConstants.WX_SECRET + "&code=" +
+            String wx_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + MdConstants.WX_DK_APP_ID + "&secret=" + MdConstants.WX_DK_SECRET + "&code=" +
                     code + "&grant_type=authorization_code";
             HttpClient client = HttpClients.createDefault();
             HttpGet httpGet = new HttpGet();
             httpGet.setURI(new URI(wx_url));
             HttpResponse httpResponse = client.execute(httpGet);
             String returnStr = EntityUtils.toString(httpResponse.getEntity());
-
-
             Map ret = MdCommon.json2Map(returnStr);
 
             String token = MdCommon.null2String(ret.get("access_token"));
             String openid = MdCommon.null2String(ret.get("openid"));
             System.out.println("openid=" + openid);
-
 
             wx_url = "https://api.weixin.qq.com/sns/userinfo?access_token=" + token + "&openid=" + openid + "&lang=zh_CN";
             httpGet.setURI(new URI(wx_url));
@@ -91,10 +93,19 @@ public class WxAuthController implements MdConstants {
         }
 
         String url = (String) session.getAttribute(USER_URL);
-        System.out.println("url=" + url);
         session.setAttribute(USER_URL, null);
-        if (url == null || url.equals("")) url = HOME;
+        if (url == null || url.equals("")){
+            // url为空转去第一个打卡项目
+            List<Commodity> commodityList = commodityRepository.findByFlagAndState(5,1);
+            if(commodityList != null && commodityList.size() > 0){
+                url = PATH + "/business/bookingDaka/"+commodityList.get(0).getId();
+            }else{
+                throw new NoSuchRequestHandlingMethodException("bookingDaka", DkAuthController.class);
+            }
+        }
 
         return new ModelAndView(new RedirectView(url));
     }
 }
+
+
