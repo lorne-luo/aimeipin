@@ -101,7 +101,7 @@ function createTable(result) {
         var weightColumn;
         if (commodity.flag == 5) { // 打卡项目
             //打卡项目入口
-            weightColumn='<a href="/business/bookingPage/' + commodity.id + '/3" class="btn btn-info">入口</a> ';
+            weightColumn='<a href="/business/bookingDaka/' + commodity.id + '" class="btn btn-info">入口</a> ';
         } else {
             //显示权重
             weightColumn='<a href="javascript:weight(' + commodity.id + ');" class="btn btn-success" target="_blank">' + commodity.weight + '</a>';

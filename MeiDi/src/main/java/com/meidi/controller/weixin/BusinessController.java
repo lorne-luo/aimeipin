@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.Resource;
@@ -134,6 +135,59 @@ public class BusinessController extends WxBaseController {
         model.put("user", userRepository.findByWxOpenid(model.get("wx_openid")));
 
         return new ModelAndView("weixin/commodityDetail", model);
+    }
+
+    /**
+     * 下单打卡项目
+     * @param request
+     * @param commodity_id
+     * @return
+     */
+    @RequestMapping(value = "/bookingDaka/{commodity_id}", method = RequestMethod.GET)
+    public ModelAndView bookingDaka(HttpServletRequest request,
+                                    @PathVariable Integer commodity_id) throws NoSuchRequestHandlingMethodException{
+        MdModel model = new MdModel(request);
+        //网页授权
+        if (MdCommon.isEmpty(model.get("wx_openid"))) {
+            // todo 转去打卡公众号的登陆
+        }
+
+        String wxOpenid = MdCommon.null2String(model.get("wx_openid"));
+        Commodity commodity = commodityRepository.findOne(commodity_id);
+        Integer flag = 3;
+        
+        if (commodity == null || commodity.getFlag() != 5){
+            throw new NoSuchRequestHandlingMethodException("bookingDaka", BusinessController.class);
+        }
+
+        // 若本商品已存在未支付订单, 转向该订单支付页面
+        List<Order> unpaidOrderList = orderRepository.findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(
+                wxOpenid, commodity.getId(), flag, 1);
+        if ((unpaidOrderList != null) && unpaidOrderList.size() > 0) {
+            Order unpaidOrder = unpaidOrderList.get(0);
+            return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + unpaidOrder.getId().toString()));
+        }
+
+        if (commodity.getFlag() == 5){ //打卡商品只能参加一次, 若有已支付或已完成订单则跳转到支付成功结果页面
+            List<Order> paidOrderList = orderRepository.findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(
+                    wxOpenid, commodity.getId(), flag, 2);
+            if ((paidOrderList != null) && paidOrderList.size() > 0) {
+                return new ModelAndView(new RedirectView(PATH + "/pay/payResult/" + paidOrderList.get(0).getOrderCode()));
+            }
+
+            List<Order> finishedOrderList = orderRepository.findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(
+                    wxOpenid, commodity.getId(), flag, 4);
+            if ((finishedOrderList != null) && finishedOrderList.size() > 0) {
+                return new ModelAndView(new RedirectView(PATH + "/pay/payResult/" + finishedOrderList.get(0).getOrderCode()));
+            }
+        }
+
+        // 可以参团
+        model.put("commodity", commodity);
+        BuyNotice buyNotice = buyNoticeRepository.findByFlag(commodity.getFlag());
+        model.put("buyNotice", buyNotice);
+        model.put("flag", flag); //普通购买支付
+        return new ModelAndView("weixin/bookingPage", model);
     }
 
 
