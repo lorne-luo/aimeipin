@@ -70,6 +70,10 @@ public class WxPayController extends WxBaseController {
             orderRepository.save(order);
             throw new NoSuchRequestHandlingMethodException("orderPage", WxPayController.class);
         }
+        if(order.getFlag() == 5 && order.getState() > 4){
+            // 打卡订单已取消
+            return new ModelAndView(new RedirectView(PATH + "/business/bookingDaka/" + order.getCommodityId()));
+        }
 
         if (!MdCommon.isEmpty(order)) {
             model.put("order", order);
