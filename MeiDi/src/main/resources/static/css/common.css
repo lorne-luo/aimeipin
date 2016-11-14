@@ -132,7 +132,6 @@ input{border:none}
 .m12{margin:12px}
 .m20{margin:20px}
 .mlr4{margin:0 4px}
-.ml4{margin-left:4px}
 .ml12{margin-left:12px}
 .ml10{margin-left:10px}
 .ml14{margin-left:14px}
@@ -1086,7 +1085,7 @@ a.baseBtn.nof {
 
 /*取消订单*/
 .cancelboxtop {
-    width: 150px;
+    width: 200px;
     margin: 0 auto;
     padding: 20px 0;
 }
