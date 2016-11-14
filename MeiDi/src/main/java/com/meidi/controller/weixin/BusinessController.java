@@ -281,8 +281,10 @@ public class BusinessController extends WxBaseController {
                     }
 
 
-                    if (commodity.getFlag() == 4) {
+                    if (commodity.getFlag() == 4) { //咨询项目
                         order.setPayAmount(commodity.getDiscountPrice());//实付金额= 折扣价
+                    } else if (commodity.getFlag() == 5) { //打卡项目
+                        order.setPayAmount(commodity.getPrice());
                     } else {
                         order.setPayAmount(commodity.getDeposit() * reservationCount);//实付金额= 订金＊预定数量
                     }
@@ -292,6 +294,11 @@ public class BusinessController extends WxBaseController {
                             order.setDiscount(commodity.getDiscount());//订单折扣
                             order.setDiscountPrice(commodity.getDiscountPrice());//订单折后总额＝ 折后价
                             order.setPrice(commodity.getPrice());//订单总额＝ 原价
+                        } else if (commodity.getFlag() == 5) { //打卡项目
+                            order.setCommodityNumber(1);
+                            order.setDiscount(null);
+                            order.setPrice(commodity.getPrice());
+                            order.setDiscountPrice(commodity.getPrice());
                         } else {
                             order.setDiscount(commodity.getDiscount());//订单折扣
                             order.setDiscountPrice(commodity.getDiscountPrice() * reservationCount);//订单折后总额＝ 折后价＊预定数量
@@ -305,11 +312,10 @@ public class BusinessController extends WxBaseController {
 
                     }
 
-
                     if (flag == 4) {//参团订单
                         order.setLaunchId(launchId);
-                    }else{
-                        //非参团订单 则改变数量
+                    }else if (flag != 5) {
+                        //非参团和打卡项目订单 则改变数量
                         if(commodityNumber > 0){
                             commodity.setCommodityNumber(commodityNumber - reservationCount);
                         }
