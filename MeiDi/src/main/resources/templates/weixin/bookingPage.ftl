@@ -25,13 +25,16 @@
     </#if>
     </div>
     <div class="pl24  pr24 tal mt10">
+        <p class="fs20 mlf6 pt10">
+            <#if commodity.flag == 5>报名</#if> ${commodity.name}
+        </p>
+
         <#if commodity.flag == 5>
-            <p class="pf40000 fs28 ml4">¥#{commodity.price/100}</p>
+            <p class="tac pf40000 fs28 ml4">支付金额 ¥#{commodity.price/100}</p>
         <#else>
-            <p class="pf40000 fs28 ml4">¥#{commodity.discountPrice/100}</p>
+            <p class="tac pf40000 fs28 ml4">支付金额 ¥#{commodity.discountPrice/100}</p>
         </#if>
 
-        <p class="fs20 mlf6 pt10">${commodity.name}</p>
     </div>
     <form action="" id="addOrder" method="post">
         <input type="hidden" value="#{commodity.id}" name="commodityId" class="commodityId">
@@ -43,11 +46,11 @@
             </div>
             <div class="clearfix mt10">
                 <span class="fl mt10">手机号码：</span>
-                <input type="tel" placeholder="请务必填写正确的手机号码" name="mobile" id="mobile">
+                <input type="tel" placeholder="请填写真实手机号码" name="mobile" id="mobile">
             </div>
             <div class="clearfix mt10">
                 <span class="fl mt10">微信号：</span>
-                <input type="text" placeholder="选填" name="weixin" id="weixin">
+                <input type="text" placeholder="必填" name="weixin" id="weixin">
             </div>
         <#if commodity.flag == 4 || commodity.flag == 5>
 
