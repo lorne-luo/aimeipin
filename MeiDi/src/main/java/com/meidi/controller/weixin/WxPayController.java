@@ -41,7 +41,6 @@ public class WxPayController extends WxBaseController {
     private WxTicketRepository wxTicketRepository;
     @Resource
     private CommodityRepository commodityRepository;
-
     @Resource
     private GroupLaunchUserRepository groupLaunchUserRepository;
 
@@ -85,7 +84,6 @@ public class WxPayController extends WxBaseController {
             Commodity commodity = commodityRepository.findOne(order.getCommodityId());
             model.put("commodity", commodity);
 
-            //todo 打卡项目采用单独页面模板
             return new ModelAndView("weixin/order", model);
         }
         //如果此订单不属于本人 则进入商品详情页
@@ -252,6 +250,9 @@ public class WxPayController extends WxBaseController {
                         //此处不做处理
                     } else if ("NOTPAY".equals(trade_state)) {//未支付
                         order.setState(1);
+                        order = orderRepository.save(order);
+                        // 未支付跳转到支付页
+                        return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + order.getId().toString()));
                     } else if ("CLOSED".equals(trade_state)) {//已关闭
                         //此处不做处理
                     } else if ("PAYERROR".equals(trade_state)) {//支付失败
@@ -267,14 +268,18 @@ public class WxPayController extends WxBaseController {
                         if (groupLaunch.getState() == 0) {
                             return new ModelAndView("weixin/payResult", model);
                         }
+                    } else if (order.getFlag() == 5) {//打卡项目支付结果跳转
+                        return new ModelAndView("weixin/payResult", model);
                     }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+            // 访问微信支付api失败,跳转到支付页
+            return new ModelAndView(new RedirectView(PATH + "/pay/orderPage/" + order.getId().toString()));
         }
 
-        //非拼团直接跳定点列表页
+        //非拼团直接跳订单列表页
         return new ModelAndView(new RedirectView(PATH + "/business/myOrderPage"));
     }
 
