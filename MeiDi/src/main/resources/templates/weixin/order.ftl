@@ -162,9 +162,10 @@
         <div class="pl24 line24 fs14">
             <p>订单编号：${order.orderCode}</p>
             <p>支付方式：微信支付</p>
-            <p>姓名：${order.username}</p>
-            <p>电话：${order.mobile}</p>
-            <p>备注：${order.remarks}</p>
+            <p>姓  名：${order.username}</p>
+            <p>电  话：${order.mobile}</p>
+            <p>微  信：${order.weixin}</p>
+            <p>备  注：${order.remarks}</p>
             <p>下单时间：${order.createTime}</p>
         </div>
     </div>
