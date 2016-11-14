@@ -150,13 +150,13 @@
 
     <div class="pl10 pr24 tal mt6">
         <p class="pf40000 fs16 ml10">
-            <#if order.flag = 5>
+            <#if order.flag == 5>
                 ¥#{order.price/100}
             <#else>
                 ¥#{order.discountPrice/100}
             </#if>
         </p>
-        <p class="fs18 mlf6 pt6">${order.commodityName}</p>
+        <p class="fs18 ml10 pt6">${order.commodityName}</p>
     </div>
     <div class="tal orderdetail pt10 pb10 mt10 mb10 ml20 mr20">
         <div class="pl24 line24 fs14">
