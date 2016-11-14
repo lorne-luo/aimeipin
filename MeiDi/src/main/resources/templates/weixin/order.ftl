@@ -193,8 +193,11 @@
         </#if>
 
     </#if>
-        <a href="${PATH}/index" class="fr cancel">返回首页</a>
-    <#if order.state == 1 || order.state == 2 || order.state == 3>
+
+    <#if order.flag != 5>
+            <a href="${PATH}/index" class="fr cancel">返回首页</a>
+    </#if>
+    <#if order.state == 1 || order.state == 2 || order.state == 3 || order.flag == 5>
         <a href="javascript:cancelOrder(#{order.id});" class="fr cancel">取消订单</a>
     <#else>
         <a href="${PATH}/business/myOrderPage" class="fr cancel">我的订单</a>
