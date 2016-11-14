@@ -98,9 +98,18 @@ function createTable(result) {
             str += '<th class="cprimary">已上架</th>';
         }
 
+        var weightColumn;
+        if (commodity.flag == 5) { // 打卡项目
+            //打卡项目入口
+            weightColumn='<a href="/business/bookingPage/' + commodity.id + '/3" class="btn btn-info">入口</a> ';
+        } else {
+            //显示权重
+            weightColumn='<a href="javascript:weight(' + commodity.id + ');" class="btn btn-success" target="_blank">' + commodity.weight + '</a>';
+        }
+
         str +='<td>' + commodity.dicCity.name + '</td>' +
             '<td>' + getDate(commodity.createTime) + '</td>' +
-            '<td><a href="javascript:weight(' + commodity.id + ');" class="btn btn-success" target="_blank">' + commodity.weight + '</a></td>' +
+            '<td>' + weightColumn + '</td>' +
             '<td>'+
             '<a href="/backend/editCommodityPage/' + commodity.id + '" class="btn btn-success" target="_blank">编辑</a> ';
 
