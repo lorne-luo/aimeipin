@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.Resource;
@@ -53,13 +54,23 @@ public class WxPayController extends WxBaseController {
      */
     @RequestMapping(value = "/orderPage/{orderId}", method = RequestMethod.GET)
     public ModelAndView orderPage(HttpServletRequest request,
-                                  @PathVariable Integer orderId) {
+                                  @PathVariable Integer orderId) throws NoSuchRequestHandlingMethodException {
         MdModel model = new MdModel(request);
 
         if (MdCommon.isEmpty(model.get("wx_openid"))) {
             return wxAuth(request);
         }
         Order order = orderRepository.findByWxOpenidAndId(MdCommon.null2String(model.get("wx_openid")), orderId);
+        if (order == null){
+            throw new NoSuchRequestHandlingMethodException("orderPage", WxPayController.class);
+        }
+        Commodity commodity = commodityRepository.findOne(order.getCommodityId());
+        if (commodity.getState() < 1 && order.getState() == 1){ // 订单未支付但商品已下架
+            order.setState(8); //取消订单
+            orderRepository.save(order);
+            throw new NoSuchRequestHandlingMethodException("orderPage", WxPayController.class);
+        }
+
         if (!MdCommon.isEmpty(order)) {
             model.put("order", order);
             if (order.getState() == 1) {//未支付
@@ -78,12 +89,9 @@ public class WxPayController extends WxBaseController {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
 
-            Commodity commodity = commodityRepository.findOne(order.getCommodityId());
             model.put("commodity", commodity);
-
             return new ModelAndView("weixin/order", model);
         }
         //如果此订单不属于本人 则进入商品详情页
