@@ -149,13 +149,16 @@
 </#if>
 
     <div class="pl10 pr24 tal mt6">
-        <p class="pf40000 fs16 ml4">¥#{order.discountPrice/100}</p>
-    <#if order.flag < 4>
+        <p class="pf40000 fs16 ml10">
+            <#if order.flag = 5>
+                ¥#{order.price/100}
+            <#else>
+                ¥#{order.discountPrice/100}
+            </#if>
+        </p>
         <p class="fs18 mlf6 pt6">${order.commodityName}</p>
-    </#if>
-
     </div>
-    <div class="tal orderdetail pt10 pb10 mt10 mb10">
+    <div class="tal orderdetail pt10 pb10 mt10 mb10 ml20 mr20">
         <div class="pl24 line24 fs14">
             <p>订单编号：${order.orderCode}</p>
             <p>支付方式：微信支付</p>
@@ -165,7 +168,7 @@
             <p>下单时间：${order.createTime}</p>
         </div>
     </div>
-    <div class="pr28 fs14 clearfix ">
+    <div class="pr28 fs14 clearfix mr30">
     <#if order.flag == 4>
         <p class="fr">订单合计:<span class="pf40000">#{order.payAmount/100}</span></p>
     <#else>
