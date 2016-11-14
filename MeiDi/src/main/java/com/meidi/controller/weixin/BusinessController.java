@@ -156,7 +156,7 @@ public class BusinessController extends WxBaseController {
         Commodity commodity = commodityRepository.findOne(commodity_id);
         Integer flag = 3;
         
-        if (commodity == null || commodity.getFlag() != 5){
+        if (commodity == null || commodity.getFlag() != 5 || commodity.getState() < 1){
             throw new NoSuchRequestHandlingMethodException("bookingDaka", BusinessController.class);
         }
 
