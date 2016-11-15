@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>聚会美商城</title>
+    <title>${commodity.name}</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <#include "header.ftl"/>
@@ -164,7 +164,6 @@
             <p>支付方式：微信支付</p>
             <p>姓  名：${order.username}</p>
             <p>电  话：${order.mobile}</p>
-            <p>微  信：${order.weixin}</p>
             <p>备  注：${order.remarks}</p>
             <p>下单时间：${order.createTime}</p>
         </div>

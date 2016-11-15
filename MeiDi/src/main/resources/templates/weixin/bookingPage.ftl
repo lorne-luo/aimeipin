@@ -32,7 +32,7 @@
         <#if commodity.flag == 5>
             <p class="tac pf40000 fs28 ml4">支付金额 ¥#{commodity.price/100}</p>
         <#else>
-            <p class="tac pf40000 fs28 ml4">支付金额 ¥#{commodity.discountPrice/100}</p>
+            <p class="pf40000 fs28 ml4">¥#{commodity.discountPrice/100}</p>
         </#if>
 
     </div>
