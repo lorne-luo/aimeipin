@@ -368,13 +368,12 @@ public class BusinessController extends WxBaseController {
 
                     if (flag == 4) {//参团订单
                         order.setLaunchId(launchId);
-                    }else if (flag != 5) {
-                        //非参团和打卡项目订单 则改变数量
+                    }else {
+                        //非参团订单 则改变商品数量
                         if(commodityNumber > 0){
                             commodity.setCommodityNumber(commodityNumber - reservationCount);
                         }
-
-                        commodity.setSold(sold + reservationCount);
+//                      commodity.setSold(sold + reservationCount); // 订单支付时已经增加了
                         commodityRepository.save(commodity);
                     }
 
