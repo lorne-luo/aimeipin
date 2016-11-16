@@ -78,7 +78,7 @@ public interface MdConstants {
     String DOMAIN = "aimeipin.cc";
     String COMMODITY_INDEX_PATH = "/Users/luanpeng/MyProject/lucene/CommodityIndex";
     String MQ_HOST = "localhost:61616";
-    String KEY_STORE = "/usr/local/cert/apiclient_cert.p12";
+    String KEY_STORE = "/usr/local/cert/apiclient_cert.p12"; // SSL证书路径
     String IMAGE_TEMPORARY_PATH = "/usr/local/imageTemporary";
     String IMAGE_FORMAL_PATH = "/usr/local/imageFormal";
     String IMAGE_TEMPORARY_URL = PATH + "/temporary";
