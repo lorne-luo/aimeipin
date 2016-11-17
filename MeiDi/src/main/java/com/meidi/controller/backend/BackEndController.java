@@ -165,6 +165,11 @@ public class BackEndController implements MdConstants {
         if (!MdCommon.isEmpty(commodity.getDepositDouble())) {
             commodity.setDeposit((int) (commodity.getDepositDouble() * 100));
         }
+        if (commodity.getCategory() == null || commodity.getCategory().getId() == null){
+            commodity.setCategory(null);
+        } else{
+            commodity.setCategory(categoryRepository.findOne(commodity.getCategory().getId()));
+        }
 
         commodity.setCommodityPhotoList(commonParam.getCommodityPhotosList(commodity.getCommodityPhotoList()));
         commodity.setCreateTime(new Date());
