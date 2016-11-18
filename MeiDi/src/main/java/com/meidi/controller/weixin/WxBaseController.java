@@ -119,7 +119,7 @@ public class WxBaseController implements MdConstants {
         String appid = WX_APP_ID;
         String mch_id = MCH_ID;//商户号
         String nonce_str = MdCommon.getRandomString(16);//随机数
-        String body = "聚会美";//商品描述
+        String body = order.getCommodityName();//商品描述
         String out_trade_no = order.getOrderCode();//商户内部订单号
         Integer total_fee = order.getPayAmount();//总金额
         String spbill_create_ip = ip;//终端IP
