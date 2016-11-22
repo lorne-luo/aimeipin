@@ -75,7 +75,7 @@
     <div class="pl20 pr20" style="margin-bottom: -20px">
 
         <div class="searchdiv pr">
-            <img src="http://s.luotao.net/static/aimeipin/index/flower.png" class="flower">
+            <img src="http://s.luotao.net/static/aimeipin/index/logo.png" class="flower">
 
 
             <form action="javascript:searchAction();" id="searchform">
