@@ -184,10 +184,12 @@ public class WxAuthController implements MdConstants {
             user.setNickname(nickname);
             user.setGender(Integer.parseInt(sex));
             userRepository.save(user);
+            userSession.setBooking_wx_openid(openid); // 储存下单公众号openid
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        session.setAttribute(USER_SESSION, userSession);
         String url = (String) session.getAttribute(USER_URL);
         System.out.println("dakaurl=" + url);
         session.setAttribute(USER_URL, null);
