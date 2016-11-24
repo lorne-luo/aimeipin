@@ -428,9 +428,8 @@ a.baseBtn.nof {
 
 .searchdiv .flower {
     position: absolute;
-    top: 0;
+    top: 5px;
     left: 44px;
-    height: 99px;
     width: 229px;
 }
 
