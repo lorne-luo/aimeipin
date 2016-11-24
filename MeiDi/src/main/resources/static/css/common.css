@@ -1647,3 +1647,8 @@ span.sold-badge{
     background-color: #f8517d;
     border-radius: 10px;
 }
+
+#description img{
+    width: 100% !important;
+    height: 100% !important;
+}
