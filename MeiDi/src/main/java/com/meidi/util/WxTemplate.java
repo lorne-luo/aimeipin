@@ -3,17 +3,14 @@ package com.meidi.util;
 import com.meidi.domain.Order;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map;
 
 /**
  * Created by luanpeng on 16/4/24.
@@ -143,37 +140,10 @@ public class WxTemplate implements MdConstants {
     }
 
     /**
-     * 获取打卡公号token
-     * @return
-     */
-    private static String getDakaToken(){
-        String token = "";
-        String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" +
-                MdConstants.WX_DK_APP_ID + "&secret=" + MdConstants.WX_DK_SECRET;
-        try {
-            HttpClient client = HttpClients.createDefault();
-            HttpGet httpGet = new HttpGet();
-            httpGet.setURI(new URI(url));
-            HttpResponse httpResponse = client.execute(httpGet);
-            String returnStr = EntityUtils.toString(httpResponse.getEntity());
-            Map ret = MdCommon.json2Map(returnStr);
-            //微信AccessToken
-            token = MdCommon.null2String(ret.get("access_token"));
-        } catch (Exception e) {
-            System.out.println("update daka token failed.");
-            e.printStackTrace();
-        }
-
-        return token;
-    }
-
-    /**
      * 打卡参加成功
      * @param order
      */
-    public static void dakaJoinSuccess(Order order) throws IOException {
-        String token = getDakaToken();
-
+    public static void dakaJoinSuccess(String token, Order order) throws IOException {
         String jsonStr = "{\"touser\": \"" + order.getBookWxOpenid() + "\", \"template_id\": \"" + DK_PAYMENT_SUCCESS + "\", " +
                 "\"url\": \"" + PATH + "/pay/payResult/" + order.getOrderCode() + "\",\"topcolor\":\"#32b16c\"," +
                 "\"data\":{\"first\": {\"value\":\"恭喜您，报名成功！\",\"color\":\"#0A0A0A\"}," +

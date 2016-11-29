@@ -68,7 +68,9 @@ ALTER TABLE md_user ADD is_subscribe tinyint(1) DEFAULT 0 after integral;
 
 v1.0.8
 ALTER TABLE md_order ADD book_wxopenid varchar(36) NULL DEFAULT NULL after wx_openid;
-
+ALTER TABLE wx_ticket ADD appsecret varchar(255) NULL DEFAULT NULL after appid;
+update wx_ticket set appsecret='d6914a211b5175f62cc5dafb389cd074' where appid='wxf3d017eaf0b53463';
+insert into wx_ticket (appid,appsecret) values ('wx0bda7c0cd5c05a36','65a33f1efa372d71a7ea5df3a4b983cd');
 
 Server Security
 1. 项目部署于/opt/webapps/meidi,代码位于/opt/aimeipin/,可通过MeiDi/deploy.sh {git_tag_name}一键编译部署版本

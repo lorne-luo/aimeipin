@@ -20,7 +20,6 @@ import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class ScheduledJobs {
@@ -117,35 +116,11 @@ public class ScheduledJobs {
      */
     @Scheduled(fixedRate = 3600 * 1000)
     public void updateWxTicket() {
-        String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" +
-                MdConstants.WX_APP_ID + "&secret=" + MdConstants.WX_SECRET;
-        try {
-            HttpClient client = HttpClients.createDefault();
-            HttpGet httpGet = new HttpGet();
-            httpGet.setURI(new URI(url));
-            HttpResponse httpResponse = client.execute(httpGet);
-            String returnStr = EntityUtils.toString(httpResponse.getEntity());
-            Map ret = MdCommon.json2Map(returnStr);
-            //微信AccessToken
-            String token = MdCommon.null2String(ret.get("access_token"));
+        Iterable<WxTicket> appList = wxTicketRepository.findAll();
 
-            url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + token + "&type=jsapi";
-            httpGet = new HttpGet();
-            httpGet.setURI(new URI(url));
-            httpResponse = client.execute(httpGet);
-            returnStr = EntityUtils.toString(httpResponse.getEntity());
-            ret = MdCommon.json2Map(returnStr);
-            //签名票据
-            String ticket = MdCommon.null2String(ret.get("ticket"));
-
-            // update db
-            WxTicket wxTicket = wxTicketRepository.findByAppid(MdConstants.WX_APP_ID);
-            wxTicket.setToken(token);
-            wxTicket.setTicket(ticket);
+        for (WxTicket wxTicket: appList) {
+            wxTicket.updateTokenTicket();
             wxTicketRepository.save(wxTicket);
-        } catch (Exception e) {
-            System.out.println("[ScheduledJobs] update weixin ticket failed.");
-            e.printStackTrace();
         }
     }
 

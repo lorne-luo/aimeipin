@@ -308,7 +308,10 @@ public class WxPayController extends WxBaseController {
         commodity.setCustomSold(commodity.getCustomSold() + order.getCommodityNumber());//更新自定义销量
         order = orderRepository.save(order);
 
-        if (order.getFlag() == 1) {
+        if(order.getFlag() == 5){ //打卡项目
+            WxTicket wxTicket = wxTicketRepository.findByAppid(WX_DK_APP_ID);
+            WxTemplate.dakaJoinSuccess(wxTicket.getToken(), order);
+        } else if (order.getFlag() == 1) {
             //以下处理拼团逻辑
             if (MdCommon.isEmpty(order.getLaunchId()) && order.getBookingFlag() == 1) {//如果是发起拼团
                 GroupLaunch groupLaunch = new GroupLaunch();
@@ -402,8 +405,6 @@ public class WxPayController extends WxBaseController {
                     }
                 }
             }
-        } else if(order.getFlag() == 5){ //打卡项目
-            WxTemplate.dakaJoinSuccess(order);
         }
     }
 }
