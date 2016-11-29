@@ -14,6 +14,7 @@ public class MdModel extends HashMap<String, Object> implements MdConstants {
         UserSession userSession = (UserSession) session.getAttribute(USER_SESSION);
         if (!MdCommon.isEmpty(userSession)) {
             this.put("wx_openid", userSession.getWx_openid());
+            this.put("book_wx_openid", userSession.getBooking_wx_openid());
             this.put("account", userSession.getAccount());
             this.put("bu_flag", userSession.getBu_flag());
         }

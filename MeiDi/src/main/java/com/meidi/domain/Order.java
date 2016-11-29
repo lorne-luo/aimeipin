@@ -30,6 +30,9 @@ public class Order implements Serializable {
     @Column(name = "wx_openid")
     private String wxOpenid;
 
+    @Column(name = "book_wxopenid")
+    private String bookWxOpenid;
+
     @Column(name = "commodity_id")
     private Integer commodityId;
 
@@ -171,6 +174,13 @@ public class Order implements Serializable {
         this.wxOpenid = wxOpenid;
     }
 
+    public String getBookWxOpenid() {
+        return bookWxOpenid;
+    }
+
+    public void setBookWxOpenid(String bookWxOpenid) {
+        this.bookWxOpenid = bookWxOpenid;
+    }
 
     public Integer getLaunchId() {
         return launchId;

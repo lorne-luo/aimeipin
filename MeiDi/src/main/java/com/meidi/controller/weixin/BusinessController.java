@@ -314,7 +314,8 @@ public class BusinessController extends WxBaseController {
 //                if (commodityNumber == -1  || reservationCount <= commodityNumber ) {
                     Order order = new Order();
                     order.setCommodityId(commodityId);
-                    order.setWxOpenid(model.get("wx_openid"));
+                    order.setWxOpenid(model.get("wx_openid")); // 商城公号openid,用于向微信商户平台下单
+                    order.setBookWxOpenid(model.get("book_wx_openid")); // 下订单公号openid,用于向用户发送消息
                     order.setMobile(mobile);
                     order.setUsername(username);
                     order.setRemarks(remarks);
