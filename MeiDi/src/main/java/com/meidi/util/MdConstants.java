@@ -27,6 +27,10 @@ public interface MdConstants {
     String WX_GROUP_FAIL = "rXaWbwpLQiWFJKEQYUhuOu3fcqxZ1QHmuUcMt82U0Wc";
     String WX_ORDER_COMPLETE = "L_Wawg6RlUQK6OtYVUp_caPpIFUbrzQ5eEU3tmqyKbc";
 
+    String DK_PAYMENT_SUCCESS ="T2LAcqQ_srdvOIde4JthxiexF2rG6R0N7nwMRc2y048"; //打卡公号付款成功
+    String DK_PAYMENT_FAILED ="RB9Usd1FO-uQYSZlzZ4XERf3LS6VrRxupOEn6Wpa3zc"; //打卡公号付款失败
+    String DK_REFUND ="ysQp-W6GuBW49n3oy0VWUT9KtgGIDMiz1wUMuBYuOb4"; //打卡公号项目完成退款
+
 
     //localhost
 //    String PATH = "http://localhost:8080/meidi";

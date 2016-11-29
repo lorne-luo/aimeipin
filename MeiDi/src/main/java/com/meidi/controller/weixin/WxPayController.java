@@ -402,6 +402,8 @@ public class WxPayController extends WxBaseController {
                     }
                 }
             }
+        } else if(order.getFlag() == 5){ //打卡项目
+            WxTemplate.dakaJoinSuccess(order);
         }
     }
 }
