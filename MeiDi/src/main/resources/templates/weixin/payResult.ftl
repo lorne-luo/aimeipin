@@ -47,10 +47,10 @@
 						<a href="${PATH}/business/myOrderPage"  class=" fs28 baseBtn" style="background:#fd5380;width:500px;margin:0 auto;">查看我的订单</a>
 					</div>
 					<#else>
-					<div class="p10 tac ml30 mr30 fs16 line24" >
+					<div class="p10 tac ml30 mr30 mb30 fs16 line24" >
                         <p>我们将立即与您取得联系并邀请您入群,请留意微信好友申请。</p>
 						<p>长按识别二维码,添加客服微信</p>
-						<img class="mt10" style="max-width: 240px" src="http://s.luotao.net/static/aimeipin/daka/service.jpg">
+						<img class="mt10" src="/images/daka/service.png">
                     </div>
 					</#if>
 			</div><!--center-->
