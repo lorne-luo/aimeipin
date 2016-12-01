@@ -9,13 +9,13 @@
 		<meta name="description" content=""/>
 
 		<title>支付结果</title>
-		<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
+		<meta name="viewport" content="width=640, initial-scale=1.0, maximum-scale=1.1, user-scalable=no, target-densitydpi=device-dpi">
 	<#include "header.ftl"/>
 	</head>
 	<body style="background:#ffffff">
 		<div class="wrapper pr">
 				<div class="center pr bookordercenter mt20">
-                    <img style="width:540px;max-height:360px;" src="${IMAGE_FORMAL_URL}/${commodity.commodityPhotoList[0].imageName}">
+                    <img style="width:540px;" src="${IMAGE_FORMAL_URL}/${commodity.commodityPhotoList[0].imageName}">
                     <div class="p20 tac ml30 mr30" >
 						<p class="fs24 tac fb mb30">${commodity.name}</p>
 						<p class="fs28 tac fb mt30" >
@@ -47,7 +47,7 @@
 						<a href="${PATH}/business/myOrderPage"  class=" fs28 baseBtn" style="background:#fd5380;width:500px;margin:0 auto;">查看我的订单</a>
 					</div>
 					<#else>
-					<div class="p10 tac ml30 mr30 fs16 line24" >
+					<div class="p10 tac ml30 mr30 fs20 line24" >
                         <p>我们将立即与您取得联系并邀请您入群,请留意微信好友申请。</p>
 						<p>长按识别二维码,添加客服微信</p>
 						<img class="mt10" width="100%" src="/images/daka/service.png">
