@@ -9,7 +9,7 @@
 		<meta name="description" content=""/>
 
 		<title>支付结果</title>
-		<meta name="viewport" content="width=640, initial-scale=1.0, maximum-scale=1.1, user-scalable=no, target-densitydpi=device-dpi">
+		<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 	<#include "header.ftl"/>
 	</head>
 	<body style="background:#ffffff">
