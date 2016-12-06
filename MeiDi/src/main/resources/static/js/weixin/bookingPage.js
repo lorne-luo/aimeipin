@@ -79,9 +79,11 @@ function submitOrder(flag) {
                 window.location.href = BASE_JS_URL + "/pay/orderPage/" + data.orderId;
             } else if(data.ret == -2){
                 alert("姓名错误");
+                $('#username').focus();
                 submitFlag = 0;
             } else if(data.ret == -3){
                 alert("手机号错误");
+                $('#mobile').focus();
                 submitFlag = 0;
             } else if(data.ret == -4){
                 alert("数量错误");
