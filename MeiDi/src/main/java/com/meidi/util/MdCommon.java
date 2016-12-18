@@ -283,7 +283,7 @@ public class MdCommon {
 
         for (byte b : result) {
             int i = b & 0xff;
-            if (i < 0xf) {
+            if (i <= 0xf) {
                 sb.append(0);
             }
             sb.append(Integer.toHexString(i));
