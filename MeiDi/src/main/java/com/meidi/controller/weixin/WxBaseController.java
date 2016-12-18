@@ -142,7 +142,7 @@ public class WxBaseController implements MdConstants {
         packageParams.put("openid", openid);
         //按照ascII排序
         String str = MdCommon.createASC2Sort(packageParams) + "&key=" + key;
-        System.out.println("str ===" + str);
+        System.out.println("unifiedOrder str ===" + str);
         String sign = MdCommon.getMD5(str).toUpperCase();//签名
         System.out.println("sing===" + sign);
         String url = "https://api.mch.weixin.qq.com/pay/unifiedorder";

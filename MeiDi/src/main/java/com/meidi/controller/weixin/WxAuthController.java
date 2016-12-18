@@ -51,6 +51,9 @@ public class WxAuthController implements MdConstants {
             String token = MdCommon.null2String(ret.get("access_token"));
             String openid = MdCommon.null2String(ret.get("openid"));
             System.out.println("openid=" + openid);
+            if (MdCommon.isEmpty(openid)){
+                System.out.println("wxAuth returnStr=" + returnStr);
+            }
 
             wx_url = "https://api.weixin.qq.com/sns/userinfo?access_token=" + token + "&openid=" + openid + "&lang=zh_CN";
             httpGet.setURI(new URI(wx_url));

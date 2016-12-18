@@ -199,7 +199,7 @@ public class WxPayController extends WxBaseController {
         packageParams.put("out_trade_no", orderCode);
 
         String str = MdCommon.createASC2Sort(packageParams) + "&key=" + WX_API_KEY;
-        System.out.println("str ===" + str);
+        System.out.println("payResult str ===" + str);
         String sign = null;//签名
         try {
             sign = MdCommon.getMD5(str).toUpperCase();
