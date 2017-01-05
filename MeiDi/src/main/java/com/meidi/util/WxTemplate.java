@@ -74,7 +74,7 @@ public class WxTemplate implements MdConstants {
                 "\"keyword1\": {\"value\":\"" + order.getCommodityName() + "\",\"color\":\"#888\"}," +
                 "\"keyword2\": {\"value\":\"" + priceStr + "\",\"color\":\"#888\"}," +
                 "\"keyword3\": {\"value\":\"" + date + "\",\"color\":\"#888\"}," +
-                "\"remark\": {\"value\":\"客服会尽快与您取得联系，或拨打4006056662预约咨询。到院支付项目实际金额，系统退还订金。\",\"color\":\"#888\"}" +
+                "\"remark\": {\"value\":\"客服会尽快与您取得联系，或拨打010-84466106预约咨询。到院支付项目实际金额，系统退还订金。\",\"color\":\"#888\"}" +
                 "}}";
         System.out.println("[groupLaunchOk]" + jsonStr);
 
@@ -150,7 +150,7 @@ public class WxTemplate implements MdConstants {
                 "\"keyword1\": {\"value\":\"" + order.getCommodityName() + "\",\"color\":\"#888\"}," +
                 "\"keyword2\": {\"value\":\"" + order.getPayAmount()/100 + "\",\"color\":\"#888\"}," +
                 "\"keyword3\": {\"value\":\"" + order.getCreateTime() + "\",\"color\":\"#888\"}," +
-                "\"remark\": {\"value\":\"工作人员会尽快与您取得联系，如有问题请拨打客服电话400-6056-662。\",\"color\":\"#888\"}" +
+                "\"remark\": {\"value\":\"工作人员会尽快与您取得联系，如有问题请拨打客服电话010-84466106。\",\"color\":\"#888\"}" +
                 "}}";
         System.out.println("[Daka Join Success]" + jsonStr);
 

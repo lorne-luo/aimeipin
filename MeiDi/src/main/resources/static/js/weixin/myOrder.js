@@ -66,7 +66,7 @@ function createTable(result) {
 
         if (order.order.state < 3) {// 1未支付,2已支付才可取消
             if(order.launch != null && order.launch.state == 1){ //拼团已成功,找客服退款
-                str += '<a href="javascript:alert(\'本次拼团已成功，请拨打400-605-6662联系客服取消订单！\');"  class="cancelorder fr ">取消订单</a>';
+                str += '<a href="javascript:alert(\'本次拼团已成功，请拨打010-84466106联系客服取消订单！\');"  class="cancelorder fr ">取消订单</a>';
             }else{
                 str += '<a href="javascript:cancelOrder(' + order.order.id + ');"  class="cancelorder fr ">取消订单</a>';
             }
@@ -104,7 +104,7 @@ function cancelOrder(id) {
             dataType: 'json',
             success: function (data) {
                 if (data.ret == 0) {
-                    alert("您已取消订单，如果已付款，请拨打400-605-6662联系客服确认退款事宜！");
+                    alert("您已取消订单，如果已付款，请拨打010-84466106联系客服确认退款事宜！");
                     window.location.href = BASE_JS_URL + "/business/myOrderPage";
                 } else if (data.ret == -1) {
                     alert("订单已取消");

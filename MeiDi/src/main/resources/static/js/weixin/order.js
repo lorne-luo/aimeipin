@@ -13,7 +13,7 @@ function cancelOrder(id){
             dataType: 'json',
             success: function (data) {
                 if (data.ret == 0) {
-                    alert("您已取消订单，如果已付款，请拨打400-605-6662联系客服确认退款事宜！");
+                    alert("您已取消订单，如果已付款，请拨打010-84466106联系客服确认退款事宜！");
                     window.location.href =BASE_JS_URL + "/pay/orderPage/" + id;
                 } else if (data.ret == -1) {
                     alert("订单已取消");

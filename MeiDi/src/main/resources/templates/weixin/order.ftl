@@ -180,7 +180,7 @@
     <div class="chatbox tac fs14">
         <a href="javascript:void(0);" class="mr20" onclick="_MEIQIA._SHOWPANEL()"><img
                 src="http://s.luotao.net/static/aimeipin/cancel/h.png">在线咨询</a>
-        <a href="tel:4006056662"><img src="http://s.luotao.net/static/aimeipin/cancel/t.png">拨打电话</a>
+        <a href="tel:010-84466106"><img src="http://s.luotao.net/static/aimeipin/cancel/t.png">拨打电话</a>
     </div>
 
     <div class=" btfix  clearfix cancelbtnbox">
