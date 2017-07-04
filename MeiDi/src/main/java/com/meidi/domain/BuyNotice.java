@@ -17,12 +17,17 @@ public class BuyNotice implements Serializable {
 
     private String description;
 
+    @Column(name = "payment_note")
+    private String paymentNote;
+
+    /**
+     * 1 拼团, 2 福袋, 3 特惠, 4 咨询, 5 打卡
+     */
     private Integer flag;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_time")
     private Date createTime;
-
 
     public Integer getId() {
         return id;
@@ -55,5 +60,10 @@ public class BuyNotice implements Serializable {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    public String getPaymentNote() { return paymentNote; }
+
+    public void setPaymentNote(String paymentNote) { this.paymentNote = paymentNote; }
+
 
 }

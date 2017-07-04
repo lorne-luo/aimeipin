@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>参团</title>
+    <title>聚会美商城</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 <#include "header.ftl"/>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -26,9 +26,9 @@
         wx.ready(function () {
             //分享朋友圈
             wx.onMenuShareTimeline({
-                title: '【超值拼团】${commodity.name}', // 分享标题
+                title: '【还差${groupLaunch.peopleNumber - userList?size}人】${commodity.name}', // 分享标题
                 link: '${PATH}/business/joinGroupPage/#{groupLaunch.id}', // 分享链接
-                imgUrl: '${PATH}/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
                 },
@@ -41,7 +41,7 @@
                 title: '【超值拼团】${commodity.name}', // 分享标题
                 desc: '【还差${groupLaunch.peopleNumber - userList?size}人】${commodity.name}', // 分享描述
                 link: '${PATH}/business/joinGroupPage/#{groupLaunch.id}', // 分享链接
-                imgUrl: '${PATH}/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
@@ -77,47 +77,45 @@
                 </div>
             </div>
         </div>
-        <div class="tal pt10 pb10">
-            <p class="pl18"><span class="pf40000 fs24 lineblock mr10">¥#{groupLaunch.discountPrice/100}</span>
-                <del>¥#{groupLaunch.price/100}</del>
+        <div class="tal pt10 pb10 mt20">
+            <p class="pl18"><span class="pf40000 fs28 lineblock mr10">¥#{groupLaunch.discountPrice/100}</span>
+                <del class="fs20">¥#{groupLaunch.price/100}</del>
             </p>
-            <p class="pl16 line24 fs16">${groupLaunch.commodityName}</p>
+            <p class="line30 fs24">${groupLaunch.commodityName}</p>
         </div>
     </div>
 
     <div class="pt10 ">
-        <div class=" gogroup fs20">
+        <div class="gogroup fs20">
             <div class="clearfix ">
             <#if userList?exists>
                 <#list userList as user>
-                    <span class="inlineblock ml10">
+                    <span class="inlineblock ml10 mr10 mt10 mb10">
                         <div class="twoimg pr">
-                            <img src="${PATH}/images/fog.png" class='t2 pa'>
-                            <img src="${user.user.headimgurl}" class="t1 ">
+                            <img src="<#if user.user.headimgurl?has_content>${user.user.headimgurl}<#else>/images/fog.png</#if>" class="t1">
                         </div>
-                        <#if user.groupLaunchUser.flag == 1>
-                            <p class="fs16">团长&nbsp;${user.user.nickname}</p>
-                        <#else>
-                            <p class="fs16">成员&nbsp;${user.user.nickname}</p>
-                        </#if>
+                        <p class="fs16"><#if user.groupLaunchUser.flag == 1>【团长】</#if><#if user.user.headimgurl?has_content>${user.user.nickname}<#else>未知</#if></p>
                     </span>
                 </#list>
             </#if>
             </div>
+
+            <div class="mt30 mb30 fs28">
             <#if groupLaunch.state == 0>
                 <#if groupLaunch.peopleNumber - userList?size gt 0>
-                    <p class="mt20">还差<span class="f40b0b">${groupLaunch.peopleNumber - userList?size}</span>人，你来了咱就一起美！</p>
+                    <span>还差<span class="f40b0b">${groupLaunch.peopleNumber - userList?size}</span>人，你来了咱就一起美！</span>
                 </#if>
             <#elseif groupLaunch.state == 1>
-                <p class="mt20">该拼团已成功！</p>
+                <span>该拼团已成功！</span>
             <#else>
-                <p class="mt20">该拼团已结束！</p>
+                <span>该拼团已结束！</span>
             </#if>
+            </div>
         </div>
         <#if groupLaunch.state == 0>
-        <div class="ml20 mr20 mt20 fs18 pr">
+        <div class="ml20 mr20 mt20 pr">
             <span class="line"></span>
-            <span class="times p9c" id="times" endtime="#{endTime}">剩余时间：
+            <span class="times p9c fs22" id="times" endtime="#{endTime}">剩余时间：
                 <span class="f40b0b">23</span><i class="f40b0b">:</i>
                 <span class="f40b0b">55</span><i class="f40b0b">:</i>
                 <span class="f40b0b">59</span>
@@ -136,13 +134,23 @@
 
 </div>
 <div class="sharebtnbox clearfix btfix">
-    <a href="${PATH}/class" class="t1">更多拼团</a>
-    <a href="javascript:checkJoinGroup(#{groupLaunch.id});">我要参团</a>
+    <a href="${PATH}/index" class="t1">商城首页</a>
+
+
+<#if commodity.state!=1>
+    <a class="ended">项目已结束</a>
+<#else>
+    <#if shareFlag?exists && shareFlag == 1>
+        <a>已参团</a>
+    <#else>
+        <a href="javascript:checkJoinGroup(#{groupLaunch.id});">我要参团</a>
+    </#if>
+</#if>
 </div>
 <#if groupLaunch.peopleNumber - userList?size gt 0 && shareFlag?exists && shareFlag == 1>
 <div class="sharemark">
     <div class="rightt1">
-        <img src="${PATH}/images/row.png">
+        <img src="http://s.luotao.net/static/aimeipin/row.png">
 
         <p>发送给小伙伴参团</p>
     </div>
@@ -158,4 +166,4 @@
 </body>
 </html>
 <script type="text/javascript" src="${PATH}/js/CountTClass.js"></script>
-<script type="text/javascript" src="${PATH}/js/weixin/joinGroup.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/joinGroup.js?v=${version}"></script>

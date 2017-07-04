@@ -6,7 +6,7 @@
 
     <groupId>com.meidi</groupId>
     <artifactId>MeiDi</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.8e</version>
     <packaging>war</packaging>
 
     <parent>
@@ -20,6 +20,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <aspectj.version>1.8.6</aspectj.version>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
     </properties>
 
     <dependencies>
@@ -61,7 +63,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
-            <!----><scope>provided</scope>
+            <scope>provided</scope>
         </dependency>
 
         <!-- file upload -->
@@ -99,13 +101,6 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- log4j -->
-        <!--<dependency>-->
-            <!--<groupId>org.slf4j</groupId>-->
-            <!--<artifactId>slf4j-log4j12</artifactId>-->
-            <!--<version>1.5.11</version>-->
-        <!--</dependency>-->
 
         <!-- activemq-->
         <dependency>
@@ -147,8 +142,8 @@
         <dependency>
             <groupId>com.message</groupId>
             <artifactId>MyMessage</artifactId>
-            <scope>system</scope>
             <version>1.0</version>
+            <scope>system</scope>
             <systemPath>${basedir}/lib/MyMessage.jar</systemPath>
         </dependency>
 
@@ -160,7 +155,6 @@
             <scope>system</scope>
             <systemPath>${basedir}/lib/ueditor-1.1.2.jar</systemPath>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -168,16 +162,51 @@
             <resource>
                 <filtering>true</filtering>
                 <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>**/*.woff</exclude>
+                    <exclude>**/*.ttf</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.woff</include>
+                    <include>**/*.ttf</include>
+                </includes>
             </resource>
         </resources>
+
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/meidi/WEB-INF/lib/</outputDirectory>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
             </plugin>
         </plugins>
         <finalName>meidi</finalName>
     </build>
-
-
 </project>

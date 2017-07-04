@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>我的积分</title>
+    <title>聚会美商城-我的积分</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 <#include "header.ftl"/>
 </head>
@@ -34,8 +34,9 @@
 
                 </tbody>
             </table>
-            <div class="tac">
-                <a href="javascript:getList(0);" class="getmore">点击加载更多...</a>
+            <ul id="getmore" class="md-news hide" style="display:none" mbsc-enhance></ul>
+            <div id="getmore-loading" class="tac mbsc-btn-ic"  style="display:none" mbsc-enhance>
+                <span class="getmore">加载中...</span>
             </div>
         </div>
     </div>
@@ -45,5 +46,5 @@
 <#include "footer.ftl"/>
 
 </body>
-<script src="${PATH}/js/weixin/myIntegral.js"></script>
+<script src="${PATH}/js/weixin/myIntegral.js?v=${version}"></script>
 </html>

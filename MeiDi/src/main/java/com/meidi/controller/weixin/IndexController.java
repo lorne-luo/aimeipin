@@ -57,11 +57,6 @@ public class IndexController extends WxBaseController {
     public ModelAndView indexPage(HttpServletRequest request) {
         MdModel model = new MdModel(request);
 
-
-        if (MdCommon.isEmpty(model.get("wx_openid"))) {
-            return wxAuth(request);
-        }
-
         //网页签名
         Map signature = null;
         try {
@@ -80,6 +75,33 @@ public class IndexController extends WxBaseController {
     }
 
     /**
+     * 首页
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "test", method = RequestMethod.GET)
+    public ModelAndView indexTestPage(HttpServletRequest request) {
+        MdModel model = new MdModel(request);
+
+        //网页签名
+        Map signature = null;
+        try {
+            signature = weiXinSignature(request, wxTicketRepository);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.put("signature", signature);
+
+
+        Sort sort = new Sort(Sort.Direction.ASC, "weight").and(new Sort(Sort.Direction.ASC, "createTime"));
+        Iterable<IndexImage> indexImages = indexImageRepository.findAll(sort);
+        model.put("images", indexImages);
+        model.put("pageActive", "index");
+        return new ModelAndView("weixin/test", model);
+    }
+
+    /**
      * 分类页面
      *
      * @param request
@@ -88,9 +110,6 @@ public class IndexController extends WxBaseController {
     @RequestMapping(value = "class", method = RequestMethod.GET)
     public ModelAndView classPage(HttpServletRequest request) {
         MdModel model = new MdModel(request);
-        if (MdCommon.isEmpty(model.get("wx_openid"))) {
-            return wxAuth(request);
-        }
         model.put("pageActive", "class");
         return new ModelAndView("weixin/classification", model);
     }

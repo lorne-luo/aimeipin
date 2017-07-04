@@ -35,6 +35,7 @@ $(function () {
             var str = '<div class="form-group">' +
                 ' <label><span class="star mr6">*</span>团购价：</label>' +
                 '<input class="form-control discountPrice" name="discountPriceDouble"/>' +
+                '<span class="inlineblock ml10">元</span>' +
                 '</div>' +
                 '<div class="form-group">' +
                 '<label><span class="star mr6">*</span>拼团人数：</label>' +
@@ -57,17 +58,21 @@ $(function () {
             var str = '<div class="form-group">' +
                 ' <label><span class="star mr6">*</span>现价：</label>' +
                 '<input class="form-control discountPrice" name="discountPriceDouble"/>' +
+                '<span class="inlineblock ml10">元</span>' +
                 '</div>';
             $('#cmbox').append(str);
             $('#djbox').html('');
-
-
+        } else if (flag == 5) {//打卡
+            $('#ptbox').html('');
+            $('#cmbox').html('');
+            $('#djbox').html('');
         } else {
             $('#ptbox').html('');
             $('#cmbox').html('');
             var str = '<div class="form-group">' +
                 ' <label><span class="star mr6">*</span>现价：</label>' +
                 '<input class="form-control discountPrice" name="discountPriceDouble"/>' +
+                '<span class="inlineblock ml10">元</span>' +
                 '</div>';
             $('#cmbox').append(str);
             $('#djbox').html('');
@@ -78,6 +83,7 @@ $(function () {
             $('#djbox').append(str);
 
         }
+
         discount = $(".discount");//折扣系数
         discountPrice = $(".discountPrice");//折扣价格
         price = $(".price");//价格
@@ -259,6 +265,10 @@ $("#addCommodity").validate({
         "flag": true,
         "name": true,
         "keyword": true,
+        "weight": {
+            number: true,
+            min: 0
+        },
         "priceDouble": {
             required: true,
             number: true,
@@ -300,6 +310,10 @@ $("#addCommodity").validate({
         "flag": "*请选择商品类型",
         "name": "*请填写名称",
         "keyword": "*请填写关键词",
+        "weight": {
+            number: "*必须是数字",
+            min: "*不能小于0"
+        },
         "priceDouble": {
             required: "*请填写价格",
             number: "*必须是数字",

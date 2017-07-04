@@ -22,9 +22,14 @@ public interface MdConstants {
 
 
     String WX_GROUP_LAUNCH = "VwEjiiMoKn8AwDtHxmIobMzEpJCR5FPYQUuhNIjOOFc";
+    String WX_GROUP_LAUNCH_SUCCESS = "Qes8kpBHC29Wh3q6Dm8Zwq7HGsPmkaOicVxhnKqcMyQ";
     String WX_JOIN_GROUP = "clF_I2A60Z1pN6GbvcDcbG5DOIhHHnTOw_Vg2WB_dj4";
     String WX_GROUP_FAIL = "rXaWbwpLQiWFJKEQYUhuOu3fcqxZ1QHmuUcMt82U0Wc";
     String WX_ORDER_COMPLETE = "L_Wawg6RlUQK6OtYVUp_caPpIFUbrzQ5eEU3tmqyKbc";
+
+    String DK_PAYMENT_SUCCESS ="T2LAcqQ_srdvOIde4JthxiexF2rG6R0N7nwMRc2y048"; //打卡公号付款成功
+    String DK_PAYMENT_FAILED ="RB9Usd1FO-uQYSZlzZ4XERf3LS6VrRxupOEn6Wpa3zc"; //打卡公号付款失败
+    String DK_REFUND ="ysQp-W6GuBW49n3oy0VWUT9KtgGIDMiz1wUMuBYuOb4"; //打卡公号项目完成退款
 
 
     //localhost
@@ -65,17 +70,26 @@ public interface MdConstants {
 //    String IMAGE_FORMAL_URL = PATH + "/formal";
 //    String IMAGE_TEXT_PATH = "/usr/local/imageText";
 
+    //打卡公众号
+    String WX_DK_APP_ID = "wx0bda7c0cd5c05a36";
+    String WX_DK_SECRET = "65a33f1efa372d71a7ea5df3a4b983cd";
+
     //aimeipin
     String WX_APP_ID = "wxf3d017eaf0b53463";
     String WX_SECRET = "d6914a211b5175f62cc5dafb389cd074";
     String PATH = "http://www.aimeipin.cc";
+    String HOME = "http://www.aimeipin.cc";
+    String DOMAIN = "aimeipin.cc";
     String COMMODITY_INDEX_PATH = "/Users/luanpeng/MyProject/lucene/CommodityIndex";
     String MQ_HOST = "localhost:61616";
-    String KEY_STORE = "/usr/local/cert/apiclient_cert.p12";
+    String KEY_STORE = "/usr/local/cert/apiclient_cert.p12"; // SSL证书路径
     String IMAGE_TEMPORARY_PATH = "/usr/local/imageTemporary";
     String IMAGE_FORMAL_PATH = "/usr/local/imageFormal";
     String IMAGE_TEMPORARY_URL = PATH + "/temporary";
     String IMAGE_FORMAL_URL = PATH + "/formal";
     String IMAGE_TEXT_PATH = "/usr/local/imageText";
 
+    //test
+    Boolean DEBUG = Boolean.parseBoolean(System.getenv("debug"));
+    String TEST_OPENID = "obfnSs5n7HU9nRzfGwdJ0NEM3blQ"; //luotao
 }

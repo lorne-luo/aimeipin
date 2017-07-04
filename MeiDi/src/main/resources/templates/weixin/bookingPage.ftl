@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>购买</title>
+    <title>${commodity.name}</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 <#include "header.ftl"/>
 
@@ -25,9 +25,16 @@
     </#if>
     </div>
     <div class="pl24  pr24 tal mt10">
-        <p class="pf40000 fs28 ml4">¥#{commodity.discountPrice/100}</p>
+        <p class="fs20 mlf6 pt10">
+            <#if commodity.flag == 5>报名</#if> ${commodity.name}
+        </p>
 
-        <p class="fs20 mlf6 pt10">${commodity.name}</p>
+        <#if commodity.flag == 5>
+            <p class="tac pf40000 fs28 ml4">支付金额 ¥#{commodity.price/100}</p>
+        <#else>
+            <p class="pf40000 fs28 ml4">¥#{commodity.discountPrice/100}</p>
+        </#if>
+
     </div>
     <form action="" id="addOrder" method="post">
         <input type="hidden" value="#{commodity.id}" name="commodityId" class="commodityId">
@@ -39,13 +46,13 @@
             </div>
             <div class="clearfix mt10">
                 <span class="fl mt10">手机号码：</span>
-                <input type="tel" placeholder="请务必填写正确的手机号码" name="mobile" id="mobile">
+                <input type="tel" placeholder="请填写真实手机号码" name="mobile" id="mobile">
             </div>
             <div class="clearfix mt10">
                 <span class="fl mt10">微信号：</span>
-                <input type="text" placeholder="选填" name="weixin" id="weixin">
+                <input type="text" placeholder="必填" name="weixin" id="weixin">
             </div>
-        <#if commodity.flag == 4>
+        <#if commodity.flag == 4 || commodity.flag == 5>
 
         <#else>
             <div class="clearfix mt10">
@@ -77,23 +84,18 @@
     </form>
 
     <div class="earnestills tal fs16 line30 p555">
-        <b class="fs20">支付说明：</b>
     <#if commodity.remarks?exists && commodity.remarks!='' >
+        <b class="fs20 mb10">支付说明：</b>
         ${commodity.remarks}
     <#else>
-        <p class="pt10">·预约项目到院支付全款后，系统退还订金；</p>
-
-        <p>·福袋可随时取消订单，系统退还订金；</p>
-
-        <p>·拼团成功前，可随时取消订单，系统退还订金；</p>
-
-        <p>·拼团成功后，因个人原因取消订单，订金不予退还；</p>
-
-        <p>·已接受聚会美线下服务（面诊、接送机等），但未到院消费，订金不予退还。</p>
+        <#if buyNotice?exists && buyNotice.paymentNote?exists >
+            <b class="fs20 mb10">支付说明：</b>
+            ${buyNotice.paymentNote}
+        </#if>
     </#if>
     </div>
 </div>
 
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/bookingPage.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/bookingPage.js?v=${version}"></script>

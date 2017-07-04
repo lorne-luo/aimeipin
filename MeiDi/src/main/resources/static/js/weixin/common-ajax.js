@@ -2,7 +2,7 @@
  * Created by luanpeng on 16/3/24.
  */
 var page = 1;
-function getProjectList(flag, pageNumber, cityId, queryStr) {
+function getProjectList(categoryId, pageNumber, cityId, queryStr) {
     if (pageNumber == 1) {
         page = pageNumber;
     }
@@ -11,7 +11,7 @@ function getProjectList(flag, pageNumber, cityId, queryStr) {
     $.ajax({
         url: BASE_JS_URL + '/business/getCommodityList',
         data: {
-            'flag': flag,
+            'categoryId': categoryId,
             'page': page,
             'state': 1,
             'cityId': cityId,
@@ -31,8 +31,6 @@ function getProjectList(flag, pageNumber, cityId, queryStr) {
             }
 
             createTable(data.commodityList);
-
-
             ZENG.msgbox.hide(); //隐藏加载提示
         }
     });
@@ -73,6 +71,7 @@ function createTable(commodityList) {
             }
 
             str += '  <div class="tal">' +
+                '<span class="sold-badge">已售' + commodity.customSold +'</span>'+
                 '    <p class="pl16 line40 fs26 pr16 mt8">' + commodity.name + '</p>' +
                 '    <div class=" pr price">' +
                 '      <div class="lefticon "></div>' +
@@ -117,6 +116,7 @@ function createTable(commodityList) {
                 str += '<div class="ll"></div>';
             }
             str += '  <div class="tal">' +
+                '<span class="sold-badge">已售' + commodity.customSold +'</span>'+
                 '    <p class="pl16 line40 fs26 pr16 mt8">' + commodity.name + '</p>' +
                 '  <div class=" pr price">' +
                 '    <div class="lefticon fu"></div>' +
@@ -161,6 +161,7 @@ function createTable(commodityList) {
                 str += '<div class="ll"></div>';
             }
             str += '  <div class="tal">' +
+                '<span class="sold-badge">已售' + commodity.customSold +'</span>'+
                 '    <p class="pl16 pr16 line40 fs26 mt8">' + commodity.name + '</p>' +
                 '    <div class=" pr price">' +
                 '      <div class="lefticon sale"></div>' +
@@ -193,12 +194,13 @@ function createTable(commodityList) {
                 '  </div>' +
                 '</div>' +
                 '<div class="tal">' +
-                '  <p class="pl16 line24 fs16 pr18 mt6">' + commodity.name + '</p>' +
+                '<span class="sold-badge">已售' + commodity.customSold +'</span>'+
+                '  <p class="pl16 line24 fs20 pr18 mt6">' + commodity.name + '</p>' +
                 '  <div class=" pr price askpic">' +
                 '    <div class="lefticon dzf"></div>' +
                 '    <div class="righticon cleafix pr askdz">' +
-                '      <span class="yuanj  fl ">原价:<del>' + commodity.price/100 + '</del></span>' +
-                '      <span class="fs16 mt4 line16 fl">现价:' + commodity.discountPrice/100 + '</span>' +
+                '      <span class="ml50 yuanj fl ">原价:<del>' + commodity.price/100 + '</del></span>' +
+                '      <span class="ml10 fs16 fl">现价:' + commodity.discountPrice/100 + '</span>' +
                 '      <a href="' + BASE_JS_URL + '/business/commodityDetailPage/' + commodity.id + '"></a>' +
                 '    </div>' +
                 '  </div>' +

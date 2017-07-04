@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>我的订单</title>
+    <title>聚会美商城-我的订单</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 <#include "header.ftl"/>
 </head>
@@ -19,19 +19,18 @@
         <p class="fs18">全部订单</p>
     </div>
     <div class="myorder p20">
-        <span class="addList">
+        <div class="addList">
 
-
-        </span>
-
-        <div class="tac">
-            <a href="javascript:getList(0);" class="getmore">点击加载更多...</a>
         </div>
 
+        <ul id="getmore" class="md-news hide" style="display:none" mbsc-enhance></ul>
+        <div id="getmore-loading" class="tac mbsc-btn-ic"  style="display:none" mbsc-enhance>
+            <span class="getmore">加载中...</span>
+        </div>
     </div>
 
 </div>
-
+<#include "footer.ftl"/>
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/myOrder.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/myOrder.js?v=${version}"></script>

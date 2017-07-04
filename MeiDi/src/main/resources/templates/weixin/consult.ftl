@@ -8,8 +8,9 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>定制咨询</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>聚会美商城-定制咨询</title>
+    <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
+    <#--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
 <#include "header.ftl"/>
 
 </head>
@@ -31,44 +32,24 @@
     //无按钮模式
     _MEIQIA('withoutBtn', true);
 </script>
-<div class="wrapper pr pb130 zx">
+<div class="wrapper pr pb130">
     <div class="zxdivbox">
         <div class="zxbox">
-            <a href="javascript:void(0);" class="dz"></a><a href="javascript:void(0)" onclick="_MEIQIA._SHOWPANEL()"
-                                                            class="mf"></a>
+            <a href="javascript:void(0);" class="dz"></a>
+            <a href="javascript:void(0)" onclick="_MEIQIA._SHOWPANEL()" class="mf"></a>
         </div>
-        <div class="itemlistbox">
-
+        <div class="itemlistbox pl20 pr20" style="margin-bottom: -20px">
 
         </div>
-        <a href="javascript:getMore();" class="getmore">点击加载更多...</a>
     </div>
-    <div class=" zx btfix  clearfix itemsbtnbox">
-        <a href="${PATH}/index" class="fl <#if pageActive == 'index'>active</#if>">
-            <span class="shouyeicon"></span>
 
-            <p>首页</p>
-        </a>
-        <a href="${PATH}/class" class="fl <#if pageActive == 'class'>active</#if>">
-            <span class="fenleicon"></span>
-
-            <p>分类</p>
-        </a>
-        <a href="${PATH}/consult" class="fl <#if pageActive == 'consult'>active</#if>">
-            <span class="zixunicon"></span>
-
-            <p>咨询</p>
-        </a>
-        <a href="${PATH}/my" class="fl <#if pageActive == 'my'>active</#if>">
-            <span class="myicon"></span>
-
-            <p>我的</p>
-        </a>
+    <ul id="getmore" class="md-news hide" style="display:none" mbsc-enhance></ul>
+    <div id="getmore-loading" class="mbsc-btn-ic"  style="display:none" mbsc-enhance>
+        <span class="getmore">加载中...</span>
     </div>
 </div>
-
-
+<#include "footer.ftl"/>
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js"></script>
-<script type="text/javascript" src="${PATH}/js/weixin/consult.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js?v=${version}"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/consult.js?v=${version}"></script>

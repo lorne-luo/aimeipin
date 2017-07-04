@@ -20,27 +20,59 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     *
+     * @param pageNumber
+     * @param pageSize
+     * @param flag
+     * @param state -1 查询所有未删除, -2 查询所有已删除, -3 查询所有
+     * @param launchID
+     * @param commodityID
+     * @param queryStr
+     * @return LEFT JOIN tcount_tbl b ON a.tutorial_author = b.tutorial_author;
+     */
     @Override
-    public Map<String, Object> findOrderWithQuery(int pageNumber, int pageSize, int flag, int state, String queryStr) {
+    public Map<String, Object> findOrderWithQuery(int pageNumber, int pageSize, int flag, int state, int launchID, int commodityID, String dateStr, String queryStr) {
         List<Object> list = new ArrayList<>();
         String sql = "select mo.* " +
-                " from md_order mo " +
+                " from md_order mo LEFT JOIN md_user mu ON mo.wx_openid=mu.wx_openid " +
                 " where mo.id is not null ";
         if (!MdCommon.isEmpty(flag) && flag > 0) {
             sql += " and mo.flag = ? ";
             list.add(flag);
         }
+
         if (!MdCommon.isEmpty(state) && state > 0) {
             if(state < 6){
                 sql += " and mo.state = ? ";
             }else{
                 sql += " and mo.state >= ? ";
             }
-
             list.add(state);
+        } else if (!MdCommon.isEmpty(state) && state == -1) {
+            sql += " and (mo.is_deleted != 1 or mo.is_deleted is null)";
+        } else if (!MdCommon.isEmpty(state) && state == -2) {
+            sql += " and mo.is_deleted = 1 ";
+        } else if (!MdCommon.isEmpty(state) && state == -3) {
+
         }
+
+        if (!MdCommon.isEmpty(launchID) && launchID > 0) {
+            sql += " and mo.launch_id = ? ";
+            list.add(launchID);
+        }
+        if (!MdCommon.isEmpty(commodityID) && commodityID > 0) {
+            sql += " and mo.commodity_id = ? ";
+            list.add(commodityID);
+        }
+        if (!MdCommon.isEmpty(dateStr) && dateStr.length() > 9) { //yyyy-MM-dd
+            sql += " and mo.create_time like ? ";
+            list.add(dateStr + "%");
+        }
+
         if(!MdCommon.isEmpty(queryStr)){
-            sql += " and (mo.username like ? or mo.mobile like ? or mo.commodity_name like ?) ";
+            sql += " and (mu.nickname like ? or mo.username like ? or mo.mobile like ? or mo.commodity_name like ?) ";
+            list.add("%" + queryStr + "%");
             list.add("%" + queryStr + "%");
             list.add("%" + queryStr + "%");
             list.add("%" + queryStr + "%");
@@ -62,7 +94,7 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
 
 
         sql = "select count(0) as num " +
-                " from md_order mo " +
+                " from md_order mo LEFT JOIN md_user mu ON mo.wx_openid=mu.wx_openid " +
                 " where mo.id is not null ";
         if (!MdCommon.isEmpty(flag) && flag > 0) {
             sql += " and mo.flag = ? ";
@@ -74,8 +106,17 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
                 sql += " and mo.state >= ? ";
             }
         }
+        if (!MdCommon.isEmpty(launchID) && launchID > 0) {
+            sql += " and mo.launch_id = ? ";
+        }
+        if (!MdCommon.isEmpty(commodityID) && commodityID > 0) {
+            sql += " and mo.commodity_id = ? ";
+        }
+        if (!MdCommon.isEmpty(dateStr) && dateStr.length() > 9) { //yyyy-MM-dd
+            sql += " and mo.create_time like ? ";
+        }
         if(!MdCommon.isEmpty(queryStr)){
-            sql += " and (mo.username like ? or mo.mobile like ? or mo.commodity_name like ?) ";
+            sql += " and (mu.nickname like ? or mo.username like ? or mo.mobile like ? or mo.commodity_name like ?) ";
         }
         query = entityManager.createNativeQuery(sql);
         if (list.size() > 0) {

@@ -8,11 +8,13 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>项目详情</title>
+    <title>${commodity.name}</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <#include "header.ftl"/>
     <script src="${PATH}/ueditor/ueditor.parse.js"></script>
+    <script type="text/javascript" src="${PATH}/js/jquery.cookie.js"></script>
+
     <script>
         uParse("#description", {
             rootPath: '${PATH}/ueditor'
@@ -38,7 +40,7 @@
             wx.onMenuShareTimeline({
                 title: '${commodity.name}', // 分享标题
                 link: '${PATH}/business/commodityDetailPage/#{commodity.id}', // 分享链接
-                imgUrl: '${PATH}/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
                 },
@@ -57,7 +59,7 @@
                 title: '${commodity.name}', // 分享标题
                 desc: sharingSummary, // 分享描述
                 link: '${PATH}/business/commodityDetailPage/#{commodity.id}', // 分享链接
-                imgUrl: '${PATH}/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
@@ -67,7 +69,7 @@
                     // 用户取消分享后执行的回调函数
                 }
             });
-        })
+        });
         </#if>
     </script>
     <script type='text/javascript'>
@@ -93,8 +95,8 @@
         //无按钮模式
         _MEIQIA('withoutBtn', true);
         <#else>
-        (function (m, ei, q, i, a, j, s) {
-            m[a] = m[a] || function () {
+        (function(m, ei, q, i, a, j, s) {
+            m[a] = m[a] || function() {
                         (m[a].a = m[a].a || []).push(arguments)
                     };
             j = ei.createElement(q),
@@ -106,19 +108,17 @@
 
         })(window, document, 'script', '//static.meiqia.com/dist/meiqia.js', '_MEIQIA');
         _MEIQIA('entId', 2247);
-        
-        _MEIQIA('assign', {
-            agentToken: 'f63c019c0610f177cdacc757c3acdc3e'
-        });
         //无按钮模式
         _MEIQIA('withoutBtn', true);
         </#if>
     </script>
 </head>
+
 <body style="background:#ffffff">
 <div class="wrapper pr pb80 zx">
     <input type="hidden" value="#{commodity.id}" class="commodityId">
     <input type="hidden" value="${commodity.flag}" class="commodityFlag">
+    <input type="hidden" value="#{commodity.dicCity.id}" class="cityId">
 
     <div class="pl12 pr12 mt20">
         <div class="itemlist shadowall ">
@@ -158,7 +158,7 @@
                         class="pf40000 fs18 lineblock mr10">¥#{commodity.discountPrice/100}<#if commodity.discountUnit?exists>${commodity.discountUnit}</#if></span>
                     <del>¥#{commodity.price/100}<#if commodity.unit?exists>${commodity.unit}</#if></del>
                 </p>
-                <p class="pl16 line24 fs18 menutitle">${commodity.name}</p>
+                <p id="title" class="pl16 line24 fs18 menutitle">${commodity.name}</p>
             </div>
         </div>
     </div>
@@ -176,66 +176,103 @@
         </div>
     </div>
 </#if>
-    <span class="addList">
+    <div id="joinGroup" class="addList mt20">
 
-    </span>
+    </div>
 
+    <ul class="tabClick">
+        <li><a href="#title">项目详情</a></li>
+        <li><a href="#buyNotice">订购须知</a></li>
+        <li><a href="#youlike">猜你喜欢</a></li>
+    </ul>
 
     <div class="casebox pl20 pr20 clearfix tal">
     <#if commodity.caseUrl?exists>
         <div class="casebtn"><a href="${commodity.caseUrl}"></a></div>
     </#if>
 
-        <div id="description" class="">${commodity.description}</div>
+        <div id="description" class="line18">${commodity.description}</div>
     </div>
 
-    <div class="activeills  tal pl10 pr10 pt10 pb10 fs20 buyNotice">
+    <div id="buyNotice" class="mb30"></div>
+    <div class="tal pl10 pr10 line18 buyNotice">
+        <section class="fs18" style="display: inline-block; padding: 0.1em 1em; height: 2em; max-width: 100%; line-height: 2em;background-color: #ff4d7d;">
+            <section style="color: white;">订购须知</section>
+        </section>
+        <div style="line-height: 1.8em">
     <#if buyNotice?exists && buyNotice.description?exists>
         ${buyNotice.description}
     </#if>
+        </div>
     </div>
+
+    <div id="youlike" class="mb30"></div>
+    <div class="tal pl10 pr10 moreclassify clearfix youlike">
+        <section class="fs18" style="display: inline-block; padding: 0.1em 1em; height: 2em; max-width: 100%; line-height: 2em;background-color: #ff4d7d;">
+            <section style="color: white;">猜你喜欢</section>
+        </section>
+
+        <div class="youlikeList pt10">
+
+        </div>
+    </div>
+
+<#if user?exists && user.isSubscribe?has_content && user.isSubscribe == true >
+<#else>
+    <#-- 未关注用户显示二维码 -->
+    <div id="barcode" class="pr hide">
+        <img width="100%" src="${PATH}/images/barcode.jpg">
+        <button class="closebtn" onclick="javascript:closeBarCode()">X</button>
+    </div>
+</#if>
+
     <div class="detailnav clearfix btfix">
         <div class="t1  tt2 fs12">
-            <a class="borr fl pt8" href="${PATH}/index">
-                <img src="${PATH}/images/detail/indicon.png">
+            <a class="borr fl pt4" href="${PATH}/index">
+                <img src="http://s.luotao.net/static/aimeipin/detail/indicon.png">
 
                 <p class="mt2">首页</p>
             </a>
-            <a class="borr fl pt8" href="javascript:favoriteAction(#{commodity.id});">
-                <img src="${PATH}/images/detail/sc.png" class="<#if favoriteFlag == 1>hide</#if> favorite1">
-                <img src="${PATH}/images/detail/noc.png" class="<#if favoriteFlag == 2>hide</#if> favorite2">
+            <a class="borr fl pt4" href="javascript:<#if wx_openid?has_content>favoriteAction(#{commodity.id})<#else>redirectLogin()</#if>;">
+                <img src="http://s.luotao.net/static/aimeipin/detail/sc.png" class="<#if favoriteFlag == 1>hide</#if> favorite1">
+                <img src="http://s.luotao.net/static/aimeipin/detail/noc.png" class="<#if favoriteFlag == 2>hide</#if> favorite2">
 
                 <p class="mt2">收藏</p>
             </a>
-            <a class=" fl pt8" href="javascript:void(0);" onclick="_MEIQIA._SHOWPANEL()">
-                <img src="${PATH}/images/detail/zx.png">
+            <a class=" fl pt4" href="javascript:void(0);" onclick="_MEIQIA._SHOWPANEL()">
+                <img src="http://s.luotao.net/static/aimeipin/detail/zx.png">
 
                 <p class="mt2">咨询</p>
             </a>
         </div>
-    <#if commodity.flag ==1 >
-        <a class="t2  bgfe91b0" href="${PATH}/business/bookingPage/#{commodity.id}/2">
-            <div class="mt8"><span>¥#{commodity.alonePrice/100}</span></div>
-            <p class="fs16 pwhite fb">单独预订</p>
-        </a>
-        <a class="t2 bgff4d7d" href="${PATH}/business/bookingPage/#{commodity.id}/1">
-            <div class="mt8"><span>¥#{commodity.discountPrice/100}</span></div>
-            <p class='fs16 pwhite fb'>发起拼团</p>
-        </a>
-    <#else>
-        <a class="t4 bgff4d7d" href="${PATH}/business/bookingPage/#{commodity.id}/3">
-            <p class="fs20 mt16 priceorder">
-                <span>¥#{commodity.discountPrice/100}</span>
-                <#if commodity.flag == 4>
-                    <i class="pwhite inlineblock ml4">我要预约</i>
-                <#else>
-                    <i class="pwhite inlineblock ml4">我要参团</i>
-                </#if>
 
+    <#if commodity.state == 1 >
+        <#if commodity.flag ==1 >
+            <#-- 1 拼团 -->
+            <a class="t2  bgfe91b0" href="${PATH}/business/bookingPage/#{commodity.id}/2">
+                <div class="mt2"><span>¥#{commodity.alonePrice/100}</span></div>
+                <p class="fs16 pwhite fb">单独预订</p>
+            </a>
+            <a class="t2 bgff4d7d" href="${PATH}/business/bookingPage/#{commodity.id}/1">
+                <div class="mt2"><span>¥#{commodity.discountPrice/100}</span></div>
+                <p class='fs16 pwhite fb'>发起拼团</p>
+            </a>
+        <#else>
+            <#-- 2 福袋, 3 特惠, 4 咨询 -->
+            <a class="t4 bgff4d7d" href="${PATH}/business/bookingPage/#{commodity.id}/3">
+                <p class="fs20 mt16 priceorder">
+                    <span>¥#{commodity.discountPrice/100}</span>
+                    <i class="pwhite inlineblock ml4">我要预订</i>
+                </p>
+            </a>
+        </#if>
+    <#else>
+        <a class="t4 ended">
+            <p class="fs20 mt16 priceorder">
+                <i class="pwhite inlineblock ml4">项目已结束</i>
             </p>
         </a>
     </#if>
-
     </div>
 
 </div>
@@ -244,4 +281,4 @@
 </body>
 </html>
 <script type="text/javascript" src="${PATH}/js/CountTClass.js"></script>
-<script type="text/javascript" src="${PATH}/js/weixin/commodityDetail.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/commodityDetail.js?v=${version}"></script>

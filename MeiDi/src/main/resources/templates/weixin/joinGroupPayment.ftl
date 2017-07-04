@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>购买</title>
+    <title>聚会美商城</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 <#include "header.ftl"/>
 
@@ -29,6 +29,18 @@
 
         <p class="fs20 mlf6 pt10">${groupLaunch.commodityName}</p>
     </div>
+
+<#if isExpired?has_content>
+    <div class="fs20 mt30 pt30">
+        <p>对不起,本次拼团已结束,</p>
+        <br/>
+        <br/>
+        <p>您仍然可以
+        <a class="pred" href="/business/commodityDetailPage/${commodity.id}">访问该项目发起新拼团</a>
+        </p>
+    </div>
+    <#include "footer.ftl"/>
+<#else>
     <form action="" id="addOrder" method="post">
         <input type="hidden" value="#{groupLaunch.commodityId}" name="commodityId" class="commodityId">
         <input type="hidden" value="#{groupLaunch.id}" name="groupLaunchId" class="groupLaunchId">
@@ -70,23 +82,18 @@
     </form>
 
     <div class="earnestills tal fs16 line30 p555">
-        <b class="fs20">支付说明：</b>
+        <b class="fs20 mb10">支付说明：</b>
     <#if commodity.remarks?exists && commodity.remarks!='' >
         ${commodity.remarks}
     <#else>
-        <p class="pt10">·预约项目到院支付全款后，系统退还订金；</p>
-
-        <p>·福袋可随时取消订单，系统退还订金；</p>
-
-        <p>·拼团成功前，可随时取消订单，系统退还订金；</p>
-
-        <p>·拼团成功后，因个人原因取消订单，订金不予退还；</p>
-
-        <p>·已接受聚会美线下服务（面诊、接送机等），但未到院消费，订金不予退还。</p>
+        <#if buyNotice?exists && buyNotice.paymentNote?exists >
+            ${buyNotice.paymentNote}
+        </#if>
     </#if>
     </div>
+</#if>
 </div>
 
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/joinGroupPayment.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/joinGroupPayment.js?v=${version}"></script>

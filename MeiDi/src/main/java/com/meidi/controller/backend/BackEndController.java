@@ -5,6 +5,7 @@ import com.meidi.domain.*;
 import com.meidi.repository.*;
 import com.meidi.util.*;
 import com.sun.javafx.sg.prism.NGShape;
+import org.apache.http.HttpException;
 import org.apache.log4j.MDC;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -53,7 +54,8 @@ public class BackEndController implements MdConstants {
     private CommodityRepository commodityRepository;
     @Resource
     private BuyNoticeRepository buyNoticeRepository;
-
+    @Resource
+    private CategoryRepository categoryRepository;
     @Resource
     private InterestCommodityRepository interestCommodityRepository;
     @Resource
@@ -108,6 +110,13 @@ public class BackEndController implements MdConstants {
         List<DicCity> cityList = dicCityRepository.findByParentId(provinceList.get(0).getId());
         model.put("cityList", cityList);
 
+        Iterable<Category> categoryIterable = categoryRepository.findAll();
+        List<Category> categoryList = new ArrayList<>();
+        for (Category category : categoryIterable) {
+            categoryList.add(category);
+        }
+        model.put("categoryList", categoryList);
+
         List<DicTag> tagList = dicTagRepository.findByFlag(1);
         model.put("tagList", tagList);
 
@@ -134,7 +143,9 @@ public class BackEndController implements MdConstants {
         if (MdCommon.isEmpty(commodity.getEndDate())) {
             commodity.setEndDate(null);
         }
-
+        if (MdCommon.isEmpty(commodity.getWeight())) {
+            commodity.setWeight(0);
+        }
         if (MdCommon.isEmpty(commodity.getCaseUrl())) {
             commodity.setCaseUrl(null);
         }
@@ -153,6 +164,11 @@ public class BackEndController implements MdConstants {
         }
         if (!MdCommon.isEmpty(commodity.getDepositDouble())) {
             commodity.setDeposit((int) (commodity.getDepositDouble() * 100));
+        }
+        if (commodity.getCategory() == null || commodity.getCategory().getId() == null){
+            commodity.setCategory(null);
+        } else{
+            commodity.setCategory(categoryRepository.findOne(commodity.getCategory().getId()));
         }
 
         commodity.setCommodityPhotoList(commonParam.getCommodityPhotosList(commodity.getCommodityPhotoList()));
@@ -183,7 +199,6 @@ public class BackEndController implements MdConstants {
         }
         model.put("provinceList", provinceList);
 
-
         Commodity commodity = commodityRepository.findOne(id);
         model.put("commodity", commodity);
 
@@ -193,6 +208,12 @@ public class BackEndController implements MdConstants {
         List<DicTag> tagList = dicTagRepository.findByFlag(1);
         model.put("tagList", tagList);
 
+        Iterable<Category> categoryIterable = categoryRepository.findAll();
+        List<Category> categoryList = new ArrayList<>();
+        for (Category category : categoryIterable) {
+            categoryList.add(category);
+        }
+        model.put("categoryList", categoryList);
 
         return new ModelAndView("backend/commodityEdit", model);
     }
@@ -226,12 +247,15 @@ public class BackEndController implements MdConstants {
             newCommodity.setDeposit((int) (commodity.getDepositDouble() * 100));
         }
 
-
-
         newCommodity.setName(commodity.getName());
         newCommodity.setKeyword(commodity.getKeyword());
         newCommodity.setDicProvince(commodity.getDicProvince());
         newCommodity.setDicCity(commodity.getDicCity());
+        if (commodity.getCategory() == null || commodity.getCategory().getId() == null){
+            newCommodity.setCategory(null);
+        }else{
+            newCommodity.setCategory(commodity.getCategory());
+        }
 //        newCommodity.setPrice(commodity.getPrice());
         newCommodity.setUnit(commodity.getUnit());
         if (MdCommon.isEmpty(commodity.getDiscountUnit())) {
@@ -240,7 +264,7 @@ public class BackEndController implements MdConstants {
             newCommodity.setDiscountUnit(commodity.getDiscountUnit());
         }
         newCommodity.setDiscount(commodity.getDiscount());
-//        newCommodity.setDiscountPrice(commodity.getDiscountPrice());
+
         if (commodity.getFlag() == 1) {
             newCommodity.setPeopleNumber(commodity.getPeopleNumber());
             if (!MdCommon.isEmpty(commodity.getAlonePriceDouble())) {
@@ -248,20 +272,19 @@ public class BackEndController implements MdConstants {
                 newCommodity.setAlonePrice((int) (commodity.getAlonePriceDouble() * 100));
             }
         }
-//        newCommodity.setDeposit(commodity.getDeposit());
+        newCommodity.setFlag(commodity.getFlag());
         newCommodity.setSold(commodity.getSold());
         newCommodity.setTags(commodity.getTags());
         newCommodity.setLabelFlag(commodity.getLabelFlag());
         newCommodity.setDescription(commodity.getDescription());
         newCommodity.setRemarks(commodity.getRemarks());
+        newCommodity.setWeight(commodity.getWeight());
         newCommodity.setSharingSummary(commodity.getSharingSummary());
-
 
         List<CommodityPhoto> photoList = commonParam.getCommodityPhotosList(newCommodity.getCommodityPhotoList());
         if (!MdCommon.isEmpty(photoList) && photoList.size() > 0) {
             newCommodity.setCommodityPhotoList(photoList);
         }
-
 
         if (MdCommon.isEmpty(commodity.getCommodityNumber())) {
             newCommodity.setCommodityNumber(0);//不限量
@@ -307,10 +330,16 @@ public class BackEndController implements MdConstants {
     @RequestMapping(value = "/commodityListPage", method = RequestMethod.GET)
     public ModelAndView commodityListPage(HttpServletRequest request) {
         MdModel model = new MdModel(request);
-//        model.put("flag", flag);
         if (MdCommon.isEmpty(model.get("account"))) {
             return new ModelAndView(new RedirectView(PATH + "/backend/loginPage"));
         }
+
+        Iterable<Category> categoryIterable = categoryRepository.findAll();
+        List<Category> categoryList = new ArrayList<>();
+        for (Category category : categoryIterable) {
+            categoryList.add(category);
+        }
+        model.put("categoryList", categoryList);
 
         Iterable<DicProvince> provinceIterable = dicProvinceRepository.findAll();
         model.put("provinceList", provinceIterable);
@@ -332,12 +361,13 @@ public class BackEndController implements MdConstants {
                                 @RequestParam(value = "flag") Integer flag,
                                 @RequestParam(value = "state") Integer state,
                                 @RequestParam(value = "provinceId") Integer provinceId,
+                                @RequestParam(value = "categoryId") Integer categoryId,
                                 @RequestParam(value = "queryStr") String queryStr) {
 
         MdModel model = new MdModel(request);
         Map<String, Object> result = null;
         try {
-            result = commodityRepository.findCommodityWithQuery(pageNumber, BE_PAGE_SIZE, flag, state, provinceId, queryStr);
+            result = commodityRepository.findCommodityWithQuery(pageNumber, BE_PAGE_SIZE, flag, state, provinceId,categoryId, queryStr);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -384,7 +414,29 @@ public class BackEndController implements MdConstants {
                              @RequestParam(value = "id") Integer id) {
         MdModel model = new MdModel(request);
         Commodity commodity = commodityRepository.findOne(id);
-        commodity.setState(0);
+
+        // close all ongoing group launch
+        List<GroupLaunch> groupLaunchList = groupLaunchRepository.findByCommodityIdAndState(commodity.getId(),0);
+        for(GroupLaunch group : groupLaunchList) {
+            group.setState(3);
+            groupLaunchRepository.save(group);
+            //已支付订单
+            List<Order> orders = orderRepository.findByLaunchIdAndState(group.getId(),2);
+            for(Order order : orders) {
+                order.setState(5);//订单取消中 待退款
+                orderRepository.save(order);
+            }
+        }
+
+        // close all unpaid order (state=1)
+        List<Order> orders = orderRepository.findByStateAndCommodityId(1,commodity.getId());
+        for(Order order : orders){
+            order.setState(8);
+            orderRepository.save(order);
+        }
+        // mark commodity as down
+        commodity.markAsDown();
+        commodity.setWeight(0);
         commodityRepository.save(commodity);
 
         return model;
@@ -439,10 +491,13 @@ public class BackEndController implements MdConstants {
                             @RequestParam(value = "page") Integer pageNumber,
                             @RequestParam(value = "flag") Integer flag,
                             @RequestParam(value = "state") Integer state,
+                            @RequestParam(value = "launchID") Integer launchID,
+                            @RequestParam(value = "commodityID") Integer commodityID,
+                            @RequestParam(value = "date") String dateStr,
                             @RequestParam(value = "queryStr") String queryStr) {
         MdModel model = new MdModel(request);
 
-        Map result = orderRepository.findOrderWithQuery(pageNumber, BE_PAGE_SIZE, flag, state, queryStr);
+        Map result = orderRepository.findOrderWithQuery(pageNumber, BE_PAGE_SIZE, flag, state, launchID, commodityID, dateStr, queryStr);
         List<Map> orders = new ArrayList<>();
         List<Order> orderList = (List<Order>) result.get("orderList");
         for (Order order : orderList) {
@@ -520,6 +575,46 @@ public class BackEndController implements MdConstants {
     }
 
     /**
+     * 删除订单
+     *
+     * @param request
+     * @param orderId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/deleteOrder", method = RequestMethod.POST)
+    public Map deleteOrder(HttpServletRequest request,
+                          @RequestParam(value = "orderId") Integer orderId) {
+        Order order = orderRepository.findOne(orderId);
+        order.delete();
+        orderRepository.save(order);
+
+        MdModel model = new MdModel(request);
+        model.put("ret", 0);
+        return model;
+    }
+
+    /**
+     * 恢复删除订单
+     *
+     * @param request
+     * @param orderId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/undoDeleteOrder", method = RequestMethod.POST)
+    public Map undoDeleteOrder(HttpServletRequest request,
+                           @RequestParam(value = "orderId") Integer orderId) {
+        Order order = orderRepository.findOne(orderId);
+        order.undoDelete();
+        orderRepository.save(order);
+
+        MdModel model = new MdModel(request);
+        model.put("ret", 0);
+        return model;
+    }
+
+    /**
      * 关闭订单
      *
      * @param request
@@ -537,6 +632,37 @@ public class BackEndController implements MdConstants {
         try {
             Order order = orderRepository.findOne(orderId);
             if (state == 6) {//主动申请的退款
+                if (order.getFlag() == 1 && order.getState() == 2){
+                    //已支付的拼团订单退款,需要对团长取消进行特别处理
+                    if (order.getBookingFlag() == 1 && order.getLaunchId() > 0) { //团长取消
+                        List<GroupLaunchUser> allGroupUsers = groupLaunchUserRepository.findByLaunchIdOrderByFlagAsc(order.getLaunchId());
+                        GroupLaunchUser firstGroupUser = allGroupUsers.get(0);
+                        if (firstGroupUser.getWxOpenid().equals(order.getWxOpenid())) { //确认是团长订单
+                            if (allGroupUsers.size() > 1) { //团内不止一人
+                                //团长退出,后续参团成员顶替团长 x2
+                                GroupLaunchUser secondGroupUser = allGroupUsers.get(1);
+                                secondGroupUser.setFlag(1);
+                                List<Order> secondUserOrders = orderRepository.findByWxOpenidAndLaunchIdOrderByCreateTimeDesc(secondGroupUser.getWxOpenid(), order.getLaunchId());
+                                Order secondUserOrder = secondUserOrders.get(0);
+                                secondUserOrder.setBookingFlag(1);
+
+                                groupLaunchUserRepository.save(secondGroupUser);
+                                orderRepository.save(secondUserOrder);
+                                groupLaunchUserRepository.delete(firstGroupUser);
+                                // FIXME: 如何处理退出的团长
+//                                order.setLaunchId(null);
+                                order.setBookingFlag(4); //将取消的团长改为参团者
+                                orderRepository.save(order);
+                            } else {//该团只有团长一人
+                                GroupLaunch groupLaunch = groupLaunchRepository.findOne(order.getLaunchId());
+                                groupLaunch.setState(3); //唯一的团长取消,拼团失败
+                                groupLaunchRepository.save(groupLaunch);
+                            }
+                        }
+                    }
+                }
+                order.setState(6);
+
                 //TODO 走退款流程
 //                WxBaseController wxBaseController = new WxBaseController();
 //                Map result = wxBaseController.orderRefund(order);
@@ -548,7 +674,7 @@ public class BackEndController implements MdConstants {
 //                    if ("SUCCESS".equals(result_code)) {
 //                        String refund_id = MdCommon.null2String(result.get("refund_id"));//微信退款单号
 //                        order.setRefundId(refund_id);
-                        order.setState(6);
+//                        order.setState(6);
 //
 //                    } else {
 //                        ret = -2;//退款失败
@@ -558,6 +684,7 @@ public class BackEndController implements MdConstants {
 //                    ret = -2;//退款失败
 //                    System.out.println(return_msg);
 //                }
+
             } else if (state == 7) {//不退款(已预约但是超时未消费的)
 
                 if (order.getFlag() == 1 && !MdCommon.isEmpty(order.getLaunchId())) {//拼团订单 关闭该拼团
@@ -575,6 +702,11 @@ public class BackEndController implements MdConstants {
                     List<GroupLaunchUser> groupLaunchUserList = groupLaunchUserRepository.findByLaunchId(order.getLaunchId());
                     if (MdCommon.isEmpty(groupLaunchUserList) || groupLaunchUserList.size() == 0) {
                         //该拼团下没有用户 设置LaunchId为Null
+                        if (order.getBookingFlag() == 1) { //团长
+                            order.setRemarks("团长(" + order.getLaunchId().toString() + ")," + order.getRemarks());
+                        } else if (order.getBookingFlag() == 4) { //参团
+                            order.setRemarks("拼团(" + order.getLaunchId().toString() + ")," + order.getRemarks());
+                        }
                         order.setLaunchId(null);
                     }
 
@@ -589,8 +721,9 @@ public class BackEndController implements MdConstants {
 //                    }
                 }
                 order.setState(7);
+            }else if (state > 4){
+                order.setState(state);
             }
-
 
             if (ret == 0) {
                 orderRepository.save(order);
@@ -820,7 +953,8 @@ public class BackEndController implements MdConstants {
     @RequestMapping(value = "/updateBuyNotice", method = RequestMethod.POST)
     public Map updateBuyNotice(HttpServletRequest request,
                                @RequestParam(value = "flag") Integer flag,
-                               @RequestParam(value = "description") String description) {
+                               @RequestParam(value = "description") String description,
+                               @RequestParam(value = "paymentNote") String paymentNote) {
         MdModel model = new MdModel(request);
         BuyNotice buyNotice = buyNoticeRepository.findByFlag(flag);
         if (MdCommon.isEmpty(buyNotice)) {
@@ -829,6 +963,7 @@ public class BackEndController implements MdConstants {
         }
         buyNotice.setCreateTime(new Date());
         buyNotice.setDescription(description);
+        buyNotice.setPaymentNote(paymentNote);
         buyNoticeRepository.save(buyNotice);
 
         return model;
@@ -964,7 +1099,6 @@ public class BackEndController implements MdConstants {
     @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
     public ModelAndView loginPage(HttpServletRequest request) {
         MdModel model = new MdModel(request);
-        model.put("version", PomVersion.getVersion());
         return new ModelAndView("backend/login", model);
     }
 
@@ -1193,5 +1327,41 @@ public class BackEndController implements MdConstants {
         return model;
     }
 
+    /**
+     * 测试页面
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/test/{testItem}", method = RequestMethod.GET)
+    public ModelAndView testPage(HttpServletRequest request,@PathVariable String testItem) throws Exception {
+        MdModel model = new MdModel(request);
+        // only tester can see this
+        if(!model.get("wx_openid").equals(MdConstants.TEST_OPENID))
+            throw new HttpException("");
 
+        String token = wxTicketRepository.findByAppid(WX_APP_ID).getToken();
+        Iterable<Order> allOrders = orderRepository.findAll();
+        Order order = null;
+        for (Order o : allOrders) {
+            order = o;
+            break;
+        }
+        order.setWxOpenid(MdConstants.TEST_OPENID);
+
+        if(testItem.equals("groupLaunch"))
+            WxTemplate.groupLaunch(token,order);
+        else if(testItem.equals("groupLaunchOk"))
+            WxTemplate.groupLaunchOk(token,order);
+        else if(testItem.equals("groupClose"))
+            WxTemplate.groupClose(token,order);
+        else if(testItem.equals("joinGroup"))
+            WxTemplate.joinGroup(token,order);
+        else if(testItem.equals("orderComplete"))
+            WxTemplate.orderComplete(token,order);
+
+        model.put("trade_state", testItem);
+        model.put("trade_state_desc", "456");
+        return new ModelAndView("test", model);
+    }
 }

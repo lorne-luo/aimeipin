@@ -14,7 +14,26 @@
     <script>
         window.UEDITOR_HOME_URL = BASE_JS_URL + "/ueditor/";
     </script>
-
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="${PATH}/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="${PATH}/ueditor/ueditor.all.min.js"></script>
+    <!-- 自动恢复草稿 -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var ue = UE.getEditor('container');
+            ue.addListener("ready", function() {
+                setTimeout(function () {
+                    var html = ue.execCommand( "getlocaldata" );
+                    if (html) {
+                        ue.setContent(html);
+                        ue_remarks = UE.getEditor('container_remarks');
+                        ue_remarks.setContent(ue_remarks.execCommand( "getlocaldata" ));
+                    }
+                }, 1000);
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -29,7 +48,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <div class="col-lg-12">
-                <form class="createVenueForm" role="form" method="post" id="addCommodity" name="addCommodity">
+                <form class="createVenueForm" role="form" method="post" id="addCommodity" name="addCommodity" autocomplete="off">
                     <input type="hidden" name="state" class="state" value="0">
 
                     <div class="form-group">
@@ -39,15 +58,25 @@
                             <option value="2">福袋</option>
                             <option value="3">特惠</option>
                             <option value="4">咨询</option>
+                            <option value="5">打卡</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><span class="star mr6">*</span>分类类型：</label>
+                        <select name="category.id" class="category">
+                            <option value="">------</option>
+                            <#list categoryList as category>
+                                <option value="#{category.id}"><#if category.name?has_content>${category.name}<#else>------</#if></option>
+                            </#list>
                         </select>
                     </div>
                     <div class="form-group">
                         <label><span class="star mr6">*</span>商品名称：</label>
-                        <input class="form-control" placeholder="例如：为你打造美丽" name="name"/>
+                        <input class="form-control" placeholder="例如：为你打造美丽" name="name" style="width: 70%"/>
                     </div>
                     <div class="form-group">
                         <label><span class="star mr6">*</span>商品关键词：</label>
-                        <input class="form-control" placeholder="例如：为你打造美丽" name="keyword"/>
+                        <input class="form-control" placeholder="例如：为你打造美丽" name="keyword" style="width: 70%"/>
                     </div>
                     <div class="form-group">
                         <div id="dbpicbox" class="dbpicbox  clearfix ">
@@ -71,6 +100,10 @@
                             <option value="#{city.id}">${city.name}</option>
                         </#list>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label><span class="star mr6"></span>权重：</label>
+                        <input class="form-control weight" name="weight" value="0"/>
                     </div>
                     <div class="form-group">
                         <label><span class="star mr6">*</span>原价：</label>
@@ -160,14 +193,9 @@
                     <div class="form-group">
                         <input type="hidden" name="remarks" class="remarks">
                         <label><span class="star mr6"></span>支付说明：</label>
-                        <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
-                        <script id="container_remarks" name="content_remarks" type="text/plain">
 
-                        </script>
-                        <!-- 配置文件 -->
-                        <script type="text/javascript" src="${PATH}/ueditor/ueditor.config.js"></script>
-                        <!-- 编辑器源码文件 -->
-                        <script type="text/javascript" src="${PATH}/ueditor/ueditor.all.js"></script>
+                        <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
+                        <script id="container_remarks" name="content_remarks" type="text/plain"></script>
                         <!-- 实例化编辑器 -->
                         <script type="text/javascript">
                             var ue_remarks = UE.getEditor('container_remarks');
@@ -176,15 +204,12 @@
                     <div class="form-group">
                         <input type="hidden" name="description" class="description">
                         <label><span class="star mr6"></span>商品描述：</label>
+
                         <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
-                        <script id="container" name="content" type="text/plain">
-
-                        </script>
-
+                        <script id="container" name="content" type="text/plain"></script>
                         <!-- 实例化编辑器 -->
                         <script type="text/javascript">
                             var ue = UE.getEditor('container');
-                            //                            var config = UE.getOpt('config');
                         </script>
                     </div>
                     <div class="text-center col-lg-10 mt20">

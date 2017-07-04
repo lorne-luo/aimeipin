@@ -21,11 +21,20 @@ public interface OrderRepository extends PagingAndSortingRepository<Order,Intege
 
     Order findByWxOpenidAndId(String wxOpenid,Integer id);
 
-    Order findByWxOpenidAndCommodityIdAndState(String wxOpenid,Integer commodityId,Integer state);
+    List<Order> findByWxOpenidAndCommodityIdAndStateOrderByCreateTimeDesc(String wxOpenid,Integer commodityId,Integer state);
+
+    List<Order> findByWxOpenidAndCommodityIdAndBookingFlagAndStateOrderByCreateTimeDesc(String wxOpenid,Integer commodityId,Integer bookingFlag,Integer state);
 
     List<Order> findByLaunchId(Integer id);
+
+    List<Order> findByLaunchIdAndState(Integer launchId,Integer state);
+
+    List<Order> findByWxOpenidAndLaunchIdOrderByCreateTimeDesc(String wxOpenid,Integer launchId);
 
     Page<Order> findByFlag(Integer flag, Pageable pageable);
 
     Page<Order> findByFlagIsNot(Integer flag, Pageable pageable);
+
+    List<Order> findByStateAndCommodityId(Integer state,Integer id);
+
 }

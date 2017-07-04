@@ -33,9 +33,9 @@
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
-                <li>
+                <li class="active">
                     <a href="#"><i class="fa fa-heart fa-fw"></i>项目管理<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse" aria-expanded="true">
                         <li>
                             <a href="${PATH}/backend/addCommodityPage">添加商品</a>
                         </li>
@@ -45,9 +45,9 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-                <li>
+                <li class="active">
                     <a href="#"><i class="fa fa-group fa-fw"></i>订单管理<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true">
 
                         <li>
                             <a href="${PATH}/backend/orderListPage">订单列表</a>
@@ -56,9 +56,9 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-                <li>
+                <li class="active">
                     <a href="#"><i class="fa fa-user fa-fw"></i>用户管理<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true">
                         <li>
                             <a href="${PATH}/backend/userListPage">客户列表</a>
                         </li>
@@ -77,7 +77,7 @@
                             <a href="${PATH}/backend/indexImage">首页轮播图</a>
                         </li>
                         <li>
-                            <a href="${PATH}/backend/buyNotice/1">购买须知</a>
+                            <a href="${PATH}/backend/buyNotice/1">购买&支付说明</a>
                         </li>
                         <li>
                             <a href="${PATH}/backend/tagsPage/1">项目标签</a>

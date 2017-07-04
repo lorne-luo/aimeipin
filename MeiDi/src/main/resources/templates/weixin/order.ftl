@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>订单</title>
+    <title>${commodity.name}</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <#include "header.ftl"/>
@@ -111,22 +111,21 @@
 <div class="wrapper pr pb80">
     <div class="clearfix cancelboxtop">
         <div class="fl">
-            <img src="${PATH}/images/cancel/s.png">
+            <img src="http://s.luotao.net/static/aimeipin/cancel/s.png">
         </div>
-        <div class="fr pf40000 fs14 mt12">
-            <p>订单已生成</p>
+        <div class="fr pf40000 fs14 mt20">
         <#if order.state == 1>
-            <p>待支付...</p>
+            <p>订单已生成,待支付...</p>
         <#elseif order.state == 2>
-            <p>已支付...</p>
+            <p>订单已支付...</p>
         <#elseif order.state == 3>
-            <p>已预约...</p>
+            <p>订单已预约...</p>
         <#elseif order.state == 4>
-            <p>已完成...</p>
+            <p>订单已完成...</p>
         <#elseif order.state == 5>
-            <p>取消中...</p>
+            <p>订单取消中...</p>
         <#elseif order.state == 6 || order.state == 7 || order.state == 8 || order.state == 9>
-            <p>已取消...</p>
+            <p>订单已取消...</p>
         </#if>
 
         </div>
@@ -150,22 +149,26 @@
 </#if>
 
     <div class="pl10 pr24 tal mt6">
-        <p class="pf40000 fs16 ml4">¥#{order.discountPrice/100}</p>
-    <#if order.flag < 4>
-        <p class="fs14 mlf6 pt6">${order.commodityName}</p>
-    </#if>
-
+        <p class="pf40000 fs16 ml10">
+            <#if order.flag == 5>
+                ¥#{order.price/100}
+            <#else>
+                ¥#{order.discountPrice/100}
+            </#if>
+        </p>
+        <p class="fs18 ml10 pt6">${order.commodityName}</p>
     </div>
-    <div class="tal orderdetail pt10 pb10">
-        <div class="pl24 line40 fs12">
+    <div class="tal orderdetail pt10 pb10 mt10 mb10 ml20 mr20">
+        <div class="pl24 line24 fs14">
             <p>订单编号：${order.orderCode}</p>
-
-            <p>支付方式：微信</p>
-
+            <p>支付方式：微信支付</p>
+            <p>姓  名：${order.username}</p>
+            <p>电  话：${order.mobile}</p>
+            <p>备  注：${order.remarks}</p>
             <p>下单时间：${order.createTime}</p>
         </div>
     </div>
-    <div class="pr24 fs14 clearfix ">
+    <div class="pr28 fs14 clearfix mr30">
     <#if order.flag == 4>
         <p class="fr">订单合计:<span class="pf40000">#{order.payAmount/100}</span></p>
     <#else>
@@ -176,8 +179,8 @@
     </div>
     <div class="chatbox tac fs14">
         <a href="javascript:void(0);" class="mr20" onclick="_MEIQIA._SHOWPANEL()"><img
-                src="${PATH}/images/cancel/h.png">在线咨询</a>
-        <a href="tel:4006056662"><img src="${PATH}/images/cancel/t.png">拨打电话</a>
+                src="http://s.luotao.net/static/aimeipin/cancel/h.png">在线咨询</a>
+        <a href="tel:010-84466106"><img src="http://s.luotao.net/static/aimeipin/cancel/t.png">拨打电话</a>
     </div>
 
     <div class=" btfix  clearfix cancelbtnbox">
@@ -189,8 +192,11 @@
         </#if>
 
     </#if>
-        <a href="${PATH}/index" class="fr cancel">返回首页</a>
-    <#if order.state == 1 || order.state == 2 || order.state == 3>
+
+    <#if order.flag != 5>
+            <a href="${PATH}/index" class="fr cancel">返回首页</a>
+    </#if>
+    <#if order.state == 1 || order.state == 2 || order.state == 3 || order.flag == 5>
         <a href="javascript:cancelOrder(#{order.id});" class="fr cancel">取消订单</a>
     <#else>
         <a href="${PATH}/business/myOrderPage" class="fr cancel">我的订单</a>
@@ -200,5 +206,5 @@
 </div>
 
 </body>
-<script src="${PATH}/js/weixin/order.js"></script>
+<script src="${PATH}/js/weixin/order.js?v=${version}"></script>
 </html>

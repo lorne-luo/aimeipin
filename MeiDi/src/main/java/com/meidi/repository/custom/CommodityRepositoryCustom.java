@@ -17,7 +17,7 @@ public interface CommodityRepositoryCustom {
      * @return
      * @throws Exception
      */
-    Map<String, Object> findCommodityWithQuery(int pageNumber, int pageSize, int flag,int state, int provinceId, String queryStr) throws Exception;
+    Map<String, Object> findCommodityWithQuery(int pageNumber, int pageSize, int flag,int state, int provinceId, int categoryId, String queryStr) throws Exception;
 
     /**
      * 前台微信用
@@ -31,4 +31,17 @@ public interface CommodityRepositoryCustom {
      * @throws Exception
      */
     Map<String, Object> findCommodityWithQuery2(int pageNumber, int pageSize, int flag,int state, int cityId, String queryStr) throws Exception;
+
+    /**
+     * 前台微信用, 查询所有商品列表但排除打卡类型项目
+     * @param pageNumber
+     * @param pageSize
+     * @param categoryId -1查所有
+     * @param state
+     * @param cityId -1查所有  －2 查非韩国所有
+     * @param queryStr
+     * @return
+     * @throws Exception
+     */
+    Map<String, Object> findCommodityWithQuery3(int pageNumber, int pageSize, int categoryId,int state, int cityId, String queryStr) throws Exception;
 }

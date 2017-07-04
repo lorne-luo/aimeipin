@@ -8,27 +8,13 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>首页</title>
+    <title>聚会美商城</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 
 
-    <link rel="stylesheet" type="text/css" href="${PATH}/css/mobiscroll.custom/mobiscroll.custom-2.17.1.min.css"/>
-    <link rel="stylesheet" type="text/css" href="${PATH}/js/msgbox/msgbox.css"/>
-    <link rel="stylesheet" type="text/css" href="${PATH}/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="${PATH}/slick/slick-theme.css"/>
+<#include "header.ftl"/>
 
-
-    <script type="text/javascript" src="${PATH}/js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="${PATH}/js/common.js"></script>
-    <script type="text/javascript" src="${PATH}/js/DialogClass.js"></script>
-    <script type="text/javascript" src="${PATH}/js/jquery.lazyload.js"></script>
-    <script type="text/javascript" src="${PATH}/slick/slick.js"></script>
-    <script type="text/javascript" src="${PATH}/js/constants.js"></script>
-    <script type="text/javascript" src="${PATH}/js/msgbox/msgbox.js"></script>
-    <script type="text/javascript" src="${PATH}/js/mobiscroll.custom-2.17.1.min.js"></script>
-    <script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js"></script>
-    <link rel="stylesheet" type="text/css" href="${PATH}/css/common.css"/>
-
+    <script type="text/javascript" src="${PATH}/js/weixin/common-ajax.js?v=${version}"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
         <#if signature?exists>
@@ -46,7 +32,7 @@
             wx.onMenuShareTimeline({
                 title: '聚会美商城', // 分享标题
                 link: '${PATH}', // 分享链接
-                imgUrl: '${PATH}/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
                 },
@@ -59,7 +45,7 @@
                 title: '聚会美商城', // 分享标题
                 desc: '为您挑选中韩优质医美机构及顶级专家，推荐高性价比明星项目。', // 分享描述
                 link: '${PATH}', // 分享链接
-                imgUrl: '${PATH}/images/share.jpg', // 分享图标
+                imgUrl: 'http://s.luotao.net/static/aimeipin/share.jpg', // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
@@ -80,21 +66,21 @@
         <div class="slider multiple-items sliderbox">
         <#if images?exists>
             <#list images as image>
-                <div><a href="<#if image.url?exists>${image.url}<#else>javascript:void(0);</#if>"><img
+                <div><a href="<#if image.url?exists>${image.url}?from_slider=${image?index}<#else>javascript:void(0);</#if>"><img
                         src="${IMAGE_FORMAL_URL}/${image.imageName}"></a></div>
             </#list>
         </#if>
         </div>
     </div>
-    <div class="pl20 pr20">
+    <div class="pl20 pr20" style="margin-bottom: -20px">
 
         <div class="searchdiv pr">
-            <img src="${PATH}/images/index/flower.png" class="flower">
+            <img src="http://s.luotao.net/static/aimeipin/index/logo.png" class="flower">
 
 
             <form action="javascript:searchAction();" id="searchform">
                 <div class="searchbox pa">
-                    <img src="${PATH}/images/index/search.png" class="searchimg">
+                    <img src="http://s.luotao.net/static/aimeipin/index/search.png" class="searchimg">
                     <input type="search" id="searchinput">
                     <a href="javascript:void(0);" class="searchbtn"></a>
                 </div>
@@ -103,7 +89,12 @@
         <div class="itemlistbox">
 
         </div>
-        <a href="javascript:getMore();" class="getmore">点击加载更多...</a>
+
+    </div>
+
+    <ul id="getmore" class="md-news hide" style="display:none" mbsc-enhance></ul>
+    <div id="getmore-loading" class="mbsc-btn-ic"  style="display:none" mbsc-enhance>
+        <span class="getmore">加载中...</span>
     </div>
 
 </div>
@@ -111,4 +102,4 @@
 </body>
 </html>
 
-<script type="text/javascript" src="${PATH}/js/weixin/index.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/index.js?v=${version}"></script>

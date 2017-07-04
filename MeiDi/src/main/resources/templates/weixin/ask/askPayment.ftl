@@ -8,7 +8,7 @@
     <meta name="keywords" content="北"/>
     <meta name="description" content=""/>
 
-    <title>购买</title>
+    <title>聚会美商城</title>
     <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 <#include "../header.ftl"/>
 
@@ -18,7 +18,7 @@
 <div class="wrapper pr pt10">
 
     <div class="cancelboximg borall ">
-        <img src="${PATH}/images/index/1.jpg">
+        <img src="http://s.luotao.net/static/aimeipin/index/1.jpg">
     </div>
     <div class="pl24  pr24 tal mt10">
         <p class="pf40000 fs28 ml4">¥#{ask.discountPrice}</p>
@@ -68,4 +68,4 @@
 
 </body>
 </html>
-<script type="text/javascript" src="${PATH}/js/weixin/askPayment.js"></script>
+<script type="text/javascript" src="${PATH}/js/weixin/askPayment.js?v=${version}"></script>

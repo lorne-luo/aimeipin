@@ -1,11 +1,15 @@
-服务号  3434928299@qq.com  meidi2016  微信支付商户号 1348757901@1348757901  382766
+服务号  3434928299@qq.com  juhuimei2016  微信支付商户号 1348757901@1348757901  382766
 阿里云 	北京爱美拼 aimeipin123   101.201.106.18  root User@aimeipin.cn
 阿里云mysql  root aimeipin2016 aimeipin 123456
+百度统计 聚会美 790922
+
+打卡公众平台
+jiang.pu@aimeipin.cc
+xunlianying2016
 
 建议：
 1.取消首页及所有商品展示页面的登陆要求，直到用户决定下单时再跳转到微信登陆界面
 2.用户管理的信息非常不完整，目前用户表只记录了所有登陆过网站的的用户的昵称，没有保存所在城市，也没有区分管理购买过和未购买过的用户
-
 
 
 额外工作
@@ -16,7 +20,18 @@ delete from interest_commodity_son where parent_id=0;
 API文档
 http://mp.weixin.qq.com/wiki/10/e5f772f4521da17fa0d7304f68b97d7e.html
 https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455784140&token=&lang=zh_CN
+微信支付
+https://pay.weixin.qq.com/wiki/doc/api/index.html
+公众平台
+https://mp.weixin.qq.com/wiki/home/index.html
+微信公众平台接口调试工具
+https://mp.weixin.qq.com/debug/cgi-bin/apiinfo?t=index
 
+mobiscroll
+https://docs.mobiscroll.com/2-17-1/calendar#options
+
+SPRING BOOT
+https://spring.io/guides/gs/spring-boot/
 
 TEST URL
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf3d017eaf0b53463&redirect_uri=http://www.aimeipin.cc/index/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
@@ -26,5 +41,37 @@ SQL
 CREATE DATABASE aimeipin CHARACTER SET utf8 COLLATE utf8_general_ci;
 create database aimeipin default character set utf8mb4 collate utf8mb4_general_ci;
 grant all on aimeipin.* to 'aimeipin'@'localhost' identified by '123456';
+
+v1.0.1
 ALTER TABLE md_commodity ADD remarks text after price_double;
 ALTER TABLE md_commodity ADD sharing_summary text after price_double;
+
+v1.0.2
+CREATE TABLE `md_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+INSERT INTO `md_category` VALUES (1,'皮肤','皮肤'),(2,'微整','皮肤'),(3,'手术','皮肤'),(4,'发现','皮肤'),(5,'咨询','咨询');
+
+ALTER TABLE md_commodity ADD category_id INT after city_id , ADD CONSTRAINT `FK_commodity_category_id` FOREIGN KEY (`category_id`) REFERENCES `md_category` (`id`);
+
+v1.0.5
+ALTER TABLE md_order ADD is_deleted tinyint(1) DEFAULT 0 after booking_time;
+
+v1.0.6
+ALTER TABLE buy_notice ADD payment_note text after description;
+UPDATE buy_notice SET payment_note='<p>· 预约项目到院支付全款后，系统退还订金；</p><p>· 福袋可随时取消订单，系统退还订金；</p><p>· 拼团成功前，可随时取消订单，系统退还订金；</p><p>· 拼团成功后，因个人原因取消订单，订金不予退还；</p><p>· 已接受聚会美线下服务（面诊、接送机等），但未到院消费，订金不予退还。</p>';
+ALTER TABLE md_user ADD is_subscribe tinyint(1) DEFAULT 0 after integral;
+
+v1.0.8
+ALTER TABLE md_order ADD book_wxopenid varchar(36) NULL DEFAULT NULL after wx_openid;
+ALTER TABLE wx_ticket ADD appsecret varchar(255) NULL DEFAULT NULL after appid;
+update wx_ticket set appsecret='d6914a211b5175f62cc5dafb389cd074' where appid='wxf3d017eaf0b53463';
+insert into wx_ticket (appid,appsecret) values ('wx0bda7c0cd5c05a36','65a33f1efa372d71a7ea5df3a4b983cd');
+
+Server Security
+1. 项目部署于/opt/webapps/meidi,代码位于/opt/aimeipin/,可通过MeiDi/deploy.sh {git_tag_name}一键编译部署版本
+2. db_backup.sh每日备份DB结构和数据至/root/backup/aimeipin,保存最近一年

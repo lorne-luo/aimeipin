@@ -15,7 +15,7 @@ public class GroupLaunchUser implements Serializable {
     private Integer id;
 
     /**
-     * 成员类型: 0 成员, 1 团长
+     * 成员类型: 1 团长, >1 第几个参团
      */
     private Integer flag = 0;
 

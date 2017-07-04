@@ -14,11 +14,11 @@
 <#--<script src="${PATH}/ueditor/ueditor.parse.js"></script>-->
     <script>
         window.UEDITOR_HOME_URL = BASE_JS_URL + "/ueditor/";
-        <#--uParse("#description",{-->
-        <#--rootPath:'${PATH}/ueditor'-->
-        <#--});-->
     </script>
-
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="${PATH}/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="${PATH}/ueditor/ueditor.all.min.js"></script>
 </head>
 <body>
 
@@ -28,31 +28,41 @@
         <div class="col-lg-10">
             <div class="row">
                 <div class="col-lg-12">
-                    <h4 class="page-header">添加商品</h4>
+                    <h4 class="page-header">编辑商品</h4>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <div class="col-lg-12">
-                <form class="createVenueForm" role="form" method="post" id="addCommodity" name="addCommodity">
+                <form class="createVenueForm" role="form" method="post" id="addCommodity" name="addCommodity" autocomplete="off">
                     <input type="hidden" name="id" value="#{commodity.id}">
 
                     <div class="form-group">
                         <label><span class="star mr6">*</span>商品类型：</label>
-                        <select name="flag" class="flag" disabled>
+                        <select name="flag" class="flag">
                             <option value="1" <#if commodity.flag == 1>selected</#if>>拼团</option>
                             <option value="2" <#if commodity.flag == 2>selected</#if>>福袋</option>
                             <option value="3" <#if commodity.flag == 3>selected</#if>>特惠</option>
                             <option value="4" <#if commodity.flag == 4>selected</#if>>咨询</option>
+                            <option value="5" <#if commodity.flag == 5>selected</#if>>打卡</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><span class="star mr6">*</span>分类类型：</label>
+                        <select name="category.id" class="category">
+                            <option value="">------</option>
+                        <#list categoryList as category>
+                            <option value="#{category.id}"
+                                    <#if commodity.category?exists && commodity.category.id == category.id>selected</#if>><#if category.name?has_content>${category.name}<#else>------</#if></option>
+                        </#list>
                         </select>
                     </div>
                     <div class="form-group">
                         <label><span class="star mr6">*</span>商品名称：</label>
-                        <input class="form-control" placeholder="例如：为你打造美丽" name="name" value="${commodity.name}"/>
+                        <input class="form-control" placeholder="例如：为你打造美丽" name="name" value="${commodity.name}" style="width: 70%"/>
                     </div>
                     <div class="form-group">
                         <label><span class="star mr6">*</span>商品关键词：</label>
-                        <input class="form-control" placeholder="例如：为你打造美丽" name="keyword"
-                               value="${commodity.keyword}"/>
+                        <input class="form-control" placeholder="例如：为你打造美丽" name="keyword" value="${commodity.keyword}" style="width: 70%"/>
                     </div>
                     <div class="form-group">
                         <div id="dbpicbox" class="dbpicbox  clearfix ">
@@ -86,6 +96,10 @@
                                     <#if commodity.dicCity.id == city.id>selected</#if>>${city.name}</option>
                         </#list>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label><span class="star mr6"></span>权重：</label>
+                        <input class="form-control weight" name="weight" value="<#if commodity.weight?exists>#{commodity.weight}<#else>0</#if>"/>
                     </div>
                     <div class="form-group">
                         <label><span class="star mr6">*</span>原价：</label>
@@ -200,14 +214,9 @@
                     <div class="form-group" id="remarks">
                         <input type="hidden" name="remarks" class="remarks">
                         <label><span class="star mr6"></span>支付说明：</label>
-                        <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
-                        <script id="container_remarks" name="content_remarks" type="text/plain">
 
-                        </script>
-                        <!-- 配置文件 -->
-                        <script type="text/javascript" src="${PATH}/ueditor/ueditor.config.js"></script>
-                        <!-- 编辑器源码文件 -->
-                        <script type="text/javascript" src="${PATH}/ueditor/ueditor.all.js"></script>
+                        <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
+                        <script id="container_remarks" name="content_remarks" type="text/plain"></script>
                         <!-- 实例化编辑器 -->
                         <script type="text/javascript">
                             var ue_remarks = UE.getEditor('container_remarks');
@@ -219,18 +228,15 @@
                     <div class="form-group" id="description">
                         <input type="hidden" name="description" class="description">
                         <label><span class="star mr6"></span>商品描述：</label>
+
                         <!-- 加载编辑器的容器 --><!--这里写你的初始化内容-->
-                        <script id="container" name="content" type="text/plain">
-
-                        </script>
-
+                        <script id="container" name="content" type="text/plain"></script>
                         <!-- 实例化编辑器 -->
                         <script type="text/javascript">
                             var ue = UE.getEditor('container');
                             ue.ready(function () {
                                 ue.setContent('${commodity.description}');
                             });
-                            //                            var config = UE.getOpt('config');
                         </script>
                     </div>
                     <div class="text-center col-lg-10 mt20">

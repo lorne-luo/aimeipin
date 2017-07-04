@@ -34,10 +34,14 @@ import java.util.List;
                 @ColumnResult(name = "city_id"),
                 @ColumnResult(name = "city_name"),
                 @ColumnResult(name = "people_number"),
+                @ColumnResult(name = "sold"),
+                @ColumnResult(name = "custom_sold"),
                 @ColumnResult(name = "label_flag"),
                 @ColumnResult(name = "weight"),
                 @ColumnResult(name = "price_double"),
-                @ColumnResult(name = "discount_price_double")
+                @ColumnResult(name = "discount_price_double"),
+                @ColumnResult(name = "category_id"),
+                @ColumnResult(name = "category_name")
         }
 )
 public class Commodity implements Serializable {
@@ -48,7 +52,8 @@ public class Commodity implements Serializable {
 
     public Commodity(Integer id, String commodityCode, Integer flag, String name, Integer price, Float discount, Integer discountPrice,
                      Integer state, Timestamp createTime, Integer provinceId, String provinceName, Integer cityId, String cityName,
-                     Integer peopleNumber,Integer labelFlag,Integer weight,Double priceDouble,Double discountPriceDouble) {
+                     Integer peopleNumber,Integer sold,Integer customSold,Integer labelFlag,Integer weight,Double priceDouble,
+                     Double discountPriceDouble,Integer categoryId, String categoryName) {
         super();
         this.id = id;
         this.commodityCode = commodityCode;
@@ -65,9 +70,15 @@ public class Commodity implements Serializable {
         DicCity dicCity = new DicCity();
         dicCity.setId(cityId);
         dicCity.setName(cityName);
+        Category category = new Category();
+        category.setId(categoryId);
+        category.setName(categoryName);
         this.dicProvince = dicProvince;
         this.dicCity = dicCity;
+        this.category = category;
         this.peopleNumber = peopleNumber;
+        this.sold = sold;
+        this.customSold = customSold;
         this.labelFlag = labelFlag;
         this.weight = weight;
         this.priceDouble = priceDouble;
@@ -82,7 +93,7 @@ public class Commodity implements Serializable {
     private String commodityCode;
 
     /**
-     * 项目类型: 1 拼团, 2 福袋, 3 特惠, 4 咨询
+     * 项目类型: 1 拼团, 2 福袋, 3 特惠, 4 咨询, 5 打卡
      */
     private Integer flag = 1;
 
@@ -202,6 +213,9 @@ public class Commodity implements Serializable {
     @JoinColumn(name = "city_id", referencedColumnName = "id")
     private DicCity dicCity;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
 
     @OneToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "commodity_id", referencedColumnName = "id")
@@ -429,7 +443,7 @@ public class Commodity implements Serializable {
     }
 
     public void setWeight(Integer weight) {
-        this.weight = weight;
+        this.weight = weight == null ? 0 : weight;
     }
 
     public String getDiscountUnit() {
@@ -472,6 +486,16 @@ public class Commodity implements Serializable {
         this.priceDouble = priceDouble;
     }
 
+    public Category getCategory() {return category;}
 
+    public void setCategory(Category category) {this.category = category;}
 
+    // 下架
+    public void markAsDown(){
+        this.state = 0;
+    }
+    // 上架
+    public void markAsUp(){
+        this.state = 1;
+    }
 }

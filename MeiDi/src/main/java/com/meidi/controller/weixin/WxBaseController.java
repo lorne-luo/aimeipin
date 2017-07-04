@@ -1,7 +1,9 @@
 package com.meidi.controller.weixin;
 
+import com.meidi.domain.Commodity;
 import com.meidi.domain.Order;
 import com.meidi.domain.WxTicket;
+import com.meidi.repository.CommodityRepository;
 import com.meidi.repository.WxTicketRepository;
 import com.meidi.util.MdCommon;
 import com.meidi.util.MdConstants;
@@ -13,8 +15,10 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.*;
@@ -24,8 +28,11 @@ import java.util.*;
  */
 public class WxBaseController implements MdConstants {
 
+    @Resource
+    private CommodityRepository commodityRepository;
+
     /**
-     * 跳授权
+     * 商城跳授权, snsapi_userinfo方式, 需要用户点击确认授权
      *
      * @param request
      * @return
@@ -33,12 +40,39 @@ public class WxBaseController implements MdConstants {
     public ModelAndView wxAuth(HttpServletRequest request) {
 
         String url = MdCommon.getUrl(request);
+        if (url == null || url == "") url = HOME;
         HttpSession session = request.getSession();
         session.setAttribute(USER_URL, url);
         return new ModelAndView(new RedirectView("https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + WX_APP_ID + "&"
-                + "redirect_uri=" + PATH + "/wxAuth/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"));
+                + "redirect_uri=" + HOME + "/wxAuth/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"));
     }
 
+    /**
+     * 打卡公众号授权采用双重授权登陆,
+     * 1.先snsapi_base静默授权商城公号获取商城公号openid并据此生成只含openid的空user,并保存商城openid至session
+     * 2.再snsapi_userinfo用户确认授权打卡公号, 拿到昵称头像等信息更新上一步生成的user
+     *
+     * @param request
+     * @return
+     */
+    public ModelAndView dkAuth(HttpServletRequest request) throws NoSuchRequestHandlingMethodException {
+
+        String url = MdCommon.getUrl(request);
+        if (url == null || url.equals("")){
+            // url为空转去第一个打卡项目
+            List<Commodity> commodityList = commodityRepository.findByFlagAndState(5,1);
+            if(commodityList != null && commodityList.size() > 0){
+                url = PATH + "/business/bookingDaka/"+commodityList.get(0).getId();
+            }else{
+                throw new NoSuchRequestHandlingMethodException("bookingDaka", WxBaseController.class);
+            }
+        }
+
+        HttpSession session = request.getSession();
+        session.setAttribute(USER_URL, url);
+        return new ModelAndView(new RedirectView("https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + WX_APP_ID + "&"
+                + "redirect_uri=" + HOME + "/wxAuth/dkAuth&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"));
+    }
 
     /**
      * 使用SHA-1生成
@@ -85,7 +119,7 @@ public class WxBaseController implements MdConstants {
         String appid = WX_APP_ID;
         String mch_id = MCH_ID;//商户号
         String nonce_str = MdCommon.getRandomString(16);//随机数
-        String body = "聚会美";//商品描述
+        String body = order.getCommodityName();//商品描述
         String out_trade_no = order.getOrderCode();//商户内部订单号
         Integer total_fee = order.getPayAmount();//总金额
         String spbill_create_ip = ip;//终端IP
@@ -108,7 +142,7 @@ public class WxBaseController implements MdConstants {
         packageParams.put("openid", openid);
         //按照ascII排序
         String str = MdCommon.createASC2Sort(packageParams) + "&key=" + key;
-        System.out.println("str ===" + str);
+        System.out.println("unifiedOrder str ===" + str);
         String sign = MdCommon.getMD5(str).toUpperCase();//签名
         System.out.println("sing===" + sign);
         String url = "https://api.mch.weixin.qq.com/pay/unifiedorder";

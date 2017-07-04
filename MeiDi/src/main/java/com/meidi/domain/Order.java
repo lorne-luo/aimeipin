@@ -30,6 +30,9 @@ public class Order implements Serializable {
     @Column(name = "wx_openid")
     private String wxOpenid;
 
+    @Column(name = "book_wxopenid")
+    private String bookWxOpenid;
+
     @Column(name = "commodity_id")
     private Integer commodityId;
 
@@ -61,6 +64,7 @@ public class Order implements Serializable {
 
     /**
      * 预订类型 1 发起拼团预订 2 拼团一人预订  3普通预订 4参团预订
+     *         1 拼团专享支付（发起拼团）  2 拼团一人支付  3普通(特惠 福袋)支付  4参团支付
      */
     @Column(name = "booking_flag")
     private Integer bookingFlag = 3 ;
@@ -110,17 +114,22 @@ public class Order implements Serializable {
 
     /**
      * 支付状态
-     * 1 未支付                       | 未支付
-     * 2 已支付                       | 已支付
-     * 3 支付失败                     | 支付失败
-     * 4 订单取消 等待退款             | 已完成
-     * 5 已退款 订单关闭 取消中 等待审核 | 取消中
-     * 6 订单取消 订单关闭（未支付）     | 已取消(已退款)
-     * 7 订单关闭（拼团超时 已退款）     | 已取消(不退款)
-     * 8 订单关闭（已在医院做完项目）    | 已取消(未付款)
-     * 9 已取消(已退款)                | 已取消(未付款)
+     * 1 未支付
+     * 2 已支付
+     * 3 支付失败
+     * 4 已完成
+     * 5 取消中(待退款)
+     * 6 已取消(已退款)
+     * 7 已取消(未退款)
+     * 8 已取消(未支付)
      */
     private Integer state = 1;
+
+    /**
+     * 假删除标志, 订单列表页隐藏部分不想看到的订单
+     */
+    @Column(name = "is_deleted")
+    private Boolean isDeleted = false;
 
     /**
      * 微信订单号
@@ -129,7 +138,7 @@ public class Order implements Serializable {
     private String transactionId;
 
     /**
-     * 项目类型: 1 拼团, 2 福袋, 3 特惠, 4 咨询
+     * 项目类型: 1 拼团, 2 福袋, 3 特惠, 4 咨询, 5 打卡
      * 与commondity.flag一致
      */
     private Integer flag = 0;
@@ -165,6 +174,13 @@ public class Order implements Serializable {
         this.wxOpenid = wxOpenid;
     }
 
+    public String getBookWxOpenid() {
+        return bookWxOpenid;
+    }
+
+    public void setBookWxOpenid(String bookWxOpenid) {
+        this.bookWxOpenid = bookWxOpenid;
+    }
 
     public Integer getLaunchId() {
         return launchId;
@@ -386,5 +402,16 @@ public class Order implements Serializable {
         this.unit = unit;
     }
 
+    public Boolean getDeleted() { return isDeleted; }
+
+    public void setDeleted(Boolean deleted) { isDeleted = deleted; }
+
+    public void delete() {
+        isDeleted = true;
+    }
+
+    public void undoDelete() {
+        isDeleted = false;
+    }
 
 }
